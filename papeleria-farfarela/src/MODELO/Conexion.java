@@ -20,7 +20,7 @@ public class Conexion {
         Connection con=null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con=DriverManager.getConnection("jdbc:mysql://localhost/papeleriafarfarela","root","");    //AQUI PONGO LA CUENTA Y ESO DE LA BASE
+            con=DriverManager.getConnection("jdbc:mysql://localhost/papeleriafarfarela","root","root");    //AQUI PONGO LA CUENTA Y ESO DE LA BASE
         } catch (ClassNotFoundException ex) {
             System.out.println("1");
             System.out.println("error de conexion");
