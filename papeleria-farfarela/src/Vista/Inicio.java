@@ -37,18 +37,18 @@ public class Inicio extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblEtiqueta = new javax.swing.JLabel();
         txtPass = new javax.swing.JPasswordField();
         txtCuenta = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblImage = new javax.swing.JLabel();
+        lblCuenta = new javax.swing.JLabel();
+        lblContraseña = new javax.swing.JLabel();
         btnIngresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
-        jLabel1.setText("LOGIN - FARFARELA");
+        lblEtiqueta.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        lblEtiqueta.setText("BIENVENIDOS- FARFARELA");
 
         txtPass.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
 
@@ -59,15 +59,15 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/login.png"))); // NOI18N
+        lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/login.png"))); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 255));
-        jLabel3.setText("CUENTA:");
+        lblCuenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblCuenta.setForeground(new java.awt.Color(51, 51, 255));
+        lblCuenta.setText("CUENTA:");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(51, 51, 255));
-        jLabel4.setText("CONTRASEÑA:");
+        lblContraseña.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblContraseña.setForeground(new java.awt.Color(51, 51, 255));
+        lblContraseña.setText("CONTRASEÑA:");
 
         btnIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/ingresar.png"))); // NOI18N
         btnIngresar.setText("Ingresar");
@@ -84,7 +84,7 @@ public class Inicio extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -92,14 +92,14 @@ public class Inicio extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
                                 .addComponent(txtPass))
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
+                            .addComponent(lblCuenta)
+                            .addComponent(lblContraseña))
                         .addGap(32, 32, 32))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnIngresar)
                         .addGap(80, 80, 80))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(lblEtiqueta)
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -108,18 +108,18 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(51, 51, 51)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(lblEtiqueta)
                         .addGap(33, 33, 33)
-                        .addComponent(jLabel3)
+                        .addComponent(lblCuenta)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14)
-                        .addComponent(jLabel4)
+                        .addComponent(lblContraseña)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnIngresar))
-                    .addComponent(jLabel2))
+                    .addComponent(lblImage))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -215,11 +215,11 @@ int contador = 0;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblContraseña;
+    private javax.swing.JLabel lblCuenta;
+    private javax.swing.JLabel lblEtiqueta;
+    private javax.swing.JLabel lblImage;
     public static javax.swing.JTextField txtCuenta;
     private javax.swing.JPasswordField txtPass;
     // End of variables declaration//GEN-END:variables
