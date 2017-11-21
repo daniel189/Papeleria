@@ -16,8 +16,13 @@ import javax.swing.JOptionPane;
  * 
  * @author Sergio
  */
+<<<<<<< HEAD:papeleria-farfarela/src/MODELO/CerrarConexion.java
 public class CerrarConexion {
     public static void metodoCerrarConexiones(Connection conexion, Statement sentencia, ResultSet resultado, PreparedStatement ps ){
+=======
+public class CerrarConexiones {
+    public static void CerrarConexion(Connection conexion, Statement sentencia, ResultSet resultado, PreparedStatement ps ){
+>>>>>>> 39a572a1c2919aaa507877cc726a025df9074228:papeleria-farfarela/src/MODELO/CerrarConexiones.java
         
         if(ps != null){
             try{

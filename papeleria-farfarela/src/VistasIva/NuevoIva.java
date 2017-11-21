@@ -6,7 +6,7 @@
 package VistasIva;
 import MODELO.Conexion;
 import VistasFamilia.*;
-import MODELO.queryFamilias;
+import MODELO.queryFamilia;
 import MODELO.queryIvas;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -26,7 +26,7 @@ import papeleriafarfarela.Familia;
 public class NuevoIva extends javax.swing.JInternalFrame {
     ArrayList<Familia> lista;
     Familia famIngreso=new Familia();
-    queryFamilias artQuery=new queryFamilias();
+    queryFamilia artQuery=new queryFamilia();
     int pro_id;
     int iva_id;
     Conexion conectar = new Conexion();

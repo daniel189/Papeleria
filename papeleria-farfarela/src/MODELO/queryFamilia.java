@@ -16,7 +16,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class queryFamilias {
+public class queryFamilia {
     
 PreparedStatement sentencia;
       PreparedStatement busqueda;

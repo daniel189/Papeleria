@@ -42,7 +42,7 @@ public class CerrarConexionesIT {
     }
 
     /**
-     * Test of metodoCerrarConexiones method, of class CerrarConexiones.
+     * Test of CerrarConexion method, of class CerrarConexiones.
      */
     @Test
     public void testMetodoCerrarConexiones() {
@@ -51,7 +51,11 @@ public class CerrarConexionesIT {
         Statement sentencia = null;
         ResultSet resultado = null;
         PreparedStatement ps = null;
+<<<<<<< HEAD
         CerrarConexion.metodoCerrarConexiones(conexion, sentencia, resultado, ps);
+=======
+        CerrarConexiones.CerrarConexion(conexion, sentencia, resultado, ps);
+>>>>>>> 39a572a1c2919aaa507877cc726a025df9074228
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

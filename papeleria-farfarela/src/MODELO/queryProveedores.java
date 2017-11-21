@@ -174,7 +174,11 @@ public class queryProveedores {
             JOptionPane.showMessageDialog(null, e);
             conexion = null;
         } finally {
+<<<<<<< HEAD
             CerrarConexion.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
+=======
+            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
+>>>>>>> 39a572a1c2919aaa507877cc726a025df9074228
         }
         return false;
     }//cierra metodo ejecutarConsulta
@@ -233,7 +237,11 @@ public class queryProveedores {
             JOptionPane.showMessageDialog(null, e);
             conexion = null;
         } finally {
+<<<<<<< HEAD
             CerrarConexion.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
+=======
+            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
+>>>>>>> 39a572a1c2919aaa507877cc726a025df9074228
         }
 
     }//cierra metodo ejecutarConsulta
@@ -311,7 +319,11 @@ public class queryProveedores {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error\n Por la Causa" + e);
         } finally {
+<<<<<<< HEAD
             CerrarConexion.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
+=======
+            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
+>>>>>>> 39a572a1c2919aaa507877cc726a025df9074228
         }
 
     }//cierra metodo buscarRegistro
@@ -589,7 +601,11 @@ public class queryProveedores {
             JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n");
             conexion = null;
         } finally {
+<<<<<<< HEAD
             CerrarConexion.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
+=======
+            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
+>>>>>>> 39a572a1c2919aaa507877cc726a025df9074228
 
         }
         

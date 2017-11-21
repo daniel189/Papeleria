@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package VistasFamilia;
-import MODELO.queryFamilias;
+import MODELO.queryFamilia;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -17,7 +17,7 @@ import papeleriafarfarela.Familia;
  */
 public class EditaFamilia extends javax.swing.JInternalFrame {
    Familia fam_ingreso=new Familia();
-   queryFamilias art_query=new queryFamilias();
+   queryFamilia art_query=new queryFamilia();
    int pro_id;
    int iva_id;
    int fam_id;

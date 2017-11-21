@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Crispin
  */
-public class queryFacturas {
+public class queryFactura {
  
          //modelo para la tabla
     DefaultTableModel modelo;
@@ -99,7 +99,11 @@ public class queryFacturas {
             JOptionPane.showMessageDialog(null,e);
             conexion = null;
         } finally {
+<<<<<<< HEAD:papeleria-farfarela/src/MODELO/queryFactura.java
             CerrarConexion.metodoCerrarConexiones(conexion, sentencia, resultado, ps);
+=======
+            CerrarConexiones.CerrarConexion(conexion, sentencia, resultado, ps);
+>>>>>>> 39a572a1c2919aaa507877cc726a025df9074228:papeleria-farfarela/src/MODELO/queryFacturas.java
         }
 
     }//cierra metodo ejecutarConsulta
@@ -181,7 +185,11 @@ public class queryFacturas {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error\n Por la Causa" + e);
         } finally {
+<<<<<<< HEAD:papeleria-farfarela/src/MODELO/queryFactura.java
             CerrarConexion.metodoCerrarConexiones(conexion, sentencia, resultado, ps);
+=======
+            CerrarConexiones.CerrarConexion(conexion, sentencia, resultado, ps);
+>>>>>>> 39a572a1c2919aaa507877cc726a025df9074228:papeleria-farfarela/src/MODELO/queryFacturas.java
         }
 
 
@@ -261,7 +269,7 @@ public class queryFacturas {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error\n " + e);
         } finally {
-           // CerrarConexiones.metodoCerrarConexiones(conexion, sentencia, resultado, ps);
+           // CerrarConexiones.CerrarConexion(conexion, sentencia, resultado, ps);
         }
 
 
