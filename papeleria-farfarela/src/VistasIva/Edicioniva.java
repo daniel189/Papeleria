@@ -16,14 +16,14 @@ import javax.swing.JOptionPane;
  *
  * @author Daniel
  */
-public class IvaEditar extends javax.swing.JInternalFrame {
- queryIvas art_query=new queryIvas();
+public class Edicioniva extends javax.swing.JInternalFrame {
+ queryIvas artQuery=new queryIvas();
     /**
      * Creates new form IvaEditar
      */
-    public IvaEditar() {
+    public Edicioniva() {
         initComponents();
-           cboxiva.setModel(art_query.cargarIvas().getModel());
+           cboxiva.setModel(artQuery.cargarIvas().getModel());
     }
 
     /**
@@ -184,48 +184,41 @@ public class IvaEditar extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_valorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_valorKeyTyped
-char caracter = evt.getKeyChar();
- 
-      // Verificar si la tecla pulsada no es un digito
-      if(((caracter < '0') ||
-         (caracter > '9')) &&
-         (caracter != '\b' /*corresponde a BACK_SPACE*/))
-      {
-          
-         evt.consume();  // ignorar el evento de teclado
-      }
-       
+        char caracter = evt.getKeyChar();
+        // Verificar si la tecla pulsada no es un digito
+        if(((caracter < '0') ||
+           (caracter > '9')) &&
+           (caracter != '\b' /*corresponde a BACK_SPACE*/))
+        {
 
+           evt.consume();  // ignorar el evento de teclado
+        }
     }//GEN-LAST:event_txt_valorKeyTyped
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
- ArrayList<String> lista = new ArrayList<>();
-    String idiva=String.valueOf(cboxiva.getSelectedItem());
-                lista.add(idiva);
-                lista.add(txt_valor.getText());
-                String formato =dcFechaNacimiento.getDateFormatString();
-                Date date  = dcFechaNacimiento.getDate();
-                SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                lista.add(String.valueOf(sdf.format(date)));
-                
-                art_query.updateIvas(lista);
-                               
-              
-
+        ArrayList<String> lista = new ArrayList<>();
+        String idiva=String.valueOf(cboxiva.getSelectedItem());
+            lista.add(idiva);
+            lista.add(txt_valor.getText());
+            String formato =dcFechaNacimiento.getDateFormatString();
+            Date date  = dcFechaNacimiento.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat(formato);
+            lista.add(String.valueOf(sdf.format(date)));    
+            artQuery.updateIvas(lista);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txt_valorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_valorKeyReleased
-int control=Integer.parseInt(txt_valor.getText());
-if(control>50)
-{
-   JOptionPane.showMessageDialog(null, "Iva Fuera de Rango:\n" );
-   txt_valor.setText("");
-}
+        int control=Integer.parseInt(txt_valor.getText());
+        if(control>50)
+        {
+           JOptionPane.showMessageDialog(null, "Iva Fuera de Rango:\n" );
+           txt_valor.setText("");
+        }
     }//GEN-LAST:event_txt_valorKeyReleased
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
  
-this.dispose();
+        this.dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarActionPerformed
 

@@ -15,16 +15,15 @@ import papeleriafarfarela.Familia;
  *
  * @author martha
  */
-public class FamiliasUpdate extends javax.swing.JInternalFrame {
+public class EditaFamilia extends javax.swing.JInternalFrame {
    Familia fam_ingreso=new Familia();
    queryFamilias art_query=new queryFamilias();
    int pro_id;
-  int iva_id;
-  int fam_id;
-  int iv_id;
+   int iva_id;
+   int fam_id;
+   int iv_id;
  DefaultTableModel modelo=new DefaultTableModel();
-    public FamiliasUpdate() {
-  
+    public EditaFamilia() {
         initComponents();
        cboxiva.setModel(art_query.cargariva().getModel());
     }
@@ -53,7 +52,7 @@ public class FamiliasUpdate extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/guardar.png"))); // NOI18N
@@ -272,25 +271,25 @@ public class FamiliasUpdate extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 public void cargartxt(){
-int filasel=tab_familias.getSelectedRow();
-if(filasel==-1){
-            JOptionPane.showMessageDialog(null,"Seleccione primero la columna" );
-}
-else
-{
-   String auxiliar=tab_familias.getValueAt(filasel, 0).toString();
-   fam_id=Integer.parseInt(auxiliar);
-   auxiliar=tab_familias.getValueAt(filasel, 1).toString();
-   iva_id=Integer.parseInt(auxiliar);
-txt_nombre.setText(tab_familias.getValueAt(filasel, 2).toString());
-txt_descripcion.setText(tab_familias.getValueAt(filasel, 3).toString());
+    int filasel=tab_familias.getSelectedRow();
+    if(filasel==-1){
+                JOptionPane.showMessageDialog(null,"Seleccione primero la columna" );
+    }
+    else
+    {
+       String auxiliar=tab_familias.getValueAt(filasel, 0).toString();
+       fam_id=Integer.parseInt(auxiliar);
+       auxiliar=tab_familias.getValueAt(filasel, 1).toString();
+       iva_id=Integer.parseInt(auxiliar);
+    txt_nombre.setText(tab_familias.getValueAt(filasel, 2).toString());
+    txt_descripcion.setText(tab_familias.getValueAt(filasel, 3).toString());
 
 }
 }
 public int seleccionaritem()
 {
-int item=cbox.getSelectedIndex();
-return item;
+    int item=cbox.getSelectedIndex();
+    return item;
 }
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
@@ -304,7 +303,7 @@ return item;
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-this.dispose();
+        this.dispose();
   
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -318,8 +317,8 @@ this.dispose();
     }//GEN-LAST:event_cboxivaActionPerformed
 
     private void txt_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyTyped
-   char C = evt.getKeyChar();
-        if (Character.isDigit(C)) {
+    char caracter = evt.getKeyChar();
+        if (Character.isDigit(caracter)) {
 
             evt.consume();
             txt_nombre.setCursor(null);
@@ -342,7 +341,6 @@ this.dispose();
     private void txtingresoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtingresoKeyReleased
         if(txtingreso.getText().isEmpty())
         {
-
             for (int i = 0; i < tab_familias.getRowCount(); i++) {
                 modelo.removeRow(i);
                 i-=1;
@@ -359,8 +357,8 @@ this.dispose();
 
     private void txt_descripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_descripcionKeyTyped
         // TODO add your handling code here:
-           char C = evt.getKeyChar();
-        if (Character.isDigit(C)) {
+           char caracter = evt.getKeyChar();
+        if (Character.isDigit(caracter)) {
 
             evt.consume();
             txt_descripcion.setCursor(null);
@@ -398,7 +396,7 @@ this.dispose();
     }//GEN-LAST:event_txtingresoKeyTyped
 
     private void cboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxActionPerformed
- txtingreso.setText("");
+        txtingreso.setText("");
     }//GEN-LAST:event_cboxActionPerformed
     
     /**

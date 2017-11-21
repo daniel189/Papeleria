@@ -23,19 +23,17 @@ import papeleriafarfarela.Familia;
  *
  * @author martha
  */
-public class IvaNew extends javax.swing.JInternalFrame {
-ArrayList<Familia> lista;
-   Familia fam_ingreso=new Familia();
-   queryFamilias art_query=new queryFamilias();
-   int pro_id;
-  int iva_id;
-   Conexion conectar = new Conexion();
- queryIvas obj = new queryIvas();
-    public IvaNew() {
-      
+public class NuevoIva extends javax.swing.JInternalFrame {
+    ArrayList<Familia> lista;
+    Familia famIngreso=new Familia();
+    queryFamilias artQuery=new queryFamilias();
+    int pro_id;
+    int iva_id;
+    Conexion conectar = new Conexion();
+    queryIvas obj = new queryIvas();
+    public NuevoIva() {  
         initComponents();
-        claveMax();
-      
+        claveMax();      
     }
 
   
@@ -171,7 +169,7 @@ ArrayList<Familia> lista;
                         .addComponent(btnGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCancelar))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 404, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -226,7 +224,7 @@ ArrayList<Familia> lista;
         }
     }
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-    ArrayList<String> lista = new ArrayList<>();
+        ArrayList<String> lista = new ArrayList<>();
                 lista.add(txtCodigo.getText());
                 lista.add(txt_valor.getText());
                 String formato =dcFechaNacimiento.getDateFormatString();
@@ -250,24 +248,23 @@ ArrayList<Familia> lista;
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txt_valorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_valorKeyTyped
-char caracter = evt.getKeyChar();
-
-      // Verificar si la tecla pulsada no es un digito
-      if(((caracter < '0') ||
-         (caracter > '9')) &&
-         (caracter != '\b' /*corresponde a BACK_SPACE*/))
-      {
-         evt.consume();  // ignorar el evento de teclado
-      }        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        // Verificar si la tecla pulsada no es un digito
+        if(((caracter < '0') ||
+           (caracter > '9')) &&
+           (caracter != '\b' /*corresponde a BACK_SPACE*/))
+        {
+           evt.consume();  // ignorar el evento de teclado
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_txt_valorKeyTyped
 
     private void txt_valorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_valorKeyReleased
-int control=Integer.parseInt(txt_valor.getText());
-if(control>50)
-{
-   JOptionPane.showMessageDialog(null, "Iva Fuera de Rango:\n" );
-   txt_valor.setText("");
-}
+        int control=Integer.parseInt(txt_valor.getText());
+        if(control>50)
+        {
+           JOptionPane.showMessageDialog(null, "Iva Fuera de Rango:\n" );
+           txt_valor.setText("");
+        }
     }//GEN-LAST:event_txt_valorKeyReleased
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

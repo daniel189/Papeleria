@@ -15,14 +15,14 @@ import papeleriafarfarela.Familia;
  *
  * @author martha
  */
-public class FamiliasBuscar extends javax.swing.JInternalFrame {
+public class BusquedaFamilia extends javax.swing.JInternalFrame {
    Familia fam_ingreso=new Familia();
    queryFamilias art_query=new queryFamilias();
    int pro_id;
-  int iva_id;
-  int fam_id;
-  int iv_id;
- DefaultTableModel modelo=new DefaultTableModel();  
+   int iva_id;
+   int fam_id;
+   int iv_id;
+   DefaultTableModel modelo=new DefaultTableModel();  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -38,7 +38,7 @@ public class FamiliasBuscar extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tab_familias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -177,17 +177,17 @@ public class FamiliasBuscar extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-  public FamiliasBuscar() {
+  public BusquedaFamilia() {
   
         initComponents();
 
     }
 
-public int seleccionaritem()
-{
-int item=cbox.getSelectedIndex();
-return item;
-}
+  public int seleccionaritem()
+    {
+       int item=cbox.getSelectedIndex();
+       return item;
+    }
     private void tab_familiasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_familiasMouseClicked
 
     }//GEN-LAST:event_tab_familiasMouseClicked
@@ -195,12 +195,10 @@ return item;
     private void txtingresoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtingresoKeyReleased
         if(txtingreso.getText().isEmpty())
         {
-
             for (int i = 0; i < tab_familias.getRowCount(); i++) {
                 modelo.removeRow(i);
                 i-=1;
             }
-
         }
         else
         {
@@ -211,13 +209,13 @@ return item;
     }//GEN-LAST:event_txtingresoKeyReleased
 
     private void txtingresoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtingresoKeyTyped
-String nombre=String.valueOf(cbox.getSelectedItem());
-                System.out.println(nombre);
-              String c="Nombre";
-        if(nombre.equals(c))
+        String nombre=String.valueOf(cbox.getSelectedItem());
+              System.out.println(nombre);
+              String nombreC="Nombre";
+        if(nombre.equals(nombreC))
         {
-            char C = evt.getKeyChar();
-            if (Character.isDigit(C)) {
+            char caracter = evt.getKeyChar();
+            if (Character.isDigit(caracter)) {
                 
                 evt.consume();
                 txtingreso.setCursor(null);
@@ -240,7 +238,7 @@ String nombre=String.valueOf(cbox.getSelectedItem());
     }//GEN-LAST:event_txtingresoKeyTyped
 
     private void cboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxActionPerformed
-   txtingreso.setText("");
+        txtingreso.setText("");
     }//GEN-LAST:event_cboxActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

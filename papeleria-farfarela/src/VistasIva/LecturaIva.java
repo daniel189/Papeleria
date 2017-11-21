@@ -12,13 +12,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Daniel
  */
-public class IvaLeer extends javax.swing.JInternalFrame {
- queryIvas art_query=new queryIvas();    
+public class LecturaIva extends javax.swing.JInternalFrame {
+ queryIvas artQuery=new queryIvas();    
  DefaultTableModel modelo=new DefaultTableModel();
     /**
      * Creates new form IvaLeer
      */
-    public IvaLeer() {
+    public LecturaIva() {
         initComponents();
     }
 
@@ -136,14 +136,14 @@ public class IvaLeer extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tab_ivaMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-tab_iva.setModel(art_query.leerIvas());
-   modelo=art_query.leerIvas();
-            tab_iva.setModel(modelo);
-            this.tab_iva.setModel(modelo);// hay q poner dos veces xq si no se ejecuta
+        tab_iva.setModel(artQuery.leerIvas());
+        modelo=artQuery.leerIvas();
+        tab_iva.setModel(modelo);
+        this.tab_iva.setModel(modelo);// hay q poner dos veces xq si no se ejecuta
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-  this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**

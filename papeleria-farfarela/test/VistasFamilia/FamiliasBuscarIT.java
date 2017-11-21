@@ -38,12 +38,12 @@ public class FamiliasBuscarIT {
     }
 
     /**
-     * Test of seleccionaritem method, of class FamiliasBuscar.
+     * Test of seleccionaritem method, of class BusquedaFamilia.
      */
     @Test
     public void testSeleccionaritem() {
         System.out.println("seleccionaritem");
-        FamiliasBuscar instance = new FamiliasBuscar();
+        BusquedaFamilia instance = new BusquedaFamilia();
         int expResult = 0;
         int result = instance.seleccionaritem();
         assertEquals(expResult, result);

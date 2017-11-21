@@ -20,21 +20,21 @@ import papeleriafarfarela.Familia;
  *
  * @author martha
  */
-public class FamiliasNew extends javax.swing.JInternalFrame {
-ArrayList<Familia> lista;
+public class NuevaFamilia extends javax.swing.JInternalFrame {
+   ArrayList<Familia> lista;
    Familia fam_ingreso=new Familia();
    queryFamilias art_query=new queryFamilias();
    int pro_id;
-  int iva_id;
+   int iva_id;
   public int idfamilia;
       Conexion conectar = new Conexion();
-       String titulos[]={"Fam Id","Iva Id","Nombre","Detalle"};
-        DefaultTableModel modelo=new DefaultTableModel(null,titulos);// si no usan el null y no le ponen titulos noo les  imprime 
-    public FamiliasNew() {
+      String titulos[]={"Fam Id","Iva Id","Nombre","Detalle"};
+      DefaultTableModel modelo=new DefaultTableModel(null,titulos);// si no usan el null y no le ponen titulos noo les  imprime 
+    public NuevaFamilia() {
         this.lista = new ArrayList<>();
         initComponents();
-       cboxiva.setModel(art_query.cargariva().getModel());
-       claveMax();
+        cboxiva.setModel(art_query.cargariva().getModel());
+        claveMax();
     }
 
   
@@ -60,7 +60,7 @@ ArrayList<Familia> lista;
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/guardar.png"))); // NOI18N
@@ -288,7 +288,7 @@ public final void claveMax() {
         
      if((art_query.setFamilia(fam_ingreso.getFAM_id(),iva_id, fam_ingreso.getFAM_nombre(), fam_ingreso.getFAM_detale())))
         {          
-              String[] fila=new String[7];
+             String[] fila=new String[7];
              fila[0]=String.valueOf(fam_ingreso.getFAM_id());
              fila[1]=String.valueOf(iva_id);
                  fila[2]=String.valueOf(fam_ingreso.getFAM_nombre());
@@ -318,8 +318,8 @@ public final void claveMax() {
     }//GEN-LAST:event_cboxivaActionPerformed
 
     private void txt_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyTyped
-   char C = evt.getKeyChar();
-        if (Character.isDigit(C)) {
+   char caracter = evt.getKeyChar();
+        if (Character.isDigit(caracter)) {
 
             evt.consume();
             txt_nombre.setCursor(null);
@@ -339,9 +339,8 @@ public final void claveMax() {
     }//GEN-LAST:event_txt_ivaActionPerformed
 
     private void txt_descripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_descripcionKeyTyped
-       char C = evt.getKeyChar();
-        if (Character.isDigit(C)) {
-
+       char caracter = evt.getKeyChar();
+        if (Character.isDigit(caracter)) {
             evt.consume();
             txt_descripcion.setCursor(null);
 
@@ -349,7 +348,7 @@ public final void claveMax() {
     }//GEN-LAST:event_txt_descripcionKeyTyped
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
     
     /**

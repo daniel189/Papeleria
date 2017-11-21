@@ -38,24 +38,24 @@ public class FamiliasUpdateIT {
     }
 
     /**
-     * Test of cargartxt method, of class FamiliasUpdate.
+     * Test of cargartxt method, of class EditaFamilia.
      */
     @Test
     public void testCargartxt() {
         System.out.println("cargartxt");
-        FamiliasUpdate instance = new FamiliasUpdate();
+        EditaFamilia instance = new EditaFamilia();
         instance.cargartxt();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of seleccionaritem method, of class FamiliasUpdate.
+     * Test of seleccionaritem method, of class EditaFamilia.
      */
     @Test
     public void testSeleccionaritem() {
         System.out.println("seleccionaritem");
-        FamiliasUpdate instance = new FamiliasUpdate();
+        EditaFamilia instance = new EditaFamilia();
         int expResult = 0;
         int result = instance.seleccionaritem();
         assertEquals(expResult, result);
