@@ -17,9 +17,9 @@ import static org.junit.Assert.*;
  *
  * @author w8
  */
-public class ArticulosBuscarIT {
+public class ArticuloBuscarIT {
     
-    public ArticulosBuscarIT() {
+    public ArticuloBuscarIT() {
     }
     
     @BeforeClass

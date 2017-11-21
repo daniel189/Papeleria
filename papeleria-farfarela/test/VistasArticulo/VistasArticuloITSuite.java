@@ -17,8 +17,8 @@ import org.junit.runners.Suite;
  * @author w8
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({VistasArticulo.ArticuloBuscarIT.class, VistasArticulo.ArticuloUpdateIT.class, VistasArticulo.ArticulosNewIT.class, VistasArticulo.ArticuloDeleteIT.class})
-public class VistasArticulosITSuite {
+@Suite.SuiteClasses({VistasArticulo.ArticuloBuscarIT.class, VistasArticulo.ArticuloUpdateIT.class, VistasArticulo.ArticuloNewIT.class, VistasArticulo.ArticuloDeleteIT.class})
+public class VistasArticuloITSuite {
 
     @BeforeClass
     public static void setUpClass() throws Exception {
