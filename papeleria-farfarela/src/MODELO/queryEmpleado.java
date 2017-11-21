@@ -45,7 +45,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Crispin
  */
-public class queryEmpleados {
+public class queryEmpleado {
 
     //Definiciones
     Conexion conexion = new Conexion();
@@ -82,7 +82,7 @@ public class queryEmpleados {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error - " + ex);
-            Logger.getLogger(queryEmpleados.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(queryEmpleado.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//cierra metodo agregarVendedor
 
@@ -136,7 +136,7 @@ public class queryEmpleados {
             JOptionPane.showMessageDialog(null, e);
             conexion = null;
         } finally {
-            CerrarConexiones.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
+            CerrarConexion.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
         }
         return false;
     }//cierra metodo ejecutarConsulta
@@ -238,7 +238,7 @@ public class queryEmpleados {
             JOptionPane.showMessageDialog(null, e);
             conexion = null;
         } finally {
-            CerrarConexiones.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
+            CerrarConexion.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
         }
 
     }//cierra metodo ejecutarConsulta
@@ -337,7 +337,7 @@ while (resultado.next()) {
             JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n");
             conexion = null;
         } finally {
-            CerrarConexiones.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
+            CerrarConexion.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
 
         }
     }

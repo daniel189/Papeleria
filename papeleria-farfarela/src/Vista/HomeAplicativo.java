@@ -5,7 +5,7 @@
  */
 package Vista;
 
-import MODELO.queryEmpleados;
+import MODELO.queryEmpleado;
 import MODELO.queryProductos;
 import MODELO.queryProveedores;
 import VistaEmpleado.DatosEmpleados;
@@ -539,7 +539,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_jProveedoresActionPerformed
 
     private void rptEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rptEmpleadosActionPerformed
-        queryEmpleados qe = new queryEmpleados();
+        queryEmpleado qe = new queryEmpleado();
         qe.reporteEmpleados();
     }//GEN-LAST:event_rptEmpleadosActionPerformed
 

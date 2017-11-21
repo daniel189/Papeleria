@@ -118,49 +118,9 @@ public class VentasNew extends javax.swing.JInternalFrame{
         //-------------------------------------------
     }
 
-    public String verEmpleado(String cuenta)
-   {
-       int idEmpleado = 0;
-       PreparedStatement busqueda;
-       ResultSet resul;
-       String dato="", dato1="", cadena="";
-      Connection cone= Conexion.getConexion();
-    System.out.println("Cuenta:"+ cuenta);
-       try { 
-              String sql = "SELECT * FROM cuenta WHERE cue_cuenta LIKE ?";
-              busqueda = cone.prepareStatement(sql);
-              busqueda.setString(1, "%" + cuenta + "%");
-              resul=busqueda.executeQuery();
-              while(resul.next())
-              {
-                idEmpleado = resul.getInt("EMP_ID");
-              }
-              resul.close();
-              cone.close();
-              } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error\n Por la Causa" + ex);
-          } 
-       System.out.println("empId:"+ idEmpleado);
-       cone= Conexion.getConexion();
-          try { 
-              String sql = "SELECT EMP_NOMBRES, EMP_APELLIDOS FROM empleado WHERE EMP_ID = ?";
-              busqueda = cone.prepareStatement(sql);
-              busqueda.setInt(1, idEmpleado);
-              resul=busqueda.executeQuery();
-             while(resul.next())
-             {
-                dato = resul.getString("EMP_NOMBRES");
-                dato1 = resul.getString("EMP_APELLIDOS");
-                cadena = dato + " " + dato1;
-             }
-              resul.close();
-              cone.close();
-              } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error\n Por la Causa" + ex);
-          } 
-          System.out.println("cadena:"+ cadena);
-       return cadena;
-   }    
+    public String verEmpleado(String cuenta){return null;
+}
+       
     
     
     
@@ -168,7 +128,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
     private void llamarArticulos() {
 
         // llamada de datos
-        queryArticulos load = new queryArticulos();
+        queryArticulo load = new queryArticulo();
         load.CargarArticulos();
         //Centramos nuestro jDialog
         jDialogArticulos.setLocation(200, 100);
@@ -186,7 +146,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
     private void llamarCliente() {
 
         // llamada de datos
-        queryClientes loadss = new queryClientes();
+        queryCliente loadss = new queryCliente();
         loadss.CargarClientes();
         //Centramos nuestro jDialog
         jDialogCliente.setLocation(250, 150);
@@ -1117,7 +1077,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
                         String cedula = jTextFieldCodigoCliente.getText();
                         String nombre = jTextFieldNombreCliente.getText();
                         String apellido = jTextFieldApellido.getText();
-                        queryClientes add = new queryClientes();
+                        queryCliente add = new queryCliente();
                         // enviar datos a regristar en el querycliente
                         add.agregarCliente(cedula, nombre, apellido);
 
@@ -1404,7 +1364,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
 
     private void txtParametroBusqueda3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtParametroBusqueda3KeyReleased
 
-        queryClientes qc = new queryClientes();
+        queryCliente qc = new queryCliente();
         String parametroBusqueda = txtParametroBusqueda3.getText();
         qc.buscarCliente(parametroBusqueda, ced, nom, ape);
 
@@ -1437,7 +1397,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
 
     private void txtParametroBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtParametroBusquedaKeyReleased
 
-        queryArticulos cc = new queryArticulos();
+        queryArticulo cc = new queryArticulo();
         String parametroBusqueda = txtParametroBusqueda.getText();
         cc.buscarArticulosparaVentas(parametroBusqueda);
 

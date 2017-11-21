@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Crispin
  */
-public class queryClientes {
+public class queryCliente {
     PreparedStatement sentencia;
     ResultSet resul;
     Connection cone;
@@ -80,7 +80,7 @@ public class queryClientes {
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Fallo, Los datos no han podido ser eliminados puesto a que este Cliente tiene registros asociados");
-            Logger.getLogger(queryClientes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(queryCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

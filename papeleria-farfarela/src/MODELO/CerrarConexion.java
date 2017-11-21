@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  * 
  * @author Sergio
  */
-public class CerrarConexiones {
+public class CerrarConexion {
     public static void metodoCerrarConexiones(Connection conexion, Statement sentencia, ResultSet resultado, PreparedStatement ps ){
         
         if(ps != null){

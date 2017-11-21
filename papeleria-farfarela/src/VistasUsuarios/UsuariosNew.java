@@ -5,7 +5,7 @@
  */
 package VistasUsuarios;
 
-import MODELO.CerrarConexiones;
+import MODELO.CerrarConexion;
 import MODELO.queryUsuarios;
 import MODELO.Conexion;
 import java.sql.Connection;

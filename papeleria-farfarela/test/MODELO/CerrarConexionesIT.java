@@ -51,7 +51,7 @@ public class CerrarConexionesIT {
         Statement sentencia = null;
         ResultSet resultado = null;
         PreparedStatement ps = null;
-        CerrarConexiones.metodoCerrarConexiones(conexion, sentencia, resultado, ps);
+        CerrarConexion.metodoCerrarConexiones(conexion, sentencia, resultado, ps);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

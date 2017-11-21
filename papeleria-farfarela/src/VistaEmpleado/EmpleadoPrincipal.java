@@ -5,7 +5,7 @@
  */
 package VistaEmpleado;
 
-import MODELO.queryEmpleados;
+import MODELO.queryEmpleado;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
@@ -23,7 +23,7 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form UsuariosNew
      */
-    queryEmpleados queryE = new queryEmpleados();
+    queryEmpleado queryE = new queryEmpleado();
     private TableRowSorter trsFiltro;
     public EmpleadoPrincipal() {
     
@@ -322,7 +322,7 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if(jTableListarEmpleado.getSelectedRows().length>0){
-            queryEmpleados bash = new queryEmpleados();
+            queryEmpleado bash = new queryEmpleado();
             int code = Integer.parseInt(jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 0).toString());
             bash.eliminarEmpleado(code);
             bash.actualizarTabla();

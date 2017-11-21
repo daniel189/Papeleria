@@ -46,7 +46,7 @@ public class queryArticulosIT {
     @Test
     public void testCargarprovedores() {
         System.out.println("cargarprovedores");
-        queryArticulos instance = new queryArticulos();
+        queryArticulo instance = new queryArticulo();
         JComboBox expResult = null;
         JComboBox result = instance.cargarprovedores();
         assertEquals(expResult, result);
@@ -60,7 +60,7 @@ public class queryArticulosIT {
     @Test
     public void testCargarfamilias() {
         System.out.println("cargarfamilias");
-        queryArticulos instance = new queryArticulos();
+        queryArticulo instance = new queryArticulo();
         JComboBox expResult = null;
         JComboBox result = instance.cargarfamilias();
         assertEquals(expResult, result);
@@ -75,7 +75,7 @@ public class queryArticulosIT {
     public void testAsignarprovedor() {
         System.out.println("asignarprovedor");
         String nombre = "";
-        queryArticulos instance = new queryArticulos();
+        queryArticulo instance = new queryArticulo();
         int expResult = 0;
         int result = instance.asignarprovedor(nombre);
         assertEquals(expResult, result);
@@ -90,7 +90,7 @@ public class queryArticulosIT {
     public void testAsignarfamilia() {
         System.out.println("asignarfamilia");
         String nombre = "";
-        queryArticulos instance = new queryArticulos();
+        queryArticulo instance = new queryArticulo();
         int expResult = 0;
         int result = instance.asignarfamilia(nombre);
         assertEquals(expResult, result);
@@ -107,7 +107,7 @@ public class queryArticulosIT {
         Articulos art = null;
         int id_familia = 0;
         int id_provedor = 0;
-        queryArticulos instance = new queryArticulos();
+        queryArticulo instance = new queryArticulo();
         boolean expResult = false;
         boolean result = instance.setArticulo(art, id_familia, id_provedor);
         assertEquals(expResult, result);
@@ -123,7 +123,7 @@ public class queryArticulosIT {
         System.out.println("UpdateArticulo");
         String texto = "";
         int item = 0;
-        queryArticulos instance = new queryArticulos();
+        queryArticulo instance = new queryArticulo();
         DefaultTableModel expResult = null;
         DefaultTableModel result = instance.UpdateArticulo(texto, item);
         assertEquals(expResult, result);
@@ -144,7 +144,7 @@ public class queryArticulosIT {
         String art_descripcion = "";
         float art_precio = 0.0F;
         int stock = 0;
-        queryArticulos instance = new queryArticulos();
+        queryArticulo instance = new queryArticulo();
         instance.modificarArticulo(art_id, pro_id, fam_id, art_nombre, art_descripcion, art_precio, stock);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -157,7 +157,7 @@ public class queryArticulosIT {
     public void testEliminarProveedor() {
         System.out.println("eliminarProveedor");
         int code = 0;
-        queryArticulos instance = new queryArticulos();
+        queryArticulo instance = new queryArticulo();
         instance.eliminarProveedor(code);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -169,7 +169,7 @@ public class queryArticulosIT {
     @Test
     public void testCargarArticulos() {
         System.out.println("CargarArticulos");
-        queryArticulos instance = new queryArticulos();
+        queryArticulo instance = new queryArticulo();
         instance.CargarArticulos();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -181,7 +181,7 @@ public class queryArticulosIT {
     @Test
     public void testEjecutarConsultaTodaTabla() {
         System.out.println("ejecutarConsultaTodaTabla");
-        queryArticulos instance = new queryArticulos();
+        queryArticulo instance = new queryArticulo();
         instance.ejecutarConsultaTodaTabla();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -194,7 +194,7 @@ public class queryArticulosIT {
     public void testBuscarArticulosparaVentas() {
         System.out.println("buscarArticulosparaVentas");
         String parametroBusqueda = "";
-        queryArticulos instance = new queryArticulos();
+        queryArticulo instance = new queryArticulo();
         instance.buscarArticulosparaVentas(parametroBusqueda);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -207,7 +207,7 @@ public class queryArticulosIT {
     public void testBuscarRegistroArticulos() {
         System.out.println("buscarRegistroArticulos");
         String parametroBusqueda = "";
-        queryArticulos instance = new queryArticulos();
+        queryArticulo instance = new queryArticulo();
         instance.buscarRegistroArticulos(parametroBusqueda);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

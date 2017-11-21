@@ -5,7 +5,7 @@
  */
 package VistasIva;
 
-import MODELO.queryArticulos;
+import MODELO.queryArticulo;
 import MODELO.queryIvas;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

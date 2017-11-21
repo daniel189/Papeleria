@@ -45,7 +45,7 @@ public class queryClientesIT {
     public void testSetCliente() {
         System.out.println("setCliente");
         ArrayList<String> lista = null;
-        queryClientes instance = new queryClientes();
+        queryCliente instance = new queryCliente();
         instance.setCliente(lista);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -58,7 +58,7 @@ public class queryClientesIT {
     public void testEliminarRegistro() {
         System.out.println("EliminarRegistro");
         String iden = "";
-        queryClientes instance = new queryClientes();
+        queryCliente instance = new queryCliente();
         instance.EliminarRegistro(iden);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -71,7 +71,7 @@ public class queryClientesIT {
     public void testUpdateCliente() {
         System.out.println("updateCliente");
         ArrayList<String> lista = null;
-        queryClientes instance = new queryClientes();
+        queryCliente instance = new queryCliente();
         instance.updateCliente(lista);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -86,7 +86,7 @@ public class queryClientesIT {
         String cedula = "";
         String nombre = "";
         String apellido = "";
-        queryClientes instance = new queryClientes();
+        queryCliente instance = new queryCliente();
         instance.agregarCliente(cedula, nombre, apellido);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -98,7 +98,7 @@ public class queryClientesIT {
     @Test
     public void testListarTodosClientes() {
         System.out.println("listarTodosClientes");
-        queryClientes instance = new queryClientes();
+        queryCliente instance = new queryCliente();
         instance.listarTodosClientes();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -110,7 +110,7 @@ public class queryClientesIT {
     @Test
     public void testCargarClientes() {
         System.out.println("CargarClientes");
-        queryClientes instance = new queryClientes();
+        queryCliente instance = new queryCliente();
         instance.CargarClientes();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -122,7 +122,7 @@ public class queryClientesIT {
     @Test
     public void testEjecutarConsultaTodaTabla() {
         System.out.println("ejecutarConsultaTodaTabla");
-        queryClientes instance = new queryClientes();
+        queryCliente instance = new queryCliente();
         instance.ejecutarConsultaTodaTabla();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -138,7 +138,7 @@ public class queryClientesIT {
         boolean buscarPorCedula = false;
         boolean buscarPorNombre = false;
         boolean buscarPorApellido = false;
-        queryClientes instance = new queryClientes();
+        queryCliente instance = new queryCliente();
         instance.buscarCliente(parametroBusqueda, buscarPorCedula, buscarPorNombre, buscarPorApellido);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -154,7 +154,7 @@ public class queryClientesIT {
         boolean buscarPorCedula = false;
         boolean buscarPorNombre = false;
         boolean buscarPorApellido = false;
-        queryClientes instance = new queryClientes();
+        queryCliente instance = new queryCliente();
         instance.buscarRegistroCedulaONombreOapellido(parametroBusqueda, buscarPorCedula, buscarPorNombre, buscarPorApellido);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

@@ -6,7 +6,7 @@
 package VistasArticulos;
 import MODELO.Conexion;
 import papeleriafarfarela.Articulos;
-import MODELO.queryArticulos;
+import MODELO.queryArticulo;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 public class NuevoArticulo extends javax.swing.JInternalFrame {
 
      Articulos artIngreso=new Articulos();
-   queryArticulos artQuery=new queryArticulos();
+   queryArticulo artQuery=new queryArticulo();
    int pro_id;
   int fam_id;
   int valor_encontrado;

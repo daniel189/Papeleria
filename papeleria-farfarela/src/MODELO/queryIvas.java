@@ -69,7 +69,7 @@ public class queryIvas {
              resul.close();
              cone.close();
           } catch (SQLException ex) {
-              Logger.getLogger(queryArticulos.class.getName()).log(Level.SEVERE, null, ex);
+              Logger.getLogger(queryArticulo.class.getName()).log(Level.SEVERE, null, ex);
           }
           return cboxivas;
    
