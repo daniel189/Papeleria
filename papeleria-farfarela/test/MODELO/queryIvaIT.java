@@ -19,9 +19,9 @@ import static org.junit.Assert.*;
  *
  * @author w8
  */
-public class queryIvasIT {
+public class queryIvaIT {
     
-    public queryIvasIT() {
+    public queryIvaIT() {
     }
     
     @BeforeClass

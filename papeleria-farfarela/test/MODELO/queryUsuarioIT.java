@@ -18,9 +18,9 @@ import papeleriafarfarela.Cuenta;
  *
  * @author w8
  */
-public class queryUsuariosIT {
+public class queryUsuarioIT {
     
-    public queryUsuariosIT() {
+    public queryUsuarioIT() {
     }
     
     @BeforeClass
