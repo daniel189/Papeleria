@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista.Proveedor;
+package VistaProveedor;
 
 import MODELO.queryProveedores;
 import java.awt.event.KeyAdapter;
@@ -20,11 +20,11 @@ public class ProveedorPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form UsuariosNew
      */
-          queryProveedores qe = new queryProveedores();
+          queryProveedores queryE = new queryProveedores();
 
     public ProveedorPrincipal() {
         initComponents();
-        qe.listarTodosProveedores();
+        queryE.listarTodosProveedores();
         //HabilitarBotones(true, false, false, false);
         
     }
@@ -264,7 +264,7 @@ public void HabilitarBotones(boolean Crear,boolean Ver,boolean Editar,boolean El
     this.btnEliminar.setEnabled(Eliminar);
     
 }
-        public void filtro() {
+        public void Filtrar() {
         int columnaABuscar = 0;
 
         if (jCmbTipoBusqueda.getSelectedItem() == "Código") {
@@ -293,7 +293,7 @@ public void HabilitarBotones(boolean Crear,boolean Ver,boolean Editar,boolean El
                 String cadena = (jTextFieldParametroBusqueda.getText());
                 jTextFieldParametroBusqueda.setText(cadena);
                 repaint();
-                filtro();
+                Filtrar();
             }
         });
         trsFiltro = new TableRowSorter(jTableListarProveedor.getModel());
@@ -302,8 +302,7 @@ public void HabilitarBotones(boolean Crear,boolean Ver,boolean Editar,boolean El
     }//GEN-LAST:event_jTextFieldParametroBusquedaKeyTyped
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        int op=1;
-        Datos datos=new Datos(this,true);
+        DatosProveedor datos=new DatosProveedor(this,true);
         datos.setOpcion(1);
         datos.setVisible(true);
   
@@ -314,8 +313,7 @@ public void HabilitarBotones(boolean Crear,boolean Ver,boolean Editar,boolean El
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         if(jTableListarProveedor.getSelectedRows().length>0){
-        int op=1;
-        Datos datos=new Datos(this,true);
+        DatosProveedor datos=new DatosProveedor(this,true);
         datos.setOpcion(2);
         String cod=jTableListarProveedor.getValueAt(jTableListarProveedor.getSelectedRow(), 0).toString();
         String ident=jTableListarProveedor.getValueAt(jTableListarProveedor.getSelectedRow(), 1).toString();
@@ -341,8 +339,7 @@ public void HabilitarBotones(boolean Crear,boolean Ver,boolean Editar,boolean El
 
     private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
         if(jTableListarProveedor.getSelectedRows().length>0){ 
-        int op=1;
-        Datos datos=new Datos(this,true);
+        DatosProveedor datos=new DatosProveedor(this,true);
         datos.setOpcion(3);
         String cod=jTableListarProveedor.getValueAt(jTableListarProveedor.getSelectedRow(), 0).toString();
         String ident=jTableListarProveedor.getValueAt(jTableListarProveedor.getSelectedRow(), 1).toString();
@@ -352,7 +349,7 @@ public void HabilitarBotones(boolean Crear,boolean Ver,boolean Editar,boolean El
         String tcont=jTableListarProveedor.getValueAt(jTableListarProveedor.getSelectedRow(), 5).toString();
         String direc=jTableListarProveedor.getValueAt(jTableListarProveedor.getSelectedRow(), 6).toString();
         datos.Llenar(cod, ident, razon,telf, cont, tcont, direc);
-        datos.Desabilitar();
+        datos.Deshabilitar();
         datos.setVisible(true);
         }
     }//GEN-LAST:event_btnVerActionPerformed

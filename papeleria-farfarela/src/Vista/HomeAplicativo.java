@@ -8,12 +8,12 @@ package Vista;
 import MODELO.queryEmpleados;
 import MODELO.queryProductos;
 import MODELO.queryProveedores;
-import Vista.Empleado.DatosEmpleados;
-import Vista.Empleado.EmpleadoPrincipal;
-import Vista.Empleado.EmpleadoPrincipal1;
-import Vista.Proveedor.ProveedorPrincipal;
-import Vista.Proveedor.ProveedorPrincipal1;
-import VistasArticulos.ArticulosBuscar;
+import VistaEmpleado.DatosEmpleados;
+import VistaEmpleado.EmpleadoPrincipal;
+import VistaEmpleado.EmpleadoPrincipal1;
+import VistaProveedor.ProveedorPrincipal;
+import VistaProveedor.ProveedorPrincipal1;
+import VistasArticulos.BusquedaArticulos;
 import VistasArticulos.ArticulosDelete;
 import VistasArticulos.ArticulosNew;
 import VistasArticulos.ArticulosUpdate;
@@ -668,7 +668,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_prodModificarActionPerformed
 
     private void prodConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prodConsultarActionPerformed
-        ArticulosBuscar buscarArticulos = new ArticulosBuscar();
+        BusquedaArticulos buscarArticulos = new BusquedaArticulos();
         HomeAplicativo.escritorio.add(buscarArticulos);
         buscarArticulos.toFront();
         //centrar

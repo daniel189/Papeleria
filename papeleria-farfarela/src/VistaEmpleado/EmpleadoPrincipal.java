@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista.Empleado;
+package VistaEmpleado;
 
 import MODELO.queryEmpleados;
 import java.awt.event.KeyAdapter;
@@ -23,12 +23,12 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form UsuariosNew
      */
-    queryEmpleados qe = new queryEmpleados();
+    queryEmpleados queryE = new queryEmpleados();
     private TableRowSorter trsFiltro;
     public EmpleadoPrincipal() {
     
         initComponents();
-        qe.listarTodosEmpleados();
+        queryE.listarTodosEmpleados();
         
     }
 
@@ -281,7 +281,7 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
                 String cadena = (jTextFieldParametroBusqueda.getText().toUpperCase());
                 jTextFieldParametroBusqueda.setText(cadena);
                 repaint();
-                filtro();
+                Filtrar();
             }
         });
         trsFiltro = new TableRowSorter(jTableListarEmpleado.getModel());
@@ -289,7 +289,6 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldParametroBusquedaKeyTyped
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        int op=1;
         Datos2 datos=new Datos2(this,true);
         datos.setOpcion(1);
         datos.setVisible(true);
@@ -298,7 +297,6 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         if(jTableListarEmpleado.getSelectedRows().length>0){
-            int op=1;
             Datos2 datos=new Datos2(this,true);
             datos.setOpcion(2);
             String cod=jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 0).toString();
@@ -333,7 +331,6 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
 
     private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
         if(jTableListarEmpleado.getSelectedRows().length>0){
-            int op=1;
             Datos2 datos=new Datos2(this,true);
             datos.setOpcion(3);
             String cod=jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 0).toString();
@@ -356,7 +353,7 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
             datos.setVisible(true);
         }
     }//GEN-LAST:event_btnVerActionPerformed
-public void filtro() {
+public void Filtrar() {
 
         int columnaABuscar = 0;
 

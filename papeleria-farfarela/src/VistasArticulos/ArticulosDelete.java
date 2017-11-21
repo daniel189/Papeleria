@@ -14,7 +14,7 @@ import javax.swing.JFrame;
  */
 public class ArticulosDelete extends javax.swing.JInternalFrame {
    queryArticulos art_query=new queryArticulos();
-   ArticulosBuscar art=new ArticulosBuscar();
+   BusquedaArticulos art=new BusquedaArticulos();
    int  valor_encontrado; 
    public ArticulosDelete() {
         initComponents();

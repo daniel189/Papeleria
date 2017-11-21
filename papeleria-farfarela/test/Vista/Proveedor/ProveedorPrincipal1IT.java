@@ -5,6 +5,7 @@
  */
 package Vista.Proveedor;
 
+import VistaProveedor.ProveedorPrincipal1;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -60,7 +61,7 @@ public class ProveedorPrincipal1IT {
     public void testFiltro() {
         System.out.println("filtro");
         ProveedorPrincipal1 instance = new ProveedorPrincipal1();
-        instance.filtro();
+        instance.Filtrar();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

@@ -7,8 +7,8 @@ package MODELO;
  */
 import MODELO.CerrarConexiones;
 import MODELO.Conexion;
-import Vista.Empleado.EmpleadoPrincipal;
-import Vista.Proveedor.ProveedorPrincipal1;
+import VistaEmpleado.EmpleadoPrincipal;
+import VistaProveedor.ProveedorPrincipal1;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Image;

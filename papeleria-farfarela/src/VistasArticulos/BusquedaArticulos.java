@@ -16,7 +16,7 @@ import VistasArticulos.ArticulosDelete;
  *
  * @author Daniel
  */
-public class ArticulosBuscar extends javax.swing.JInternalFrame {
+public class BusquedaArticulos extends javax.swing.JInternalFrame {
 
      Articulos art_ingreso=new Articulos();
    queryArticulos art_query=new queryArticulos();
@@ -31,7 +31,7 @@ public class ArticulosBuscar extends javax.swing.JInternalFrame {
    }
   
 ArrayList<Articulos> lista = new ArrayList<Articulos>();
-    public ArticulosBuscar() {
+    public BusquedaArticulos() {
         initComponents();
     }
 public int seleccionaritem()

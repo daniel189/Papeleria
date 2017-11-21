@@ -13,8 +13,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-import Vista.Empleado.EmpleadoPrincipal1;
-import static Vista.Empleado.EmpleadoPrincipal1.jTableListarEmpleado;
+import VistaEmpleado.EmpleadoPrincipal1;
+import static VistaEmpleado.EmpleadoPrincipal1.jTableListarEmpleado;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import static com.itextpdf.text.Element.ALIGN_CENTER;

@@ -5,6 +5,7 @@
  */
 package Vista.Empleado;
 
+import VistaEmpleado.EmpleadoPrincipal1;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -44,7 +45,7 @@ public class EmpleadoPrincipal1IT {
     public void testFiltro() {
         System.out.println("filtro");
         EmpleadoPrincipal1 instance = new EmpleadoPrincipal1();
-        instance.filtro();
+        instance.Filtrar();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

@@ -38,12 +38,12 @@ public class ArticulosBuscarIT {
     }
 
     /**
-     * Test of getvalorencontrado method, of class ArticulosBuscar.
+     * Test of getvalorencontrado method, of class BusquedaArticulos.
      */
     @Test
     public void testGetvalorencontrado() {
         System.out.println("getvalorencontrado");
-        ArticulosBuscar instance = new ArticulosBuscar();
+        BusquedaArticulos instance = new BusquedaArticulos();
         int expResult = 0;
         int result = instance.getvalorencontrado();
         assertEquals(expResult, result);
@@ -52,12 +52,12 @@ public class ArticulosBuscarIT {
     }
 
     /**
-     * Test of seleccionaritem method, of class ArticulosBuscar.
+     * Test of seleccionaritem method, of class BusquedaArticulos.
      */
     @Test
     public void testSeleccionaritem() {
         System.out.println("seleccionaritem");
-        ArticulosBuscar instance = new ArticulosBuscar();
+        BusquedaArticulos instance = new BusquedaArticulos();
         int expResult = 0;
         int result = instance.seleccionaritem();
         assertEquals(expResult, result);
@@ -66,24 +66,24 @@ public class ArticulosBuscarIT {
     }
 
     /**
-     * Test of cargartxt method, of class ArticulosBuscar.
+     * Test of cargartxt method, of class BusquedaArticulos.
      */
     @Test
     public void testCargartxt() {
         System.out.println("cargartxt");
-        ArticulosBuscar instance = new ArticulosBuscar();
+        BusquedaArticulos instance = new BusquedaArticulos();
         instance.cargartxt();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getvalor method, of class ArticulosBuscar.
+     * Test of getvalor method, of class BusquedaArticulos.
      */
     @Test
     public void testGetvalor() {
         System.out.println("getvalor");
-        ArticulosBuscar instance = new ArticulosBuscar();
+        BusquedaArticulos instance = new BusquedaArticulos();
         int expResult = 0;
         int result = instance.getvalor();
         assertEquals(expResult, result);

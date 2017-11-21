@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista.Empleado;
+package VistaEmpleado;
 
 import MODELO.queryEmpleados;
-import Vista.Empleado.DatosEmpleados;
+import VistaEmpleado.DatosEmpleados;
 import Vista.HomeAplicativo;
 import static Vista.HomeAplicativo.escritorio;
 import java.awt.Dimension;
@@ -265,10 +265,10 @@ public class EmpleadoPrincipal1 extends javax.swing.JInternalFrame {
     private void jTextFieldParametroBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldParametroBusquedaKeyTyped
         jTextFieldParametroBusqueda.addKeyListener(new KeyAdapter() {
             public void keyReleased(final KeyEvent e) {
-                String cadena = (jTextFieldParametroBusqueda.getText().toUpperCase());
-                jTextFieldParametroBusqueda.setText(cadena);
+                String datos = (jTextFieldParametroBusqueda.getText().toUpperCase());
+                jTextFieldParametroBusqueda.setText(datos);
                 repaint();
-                filtro();
+                Filtrar();
             }
         });
         trsFiltro = new TableRowSorter(jTableListarEmpleado.getModel());
@@ -278,9 +278,7 @@ public class EmpleadoPrincipal1 extends javax.swing.JInternalFrame {
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
 
         try {
-            DatosEmpleados datos = new DatosEmpleados();
-            int op = 1;
-            
+            DatosEmpleados datos = new DatosEmpleados();        
 
             datos.setOpcion(1);
 
@@ -304,7 +302,6 @@ public class EmpleadoPrincipal1 extends javax.swing.JInternalFrame {
         try {
             DatosEmpleados datos = new DatosEmpleados();
             if (jTableListarEmpleado.getSelectedRows().length > 0) {
-                int op = 1;
                 
                 datos.setOpcion(2);
                 HomeAplicativo.escritorio.add(datos);
@@ -344,10 +341,10 @@ public class EmpleadoPrincipal1 extends javax.swing.JInternalFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if (jTableListarEmpleado.getSelectedRows().length > 0) {
-            queryEmpleados bash = new queryEmpleados();
+            queryEmpleados queryE = new queryEmpleados();
             int code = Integer.parseInt(jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 0).toString());
-            bash.eliminarEmpleado(code);
-            bash.actualizarTabla();
+            queryE.eliminarEmpleado(code);
+            queryE.actualizarTabla();
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -356,7 +353,6 @@ public class EmpleadoPrincipal1 extends javax.swing.JInternalFrame {
             DatosEmpleados datos = new DatosEmpleados();
             if (jTableListarEmpleado.getSelectedRows().length > 0) {
                 if (!datos.isShowing()) {
-                    int op = 1;
                     
                     datos.setOpcion(3);
                     HomeAplicativo.escritorio.add(datos);
@@ -392,7 +388,7 @@ public class EmpleadoPrincipal1 extends javax.swing.JInternalFrame {
             Logger.getLogger(EmpleadoPrincipal1.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnVerActionPerformed
-    public void filtro() {
+    public void Filtrar() {
 
         int columnaABuscar = 0;
 

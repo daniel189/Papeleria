@@ -5,6 +5,7 @@
  */
 package Vista.Proveedor;
 
+import VistaProveedor.DatosProveedor1;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -38,43 +39,43 @@ public class Datos1IT {
     }
 
     /**
-     * Test of claveMax method, of class Datos1.
+     * Test of claveMax method, of class DatosProveedor1.
      */
     @Test
     public void testClaveMax() {
         System.out.println("claveMax");
-        Datos1 instance = new Datos1();
+        DatosProveedor1 instance = new DatosProveedor1();
         instance.claveMax();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of Hint method, of class Datos1.
+     * Test of Hint method, of class DatosProveedor1.
      */
     @Test
     public void testHint() {
         System.out.println("Hint");
-        Datos1 instance = new Datos1();
+        DatosProveedor1 instance = new DatosProveedor1();
         instance.Hint();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of validarCamposVacios method, of class Datos1.
+     * Test of validarCamposVacios method, of class DatosProveedor1.
      */
     @Test
     public void testValidarCamposVacios() {
         System.out.println("validarCamposVacios");
-        Datos1 instance = new Datos1();
+        DatosProveedor1 instance = new DatosProveedor1();
         instance.validarCamposVacios();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of Llenar method, of class Datos1.
+     * Test of Llenar method, of class DatosProveedor1.
      */
     @Test
     public void testLlenar() {
@@ -86,43 +87,43 @@ public class Datos1IT {
         String contacto = "";
         String tcontc = "";
         String direcc = "";
-        Datos1 instance = new Datos1();
+        DatosProveedor1 instance = new DatosProveedor1();
         instance.Llenar(cod, idt, rsocial, telf, contacto, tcontc, direcc);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of Desabilitar method, of class Datos1.
+     * Test of Desabilitar method, of class DatosProveedor1.
      */
     @Test
     public void testDesabilitar() {
         System.out.println("Desabilitar");
-        Datos1 instance = new Datos1();
-        instance.Desabilitar();
+        DatosProveedor1 instance = new DatosProveedor1();
+        instance.Deshabilitar();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of limpiar method, of class Datos1.
+     * Test of limpiar method, of class DatosProveedor1.
      */
     @Test
     public void testLimpiar() {
         System.out.println("limpiar");
-        Datos1 instance = new Datos1();
-        instance.limpiar();
+        DatosProveedor1 instance = new DatosProveedor1();
+        instance.Limpiar();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getOpcion method, of class Datos1.
+     * Test of getOpcion method, of class DatosProveedor1.
      */
     @Test
     public void testGetOpcion() {
         System.out.println("getOpcion");
-        Datos1 instance = new Datos1();
+        DatosProveedor1 instance = new DatosProveedor1();
         int expResult = 0;
         int result = instance.getOpcion();
         assertEquals(expResult, result);
@@ -131,25 +132,25 @@ public class Datos1IT {
     }
 
     /**
-     * Test of setOpcion method, of class Datos1.
+     * Test of setOpcion method, of class DatosProveedor1.
      */
     @Test
     public void testSetOpcion() {
         System.out.println("setOpcion");
         int opcion = 0;
-        Datos1 instance = new Datos1();
+        DatosProveedor1 instance = new DatosProveedor1();
         instance.setOpcion(opcion);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getCod method, of class Datos1.
+     * Test of getCod method, of class DatosProveedor1.
      */
     @Test
     public void testGetCod() {
         System.out.println("getCod");
-        Datos1 instance = new Datos1();
+        DatosProveedor1 instance = new DatosProveedor1();
         String expResult = "";
         String result = instance.getCod();
         assertEquals(expResult, result);
@@ -158,25 +159,25 @@ public class Datos1IT {
     }
 
     /**
-     * Test of setCod method, of class Datos1.
+     * Test of setCod method, of class DatosProveedor1.
      */
     @Test
     public void testSetCod() {
         System.out.println("setCod");
         String cod = "";
-        Datos1 instance = new Datos1();
+        DatosProveedor1 instance = new DatosProveedor1();
         instance.setCod(cod);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getIdt method, of class Datos1.
+     * Test of getIdt method, of class DatosProveedor1.
      */
     @Test
     public void testGetIdt() {
         System.out.println("getIdt");
-        Datos1 instance = new Datos1();
+        DatosProveedor1 instance = new DatosProveedor1();
         String expResult = "";
         String result = instance.getIdt();
         assertEquals(expResult, result);
@@ -185,25 +186,25 @@ public class Datos1IT {
     }
 
     /**
-     * Test of setIdt method, of class Datos1.
+     * Test of setIdt method, of class DatosProveedor1.
      */
     @Test
     public void testSetIdt() {
         System.out.println("setIdt");
         String idt = "";
-        Datos1 instance = new Datos1();
+        DatosProveedor1 instance = new DatosProveedor1();
         instance.setIdt(idt);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getRsocial method, of class Datos1.
+     * Test of getRsocial method, of class DatosProveedor1.
      */
     @Test
     public void testGetRsocial() {
         System.out.println("getRsocial");
-        Datos1 instance = new Datos1();
+        DatosProveedor1 instance = new DatosProveedor1();
         String expResult = "";
         String result = instance.getRsocial();
         assertEquals(expResult, result);
@@ -212,25 +213,25 @@ public class Datos1IT {
     }
 
     /**
-     * Test of setRsocial method, of class Datos1.
+     * Test of setRsocial method, of class DatosProveedor1.
      */
     @Test
     public void testSetRsocial() {
         System.out.println("setRsocial");
         String rsocial = "";
-        Datos1 instance = new Datos1();
+        DatosProveedor1 instance = new DatosProveedor1();
         instance.setRsocial(rsocial);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getTelf method, of class Datos1.
+     * Test of getTelf method, of class DatosProveedor1.
      */
     @Test
     public void testGetTelf() {
         System.out.println("getTelf");
-        Datos1 instance = new Datos1();
+        DatosProveedor1 instance = new DatosProveedor1();
         String expResult = "";
         String result = instance.getTelf();
         assertEquals(expResult, result);
@@ -239,25 +240,25 @@ public class Datos1IT {
     }
 
     /**
-     * Test of setTelf method, of class Datos1.
+     * Test of setTelf method, of class DatosProveedor1.
      */
     @Test
     public void testSetTelf() {
         System.out.println("setTelf");
         String telf = "";
-        Datos1 instance = new Datos1();
+        DatosProveedor1 instance = new DatosProveedor1();
         instance.setTelf(telf);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getContacto method, of class Datos1.
+     * Test of getContacto method, of class DatosProveedor1.
      */
     @Test
     public void testGetContacto() {
         System.out.println("getContacto");
-        Datos1 instance = new Datos1();
+        DatosProveedor1 instance = new DatosProveedor1();
         String expResult = "";
         String result = instance.getContacto();
         assertEquals(expResult, result);
@@ -266,25 +267,25 @@ public class Datos1IT {
     }
 
     /**
-     * Test of setContacto method, of class Datos1.
+     * Test of setContacto method, of class DatosProveedor1.
      */
     @Test
     public void testSetContacto() {
         System.out.println("setContacto");
         String contacto = "";
-        Datos1 instance = new Datos1();
+        DatosProveedor1 instance = new DatosProveedor1();
         instance.setContacto(contacto);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getTcontc method, of class Datos1.
+     * Test of getTcontc method, of class DatosProveedor1.
      */
     @Test
     public void testGetTcontc() {
         System.out.println("getTcontc");
-        Datos1 instance = new Datos1();
+        DatosProveedor1 instance = new DatosProveedor1();
         String expResult = "";
         String result = instance.getTcontc();
         assertEquals(expResult, result);
@@ -293,25 +294,25 @@ public class Datos1IT {
     }
 
     /**
-     * Test of setTcontc method, of class Datos1.
+     * Test of setTcontc method, of class DatosProveedor1.
      */
     @Test
     public void testSetTcontc() {
         System.out.println("setTcontc");
         String tcontc = "";
-        Datos1 instance = new Datos1();
+        DatosProveedor1 instance = new DatosProveedor1();
         instance.setTcontc(tcontc);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getDirecc method, of class Datos1.
+     * Test of getDirecc method, of class DatosProveedor1.
      */
     @Test
     public void testGetDirecc() {
         System.out.println("getDirecc");
-        Datos1 instance = new Datos1();
+        DatosProveedor1 instance = new DatosProveedor1();
         String expResult = "";
         String result = instance.getDirecc();
         assertEquals(expResult, result);
@@ -320,13 +321,13 @@ public class Datos1IT {
     }
 
     /**
-     * Test of setDirecc method, of class Datos1.
+     * Test of setDirecc method, of class DatosProveedor1.
      */
     @Test
     public void testSetDirecc() {
         System.out.println("setDirecc");
         String direcc = "";
-        Datos1 instance = new Datos1();
+        DatosProveedor1 instance = new DatosProveedor1();
         instance.setDirecc(direcc);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
