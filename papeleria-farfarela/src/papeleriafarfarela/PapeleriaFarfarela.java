@@ -5,7 +5,7 @@
  */
 package papeleriafarfarela;
 
-import Vista.login;
+import Vista.Inicio;
 
 /**
  *
@@ -18,7 +18,7 @@ public class PapeleriaFarfarela {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        login boj = new login();
+        Inicio boj = new Inicio();
         boj.show();
     }
     

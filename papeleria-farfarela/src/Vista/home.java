@@ -564,7 +564,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
 
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
         this.dispose();
-        login login = new login();
+        Inicio login = new Inicio();
         login.setVisible(true);
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 

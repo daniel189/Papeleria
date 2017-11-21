@@ -3,8 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Ordenador/Desktop/dani/Papeleria/papeleria-farfarela/src/MODELO/Conexion.java</file>
-            <file>file:/C:/Users/Ordenador/Desktop/dani/Papeleria/papeleria-farfarela/src/Vista/login.java</file>
+            <file>file:/C:/Users/w8/Documents/GitHub/Papeleria/papeleria-farfarela/src/Vista/Empleado/EmpleadoPrincipal.java</file>
+            <file>file:/C:/Users/w8/Documents/GitHub/Papeleria/papeleria-farfarela/test/VistasUsuarios/UsuariosCuentaIT.java</file>
+            <file>file:/C:/Users/w8/Documents/GitHub/Papeleria/papeleria-farfarela/test/Vista/loginIT.java</file>
+            <file>file:/C:/Users/w8/Documents/GitHub/Papeleria/papeleria-farfarela/test/Vista/AcercaIT.java</file>
+            <file>file:/C:/Users/w8/Documents/GitHub/Papeleria/papeleria-farfarela/test/Vista/Empleado/EmpleadoPrincipalIT.java</file>
+            <file>file:/C:/Users/w8/Documents/GitHub/Papeleria/papeleria-farfarela/test/Vista/Empleado/EmpleadoPrincipal1IT.java</file>
         </group>
     </open-files>
 </project-private>
