@@ -174,7 +174,7 @@ public class queryProveedores {
             JOptionPane.showMessageDialog(null, e);
             conexion = null;
         } finally {
-            CerrarConexiones.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
+            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
         }
         return false;
     }//cierra metodo ejecutarConsulta
@@ -233,7 +233,7 @@ public class queryProveedores {
             JOptionPane.showMessageDialog(null, e);
             conexion = null;
         } finally {
-            CerrarConexiones.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
+            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
         }
 
     }//cierra metodo ejecutarConsulta
@@ -311,7 +311,7 @@ public class queryProveedores {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error\n Por la Causa" + e);
         } finally {
-            CerrarConexiones.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
+            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
         }
 
     }//cierra metodo buscarRegistro
@@ -589,7 +589,7 @@ public class queryProveedores {
             JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n");
             conexion = null;
         } finally {
-            CerrarConexiones.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
+            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
 
         }
         

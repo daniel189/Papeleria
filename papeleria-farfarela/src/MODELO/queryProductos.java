@@ -123,7 +123,7 @@ String datos[]=new String[3];
             JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n");
             conexion = null;
         } finally {
-            CerrarConexiones.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
+            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
 
         }
         
@@ -210,7 +210,7 @@ String datos[]=new String[3];
             JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n");
             conexion = null;
         } finally {
-            CerrarConexiones.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
+            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
 
         }
         

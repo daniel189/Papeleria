@@ -99,7 +99,7 @@ public class queryFacturas {
             JOptionPane.showMessageDialog(null,e);
             conexion = null;
         } finally {
-            CerrarConexiones.metodoCerrarConexiones(conexion, sentencia, resultado, ps);
+            CerrarConexiones.CerrarConexion(conexion, sentencia, resultado, ps);
         }
 
     }//cierra metodo ejecutarConsulta
@@ -181,7 +181,7 @@ public class queryFacturas {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error\n Por la Causa" + e);
         } finally {
-            CerrarConexiones.metodoCerrarConexiones(conexion, sentencia, resultado, ps);
+            CerrarConexiones.CerrarConexion(conexion, sentencia, resultado, ps);
         }
 
 
@@ -261,7 +261,7 @@ public class queryFacturas {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error\n " + e);
         } finally {
-           // CerrarConexiones.metodoCerrarConexiones(conexion, sentencia, resultado, ps);
+           // CerrarConexiones.CerrarConexion(conexion, sentencia, resultado, ps);
         }
 
 

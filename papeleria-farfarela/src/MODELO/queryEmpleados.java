@@ -136,7 +136,7 @@ public class queryEmpleados {
             JOptionPane.showMessageDialog(null, e);
             conexion = null;
         } finally {
-            CerrarConexiones.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
+            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
         }
         return false;
     }//cierra metodo ejecutarConsulta
@@ -238,7 +238,7 @@ public class queryEmpleados {
             JOptionPane.showMessageDialog(null, e);
             conexion = null;
         } finally {
-            CerrarConexiones.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
+            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
         }
 
     }//cierra metodo ejecutarConsulta
@@ -337,7 +337,7 @@ while (resultado.next()) {
             JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n");
             conexion = null;
         } finally {
-            CerrarConexiones.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
+            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
 
         }
     }
