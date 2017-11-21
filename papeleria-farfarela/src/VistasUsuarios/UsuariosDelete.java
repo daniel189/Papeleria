@@ -139,8 +139,8 @@ public class UsuariosDelete extends javax.swing.JInternalFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         String cuenta;
         cuenta = txtUsuario.getText();
-        int n = JOptionPane.showConfirmDialog(null, "Esta seguro de borrar la cuenta : " + cuenta , "Confirmar.", JOptionPane.YES_NO_OPTION);
-        if(n == JOptionPane.YES_OPTION){
+        int eliminar = JOptionPane.showConfirmDialog(null, "Esta seguro de borrar la cuenta : " + cuenta , "Confirmar.", JOptionPane.YES_NO_OPTION);
+        if(eliminar == JOptionPane.YES_OPTION){
             queryUsuarios obj = new queryUsuarios();
             obj.EliminarRegistro(cuenta);
             initComponents();

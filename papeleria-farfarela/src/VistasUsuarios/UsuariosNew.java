@@ -44,15 +44,15 @@ public class UsuariosNew extends javax.swing.JInternalFrame {
     
     //variables para la BD
     PreparedStatement sentencia;
-    Connection cone;
+    Connection conexion;
     ResultSet resul;
     ArrayList<String> emple = new ArrayList<String>();
     ArrayList<Integer> cod = new ArrayList<Integer>();
     
     private void llenarEmpleados(){
-        cone = Conexion.getConexion();
+        conexion = Conexion.getConexion();
         try {
-            sentencia = cone.prepareStatement("SELECT emp_id, emp_nombres, emp_apellidos FROM empleado");
+            sentencia = conexion.prepareStatement("SELECT emp_id, emp_nombres, emp_apellidos FROM empleado");
             resul= sentencia.executeQuery();
             int c1=0;
             while(resul.next()){
@@ -61,7 +61,7 @@ public class UsuariosNew extends javax.swing.JInternalFrame {
                 modeloCombo.addElement(emple.get(c1));
                 c1++;
             }
-            cone = null;
+            conexion = null;
         }catch(SQLException ex){
             Logger.getLogger(JComboBox.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Error en la muestra de empleados.");
@@ -233,8 +233,8 @@ public class UsuariosNew extends javax.swing.JInternalFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         queryUsuarios obj = new queryUsuarios();
-        String c1,c2;
-        c1 = txtContraseña1.getText(); 
+        String cedula;
+        cedula = txtContraseña1.getText(); 
         if(txtCuenta.getText().length() > 0 && txtContraseña1.getText().length() > 0){
             obj.setCuenta(getDatos());
             limpiarD();
