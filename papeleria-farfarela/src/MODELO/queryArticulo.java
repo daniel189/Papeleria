@@ -198,7 +198,7 @@ public boolean setArticulo(Articulos art,int id_familia,int id_provedor){
           return modelo;  
         }
         catch(SQLException ex){
-            Logger.getLogger(queryUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(queryUsuario.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }

@@ -43,7 +43,7 @@ public class queryProductoIT {
     @Test
     public void testReportePrductosMasV() {
         System.out.println("reportePrductosMasV");
-        queryProductos instance = new queryProductos();
+        queryProducto instance = new queryProducto();
         instance.reportePrductosMasV();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -55,7 +55,7 @@ public class queryProductoIT {
     @Test
     public void testReportePrductosMenosV() {
         System.out.println("reportePrductosMenosV");
-        queryProductos instance = new queryProductos();
+        queryProducto instance = new queryProducto();
         instance.reportePrductosMenosV();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

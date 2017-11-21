@@ -47,7 +47,7 @@ public class queryIvaIT {
     public void testSetIVas() {
         System.out.println("setIVas");
         ArrayList<String> lista = null;
-        queryIvas instance = new queryIvas();
+        queryIva instance = new queryIva();
         boolean expResult = false;
         boolean result = instance.setIVas(lista);
         assertEquals(expResult, result);
@@ -61,7 +61,7 @@ public class queryIvaIT {
     @Test
     public void testCargarIvas() {
         System.out.println("cargarIvas");
-        queryIvas instance = new queryIvas();
+        queryIva instance = new queryIva();
         JComboBox expResult = null;
         JComboBox result = instance.cargarIvas();
         assertEquals(expResult, result);
@@ -76,7 +76,7 @@ public class queryIvaIT {
     public void testUpdateIvas() {
         System.out.println("updateIvas");
         ArrayList<String> lista = null;
-        queryIvas instance = new queryIvas();
+        queryIva instance = new queryIva();
         instance.updateIvas(lista);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -88,7 +88,7 @@ public class queryIvaIT {
     @Test
     public void testLeerIvas() {
         System.out.println("leerIvas");
-        queryIvas instance = new queryIvas();
+        queryIva instance = new queryIva();
         DefaultTableModel expResult = null;
         DefaultTableModel result = instance.leerIvas();
         assertEquals(expResult, result);

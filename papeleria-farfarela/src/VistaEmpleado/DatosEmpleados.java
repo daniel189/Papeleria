@@ -7,7 +7,7 @@ package VistaEmpleado;
 
 import MODELO.Conexion;
 import MODELO.queryEmpleado;
-import MODELO.queryProveedores;
+import MODELO.queryProveedor;
 import Vista.HomeAplicativo;
 import static Vista.HomeAplicativo.escritorio;
 import VistasUsuarios.*;

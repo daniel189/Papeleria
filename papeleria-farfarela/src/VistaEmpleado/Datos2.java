@@ -8,7 +8,7 @@ package VistaEmpleado;
 
 import MODELO.Conexion;
 import MODELO.queryEmpleado;
-import MODELO.queryProveedores;
+import MODELO.queryProveedor;
 import VistasUsuarios.*;
 import com.placeholder.PlaceHolder;
 import java.awt.Color;

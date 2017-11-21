@@ -7,7 +7,7 @@ package VistasIva;
 import MODELO.Conexion;
 import VistasFamilia.*;
 import MODELO.queryFamilia;
-import MODELO.queryIvas;
+import MODELO.queryIva;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,7 +30,7 @@ public class NuevoIva extends javax.swing.JInternalFrame {
     int pro_id;
     int iva_id;
     Conexion conectar = new Conexion();
-    queryIvas obj = new queryIvas();
+    queryIva obj = new queryIva();
     public NuevoIva() {  
         initComponents();
         claveMax();      
