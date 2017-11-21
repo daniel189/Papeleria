@@ -137,7 +137,11 @@ public class queryEmpleado {
             conexion = null;
         } finally {
 <<<<<<< HEAD:papeleria-farfarela/src/MODELO/queryEmpleado.java
+<<<<<<< HEAD:papeleria-farfarela/src/MODELO/queryEmpleado.java
             CerrarConexion.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
+=======
+            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
+>>>>>>> 39a572a1c2919aaa507877cc726a025df9074228:papeleria-farfarela/src/MODELO/queryEmpleados.java
 =======
             CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
 >>>>>>> 39a572a1c2919aaa507877cc726a025df9074228:papeleria-farfarela/src/MODELO/queryEmpleados.java
@@ -243,7 +247,11 @@ public class queryEmpleado {
             conexion = null;
         } finally {
 <<<<<<< HEAD:papeleria-farfarela/src/MODELO/queryEmpleado.java
+<<<<<<< HEAD:papeleria-farfarela/src/MODELO/queryEmpleado.java
             CerrarConexion.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
+=======
+            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
+>>>>>>> 39a572a1c2919aaa507877cc726a025df9074228:papeleria-farfarela/src/MODELO/queryEmpleados.java
 =======
             CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
 >>>>>>> 39a572a1c2919aaa507877cc726a025df9074228:papeleria-farfarela/src/MODELO/queryEmpleados.java
@@ -346,7 +354,11 @@ while (resultado.next()) {
             conexion = null;
         } finally {
 <<<<<<< HEAD:papeleria-farfarela/src/MODELO/queryEmpleado.java
+<<<<<<< HEAD:papeleria-farfarela/src/MODELO/queryEmpleado.java
             CerrarConexion.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
+=======
+            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
+>>>>>>> 39a572a1c2919aaa507877cc726a025df9074228:papeleria-farfarela/src/MODELO/queryEmpleados.java
 =======
             CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
 >>>>>>> 39a572a1c2919aaa507877cc726a025df9074228:papeleria-farfarela/src/MODELO/queryEmpleados.java

@@ -175,7 +175,11 @@ public class queryProveedores {
             conexion = null;
         } finally {
 <<<<<<< HEAD
+<<<<<<< HEAD
             CerrarConexion.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
+=======
+            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
+>>>>>>> 39a572a1c2919aaa507877cc726a025df9074228
 =======
             CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
 >>>>>>> 39a572a1c2919aaa507877cc726a025df9074228
@@ -238,7 +242,11 @@ public class queryProveedores {
             conexion = null;
         } finally {
 <<<<<<< HEAD
+<<<<<<< HEAD
             CerrarConexion.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
+=======
+            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
+>>>>>>> 39a572a1c2919aaa507877cc726a025df9074228
 =======
             CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
 >>>>>>> 39a572a1c2919aaa507877cc726a025df9074228
@@ -320,7 +328,11 @@ public class queryProveedores {
             JOptionPane.showMessageDialog(null, "Error\n Por la Causa" + e);
         } finally {
 <<<<<<< HEAD
+<<<<<<< HEAD
             CerrarConexion.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
+=======
+            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
+>>>>>>> 39a572a1c2919aaa507877cc726a025df9074228
 =======
             CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
 >>>>>>> 39a572a1c2919aaa507877cc726a025df9074228
@@ -602,7 +614,11 @@ public class queryProveedores {
             conexion = null;
         } finally {
 <<<<<<< HEAD
+<<<<<<< HEAD
             CerrarConexion.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
+=======
+            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
+>>>>>>> 39a572a1c2919aaa507877cc726a025df9074228
 =======
             CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
 >>>>>>> 39a572a1c2919aaa507877cc726a025df9074228

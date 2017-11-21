@@ -52,7 +52,11 @@ public class CerrarConexionesIT {
         ResultSet resultado = null;
         PreparedStatement ps = null;
 <<<<<<< HEAD
+<<<<<<< HEAD
         CerrarConexion.metodoCerrarConexiones(conexion, sentencia, resultado, ps);
+=======
+        CerrarConexiones.CerrarConexion(conexion, sentencia, resultado, ps);
+>>>>>>> 39a572a1c2919aaa507877cc726a025df9074228
 =======
         CerrarConexiones.CerrarConexion(conexion, sentencia, resultado, ps);
 >>>>>>> 39a572a1c2919aaa507877cc726a025df9074228
