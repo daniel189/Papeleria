@@ -6,7 +6,7 @@
 package Vista.Empleado;
 
 import MODELO.queryEmpleados;
-import Vista.Empleado.Datos22;
+import Vista.Empleado.DatosEmpleados;
 import Vista.HomeAplicativo;
 import static Vista.HomeAplicativo.escritorio;
 import java.awt.Dimension;
@@ -28,13 +28,13 @@ public class EmpleadoPrincipal1 extends javax.swing.JInternalFrame {
     /**
      * Creates new form UsuariosNew
      */
-    queryEmpleados qe = new queryEmpleados();
+    queryEmpleados queryE = new queryEmpleados();
     private TableRowSorter trsFiltro;
 
     public EmpleadoPrincipal1() {
 
         initComponents();
-        qe.listarTodosEmpleados();
+        queryE.listarTodosEmpleados();
 
     }
 
@@ -278,7 +278,7 @@ public class EmpleadoPrincipal1 extends javax.swing.JInternalFrame {
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
 
         try {
-            Datos22 datos = new Datos22();
+            DatosEmpleados datos = new DatosEmpleados();
             int op = 1;
             
 
@@ -302,7 +302,7 @@ public class EmpleadoPrincipal1 extends javax.swing.JInternalFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         try {
-            Datos22 datos = new Datos22();
+            DatosEmpleados datos = new DatosEmpleados();
             if (jTableListarEmpleado.getSelectedRows().length > 0) {
                 int op = 1;
                 
@@ -353,7 +353,7 @@ public class EmpleadoPrincipal1 extends javax.swing.JInternalFrame {
 
     private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
         try {
-            Datos22 datos = new Datos22();
+            DatosEmpleados datos = new DatosEmpleados();
             if (jTableListarEmpleado.getSelectedRows().length > 0) {
                 if (!datos.isShowing()) {
                     int op = 1;
@@ -380,7 +380,7 @@ public class EmpleadoPrincipal1 extends javax.swing.JInternalFrame {
                     
                     try {
                         datos.Llenar(cod, ident, nombres, apellidos, direccion, telefono, cargo, observacion, fnacimiento, fingreso);
-                        datos.Desabilitar();
+                        datos.Deshabilitar();
                     } catch (ParseException ex) {
                         Logger.getLogger(EmpleadoPrincipal1.class.getName()).log(Level.SEVERE, null, ex);
                     }

@@ -42,14 +42,14 @@ import org.jdatepicker.impl.UtilDateModel;
  *
  * @author Crispin
  */
-public class Datos22 extends javax.swing.JInternalFrame {
+public class DatosEmpleados extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form UsuariosNew
      */
     private int opcion;
 
-    public Datos22() throws ParseException {
+    public DatosEmpleados() throws ParseException {
         initComponents();
 
         validacion1.setVisible(false);
@@ -145,7 +145,7 @@ public class Datos22 extends javax.swing.JInternalFrame {
         validacion5 = new javax.swing.JLabel();
         validacion6 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        lblEstado = new javax.swing.JLabel();
+        lblEmpleado = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -420,9 +420,9 @@ public class Datos22 extends javax.swing.JInternalFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/agregar-usuario.png"))); // NOI18N
 
-        lblEstado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/equipo.png"))); // NOI18N
-        lblEstado.setText("Empleado");
+        lblEmpleado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/equipo.png"))); // NOI18N
+        lblEmpleado.setText("Empleado");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -432,7 +432,7 @@ public class Datos22 extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(179, 179, 179))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -454,7 +454,7 @@ public class Datos22 extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblEstado)
+                    .addComponent(lblEmpleado)
                     .addComponent(jLabel6))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -501,8 +501,8 @@ public class Datos22 extends javax.swing.JInternalFrame {
 
     }
 
-    public final void Desabilitar() {
-        lblEstado.setText("Empleado - Ver");
+    public final void Deshabilitar() {
+        lblEmpleado.setText("Empleado - Ver");
         txtCodigo.setEnabled(false);
         txtIdentificador.setEnabled(false);
         txtNombres.setEnabled(false);
@@ -588,12 +588,12 @@ public class Datos22 extends javax.swing.JInternalFrame {
     }
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         cont = 0;
-        queryEmpleados qe = new queryEmpleados();
-        Connection reg = conectar.getConexion();
+        queryEmpleados queryE = new queryEmpleados();
+        Connection conection = conectar.getConexion();
         validarCamposVacios();
         if (cont == 0) {
             if (this.opcion == 1) {
-                String parametroBusqueda, parametroBusqueda1;
+                String Busqueda, Busqueda1;
                 String sql = "INSERT INTO EMPLEADO (EMP_ID,EMP_IDENTIFICADOR,EMP_NOMBRES,EMP_APELLIDOS,EMP_DIRECCION,EMP_TELEFONO,EMP_CARGO,EMP_OBSERVACION,EMP_FECHANACIMIENTO,EMP_FECHAINGRESO)VALUES (?,?,?,?,?,?,?,?,?,?)";
 
                 try {
@@ -602,9 +602,9 @@ public class Datos22 extends javax.swing.JInternalFrame {
                     java.util.Date date = jDateChooser.getDate();
                     SimpleDateFormat sdf = new SimpleDateFormat(formato);
                     jTextFieldParametroBusqueda.setText(String.valueOf(sdf.format(date)));
-                    parametroBusqueda = jTextFieldParametroBusqueda.getText();
+                    Busqueda = jTextFieldParametroBusqueda.getText();
 
-                    PreparedStatement pst = reg.prepareStatement(sql);
+                    PreparedStatement pst = conection.prepareStatement(sql);
                     pst.setInt(1, Integer.parseInt(txtCodigo.getText()));
                     pst.setString(2, txtIdentificador.getText());
                     pst.setString(3, txtNombres.getText());
@@ -613,23 +613,23 @@ public class Datos22 extends javax.swing.JInternalFrame {
                     pst.setString(6, txtTelefono.getText());
                     pst.setString(7, cmbCargo.getSelectedItem().toString());
                     pst.setString(8, "");
-                    pst.setString(9, parametroBusqueda);
+                    pst.setString(9, Busqueda);
 
                     String formato1 = jDateChooser1.getDateFormatString();
                     java.util.Date date1 = jDateChooser1.getDate();
                     SimpleDateFormat sdf1 = new SimpleDateFormat(formato1);
                     jTextFieldParametroBusqueda1.setText(String.valueOf(sdf1.format(date1)));
-                    parametroBusqueda1 = jTextFieldParametroBusqueda1.getText();
+                    Busqueda1 = jTextFieldParametroBusqueda1.getText();
 
-                    pst.setString(10, parametroBusqueda1);
-                    if (qe.buscarRepetido(txtIdentificador.getText()) == false) {
+                    pst.setString(10, Busqueda1);
+                    if (queryE.buscarRepetido(txtIdentificador.getText()) == false) {
                         //if (qe.validadorDeCedula(txtIdentificador.getText().toString(), codIdentificador)) {
 
                         int n = pst.executeUpdate();
                         if (n > 0) {
                             //
 
-                            qe.actualizarTabla();
+                            queryE.actualizarTabla();
                             Limpiar();
                             claveMax();
                         }
@@ -642,9 +642,9 @@ public class Datos22 extends javax.swing.JInternalFrame {
 
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Error de ingreso " );
-                    Logger.getLogger(Datos22.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(DatosEmpleados.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ParseException ex) {
-                    Logger.getLogger(Datos22.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(DatosEmpleados.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
             } else if (opcion == 2) {
@@ -680,7 +680,7 @@ public class Datos22 extends javax.swing.JInternalFrame {
                 //if (qe.validadorDeCedula(txtIdentificador.getText().toString(), codIdentificador)) {
                 change.modificarEmpleado(code, identificador, nombres, apellidos, direccion, telefono, cargo, "", fechaN, fechaI);
                 try {
-                    qe.actualizarTabla();
+                    queryE.actualizarTabla();
                     dispose();
                 } catch (Exception e) {
                 }
@@ -693,15 +693,15 @@ public class Datos22 extends javax.swing.JInternalFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
-        EmpleadoPrincipal1 pro=new EmpleadoPrincipal1();
-        HomeAplicativo.escritorio.add(pro);
-            pro.toFront();
+        EmpleadoPrincipal1 proveedor=new EmpleadoPrincipal1();
+        HomeAplicativo.escritorio.add(proveedor);
+            proveedor.toFront();
              //Para centrar la ventana abierta
             Dimension dimension = escritorio.getSize();
-            Dimension FrameSize = pro.getSize();
-            pro.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
+            Dimension FrameSize = proveedor.getSize();
+            proveedor.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
             //
-            pro.setVisible(true);
+            proveedor.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void jTextFieldParametroBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldParametroBusquedaActionPerformed
@@ -709,8 +709,8 @@ public class Datos22 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextFieldParametroBusquedaActionPerformed
 
     private void txtIdentificadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdentificadorKeyTyped
-        char C = evt.getKeyChar();
-        if (Character.isLetter(C)) {
+        char caracter = evt.getKeyChar();
+        if (Character.isLetter(caracter)) {
 
             evt.consume();
             txtIdentificador.setCursor(null);
@@ -719,8 +719,8 @@ public class Datos22 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtIdentificadorKeyTyped
 
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
-        char C = evt.getKeyChar();
-        if (Character.isLetter(C)) {
+        char caracter = evt.getKeyChar();
+        if (Character.isLetter(caracter)) {
 
             evt.consume();
             txtTelefono.setCursor(null);
@@ -729,8 +729,8 @@ public class Datos22 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
     private void txtNombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyTyped
-        char C = evt.getKeyChar();
-        if (Character.isDigit(C)) {
+        char caracter = evt.getKeyChar();
+        if (Character.isDigit(caracter)) {
 
             evt.consume();
             txtNombres.setCursor(null);
@@ -739,8 +739,8 @@ public class Datos22 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtNombresKeyTyped
 
     private void txtApellidosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosKeyTyped
-        char C = evt.getKeyChar();
-        if (Character.isDigit(C)) {
+        char caracter = evt.getKeyChar();
+        if (Character.isDigit(caracter)) {
             evt.consume();
             txtApellidos.setCursor(null);
 
@@ -748,8 +748,8 @@ public class Datos22 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtApellidosKeyTyped
 
     private void cmbCargoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbCargoKeyTyped
-        char C = evt.getKeyChar();
-        if (Character.isDigit(C)) {
+        char caracter = evt.getKeyChar();
+        if (Character.isDigit(caracter)) {
 
             evt.consume();
             cmbCargo.setCursor(null);
@@ -763,9 +763,9 @@ public class Datos22 extends javax.swing.JInternalFrame {
 
     private void txtIdentificadorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdentificadorFocusLost
         String aux=txtIdentificador.getText();
-        queryEmpleados qe = new queryEmpleados();
+        queryEmpleados queryE = new queryEmpleados();
         if (txtIdentificador.getText().length() > 0) {
-            qe.validarDocumento(txtIdentificador);
+            queryE.validarDocumento(txtIdentificador);
         }
         txtIdentificador.setText(aux);
     }//GEN-LAST:event_txtIdentificadorFocusLost
@@ -803,7 +803,7 @@ public class Datos22 extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextFieldParametroBusqueda;
     private javax.swing.JTextField jTextFieldParametroBusqueda1;
-    private javax.swing.JLabel lblEstado;
+    private javax.swing.JLabel lblEmpleado;
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDireccion;

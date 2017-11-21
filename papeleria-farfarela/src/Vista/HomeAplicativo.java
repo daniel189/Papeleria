@@ -8,7 +8,7 @@ package Vista;
 import MODELO.queryEmpleados;
 import MODELO.queryProductos;
 import MODELO.queryProveedores;
-import Vista.Empleado.Datos22;
+import Vista.Empleado.DatosEmpleados;
 import Vista.Empleado.EmpleadoPrincipal;
 import Vista.Empleado.EmpleadoPrincipal1;
 import Vista.Proveedor.ProveedorPrincipal;
