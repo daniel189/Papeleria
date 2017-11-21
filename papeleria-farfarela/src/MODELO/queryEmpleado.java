@@ -136,15 +136,9 @@ public class queryEmpleado {
             JOptionPane.showMessageDialog(null, e);
             conexion = null;
         } finally {
-<<<<<<< HEAD:papeleria-farfarela/src/MODELO/queryEmpleado.java
-<<<<<<< HEAD:papeleria-farfarela/src/MODELO/queryEmpleado.java
-            CerrarConexion.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
-=======
-            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
->>>>>>> 39a572a1c2919aaa507877cc726a025df9074228:papeleria-farfarela/src/MODELO/queryEmpleados.java
-=======
-            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
->>>>>>> 39a572a1c2919aaa507877cc726a025df9074228:papeleria-farfarela/src/MODELO/queryEmpleados.java
+
+            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+
         }
         return false;
     }//cierra metodo ejecutarConsulta
@@ -246,15 +240,9 @@ public class queryEmpleado {
             JOptionPane.showMessageDialog(null, e);
             conexion = null;
         } finally {
-<<<<<<< HEAD:papeleria-farfarela/src/MODELO/queryEmpleado.java
-<<<<<<< HEAD:papeleria-farfarela/src/MODELO/queryEmpleado.java
-            CerrarConexion.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
-=======
-            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
->>>>>>> 39a572a1c2919aaa507877cc726a025df9074228:papeleria-farfarela/src/MODELO/queryEmpleados.java
-=======
-            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
->>>>>>> 39a572a1c2919aaa507877cc726a025df9074228:papeleria-farfarela/src/MODELO/queryEmpleados.java
+
+            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+
         }
 
     }//cierra metodo ejecutarConsulta
@@ -353,15 +341,8 @@ while (resultado.next()) {
             JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n");
             conexion = null;
         } finally {
-<<<<<<< HEAD:papeleria-farfarela/src/MODELO/queryEmpleado.java
-<<<<<<< HEAD:papeleria-farfarela/src/MODELO/queryEmpleado.java
-            CerrarConexion.metodoCerrarConexiones(conexion2, sentencia, resultado, ps);
-=======
-            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
->>>>>>> 39a572a1c2919aaa507877cc726a025df9074228:papeleria-farfarela/src/MODELO/queryEmpleados.java
-=======
-            CerrarConexiones.CerrarConexion(conexion2, sentencia, resultado, ps);
->>>>>>> 39a572a1c2919aaa507877cc726a025df9074228:papeleria-farfarela/src/MODELO/queryEmpleados.java
+            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+
 
         }
     }
