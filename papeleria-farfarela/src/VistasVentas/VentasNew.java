@@ -7,7 +7,7 @@ package VistasVentas;
 
 //import Modelo.Conexion;
 import MODELO.*;
-import Vista.home;
+import Vista.HomeAplicativo;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
@@ -73,7 +73,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
         this.JTableArticulos.setModel(modelo);
         //setLocationRelativeTo(null);
 
-        String cuenta = Vista.home.getCuenta1();
+        String cuenta = Vista.HomeAplicativo.getCuenta1();
         jTextFieldCodVendedor.setText(cuenta);
         
         // CONFIGURAR el taño de ancho de la tabla

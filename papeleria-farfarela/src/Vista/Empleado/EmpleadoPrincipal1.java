@@ -7,8 +7,8 @@ package Vista.Empleado;
 
 import MODELO.queryEmpleados;
 import Vista.Empleado.Datos22;
-import Vista.home;
-import static Vista.home.escritorio;
+import Vista.HomeAplicativo;
+import static Vista.HomeAplicativo.escritorio;
 import java.awt.Dimension;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -284,7 +284,7 @@ public class EmpleadoPrincipal1 extends javax.swing.JInternalFrame {
 
             datos.setOpcion(1);
 
-            home.escritorio.add(datos);
+            HomeAplicativo.escritorio.add(datos);
             datos.toFront();
             //Para centrar la ventana abierta
             Dimension dimension = escritorio.getSize();
@@ -307,7 +307,7 @@ public class EmpleadoPrincipal1 extends javax.swing.JInternalFrame {
                 int op = 1;
                 
                 datos.setOpcion(2);
-                home.escritorio.add(datos);
+                HomeAplicativo.escritorio.add(datos);
                 datos.toFront();
                 //Para centrar la ventana abierta
                 Dimension dimension = escritorio.getSize();
@@ -359,7 +359,7 @@ public class EmpleadoPrincipal1 extends javax.swing.JInternalFrame {
                     int op = 1;
                     
                     datos.setOpcion(3);
-                    home.escritorio.add(datos);
+                    HomeAplicativo.escritorio.add(datos);
                     datos.toFront();
                     //Para centrar la ventana abierta
                     Dimension dimension = escritorio.getSize();

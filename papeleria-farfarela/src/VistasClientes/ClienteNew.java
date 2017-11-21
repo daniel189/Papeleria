@@ -6,7 +6,7 @@
 package VistasClientes;
 
 import MODELO.queryClientes;
-import Vista.home;
+import Vista.HomeAplicativo;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;

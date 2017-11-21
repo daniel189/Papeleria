@@ -8,8 +8,8 @@ package Vista.Empleado;
 import MODELO.Conexion;
 import MODELO.queryEmpleados;
 import MODELO.queryProveedores;
-import Vista.home;
-import static Vista.home.escritorio;
+import Vista.HomeAplicativo;
+import static Vista.HomeAplicativo.escritorio;
 import VistasUsuarios.*;
 import com.placeholder.PlaceHolder;
 import java.awt.Color;
@@ -694,7 +694,7 @@ public class Datos22 extends javax.swing.JInternalFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
         EmpleadoPrincipal1 pro=new EmpleadoPrincipal1();
-        home.escritorio.add(pro);
+        HomeAplicativo.escritorio.add(pro);
             pro.toFront();
              //Para centrar la ventana abierta
             Dimension dimension = escritorio.getSize();

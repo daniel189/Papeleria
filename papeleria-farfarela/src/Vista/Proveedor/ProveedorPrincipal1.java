@@ -7,8 +7,8 @@ package Vista.Proveedor;
 
 
 import MODELO.queryProveedores;
-import Vista.home;
-import static Vista.home.escritorio;
+import Vista.HomeAplicativo;
+import static Vista.HomeAplicativo.escritorio;
 import java.awt.Dimension;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -311,7 +311,7 @@ public void HabilitarBotones(boolean Crear,boolean Ver,boolean Editar,boolean El
         int op=1;
         Datos1 datos=new Datos1();
         datos.setOpcion(1);
-        home.escritorio.add(datos);
+        HomeAplicativo.escritorio.add(datos);
         datos.toFront();
         //Para centrar la ventana abierta
             Dimension dimension = escritorio.getSize();
@@ -331,7 +331,7 @@ public void HabilitarBotones(boolean Crear,boolean Ver,boolean Editar,boolean El
         int op=1;
         Datos1 datos=new Datos1();
         datos.setOpcion(2);
-        home.escritorio.add(datos);
+        HomeAplicativo.escritorio.add(datos);
         datos.toFront();
         
         //Para centrar la ventana abierta
@@ -369,7 +369,7 @@ public void HabilitarBotones(boolean Crear,boolean Ver,boolean Editar,boolean El
         int op=1;
         Datos1 datos=new Datos1();
         datos.setOpcion(3);
-        home.escritorio.add(datos);
+        HomeAplicativo.escritorio.add(datos);
         datos.toFront();
         
         //Para centrar la ventana abierta

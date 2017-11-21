@@ -13,16 +13,16 @@ import javax.swing.JOptionPane;
  *
  * @author Crispin
  */
-public class Inicio extends javax.swing.JFrame {
+public class InicioAplicativo extends javax.swing.JFrame {
 
     /**
-     * Creates new form Inicio
+     * Creates new form InicioAplicativo
     
    */
    
     public static int cuentaEmpleado; 
     
-    public Inicio() {
+    public InicioAplicativo() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -146,13 +146,13 @@ int contador = 0;
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         if(txtCuenta.getText().length() > 0 && txtPass.getText().length() > 0){
             ArrayList<String> cuenta = new ArrayList<String>();
-            queryUsuarios query = new queryUsuarios();
-            cuenta = query.getcuenta(txtCuenta.getText());
+            queryUsuarios queryU = new queryUsuarios();
+            cuenta = queryU.getcuenta(txtCuenta.getText());
             if(cuenta.get(4).equals("1")){
                 if(cuenta.get(2).equals(txtPass.getText()) == true){
-                    home obj = new home(cuenta.get(3));
-                    obj.setVisible(true);
-                    obj.lblCuenta.setText(txtCuenta.getText());
+                    HomeAplicativo home = new HomeAplicativo(cuenta.get(3));
+                    home.setVisible(true);
+                    home.lblCuenta.setText(txtCuenta.getText());
                     System.out.println("cuenta " + cuenta.get(3));
                     //cuentaEmpleado = Integer.parseInt(txtCuenta.getText());
                     this.dispose();
@@ -194,21 +194,23 @@ int contador = 0;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InicioAplicativo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InicioAplicativo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InicioAplicativo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InicioAplicativo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Inicio().setVisible(true);
+                new InicioAplicativo().setVisible(true);
             }
         });
     }

@@ -39,126 +39,126 @@ public class homeIT {
     }
 
     /**
-     * Test of getLblCuenta method, of class home.
+     * Test of getLblCuenta method, of class HomeAplicativo.
      */
     @Test
     public void testGetLblCuenta() {
         System.out.println("getLblCuenta");
         JLabel expResult = null;
-        JLabel result = home.getLblCuenta();
+        JLabel result = HomeAplicativo.getLblCuenta();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setLblCuenta method, of class home.
+     * Test of setLblCuenta method, of class HomeAplicativo.
      */
     @Test
     public void testSetLblCuenta() {
         System.out.println("setLblCuenta");
         JLabel lblCuenta = null;
-        home.setLblCuenta(lblCuenta);
+        HomeAplicativo.setLblCuenta(lblCuenta);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of estacerrado method, of class home.
+     * Test of estacerrado method, of class HomeAplicativo.
      */
     @Test
     public void testEstacerrado() {
         System.out.println("estacerrado");
         Object obj = null;
         boolean expResult = false;
-        boolean result = home.estacerrado(obj);
+        boolean result = HomeAplicativo.Cerrado(obj);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of habilitar method, of class home.
+     * Test of habilitar method, of class HomeAplicativo.
      */
     @Test
     public void testHabilitar() {
         System.out.println("habilitar");
-        home instance = new home();
-        instance.habilitar();
+        HomeAplicativo instance = new HomeAplicativo();
+        instance.Habilitar();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of main method, of class home.
+     * Test of main method, of class HomeAplicativo.
      */
     @Test
     public void testMain() {
         System.out.println("main");
         String[] args = null;
-        home.main(args);
+        HomeAplicativo.main(args);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getCuenta method, of class home.
+     * Test of getCuenta method, of class HomeAplicativo.
      */
     @Test
     public void testGetCuenta() {
         System.out.println("getCuenta");
         String expResult = "";
-        String result = home.getCuenta();
+        String result = HomeAplicativo.getCuenta();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setCuenta method, of class home.
+     * Test of setCuenta method, of class HomeAplicativo.
      */
     @Test
     public void testSetCuenta() {
         System.out.println("setCuenta");
         String aCuenta = "";
-        home.setCuenta(aCuenta);
+        HomeAplicativo.setCuenta(aCuenta);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getNivel method, of class home.
+     * Test of getNivel method, of class HomeAplicativo.
      */
     @Test
     public void testGetNivel() {
         System.out.println("getNivel");
         String expResult = "";
-        String result = home.getNivel();
+        String result = HomeAplicativo.getNivel();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setNivel method, of class home.
+     * Test of setNivel method, of class HomeAplicativo.
      */
     @Test
     public void testSetNivel() {
         System.out.println("setNivel");
         String aNivel = "";
-        home.setNivel(aNivel);
+        HomeAplicativo.setNivel(aNivel);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getCuenta1 method, of class home.
+     * Test of getCuenta1 method, of class HomeAplicativo.
      */
     @Test
     public void testGetCuenta1() {
         System.out.println("getCuenta1");
         String expResult = "";
-        String result = home.getCuenta1();
+        String result = HomeAplicativo.getCuenta1();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

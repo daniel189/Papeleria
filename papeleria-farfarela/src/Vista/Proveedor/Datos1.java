@@ -7,8 +7,8 @@ package Vista.Proveedor;
 
 import MODELO.Conexion;
 import MODELO.queryProveedores;
-import Vista.home;
-import static Vista.home.escritorio;
+import Vista.HomeAplicativo;
+import static Vista.HomeAplicativo.escritorio;
 import VistasUsuarios.*;
 import com.placeholder.PlaceHolder;
 import java.awt.Color;
@@ -495,7 +495,7 @@ Conexion conectar = new Conexion();
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
         ProveedorPrincipal1 pro=new ProveedorPrincipal1();
-        home.escritorio.add(pro);
+        HomeAplicativo.escritorio.add(pro);
             pro.toFront();
              //Para centrar la ventana abierta
             Dimension dimension = escritorio.getSize();

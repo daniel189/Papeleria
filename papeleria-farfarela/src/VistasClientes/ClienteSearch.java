@@ -7,8 +7,8 @@ package VistasClientes;
 
 import MODELO.Conexion;
 import MODELO.queryClientes;
-import Vista.home;
-import static Vista.home.escritorio;
+import Vista.HomeAplicativo;
+import static Vista.HomeAplicativo.escritorio;
 import VistasUsuarios.UsuariosEdit;
 import java.awt.Dimension;
 import java.sql.Connection;
@@ -517,7 +517,7 @@ public class ClienteSearch extends javax.swing.JInternalFrame {
 
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
         ClienteNew obj = new ClienteNew();
-        home.escritorio.add(obj);
+        HomeAplicativo.escritorio.add(obj);
         obj.toFront();
         //centrar
         //Para centrar la ventana abierta

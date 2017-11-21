@@ -54,18 +54,18 @@ import javax.swing.JOptionPane;
  *
  * @author rogerluje
  */
-public class home extends javax.swing.JFrame {
+public class HomeAplicativo extends javax.swing.JFrame {
 
     /**
-     * Creates new form home
+     * Creates new form HomeAplicativo
      */
     private static String cuenta;
     private static String nivel;
 
-    public home() {
+    public HomeAplicativo() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
-        habilitar();
+        Habilitar();
         lblCuenta.setVisible(true);
         lblNivel.setVisible(false);
     }
@@ -75,20 +75,20 @@ public class home extends javax.swing.JFrame {
     }
 
     public static void setLblCuenta(JLabel lblCuenta) {
-        home.lblCuenta = lblCuenta;
+        HomeAplicativo.lblCuenta = lblCuenta;
     }
     
     
     
-    public home(String aux) {
+    public HomeAplicativo(String aux) {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         lblNivel.setText(aux);
-        habilitar();
+        Habilitar();
         lblCuenta.setVisible(true);
         lblNivel.setVisible(false);
     }
-    public static boolean estacerrado(Object obj) {
+    public static boolean Cerrado(Object obj) {
         JInternalFrame[] activos = escritorio.getAllFrames();
         boolean cerrado = true;
         int i = 0;
@@ -491,7 +491,7 @@ public class home extends javax.swing.JFrame {
 EmpleadoPrincipal1 empleadoPrincipal;
     ProveedorPrincipal1 principal1;
     private void jEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEmpleadosActionPerformed
-        if (estacerrado(empleadoPrincipal)) {
+        if (Cerrado(empleadoPrincipal)) {
             empleadoPrincipal = new EmpleadoPrincipal1();
             escritorio.add(empleadoPrincipal);
             //Para centrar la ventana abierta
@@ -502,7 +502,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
             empleadoPrincipal.show();
         }
     }//GEN-LAST:event_jEmpleadosActionPerformed
-    public void habilitar() {
+    public void Habilitar() {
         String aux = lblNivel.getText();
         System.out.println("nivel "+aux );
         switch (aux) {
@@ -527,7 +527,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }
     private void jProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jProveedoresActionPerformed
 
-        if (estacerrado(principal1)) {
+        if (Cerrado(principal1)) {
             principal1 = new ProveedorPrincipal1();
             escritorio.add(principal1);
             Dimension dimension = escritorio.getSize();
@@ -551,7 +551,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
 
     private void jClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jClientesActionPerformed
         ClienteSearch obj = new ClienteSearch();
-        home.escritorio.add(obj);
+        HomeAplicativo.escritorio.add(obj);
         obj.toFront();
         //centrar
         //Para centrar la ventana abierta
@@ -564,13 +564,13 @@ EmpleadoPrincipal1 empleadoPrincipal;
 
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
         this.dispose();
-        Inicio login = new Inicio();
+        InicioAplicativo login = new InicioAplicativo();
         login.setVisible(true);
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
     private void jAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAcercaDeActionPerformed
         Acerca obj = new Acerca();
-        home.escritorio.add(obj);
+        HomeAplicativo.escritorio.add(obj);
         obj.toFront();
         //centrar
         //Para centrar la ventana abierta
@@ -583,7 +583,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
 
     private void mAgregar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAgregar3ActionPerformed
         UsuariosNew obj = new UsuariosNew();
-        home.escritorio.add(obj);
+        HomeAplicativo.escritorio.add(obj);
         obj.toFront();
         //centrar
         //Para centrar la ventana abierta
@@ -597,222 +597,222 @@ EmpleadoPrincipal1 empleadoPrincipal;
 
     private void mModificar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mModificar3ActionPerformed
         
-        UsuariosEdit obj = new UsuariosEdit();
-        home.escritorio.add(obj);
-        obj.toFront();
+        UsuariosEdit editUsuarios = new UsuariosEdit();
+        HomeAplicativo.escritorio.add(editUsuarios);
+        editUsuarios.toFront();
         //centrar
         //Para centrar la ventana abierta
         Dimension dimension = escritorio.getSize();
-        Dimension FrameSize = obj.getSize();
-        obj.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
+        Dimension FrameSize = editUsuarios.getSize();
+        editUsuarios.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
         //
-        obj.show();
+        editUsuarios.show();
         
     }//GEN-LAST:event_mModificar3ActionPerformed
 
     private void mEliminar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mEliminar3ActionPerformed
         
-        UsuariosDelete obj = new UsuariosDelete();
-        home.escritorio.add(obj);
-        obj.toFront();
+        UsuariosDelete deleteUsuarios = new UsuariosDelete();
+        HomeAplicativo.escritorio.add(deleteUsuarios);
+        deleteUsuarios.toFront();
         //centrar
         //Para centrar la ventana abierta
         Dimension dimension = escritorio.getSize();
-        Dimension FrameSize = obj.getSize();
-        obj.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
+        Dimension FrameSize = deleteUsuarios.getSize();
+        deleteUsuarios.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
         //
-        obj.show();
+        deleteUsuarios.show();
         
     }//GEN-LAST:event_mEliminar3ActionPerformed
 
     private void mConsultar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mConsultar3ActionPerformed
          
-        UsuariosSearch obj = new UsuariosSearch();
-        home.escritorio.add(obj);
-        obj.toFront();
+        UsuariosSearch searchUsuarios = new UsuariosSearch();
+        HomeAplicativo.escritorio.add(searchUsuarios);
+        searchUsuarios.toFront();
         //centrar
         //Para centrar la ventana abierta
         Dimension dimension = escritorio.getSize();
-        Dimension FrameSize = obj.getSize();
-        obj.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
+        Dimension FrameSize = searchUsuarios.getSize();
+        searchUsuarios.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
         //
-        obj.show();
+        searchUsuarios.show();
         
         
     }//GEN-LAST:event_mConsultar3ActionPerformed
 
     private void prodAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prodAgregarActionPerformed
-        ArticulosNew obj = new ArticulosNew();
-        home.escritorio.add(obj);
-        obj.toFront();
+        ArticulosNew newArticulos = new ArticulosNew();
+        HomeAplicativo.escritorio.add(newArticulos);
+        newArticulos.toFront();
         //centrar
         //Para centrar la ventana abierta
         Dimension dimension = escritorio.getSize();
-        Dimension FrameSize = obj.getSize();
-        obj.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
+        Dimension FrameSize = newArticulos.getSize();
+        newArticulos.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
         //
-        obj.show();
+        newArticulos.show();
     }//GEN-LAST:event_prodAgregarActionPerformed
 
     private void prodModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prodModificarActionPerformed
-        ArticulosUpdate obj = new ArticulosUpdate();
-        home.escritorio.add(obj);
-        obj.toFront();
+        ArticulosUpdate updateArticulos = new ArticulosUpdate();
+        HomeAplicativo.escritorio.add(updateArticulos);
+        updateArticulos.toFront();
         //centrar
         //Para centrar la ventana abierta
         Dimension dimension = escritorio.getSize();
-        Dimension FrameSize = obj.getSize();
-        obj.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
+        Dimension FrameSize = updateArticulos.getSize();
+        updateArticulos.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
         //
-        obj.show();
+        updateArticulos.show();
     }//GEN-LAST:event_prodModificarActionPerformed
 
     private void prodConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prodConsultarActionPerformed
-        ArticulosBuscar obj = new ArticulosBuscar();
-        home.escritorio.add(obj);
-        obj.toFront();
+        ArticulosBuscar buscarArticulos = new ArticulosBuscar();
+        HomeAplicativo.escritorio.add(buscarArticulos);
+        buscarArticulos.toFront();
         //centrar
         //Para centrar la ventana abierta
         Dimension dimension = escritorio.getSize();
-        Dimension FrameSize = obj.getSize();
-        obj.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
+        Dimension FrameSize = buscarArticulos.getSize();
+        buscarArticulos.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
         //
-        obj.show();
+        buscarArticulos.show();
     }//GEN-LAST:event_prodConsultarActionPerformed
 
     private void IvaNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IvaNewActionPerformed
-        IvaNew obj = new IvaNew();
-        home.escritorio.add(obj);
-        obj.toFront();
+        IvaNew newIva = new IvaNew();
+        HomeAplicativo.escritorio.add(newIva);
+        newIva.toFront();
         //centrar
         //Para centrar la ventana abierta
         Dimension dimension = escritorio.getSize();
-        Dimension FrameSize = obj.getSize();
-        obj.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
+        Dimension FrameSize = newIva.getSize();
+        newIva.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
         //
-        obj.show();
+        newIva.show();
     }//GEN-LAST:event_IvaNewActionPerformed
 
     private void IvaEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IvaEditActionPerformed
-        IvaEditar obj = new IvaEditar();
-        home.escritorio.add(obj);
-        obj.toFront();
+        IvaEditar editIva = new IvaEditar();
+        HomeAplicativo.escritorio.add(editIva);
+        editIva.toFront();
         //centrar
         //Para centrar la ventana abierta
         Dimension dimension = escritorio.getSize();
-        Dimension FrameSize = obj.getSize();
-        obj.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
+        Dimension FrameSize = editIva.getSize();
+        editIva.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
         //
-        obj.show();
+        editIva.show();
     }//GEN-LAST:event_IvaEditActionPerformed
 
     private void IvaSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IvaSearchActionPerformed
-        IvaLeer obj = new IvaLeer();
-        home.escritorio.add(obj);
-        obj.toFront();
+        IvaLeer leerIva = new IvaLeer();
+        HomeAplicativo.escritorio.add(leerIva);
+        leerIva.toFront();
         //centrar
         //Para centrar la ventana abierta
         Dimension dimension = escritorio.getSize();
-        Dimension FrameSize = obj.getSize();
-        obj.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
+        Dimension FrameSize = leerIva.getSize();
+        leerIva.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
         //
-        obj.show();
+        leerIva.show();
     }//GEN-LAST:event_IvaSearchActionPerformed
 
     private void FamiNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FamiNewActionPerformed
-        FamiliasNew obj = new FamiliasNew();
-        home.escritorio.add(obj);
-        obj.toFront();
+        FamiliasNew newFamilias = new FamiliasNew();
+        HomeAplicativo.escritorio.add(newFamilias);
+        newFamilias.toFront();
         //centrar
         //Para centrar la ventana abierta
         Dimension dimension = escritorio.getSize();
-        Dimension FrameSize = obj.getSize();
-        obj.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
+        Dimension FrameSize = newFamilias.getSize();
+        newFamilias.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
         //
-        obj.show();
+        newFamilias.show();
     }//GEN-LAST:event_FamiNewActionPerformed
 
     private void FamiEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FamiEditActionPerformed
-        FamiliasUpdate obj = new FamiliasUpdate();
-        home.escritorio.add(obj);
-        obj.toFront();
+        FamiliasUpdate updateFamilias = new FamiliasUpdate();
+        HomeAplicativo.escritorio.add(updateFamilias);
+        updateFamilias.toFront();
         //centrar
         //Para centrar la ventana abierta
         Dimension dimension = escritorio.getSize();
-        Dimension FrameSize = obj.getSize();
-        obj.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
+        Dimension FrameSize = updateFamilias.getSize();
+        updateFamilias.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
         //
-        obj.show();
+        updateFamilias.show();
     }//GEN-LAST:event_FamiEditActionPerformed
 
     private void FamiSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FamiSearchActionPerformed
-        FamiliasBuscar obj = new FamiliasBuscar();
-        home.escritorio.add(obj);
-        obj.toFront();
+        FamiliasBuscar buscarFamilias = new FamiliasBuscar();
+        HomeAplicativo.escritorio.add(buscarFamilias);
+        buscarFamilias.toFront();
         //centrar
         //Para centrar la ventana abierta
         Dimension dimension = escritorio.getSize();
-        Dimension FrameSize = obj.getSize();
-        obj.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
+        Dimension FrameSize = buscarFamilias.getSize();
+        buscarFamilias.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
         //
-        obj.show();
+        buscarFamilias.show();
     }//GEN-LAST:event_FamiSearchActionPerformed
 
     private void venNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_venNuevaActionPerformed
-       VentasNew obj = new VentasNew();
-        home.escritorio.add(obj);
-        obj.toFront();
+       VentasNew newVentas = new VentasNew();
+        HomeAplicativo.escritorio.add(newVentas);
+        newVentas.toFront();
         //centrar
         //Para centrar la ventana abierta
         Dimension dimension = escritorio.getSize();
-        Dimension FrameSize = obj.getSize();
-        obj.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
+        Dimension FrameSize = newVentas.getSize();
+        newVentas.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
         //
-        obj.show();     
+        newVentas.show();     
     }//GEN-LAST:event_venNuevaActionPerformed
 
     private void CuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CuentaActionPerformed
-        UsuariosCuenta obj = new UsuariosCuenta(lblCuenta.getText(), lblNivel.getText());
-        home.escritorio.add(obj);
-        obj.toFront();
+        UsuariosCuenta cuentaUsuarios = new UsuariosCuenta(lblCuenta.getText(), lblNivel.getText());
+        HomeAplicativo.escritorio.add(cuentaUsuarios);
+        cuentaUsuarios.toFront();
         //centrar
         //Para centrar la ventana abierta
         Dimension dimension = escritorio.getSize();
-        Dimension FrameSize = obj.getSize();
-        obj.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
+        Dimension FrameSize = cuentaUsuarios.getSize();
+        cuentaUsuarios.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
         //
-        obj.show();
+        cuentaUsuarios.show();
     }//GEN-LAST:event_CuentaActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
 
         try {
-            VentasView obj = new VentasView();
-            home.escritorio.add(obj);
-            obj.toFront();
+            VentasView viewVentas = new VentasView();
+            HomeAplicativo.escritorio.add(viewVentas);
+            viewVentas.toFront();
             //centrar
             //Para centrar la ventana abierta
             Dimension dimension = escritorio.getSize();
-            Dimension FrameSize = obj.getSize();
-            obj.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
+            Dimension FrameSize = viewVentas.getSize();
+            viewVentas.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
             //
-            obj.show();
+            viewVentas.show();
         } catch (ParseException ex) {
-            Logger.getLogger(home.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HomeAplicativo.class.getName()).log(Level.SEVERE, null, ex);
         }    
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        queryProductos qe = new queryProductos();
-        qe.reportePrductosMasV();
+        queryProductos queryProduct = new queryProductos();
+        queryProduct.reportePrductosMasV();
         
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        queryProductos qe = new queryProductos();
-        qe.reportePrductosMenosV();
+        queryProductos queryProduct = new queryProductos();
+        queryProduct.reportePrductosMenosV();
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -833,20 +833,21 @@ EmpleadoPrincipal1 empleadoPrincipal;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HomeAplicativo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HomeAplicativo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HomeAplicativo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HomeAplicativo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new home().setVisible(true);
+                new HomeAplicativo().setVisible(true);
             }
         });
     }
