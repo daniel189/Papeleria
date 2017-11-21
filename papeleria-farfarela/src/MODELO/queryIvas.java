@@ -1,8 +1,8 @@
 
 package MODELO;
 
-import VistasClientes.ClienteNew;
-import VistasClientes.ClienteSearch;
+import VistasClientes.NuevoCliente;
+import VistasClientes.GestionCliente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

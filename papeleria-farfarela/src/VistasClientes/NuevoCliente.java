@@ -16,12 +16,12 @@ import javax.swing.JOptionPane;
  *
  * @author Crispin
  */
-public class ClienteNew extends javax.swing.JInternalFrame {
+public class NuevoCliente extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ClienteNew
      */
-    public ClienteNew() {
+    public NuevoCliente() {
         initComponents();
     }
     
@@ -31,25 +31,25 @@ public class ClienteNew extends javax.swing.JInternalFrame {
           System.out.println("Ingrese su cedula de 10 digitos");
           return false;
         }else{
-          int a[]=new int [x.length()/2];
-          int b[]=new int [(x.length()/2)];
+          int arreglo1[]=new int [x.length()/2];
+          int arreglo2[]=new int [(x.length()/2)];
           int c=0;
           int d=1;
           for (int i = 0; i < x.length()/2; i++) {
-            a[i]=Integer.parseInt(String.valueOf(x.charAt(c)));
+            arreglo1[i]=Integer.parseInt(String.valueOf(x.charAt(c)));
             c=c+2;
             if (i < (x.length()/2)-1) {
-              b[i]=Integer.parseInt(String.valueOf(x.charAt(d)));
+              arreglo2[i]=Integer.parseInt(String.valueOf(x.charAt(d)));
               d=d+2;
             }
           }
         
-          for (int i = 0; i < a.length; i++) {
-            a[i]=a[i]*2;
-            if (a[i] >9){
-              a[i]=a[i]-9;
+          for (int i = 0; i < arreglo1.length; i++) {
+            arreglo1[i]=arreglo1[i]*2;
+            if (arreglo1[i] >9){
+              arreglo1[i]=arreglo1[i]-9;
             }
-            suma=suma+a[i]+b[i];
+            suma=suma+arreglo1[i]+arreglo2[i];
           } 
           int aux=suma/10;
           int dec=(aux+1)*10;
@@ -297,8 +297,8 @@ public class ClienteNew extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void txtIdentificadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdentificadorKeyTyped
-        char c = evt.getKeyChar();
-        if(Character.isLetter(c)){
+        char caracter = evt.getKeyChar();
+        if(Character.isLetter(caracter)){
             getToolkit().beep(); 
             evt.consume();
         }

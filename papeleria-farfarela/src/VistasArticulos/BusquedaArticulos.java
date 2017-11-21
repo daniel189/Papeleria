@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import papeleriafarfarela.Articulos;
-import VistasArticulos.ArticulosDelete;
+import VistasArticulos.EliminaArticulos;
 
 /**
  *
@@ -18,12 +18,12 @@ import VistasArticulos.ArticulosDelete;
  */
 public class BusquedaArticulos extends javax.swing.JInternalFrame {
 
-     Articulos art_ingreso=new Articulos();
-   queryArticulos art_query=new queryArticulos();
+    Articulos artIngreso=new Articulos();
+    queryArticulos artQuery=new queryArticulos();
     DefaultTableModel modelo=new DefaultTableModel();
     int valor_encontrado;
-   int pro_id;
-   int fam_id;
+    int pro_id;
+    int fam_id;
   public int getvalorencontrado()
    {
    int valorencontrado=valor_encontrado;
@@ -49,8 +49,8 @@ else
     String auxiliar=tab_articulos.getValueAt(filasel, 0).toString();
     valor_encontrado=Integer.parseInt(auxiliar);
     System.out.println(valor_encontrado);
-    //ArticulosDelete d = new ArticulosDelete();
-    ArticulosDelete.txtArticulo.setText(String.valueOf(valor_encontrado));
+    //ArticulosDelete d = new EliminaArticulos();
+    EliminaArticulos.txtArticulo.setText(String.valueOf(valor_encontrado));
 }
 }
 public  int getvalor()
@@ -218,7 +218,7 @@ public  int getvalor()
         }
         else
         {
-            modelo=art_query.UpdateArticulo(txtingreso.getText(),seleccionaritem());
+            modelo=artQuery.UpdateArticulo(txtingreso.getText(),seleccionaritem());
             tab_articulos.setModel(modelo);
             this.tab_articulos.setModel(modelo);// hay q poner dos veces xq si no se ejecuta
            
@@ -230,8 +230,8 @@ public  int getvalor()
               String c="Nombre";
         if(nombre.equals(c))
         {
-            char C = evt.getKeyChar();
-            if (Character.isDigit(C)) {
+            char caracter = evt.getKeyChar();
+            if (Character.isDigit(caracter)) {
                 
                 evt.consume();
                 txtingreso.setCursor(null);
@@ -254,7 +254,7 @@ public  int getvalor()
     }//GEN-LAST:event_txtingresoKeyTyped
 
     private void cboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxActionPerformed
-txtingreso.setText("");
+        txtingreso.setText("");
     }//GEN-LAST:event_cboxActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

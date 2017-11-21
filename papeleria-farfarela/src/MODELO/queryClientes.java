@@ -6,8 +6,8 @@
 package MODELO;
 
 import MODELO.Conexion;
-import VistasClientes.ClienteNew;
-import VistasClientes.ClienteSearch;
+import VistasClientes.NuevoCliente;
+import VistasClientes.GestionCliente;
 import VistasVentas.VentasNew;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -53,7 +53,7 @@ public class queryClientes {
             int res=sentencia.executeUpdate();
             if(res>0){
                 JOptionPane.showMessageDialog(null,"OK, DATOS GUARDADOS");
-                ClienteNew obj = new ClienteNew();
+                NuevoCliente obj = new NuevoCliente();
                 obj.dispose();
             }
             else{
@@ -72,7 +72,7 @@ public class queryClientes {
             int res = sentencia.executeUpdate();
             if(res>0){
                 JOptionPane.showMessageDialog(null,"OK, DATOS ELIMINADOS");
-                ClienteSearch obj = new ClienteSearch();
+                GestionCliente obj = new GestionCliente();
                 obj.limparDatos();
             }
             else{
@@ -94,7 +94,7 @@ public class queryClientes {
             int res=sentencia.executeUpdate();
             if(res>0){
                 JOptionPane.showMessageDialog(null,"OK, DATOS EDITADOS");
-                ClienteSearch obj = new  ClienteSearch();
+                GestionCliente obj = new  GestionCliente();
                 obj.limparDatos();
             }
             else{

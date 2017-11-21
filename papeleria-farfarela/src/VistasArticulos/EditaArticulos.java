@@ -14,10 +14,10 @@ import papeleriafarfarela.Articulos;
  *
  * @author Daniel
  */
-public class ArticulosUpdate extends javax.swing.JInternalFrame {
+public class EditaArticulos extends javax.swing.JInternalFrame {
  DefaultTableModel modelo=new DefaultTableModel();
-    Articulos art_ingreso=new Articulos();
-   queryArticulos art_query=new queryArticulos();
+    Articulos artIngreso=new Articulos();
+   queryArticulos artQuery=new queryArticulos();
    int pro_id;
    int fam_id;
    int valor_encontrado;
@@ -29,10 +29,10 @@ public class ArticulosUpdate extends javax.swing.JInternalFrame {
    int valorencontrado=valor_encontrado;
    return valorencontrado=valor_encontrado;
    }
-    public ArticulosUpdate() {
+    public EditaArticulos() {
         initComponents();
-               cboxprovedor.setModel(art_query.cargarprovedores().getModel());
-       cboxfamilia.setModel(art_query.cargarfamilias().getModel());
+        cboxprovedor.setModel(artQuery.cargarprovedores().getModel());
+        cboxfamilia.setModel(artQuery.cargarfamilias().getModel());
     }
 
     /**
@@ -351,28 +351,28 @@ public class ArticulosUpdate extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 public int seleccionaritem()
 {
-int item=cbox.getSelectedIndex();
-return item;
+    int item=cbox.getSelectedIndex();
+    return item;
 }
 
-public void cargartxt(){
-int filasel=tab_articulos.getSelectedRow();
-if(filasel==-1){
-            JOptionPane.showMessageDialog(null,"Seleccione primero la columna" );
-}
-else
-{
-   String auxiliar=tab_articulos.getValueAt(filasel, 0).toString();
-    valor_encontrado=Integer.parseInt(auxiliar);  
-txt_art.setText(tab_articulos.getValueAt(filasel, 3).toString());
-txt_des.setText(tab_articulos.getValueAt(filasel, 4).toString());
-txt_pre.setText(tab_articulos.getValueAt(filasel, 5).toString());
-txt_stock.setText(tab_articulos.getValueAt(filasel, 6).toString());
+public void cargarTxt(){
+    int filaSeleccionada=tab_articulos.getSelectedRow();
+    if(filaSeleccionada==-1){
+                JOptionPane.showMessageDialog(null,"Seleccione primero la columna" );
+    }
+    else
+    {
+        String auxiliar=tab_articulos.getValueAt(filaSeleccionada, 0).toString();
+        valor_encontrado=Integer.parseInt(auxiliar);  
+        txt_art.setText(tab_articulos.getValueAt(filaSeleccionada, 3).toString());
+        txt_des.setText(tab_articulos.getValueAt(filaSeleccionada, 4).toString());
+        txt_pre.setText(tab_articulos.getValueAt(filaSeleccionada, 5).toString());
+        txt_stock.setText(tab_articulos.getValueAt(filaSeleccionada, 6).toString());
 }
 
 }
     private void tab_articulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_articulosMouseClicked
-        cargartxt();
+        cargarTxt();
     }//GEN-LAST:event_tab_articulosMouseClicked
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -382,7 +382,7 @@ txt_stock.setText(tab_articulos.getValueAt(filasel, 6).toString());
             JOptionPane.showMessageDialog(null,"Llene los campos ");
        }
        else{
-        art_query.modificarArticulo(valor_encontrado,pro_id,  fam_id,txt_art.getText(), txt_des.getText(), Float.parseFloat(txt_pre.getText()), Integer.parseInt(txt_stock.getText()));
+        artQuery.modificarArticulo(valor_encontrado,pro_id,  fam_id,txt_art.getText(), txt_des.getText(), Float.parseFloat(txt_pre.getText()), Integer.parseInt(txt_stock.getText()));
 
            txt_art.setText("");
            txt_des.setText("");
@@ -392,7 +392,7 @@ txt_stock.setText(tab_articulos.getValueAt(filasel, 6).toString());
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void txtingresoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtingresoKeyReleased
@@ -407,33 +407,33 @@ this.dispose();
         }
         else
         {
-            modelo=art_query.UpdateArticulo(txtingreso.getText(),seleccionaritem());
+            modelo=artQuery.UpdateArticulo(txtingreso.getText(),seleccionaritem());
             tab_articulos.setModel(modelo);
             this.tab_articulos.setModel(modelo);// hay q poner dos veces xq si no se ejecuta
     }//GEN-LAST:event_txtingresoKeyReleased
  }
     private void cboxfamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxfamiliaActionPerformed
         String nombre_familia=String.valueOf(cboxfamilia.getSelectedItem());
-        fam_id=  art_query.asignarfamilia(nombre_familia);
+        fam_id=  artQuery.asignarfamilia(nombre_familia);
         txt_familia.setText(Integer.toString(fam_id));  
       
     }//GEN-LAST:event_cboxfamiliaActionPerformed
 
     private void cboxprovedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxprovedorActionPerformed
- String nombre_provedor=String.valueOf(cboxprovedor.getSelectedItem());
-        pro_id=  art_query.asignarprovedor(nombre_provedor);
+        String nombre_provedor=String.valueOf(cboxprovedor.getSelectedItem());
+        pro_id=  artQuery.asignarprovedor(nombre_provedor);
         txt_prov_id.setText(Integer.toString(pro_id)); 
                                                
     }//GEN-LAST:event_cboxprovedorActionPerformed
 
     private void txtingresoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtingresoKeyTyped
-   String nombre=String.valueOf(cbox.getSelectedItem());
-                System.out.println(nombre);
-              String c="Nombre";
-        if(nombre.equals(c))
+        String nombre=String.valueOf(cbox.getSelectedItem());
+        System.out.println(nombre);
+        String nombreC="Nombre";
+        if(nombre.equals(nombreC))
         {
-            char C = evt.getKeyChar();
-            if (Character.isDigit(C)) {
+            char caracter = evt.getKeyChar();
+            if (Character.isDigit(caracter)) {
                 
                 evt.consume();
                 txtingreso.setCursor(null);
@@ -460,9 +460,8 @@ txtingreso.setText("");
     }//GEN-LAST:event_cboxActionPerformed
 
     private void txt_artKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_artKeyTyped
-  char C = evt.getKeyChar();
-            if (Character.isDigit(C)) {
-                
+        char caracter = evt.getKeyChar();
+            if (Character.isDigit(caracter)) {
                 evt.consume();
                 txt_art.setCursor(null);
                 
@@ -470,8 +469,8 @@ txtingreso.setText("");
     }//GEN-LAST:event_txt_artKeyTyped
 
     private void txt_desKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_desKeyTyped
-char C = evt.getKeyChar();
-            if (Character.isDigit(C)) {
+        char caracter = evt.getKeyChar();
+            if (Character.isDigit(caracter)) {
                 
                 evt.consume();
                 txt_des.setCursor(null);
@@ -481,15 +480,13 @@ char C = evt.getKeyChar();
     }//GEN-LAST:event_txt_desKeyTyped
 
     private void txt_preKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_preKeyTyped
- char c = evt.getKeyChar();
-
-
-if (((c < '0') || (c > '9')) &&  (c != '.')) {
-evt.consume();
-}
-if (c == '.' && txt_pre.getText().contains(".")) {
-evt.consume();
-}
+       char caracter = evt.getKeyChar();
+       if (((caracter < '0') || (caracter > '9')) &&  (caracter != '.')) {
+       evt.consume();
+       }
+       if (caracter == '.' && txt_pre.getText().contains(".")) {
+       evt.consume();
+    }
     }//GEN-LAST:event_txt_preKeyTyped
 
     private void txt_stockKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_stockKeyTyped

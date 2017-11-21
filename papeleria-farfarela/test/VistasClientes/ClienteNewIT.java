@@ -38,26 +38,26 @@ public class ClienteNewIT {
     }
 
     /**
-     * Test of valida method, of class ClienteNew.
+     * Test of valida method, of class NuevoCliente.
      */
     @Test
     public void testValida() {
         System.out.println("valida");
         String x = "";
         boolean expResult = false;
-        boolean result = ClienteNew.valida(x);
+        boolean result = NuevoCliente.valida(x);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of limpiarDatos method, of class ClienteNew.
+     * Test of limpiarDatos method, of class NuevoCliente.
      */
     @Test
     public void testLimpiarDatos() {
         System.out.println("limpiarDatos");
-        ClienteNew instance = new ClienteNew();
+        NuevoCliente instance = new NuevoCliente();
         instance.limpiarDatos();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

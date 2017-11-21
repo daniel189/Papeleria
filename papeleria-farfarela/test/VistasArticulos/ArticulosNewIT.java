@@ -39,25 +39,25 @@ public class ArticulosNewIT {
     }
 
     /**
-     * Test of claveMax method, of class ArticulosNew.
+     * Test of claveMax method, of class NuevoArticulo.
      */
     @Test
     public void testClaveMax() {
         System.out.println("claveMax");
-        ArticulosNew instance = new ArticulosNew();
+        NuevoArticulo instance = new NuevoArticulo();
         instance.claveMax();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of validarletra method, of class ArticulosNew.
+     * Test of validarletra method, of class NuevoArticulo.
      */
     @Test
     public void testValidarletra() {
         System.out.println("validarletra");
         KeyEvent evt = null;
-        ArticulosNew instance = new ArticulosNew();
+        NuevoArticulo instance = new NuevoArticulo();
         instance.validarletra(evt);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

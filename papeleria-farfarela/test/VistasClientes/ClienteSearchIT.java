@@ -38,26 +38,26 @@ public class ClienteSearchIT {
     }
 
     /**
-     * Test of limparDatos method, of class ClienteSearch.
+     * Test of limparDatos method, of class GestionCliente.
      */
     @Test
     public void testLimparDatos() {
         System.out.println("limparDatos");
-        ClienteSearch instance = new ClienteSearch();
+        GestionCliente instance = new GestionCliente();
         instance.limparDatos();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of llenarClientes method, of class ClienteSearch.
+     * Test of llenarClientes method, of class GestionCliente.
      */
     @Test
     public void testLlenarClientes() {
         System.out.println("llenarClientes");
         String condicion = "";
         int aux = 0;
-        ClienteSearch instance = new ClienteSearch();
+        GestionCliente instance = new GestionCliente();
         instance.llenarClientes(condicion, aux);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

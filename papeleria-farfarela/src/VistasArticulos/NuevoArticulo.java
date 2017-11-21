@@ -20,10 +20,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author martha
  */
-public class ArticulosNew extends javax.swing.JInternalFrame {
+public class NuevoArticulo extends javax.swing.JInternalFrame {
 
-     Articulos art_ingreso=new Articulos();
-   queryArticulos art_query=new queryArticulos();
+     Articulos artIngreso=new Articulos();
+   queryArticulos artQuery=new queryArticulos();
    int pro_id;
   int fam_id;
   int valor_encontrado;
@@ -37,11 +37,11 @@ public int idarticulo;
 /**
      * Creates new form ArticulosNew
      */
-    public ArticulosNew() {
+    public NuevoArticulo() {
         initComponents();
          claveMax();
-      cboxprovedor.setModel(art_query.cargarprovedores().getModel());
-       cboxfamilia.setModel(art_query.cargarfamilias().getModel());
+      cboxprovedor.setModel(artQuery.cargarprovedores().getModel());
+       cboxfamilia.setModel(artQuery.cargarfamilias().getModel());
     }
 
     /**
@@ -78,7 +78,7 @@ public int idarticulo;
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/guardar.png"))); // NOI18N
@@ -369,23 +369,22 @@ public int idarticulo;
     }
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        float pro_id_encontrado;
-       art_ingreso.setArtId(idarticulo);
-       art_ingreso.setArtDescripcion(txt_descripcion.getText());
-        art_ingreso.setArtNombre(txt_nombre.getText());
-        art_ingreso.setArtPrecio(Float.parseFloat(txt_precio.getText()));
-        art_ingreso.setArtStock(Double.parseDouble(txt_stock.getText()));
+        artIngreso.setArtId(idarticulo);
+        artIngreso.setArtDescripcion(txt_descripcion.getText());
+        artIngreso.setArtNombre(txt_nombre.getText());
+        artIngreso.setArtPrecio(Float.parseFloat(txt_precio.getText()));
+        artIngreso.setArtStock(Double.parseDouble(txt_stock.getText()));
 
-        if((art_query.setArticulo(art_ingreso, fam_id, pro_id)==true))
+        if((artQuery.setArticulo(artIngreso, fam_id, pro_id)==true))
         {          
               String[] fila=new String[7];
-             fila[0]=String.valueOf(art_ingreso.getArtId());
+             fila[0]=String.valueOf(artIngreso.getArtId());
              fila[1]=String.valueOf(txt_familia.getText());
              fila[2]=String.valueOf(txt_prov_id.getText());
-              fila[3]=String.valueOf(art_ingreso.getArtNombre());
-              fila[4]=String.valueOf(art_ingreso.getArtDescripcion());
-              fila[5]=String.valueOf(art_ingreso.getArtPrecio());
-              fila[6]=String.valueOf(art_ingreso.getArtStock());
+              fila[3]=String.valueOf(artIngreso.getArtNombre());
+              fila[4]=String.valueOf(artIngreso.getArtDescripcion());
+              fila[5]=String.valueOf(artIngreso.getArtPrecio());
+              fila[6]=String.valueOf(artIngreso.getArtStock());
               modelo.addRow(fila);
               tabla_articulos.setModel(modelo);
    
@@ -402,15 +401,14 @@ public int idarticulo;
         
        
     }//GEN-LAST:event_btnGuardarActionPerformed
-public void validarletra(java.awt.event.KeyEvent evt)
-        
-{
-    char c=evt.getKeyChar();
-        if((c<'a' || c>'z')&&(c<'A' || c>'Z'))
-            evt.consume();
-}
+public void validarletra(java.awt.event.KeyEvent evt)       
+    {
+        char caracter=evt.getKeyChar();
+            if((caracter<'a' || caracter>'z')&&(caracter<'A' || caracter>'Z'))
+                evt.consume();
+    }
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-this.dispose();
+        this.dispose();
   
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -421,19 +419,19 @@ this.dispose();
 
     private void cboxfamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxfamiliaActionPerformed
         String nombre_familia=String.valueOf(cboxfamilia.getSelectedItem());
-        fam_id=  art_query.asignarfamilia(nombre_familia);
+        fam_id=  artQuery.asignarfamilia(nombre_familia);
         txt_familia.setText(Integer.toString(fam_id));
     }//GEN-LAST:event_cboxfamiliaActionPerformed
 
     private void cboxprovedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxprovedorActionPerformed
-   String nombre_provedor=String.valueOf(cboxprovedor.getSelectedItem());
-        pro_id=  art_query.asignarprovedor(nombre_provedor);
+        String nombre_provedor=String.valueOf(cboxprovedor.getSelectedItem());
+        pro_id=  artQuery.asignarprovedor(nombre_provedor);
         txt_prov_id.setText(Integer.toString(pro_id));        // TODO add your handling code here:
     }//GEN-LAST:event_cboxprovedorActionPerformed
 
     private void txt_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyTyped
-    char C = evt.getKeyChar();
-        if (Character.isDigit(C)) {
+    char caracter = evt.getKeyChar();
+        if (Character.isDigit(caracter)) {
 
             evt.consume();
             txt_nombre.setCursor(null);
@@ -442,41 +440,41 @@ this.dispose();
     }//GEN-LAST:event_txt_nombreKeyTyped
 
     private void txt_precioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_precioKeyTyped
-char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
 
 
-if (((c < '0') || (c > '9')) &&  (c != '.')) {
-evt.consume();
-}
-if (c == '.' && txt_precio.getText().contains(".")) {
-evt.consume();
-}
+        if (((c < '0') || (c > '9')) &&  (c != '.')) {
+        evt.consume();
+        }
+        if (c == '.' && txt_precio.getText().contains(".")) {
+        evt.consume();
+        }
     }//GEN-LAST:event_txt_precioKeyTyped
 
     private void txt_stockKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_stockKeyTyped
-char caracter = evt.getKeyChar();
+        char caracter = evt.getKeyChar();
 
-      // Verificar si la tecla pulsada no es un digito
-      if(((caracter < '0') ||
-         (caracter > '9')) &&
-         (caracter != '\b' /*corresponde a BACK_SPACE*/))
-      {
-         evt.consume();  // ignorar el evento de teclado
-      }
-            // TODO add your handling code here:
+              // Verificar si la tecla pulsada no es un digito
+              if(((caracter < '0') ||
+                 (caracter > '9')) &&
+                 (caracter != '\b' /*corresponde a BACK_SPACE*/))
+              {
+                 evt.consume();  // ignorar el evento de teclado
+              }
+                    // TODO add your handling code here:
     }//GEN-LAST:event_txt_stockKeyTyped
 
     private void txt_descripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_descripcionKeyReleased
-char charecter = evt.getKeyChar();
-		if (Character.isLowerCase(charecter)) {
-			evt.setKeyChar(Character.toUpperCase(charecter));
-		}
+        char charecter = evt.getKeyChar();
+                        if (Character.isLowerCase(charecter)) {
+                                evt.setKeyChar(Character.toUpperCase(charecter));
+                        }
     }//GEN-LAST:event_txt_descripcionKeyReleased
 
     private void txt_descripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_descripcionKeyTyped
    ///validarletra(evt);
-       char C = evt.getKeyChar();
-        if (Character.isDigit(C)) {
+       char caracter = evt.getKeyChar();
+        if (Character.isDigit(caracter)) {
 
             evt.consume();
             txt_descripcion.setCursor(null);

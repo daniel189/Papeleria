@@ -38,12 +38,12 @@ public class ArticulosUpdateIT {
     }
 
     /**
-     * Test of getvalorencontrado method, of class ArticulosUpdate.
+     * Test of getvalorencontrado method, of class EditaArticulos.
      */
     @Test
     public void testGetvalorencontrado() {
         System.out.println("getvalorencontrado");
-        ArticulosUpdate instance = new ArticulosUpdate();
+        EditaArticulos instance = new EditaArticulos();
         int expResult = 0;
         int result = instance.getvalorencontrado();
         assertEquals(expResult, result);
@@ -52,12 +52,12 @@ public class ArticulosUpdateIT {
     }
 
     /**
-     * Test of seleccionaritem method, of class ArticulosUpdate.
+     * Test of seleccionaritem method, of class EditaArticulos.
      */
     @Test
     public void testSeleccionaritem() {
         System.out.println("seleccionaritem");
-        ArticulosUpdate instance = new ArticulosUpdate();
+        EditaArticulos instance = new EditaArticulos();
         int expResult = 0;
         int result = instance.seleccionaritem();
         assertEquals(expResult, result);
@@ -66,13 +66,13 @@ public class ArticulosUpdateIT {
     }
 
     /**
-     * Test of cargartxt method, of class ArticulosUpdate.
+     * Test of cargartxt method, of class EditaArticulos.
      */
     @Test
     public void testCargartxt() {
         System.out.println("cargartxt");
-        ArticulosUpdate instance = new ArticulosUpdate();
-        instance.cargartxt();
+        EditaArticulos instance = new EditaArticulos();
+        instance.cargarTxt();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

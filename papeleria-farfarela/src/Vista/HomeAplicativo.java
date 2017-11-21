@@ -14,10 +14,10 @@ import VistaEmpleado.EmpleadoPrincipal1;
 import VistaProveedor.ProveedorPrincipal;
 import VistaProveedor.ProveedorPrincipal1;
 import VistasArticulos.BusquedaArticulos;
-import VistasArticulos.ArticulosDelete;
-import VistasArticulos.ArticulosNew;
-import VistasArticulos.ArticulosUpdate;
-import VistasClientes.ClienteSearch;
+import VistasArticulos.EliminaArticulos;
+import VistasArticulos.NuevoArticulo;
+import VistasArticulos.EditaArticulos;
+import VistasClientes.GestionCliente;
 import VistasFamilia.FamiliasBuscar;
 import VistasFamilia.FamiliasNew;
 import VistasFamilia.FamiliasUpdate;
@@ -550,7 +550,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_rptProveedoresActionPerformed
 
     private void jClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jClientesActionPerformed
-        ClienteSearch obj = new ClienteSearch();
+        GestionCliente obj = new GestionCliente();
         HomeAplicativo.escritorio.add(obj);
         obj.toFront();
         //centrar
@@ -642,7 +642,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_mConsultar3ActionPerformed
 
     private void prodAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prodAgregarActionPerformed
-        ArticulosNew newArticulos = new ArticulosNew();
+        NuevoArticulo newArticulos = new NuevoArticulo();
         HomeAplicativo.escritorio.add(newArticulos);
         newArticulos.toFront();
         //centrar
@@ -655,7 +655,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_prodAgregarActionPerformed
 
     private void prodModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prodModificarActionPerformed
-        ArticulosUpdate updateArticulos = new ArticulosUpdate();
+        EditaArticulos updateArticulos = new EditaArticulos();
         HomeAplicativo.escritorio.add(updateArticulos);
         updateArticulos.toFront();
         //centrar

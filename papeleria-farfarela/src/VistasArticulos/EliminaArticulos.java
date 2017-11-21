@@ -12,11 +12,11 @@ import javax.swing.JFrame;
  *
  * @author Ricardo
  */
-public class ArticulosDelete extends javax.swing.JInternalFrame {
-   queryArticulos art_query=new queryArticulos();
+public class EliminaArticulos extends javax.swing.JInternalFrame {
+   queryArticulos artQuery=new queryArticulos();
    BusquedaArticulos art=new BusquedaArticulos();
    int  valor_encontrado; 
-   public ArticulosDelete() {
+   public EliminaArticulos() {
         initComponents();
     }
 
@@ -39,7 +39,7 @@ public class ArticulosDelete extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -63,7 +63,6 @@ public class ArticulosDelete extends javax.swing.JInternalFrame {
         });
 
         Buscar.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        Buscar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Daniel\\Downloads\\buscar.jpg")); // NOI18N
         Buscar.setText("BUSCAR");
         Buscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -179,7 +178,7 @@ public class ArticulosDelete extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        art_query.eliminarProveedor(Integer.parseInt(txtArticulo.getText()));
+        artQuery.eliminarProveedor(Integer.parseInt(txtArticulo.getText()));
         art.setVisible(true);
     }//GEN-LAST:event_btnEliminarActionPerformed
 

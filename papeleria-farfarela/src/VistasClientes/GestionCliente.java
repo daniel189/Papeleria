@@ -28,12 +28,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Crispin
  */
-public class ClienteSearch extends javax.swing.JInternalFrame {
+public class GestionCliente extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ClienteSearch
      */
-    public ClienteSearch() {
+    public GestionCliente() {
         initComponents();
         btnGuardar.setVisible(false);
         llenarClientes("", 1);
@@ -498,7 +498,7 @@ public class ClienteSearch extends javax.swing.JInternalFrame {
             Date fecha = formatter.parse(date);
             dcFechaNacimiento.setDate(fecha);
         } catch (ParseException ex) {
-            Logger.getLogger(ClienteSearch.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GestionCliente.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Error al comvertir la fecha.", "Fecha Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_tbClientesMouseClicked
@@ -516,7 +516,7 @@ public class ClienteSearch extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtBusquedaKeyReleased
 
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
-        ClienteNew obj = new ClienteNew();
+        NuevoCliente obj = new NuevoCliente();
         HomeAplicativo.escritorio.add(obj);
         obj.toFront();
         //centrar
