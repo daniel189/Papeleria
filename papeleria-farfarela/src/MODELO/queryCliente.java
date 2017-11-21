@@ -60,7 +60,7 @@ public class queryCliente {
                 JOptionPane.showMessageDialog(null,"ERROR, DATOS FALLIDOS");
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MODELO.queryUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MODELO.queryUsuario.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null,"ERROR, DATOS FALLIDOS O DUPLICADOS");
         }
     }

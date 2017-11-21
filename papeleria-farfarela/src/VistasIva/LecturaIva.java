@@ -5,7 +5,7 @@
  */
 package VistasIva;
 
-import MODELO.queryIvas;
+import MODELO.queryIva;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Daniel
  */
 public class LecturaIva extends javax.swing.JInternalFrame {
- queryIvas artQuery=new queryIvas();    
+ queryIva artQuery=new queryIva();    
  DefaultTableModel modelo=new DefaultTableModel();
     /**
      * Creates new form IvaLeer

@@ -19,9 +19,9 @@ import papeleriafarfarela.Articulos;
  *
  * @author w8
  */
-public class queryArticulosIT {
+public class queryArticuloIT {
     
-    public queryArticulosIT() {
+    public queryArticuloIT() {
     }
     
     @BeforeClass

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package VistasArticulos;
+package VistasArticulo;
 
+import VistasArticulos.EditaArticulos;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,9 +17,9 @@ import static org.junit.Assert.*;
  *
  * @author w8
  */
-public class ArticulosUpdateIT {
+public class ArticuloUpdateIT {
     
-    public ArticulosUpdateIT() {
+    public ArticuloUpdateIT() {
     }
     
     @BeforeClass

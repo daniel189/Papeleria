@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package VistasArticulos;
+package MODELO;
 
+import java.util.ArrayList;
+import javax.swing.JComboBox;
+import javax.swing.table.DefaultTableModel;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,9 +19,9 @@ import static org.junit.Assert.*;
  *
  * @author w8
  */
-public class ArticulosBuscarIT {
+public class queryIvaIT {
     
-    public ArticulosBuscarIT() {
+    public queryIvaIT() {
     }
     
     @BeforeClass
@@ -38,54 +41,56 @@ public class ArticulosBuscarIT {
     }
 
     /**
-     * Test of getvalorencontrado method, of class BusquedaArticulos.
+     * Test of setIVas method, of class queryIvas.
      */
     @Test
-    public void testGetvalorencontrado() {
-        System.out.println("getvalorencontrado");
-        BusquedaArticulos instance = new BusquedaArticulos();
-        int expResult = 0;
-        int result = instance.getvalorencontrado();
+    public void testSetIVas() {
+        System.out.println("setIVas");
+        ArrayList<String> lista = null;
+        queryIva instance = new queryIva();
+        boolean expResult = false;
+        boolean result = instance.setIVas(lista);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of seleccionaritem method, of class BusquedaArticulos.
+     * Test of cargarIvas method, of class queryIvas.
      */
     @Test
-    public void testSeleccionaritem() {
-        System.out.println("seleccionaritem");
-        BusquedaArticulos instance = new BusquedaArticulos();
-        int expResult = 0;
-        int result = instance.seleccionaritem();
+    public void testCargarIvas() {
+        System.out.println("cargarIvas");
+        queryIva instance = new queryIva();
+        JComboBox expResult = null;
+        JComboBox result = instance.cargarIvas();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of cargartxt method, of class BusquedaArticulos.
+     * Test of updateIvas method, of class queryIvas.
      */
     @Test
-    public void testCargartxt() {
-        System.out.println("cargartxt");
-        BusquedaArticulos instance = new BusquedaArticulos();
-        instance.cargartxt();
+    public void testUpdateIvas() {
+        System.out.println("updateIvas");
+        ArrayList<String> lista = null;
+        queryIva instance = new queryIva();
+        instance.updateIvas(lista);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getvalor method, of class BusquedaArticulos.
+     * Test of leerIvas method, of class queryIvas.
      */
     @Test
-    public void testGetvalor() {
-        System.out.println("getvalor");
-        BusquedaArticulos instance = new BusquedaArticulos();
-        int expResult = 0;
-        int result = instance.getvalor();
+    public void testLeerIvas() {
+        System.out.println("leerIvas");
+        queryIva instance = new queryIva();
+        DefaultTableModel expResult = null;
+        DefaultTableModel result = instance.leerIvas();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

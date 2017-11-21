@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package VistasArticulos;
+package VistasCliente;
 
-import java.awt.event.KeyEvent;
+import VistasClientes.GestionCliente;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,9 +17,9 @@ import static org.junit.Assert.*;
  *
  * @author w8
  */
-public class ArticulosNewIT {
+public class ClienteSearchIT {
     
-    public ArticulosNewIT() {
+    public ClienteSearchIT() {
     }
     
     @BeforeClass
@@ -39,26 +39,27 @@ public class ArticulosNewIT {
     }
 
     /**
-     * Test of claveMax method, of class NuevoArticulo.
+     * Test of limparDatos method, of class GestionCliente.
      */
     @Test
-    public void testClaveMax() {
-        System.out.println("claveMax");
-        NuevoArticulo instance = new NuevoArticulo();
-        instance.claveMax();
+    public void testLimparDatos() {
+        System.out.println("limparDatos");
+        GestionCliente instance = new GestionCliente();
+        instance.limparDatos();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of validarletra method, of class NuevoArticulo.
+     * Test of llenarClientes method, of class GestionCliente.
      */
     @Test
-    public void testValidarletra() {
-        System.out.println("validarletra");
-        KeyEvent evt = null;
-        NuevoArticulo instance = new NuevoArticulo();
-        instance.validarletra(evt);
+    public void testLlenarClientes() {
+        System.out.println("llenarClientes");
+        String condicion = "";
+        int aux = 0;
+        GestionCliente instance = new GestionCliente();
+        instance.llenarClientes(condicion, aux);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

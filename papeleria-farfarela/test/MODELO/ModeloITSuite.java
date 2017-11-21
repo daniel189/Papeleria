@@ -17,7 +17,7 @@ import org.junit.runners.Suite;
  * @author w8
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({MODELO.queryUsuariosIT.class, MODELO.ConexionIT.class, MODELO.CerrarConexionIT.class, MODELO.queryClientesIT.class, MODELO.queryFamiliasIT.class, MODELO.queryIvasIT.class, MODELO.queryProductosIT.class, MODELO.queryProveedoresIT.class, MODELO.queryEmpleadosIT.class, MODELO.queryArticulosIT.class, MODELO.queryFacturasIT.class})
+@Suite.SuiteClasses({MODELO.queryUsuarioIT.class, MODELO.ConexionIT.class, MODELO.CerrarConexionIT.class, MODELO.queryClienteIT.class, MODELO.queryFamiliaIT.class, MODELO.queryIvaIT.class, MODELO.queryProductoIT.class, MODELO.queryProveedorIT.class, MODELO.queryEmpleadoIT.class, MODELO.queryArticuloIT.class, MODELO.queryFacturaIT.class})
 public class ModeloITSuite {
 
     @BeforeClass

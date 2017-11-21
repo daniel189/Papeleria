@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package VistasClientes;
+package VistasCliente;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,7 +17,7 @@ import org.junit.runners.Suite;
  * @author w8
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({VistasClientes.ClienteNewIT.class, VistasClientes.ClienteSearchIT.class})
+@Suite.SuiteClasses({VistasCliente.ClienteNewIT.class, VistasCliente.ClienteSearchIT.class})
 public class VistasClientesITSuite {
 
     @BeforeClass

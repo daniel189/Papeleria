@@ -40,7 +40,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Crispin
  */
-public class queryProveedores {
+public class queryProveedor {
     //Definiciones
 
     Conexion conexion = new Conexion();
@@ -72,7 +72,7 @@ public class queryProveedores {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error - " + ex);
-            Logger.getLogger(queryProveedores.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(queryProveedor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//cierra metodo agregarVendedor
 

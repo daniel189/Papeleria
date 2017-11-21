@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MODELO;
+package VistasCliente;
 
+import VistasClientes.NuevoCliente;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,9 +17,9 @@ import static org.junit.Assert.*;
  *
  * @author w8
  */
-public class queryProductosIT {
+public class ClienteNewIT {
     
-    public queryProductosIT() {
+    public ClienteNewIT() {
     }
     
     @BeforeClass
@@ -38,25 +39,27 @@ public class queryProductosIT {
     }
 
     /**
-     * Test of reportePrductosMasV method, of class queryProductos.
+     * Test of valida method, of class NuevoCliente.
      */
     @Test
-    public void testReportePrductosMasV() {
-        System.out.println("reportePrductosMasV");
-        queryProductos instance = new queryProductos();
-        instance.reportePrductosMasV();
+    public void testValida() {
+        System.out.println("valida");
+        String x = "";
+        boolean expResult = false;
+        boolean result = NuevoCliente.valida(x);
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of reportePrductosMenosV method, of class queryProductos.
+     * Test of limpiarDatos method, of class NuevoCliente.
      */
     @Test
-    public void testReportePrductosMenosV() {
-        System.out.println("reportePrductosMenosV");
-        queryProductos instance = new queryProductos();
-        instance.reportePrductosMenosV();
+    public void testLimpiarDatos() {
+        System.out.println("limpiarDatos");
+        NuevoCliente instance = new NuevoCliente();
+        instance.limpiarDatos();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

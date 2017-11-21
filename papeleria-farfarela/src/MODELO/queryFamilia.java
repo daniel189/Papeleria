@@ -129,7 +129,7 @@ PreparedStatement sentencia;
           return modelo;  
         }
         catch(SQLException ex){
-            Logger.getLogger(queryUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(queryUsuario.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }

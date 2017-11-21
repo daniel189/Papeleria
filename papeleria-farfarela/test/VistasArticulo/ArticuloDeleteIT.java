@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package VistasArticulos;
+package VistasArticulo;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -16,9 +16,9 @@ import static org.junit.Assert.*;
  *
  * @author w8
  */
-public class ArticulosDeleteIT {
+public class ArticuloDeleteIT {
     
-    public ArticulosDeleteIT() {
+    public ArticuloDeleteIT() {
     }
     
     @BeforeClass

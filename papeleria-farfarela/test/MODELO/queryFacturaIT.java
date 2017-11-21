@@ -16,9 +16,9 @@ import static org.junit.Assert.*;
  *
  * @author w8
  */
-public class queryFacturasIT {
+public class queryFacturaIT {
     
-    public queryFacturasIT() {
+    public queryFacturaIT() {
     }
     
     @BeforeClass

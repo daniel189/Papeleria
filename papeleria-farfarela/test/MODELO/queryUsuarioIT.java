@@ -18,9 +18,9 @@ import papeleriafarfarela.Cuenta;
  *
  * @author w8
  */
-public class queryUsuariosIT {
+public class queryUsuarioIT {
     
-    public queryUsuariosIT() {
+    public queryUsuarioIT() {
     }
     
     @BeforeClass
@@ -46,7 +46,7 @@ public class queryUsuariosIT {
     public void testGetcuenta() {
         System.out.println("getcuenta");
         String parametroCuenta = "";
-        queryUsuarios instance = new queryUsuarios();
+        queryUsuario instance = new queryUsuario();
         ArrayList<String> expResult = null;
         ArrayList<String> result = instance.getcuenta(parametroCuenta);
         assertEquals(expResult, result);
@@ -60,7 +60,7 @@ public class queryUsuariosIT {
     @Test
     public void testGetCuentas() {
         System.out.println("getCuentas");
-        queryUsuarios instance = new queryUsuarios();
+        queryUsuario instance = new queryUsuario();
         ArrayList<Cuenta> expResult = null;
         ArrayList<Cuenta> result = instance.getCuentas();
         assertEquals(expResult, result);
@@ -75,7 +75,7 @@ public class queryUsuariosIT {
     public void testSetCuenta() {
         System.out.println("setCuenta");
         Cuenta cue = null;
-        queryUsuarios instance = new queryUsuarios();
+        queryUsuario instance = new queryUsuario();
         instance.setCuenta(cue);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -88,7 +88,7 @@ public class queryUsuariosIT {
     public void testEliminarRegistro() {
         System.out.println("EliminarRegistro");
         String cuenta = "";
-        queryUsuarios instance = new queryUsuarios();
+        queryUsuario instance = new queryUsuario();
         instance.EliminarRegistro(cuenta);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -101,7 +101,7 @@ public class queryUsuariosIT {
     public void testUpdateCuenta() {
         System.out.println("updateCuenta");
         ArrayList<String> lista = null;
-        queryUsuarios instance = new queryUsuarios();
+        queryUsuario instance = new queryUsuario();
         instance.updateCuenta(lista);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -115,7 +115,7 @@ public class queryUsuariosIT {
         System.out.println("resetCuenta");
         String cuenta = "";
         String pass = "";
-        queryUsuarios instance = new queryUsuarios();
+        queryUsuario instance = new queryUsuario();
         instance.resetCuenta(cuenta, pass);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

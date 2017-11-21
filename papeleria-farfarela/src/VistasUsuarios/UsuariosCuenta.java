@@ -5,7 +5,7 @@
  */
 package VistasUsuarios;
 
-import MODELO.queryUsuarios;
+import MODELO.queryUsuario;
 import javax.swing.JOptionPane;
 
 /**
@@ -185,7 +185,7 @@ public class UsuariosCuenta extends javax.swing.JInternalFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if(lbUsuario.getText().length() > 0){
             if(txtPass.getText().length() > 0){
-                queryUsuarios obj = new queryUsuarios();
+                queryUsuario obj = new queryUsuario();
                 obj.resetCuenta(lbUsuario.getText(), txtPass.getText());
                 this.dispose();
             }else{

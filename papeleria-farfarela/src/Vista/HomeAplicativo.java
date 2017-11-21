@@ -6,8 +6,8 @@
 package Vista;
 
 import MODELO.queryEmpleado;
-import MODELO.queryProductos;
-import MODELO.queryProveedores;
+import MODELO.queryProducto;
+import MODELO.queryProveedor;
 import VistaEmpleado.DatosEmpleados;
 import VistaEmpleado.EmpleadoPrincipal;
 import VistaEmpleado.EmpleadoPrincipal1;
@@ -544,7 +544,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_rptEmpleadosActionPerformed
 
     private void rptProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rptProveedoresActionPerformed
-       queryProveedores qe = new queryProveedores();
+       queryProveedor qe = new queryProveedor();
        qe.reporteProveedores();
         
     }//GEN-LAST:event_rptProveedoresActionPerformed
@@ -804,14 +804,14 @@ EmpleadoPrincipal1 empleadoPrincipal;
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        queryProductos queryProduct = new queryProductos();
+        queryProducto queryProduct = new queryProducto();
         queryProduct.reportePrductosMasV();
         
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        queryProductos queryProduct = new queryProductos();
+        queryProducto queryProduct = new queryProducto();
         queryProduct.reportePrductosMenosV();
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed

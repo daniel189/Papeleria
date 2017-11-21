@@ -18,9 +18,9 @@ import static org.junit.Assert.*;
  *
  * @author w8
  */
-public class queryEmpleadosIT {
+public class queryEmpleadoIT {
     
-    public queryEmpleadosIT() {
+    public queryEmpleadoIT() {
     }
     
     @BeforeClass
