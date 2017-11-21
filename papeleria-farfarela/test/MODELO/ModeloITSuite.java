@@ -17,8 +17,8 @@ import org.junit.runners.Suite;
  * @author w8
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({MODELO.queryUsuariosIT.class, MODELO.ConexionIT.class, MODELO.CerrarConexionesIT.class, MODELO.queryClientesIT.class, MODELO.queryFamiliasIT.class, MODELO.queryIvasIT.class, MODELO.queryProductosIT.class, MODELO.queryProveedoresIT.class, MODELO.queryEmpleadosIT.class, MODELO.queryArticulosIT.class, MODELO.queryFacturasIT.class})
-public class MODELOITSuite {
+@Suite.SuiteClasses({MODELO.queryUsuariosIT.class, MODELO.ConexionIT.class, MODELO.CerrarConexionIT.class, MODELO.queryClientesIT.class, MODELO.queryFamiliasIT.class, MODELO.queryIvasIT.class, MODELO.queryProductosIT.class, MODELO.queryProveedoresIT.class, MODELO.queryEmpleadosIT.class, MODELO.queryArticulosIT.class, MODELO.queryFacturasIT.class})
+public class ModeloITSuite {
 
     @BeforeClass
     public static void setUpClass() throws Exception {

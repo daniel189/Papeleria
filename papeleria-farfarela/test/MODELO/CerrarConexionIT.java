@@ -20,9 +20,9 @@ import static org.junit.Assert.*;
  *
  * @author w8
  */
-public class CerrarConexionesIT {
+public class CerrarConexionIT {
     
-    public CerrarConexionesIT() {
+    public CerrarConexionIT() {
     }
     
     @BeforeClass
@@ -51,15 +51,9 @@ public class CerrarConexionesIT {
         Statement sentencia = null;
         ResultSet resultado = null;
         PreparedStatement ps = null;
-<<<<<<< HEAD
-<<<<<<< HEAD
-        CerrarConexion.metodoCerrarConexiones(conexion, sentencia, resultado, ps);
-=======
-        CerrarConexiones.CerrarConexion(conexion, sentencia, resultado, ps);
->>>>>>> 39a572a1c2919aaa507877cc726a025df9074228
-=======
-        CerrarConexiones.CerrarConexion(conexion, sentencia, resultado, ps);
->>>>>>> 39a572a1c2919aaa507877cc726a025df9074228
+
+        CerrarConexion.CerrarConexion(conexion, sentencia, resultado, ps);
+
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
