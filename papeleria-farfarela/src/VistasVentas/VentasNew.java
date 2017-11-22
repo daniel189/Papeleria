@@ -54,7 +54,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
     // llamada clase de conexion
     Conexion conectar = new Conexion();
     String ClienteExistente = "no";
-    boolean ced = false, nom = false, ape = false;
+    boolean u = false, nombre = false, apellido = false;
     int bandera = 1;
 
     public VentasNew() {
@@ -1074,12 +1074,12 @@ public class VentasNew extends javax.swing.JInternalFrame{
             } else {
                 if (GenerarFactura()) {
                     try {
-                        String cedula = jTextFieldCodigoCliente.getText();
+                        String uula = jTextFieldCodigoCliente.getText();
                         String nombre = jTextFieldNombreCliente.getText();
                         String apellido = jTextFieldApellido.getText();
                         QueryCliente add = new QueryCliente();
                         // enviar datos a regristar en el querycliente
-                        add.agregarCliente(cedula, nombre, apellido);
+                        add.agregarCliente(uula, nombre, apellido);
 
                     } catch (Exception e) {
                         System.out.println("Error interno");
@@ -1366,7 +1366,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
 
         QueryCliente qc = new QueryCliente();
         String parametroBusqueda = txtParametroBusqueda3.getText();
-        qc.buscarCliente(parametroBusqueda, ced, nom, ape);
+        qc.buscarCliente(parametroBusqueda, u, nombre, apellido);
 
 
     }//GEN-LAST:event_txtParametroBusqueda3KeyReleased
@@ -1375,23 +1375,23 @@ public class VentasNew extends javax.swing.JInternalFrame{
 
         item = cbox.getSelectedIndex();
         if (item == 0) {
-            ced = true;
-            nom = false;
-            ape = false;
+            u = true;
+            nombre = false;
+            apellido = false;
         } else if (item == 1) {
-            ced = false;
-            nom = true;
-            ape = false;
+            u = false;
+            nombre = true;
+            apellido = false;
         } else if (item == 2) {
-            ced = false;
-            nom = false;
-            ape = true;
+            u = false;
+            nombre = false;
+            apellido = true;
         }
 
         System.out.println(item);
-        System.out.println(String.valueOf(ced));
-        System.out.println(String.valueOf(nom));
-        System.out.println(String.valueOf(ape));
+        System.out.println(String.valueOf(u));
+        System.out.println(String.valueOf(nombre));
+        System.out.println(String.valueOf(apellido));
 
     }//GEN-LAST:event_cboxItemStateChanged
 
@@ -1448,7 +1448,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//        /* If Nimbus (introduu in Java SE 6) is not available, stay with the default look and feel.
 //         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
 //         */
 //        try {

@@ -16,7 +16,7 @@ import papeleriafarfarela.Familia;
  * @author martha
  */
 public class EditaFamilia extends javax.swing.JInternalFrame {
-   Familia fam_ingreso=new Familia();
+   Familia familiaIngreso=new Familia();
    QueryFamilia art_query=new QueryFamilia();
    int productoId;
    int ivaId;
