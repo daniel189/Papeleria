@@ -281,18 +281,18 @@ public final void claveMax() {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
        float pro_id_encontrado;
-       fam_ingreso.setFAM_id(idfamilia);
-        fam_ingreso.setFAM_detale(txt_descripcion.getText());
-        fam_ingreso.setFAM_nombre(txt_nombre.getText());
+       fam_ingreso.setFamiliaId(idfamilia);
+        fam_ingreso.setFamiliaDetale(txt_descripcion.getText());
+        fam_ingreso.setFamiliaNombre(txt_nombre.getText());
      
         
-     if((art_query.setFamilia(fam_ingreso.getFAM_id(),iva_id, fam_ingreso.getFAM_nombre(), fam_ingreso.getFAM_detale())))
+     if((art_query.setFamilia(fam_ingreso.getFamiliaId(),iva_id, fam_ingreso.getFamiliaNombre(), fam_ingreso.getFamiliaDetale())))
         {          
              String[] fila=new String[7];
-             fila[0]=String.valueOf(fam_ingreso.getFAM_id());
+             fila[0]=String.valueOf(fam_ingreso.getFamiliaId());
              fila[1]=String.valueOf(iva_id);
-                 fila[2]=String.valueOf(fam_ingreso.getFAM_nombre());
-             fila[3]=String.valueOf(fam_ingreso.getFAM_detale());
+                 fila[2]=String.valueOf(fam_ingreso.getFamiliaNombre());
+             fila[3]=String.valueOf(fam_ingreso.getFamiliaDetale());
            
               modelo.addRow(fila);
               tabla_articulos.setModel(modelo);
