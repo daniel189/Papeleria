@@ -18,10 +18,10 @@ import papeleriafarfarela.Familia;
 public class EditaFamilia extends javax.swing.JInternalFrame {
    Familia fam_ingreso=new Familia();
    QueryFamilia art_query=new QueryFamilia();
-   int pro_id;
-   int iva_id;
-   int fam_id;
-   int iv_id;
+   int productoId;
+   int ivaId;
+   int familiaId;
+  
  DefaultTableModel modelo=new DefaultTableModel();
     public EditaFamilia() {
         initComponents();
@@ -278,11 +278,11 @@ public void cargartxt(){
     else
     {
        String auxiliar=tab_familias.getValueAt(filasel, 0).toString();
-       fam_id=Integer.parseInt(auxiliar);
+       familiaId=Integer.parseInt(auxiliar);
        auxiliar=tab_familias.getValueAt(filasel, 1).toString();
-       iva_id=Integer.parseInt(auxiliar);
-    txt_nombre.setText(tab_familias.getValueAt(filasel, 2).toString());
-    txt_descripcion.setText(tab_familias.getValueAt(filasel, 3).toString());
+       ivaId=Integer.parseInt(auxiliar);
+       txt_nombre.setText(tab_familias.getValueAt(filasel, 2).toString());
+       txt_descripcion.setText(tab_familias.getValueAt(filasel, 3).toString());
 
 }
 }
@@ -298,7 +298,7 @@ public int seleccionaritem()
          JOptionPane.showMessageDialog(null,"LLENE LOS CAMPOS ");
         }
         else{
-        art_query.modificarFamilia(fam_id, iva_id, txt_nombre.getText(), txt_descripcion.getText());
+        art_query.modificarFamilia(familiaId, ivaId, txt_nombre.getText(), txt_descripcion.getText());
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -309,9 +309,9 @@ public int seleccionaritem()
 
     private void cboxivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxivaActionPerformed
         int iva=0;
-        iva_id=Integer.parseInt(cboxiva.getSelectedItem().toString());
-        System.out.println(iva_id);
-        iva=  art_query.asignariva(iva_id);
+        ivaId=Integer.parseInt(cboxiva.getSelectedItem().toString());
+        System.out.println(ivaId);
+        iva=  art_query.asignariva(ivaId);
         txt_iva.setText(Integer.toString(iva)+"%");
 
     }//GEN-LAST:event_cboxivaActionPerformed

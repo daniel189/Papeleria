@@ -22,10 +22,10 @@ import papeleriafarfarela.Familia;
  */
 public class NuevaFamilia extends javax.swing.JInternalFrame {
    ArrayList<Familia> lista;
-   Familia fam_ingreso=new Familia();
-   QueryFamilia art_query=new QueryFamilia();
-   int pro_id;
-   int iva_id;
+   Familia familiaIngreso=new Familia();
+   QueryFamilia articuloQuery=new QueryFamilia();
+   int proId;
+   int ivaId;
   public int idfamilia;
       Conexion conectar = new Conexion();
       String titulos[]={"Fam Id","Iva Id","Nombre","Detalle"};
@@ -33,7 +33,7 @@ public class NuevaFamilia extends javax.swing.JInternalFrame {
     public NuevaFamilia() {
         this.lista = new ArrayList<>();
         initComponents();
-        cboxiva.setModel(art_query.cargariva().getModel());
+        cboxiva.setModel(articuloQuery.cargariva().getModel());
         claveMax();
     }
 
@@ -280,19 +280,19 @@ public final void claveMax() {
     }
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-       float pro_id_encontrado;
-       fam_ingreso.setFamiliaId(idfamilia);
-        fam_ingreso.setFamiliaDetale(txt_descripcion.getText());
-        fam_ingreso.setFamiliaNombre(txt_nombre.getText());
+       float proId_encontrado;
+       familiaIngreso.setFamiliaId(idfamilia);
+        familiaIngreso.setFamiliaDetale(txt_descripcion.getText());
+        familiaIngreso.setFamiliaNombre(txt_nombre.getText());
      
         
-     if((art_query.setFamilia(fam_ingreso.getFamiliaId(),iva_id, fam_ingreso.getFamiliaNombre(), fam_ingreso.getFamiliaDetale())))
+     if((articuloQuery.setFamilia(familiaIngreso.getFamiliaId(),ivaId, familiaIngreso.getFamiliaNombre(), familiaIngreso.getFamiliaDetale())))
         {          
              String[] fila=new String[7];
-             fila[0]=String.valueOf(fam_ingreso.getFamiliaId());
-             fila[1]=String.valueOf(iva_id);
-                 fila[2]=String.valueOf(fam_ingreso.getFamiliaNombre());
-             fila[3]=String.valueOf(fam_ingreso.getFamiliaDetale());
+             fila[0]=String.valueOf(familiaIngreso.getFamiliaId());
+             fila[1]=String.valueOf(ivaId);
+                 fila[2]=String.valueOf(familiaIngreso.getFamiliaNombre());
+             fila[3]=String.valueOf(familiaIngreso.getFamiliaDetale());
            
               modelo.addRow(fila);
               tabla_articulos.setModel(modelo);
@@ -310,9 +310,9 @@ public final void claveMax() {
 
     private void cboxivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxivaActionPerformed
         int iva=0;
-        iva_id=Integer.parseInt(cboxiva.getSelectedItem().toString());
-        System.out.println(iva_id);
-        iva=  art_query.asignariva(iva_id);
+        ivaId=Integer.parseInt(cboxiva.getSelectedItem().toString());
+        System.out.println(ivaId);
+        iva=  articuloQuery.asignariva(ivaId);
         txt_iva.setText(Integer.toString(iva)+"%");
 
     }//GEN-LAST:event_cboxivaActionPerformed
