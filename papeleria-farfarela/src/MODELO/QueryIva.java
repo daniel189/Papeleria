@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Crispin
  */
-public class queryIva {
+public class QueryIva {
       PreparedStatement sentencia;
       PreparedStatement busqueda;
     ResultSet resul;
@@ -50,7 +50,7 @@ public class queryIva {
                 comprovador=false;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MODELO.queryUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MODELO.QueryUsuario.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null,"ERROR, DATOS FALLIDOS O DUPLICADOS");
         }
         return comprovador;
@@ -69,7 +69,7 @@ public class queryIva {
              resul.close();
              cone.close();
           } catch (SQLException ex) {
-              Logger.getLogger(queryArticulo.class.getName()).log(Level.SEVERE, null, ex);
+              Logger.getLogger(QueryArticulo.class.getName()).log(Level.SEVERE, null, ex);
           }
           return cboxivas;
    
@@ -123,7 +123,7 @@ public class queryIva {
           return modelo;  
         }
         catch(SQLException ex){
-            Logger.getLogger(queryUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QueryUsuario.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
       }

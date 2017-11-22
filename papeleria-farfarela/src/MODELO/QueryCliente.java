@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Crispin
  */
-public class queryCliente {
+public class QueryCliente {
     PreparedStatement sentencia;
     ResultSet resul;
     Connection cone;
@@ -60,7 +60,7 @@ public class queryCliente {
                 JOptionPane.showMessageDialog(null,"ERROR, DATOS FALLIDOS");
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MODELO.queryUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MODELO.QueryUsuario.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null,"ERROR, DATOS FALLIDOS O DUPLICADOS");
         }
     }
@@ -80,7 +80,7 @@ public class queryCliente {
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Fallo, Los datos no han podido ser eliminados puesto a que este Cliente tiene registros asociados");
-            Logger.getLogger(queryCliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QueryCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

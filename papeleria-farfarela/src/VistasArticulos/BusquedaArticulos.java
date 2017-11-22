@@ -5,7 +5,7 @@
  */
 package VistasArticulos;
 
-import MODELO.queryArticulo;
+import MODELO.QueryArticulo;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -19,7 +19,7 @@ import VistasArticulos.EliminaArticulos;
 public class BusquedaArticulos extends javax.swing.JInternalFrame {
 
     Articulo artIngreso=new Articulo();
-    queryArticulo artQuery=new queryArticulo();
+    QueryArticulo artQuery=new QueryArticulo();
     DefaultTableModel modelo=new DefaultTableModel();
     int valor_encontrado;
     int pro_id;

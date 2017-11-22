@@ -16,7 +16,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class queryFamilia {
+public class QueryFamilia {
     
 PreparedStatement sentencia;
       PreparedStatement busqueda;
@@ -68,7 +68,7 @@ PreparedStatement sentencia;
              resul.close();
              cone.close();
           } catch (SQLException ex) {
-              Logger.getLogger(queryArticulo.class.getName()).log(Level.SEVERE, null, ex);
+              Logger.getLogger(QueryArticulo.class.getName()).log(Level.SEVERE, null, ex);
           }
           return cboxfamilia;
    
@@ -129,7 +129,7 @@ PreparedStatement sentencia;
           return modelo;  
         }
         catch(SQLException ex){
-            Logger.getLogger(queryUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QueryUsuario.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }

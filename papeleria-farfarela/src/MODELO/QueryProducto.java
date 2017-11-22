@@ -29,7 +29,7 @@ import javax.swing.JOptionPane;
  *
  * @author Crispin
  */
-public class queryProducto {
+public class QueryProducto {
     Conexion conexion = new Conexion();
     Connection conexion2 = null;
     Statement sentencia = null;

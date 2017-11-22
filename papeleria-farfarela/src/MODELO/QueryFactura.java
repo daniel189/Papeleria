@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Crispin
  */
-public class queryFactura {
+public class QueryFactura {
  
          //modelo para la tabla
     DefaultTableModel modelo;

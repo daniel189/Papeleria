@@ -128,7 +128,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
     private void llamarArticulos() {
 
         // llamada de datos
-        queryArticulo load = new queryArticulo();
+        QueryArticulo load = new QueryArticulo();
         load.CargarArticulos();
         //Centramos nuestro jDialog
         jDialogArticulos.setLocation(200, 100);
@@ -146,7 +146,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
     private void llamarCliente() {
 
         // llamada de datos
-        queryCliente loadss = new queryCliente();
+        QueryCliente loadss = new QueryCliente();
         loadss.CargarClientes();
         //Centramos nuestro jDialog
         jDialogCliente.setLocation(250, 150);
@@ -1077,7 +1077,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
                         String cedula = jTextFieldCodigoCliente.getText();
                         String nombre = jTextFieldNombreCliente.getText();
                         String apellido = jTextFieldApellido.getText();
-                        queryCliente add = new queryCliente();
+                        QueryCliente add = new QueryCliente();
                         // enviar datos a regristar en el querycliente
                         add.agregarCliente(cedula, nombre, apellido);
 
@@ -1364,7 +1364,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
 
     private void txtParametroBusqueda3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtParametroBusqueda3KeyReleased
 
-        queryCliente qc = new queryCliente();
+        QueryCliente qc = new QueryCliente();
         String parametroBusqueda = txtParametroBusqueda3.getText();
         qc.buscarCliente(parametroBusqueda, ced, nom, ape);
 
@@ -1397,7 +1397,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
 
     private void txtParametroBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtParametroBusquedaKeyReleased
 
-        queryArticulo cc = new queryArticulo();
+        QueryArticulo cc = new QueryArticulo();
         String parametroBusqueda = txtParametroBusqueda.getText();
         cc.buscarArticulosparaVentas(parametroBusqueda);
 

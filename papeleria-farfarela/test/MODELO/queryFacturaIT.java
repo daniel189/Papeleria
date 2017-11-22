@@ -43,7 +43,7 @@ public class queryFacturaIT {
     @Test
     public void testListarTodosFacturas() {
         System.out.println("listarTodosFacturas");
-        queryFactura instance = new queryFactura();
+        QueryFactura instance = new QueryFactura();
         instance.listarTodosFacturas();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -55,7 +55,7 @@ public class queryFacturaIT {
     @Test
     public void testEjecutarConsultaTodaTabladeFacturas() {
         System.out.println("ejecutarConsultaTodaTabladeFacturas");
-        queryFactura instance = new queryFactura();
+        QueryFactura instance = new QueryFactura();
         instance.ejecutarConsultaTodaTabladeFacturas();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -71,7 +71,7 @@ public class queryFacturaIT {
         boolean buscarPorFacturas = false;
         boolean buscarPorCliente = false;
         boolean buscarPorFecha = false;
-        queryFactura instance = new queryFactura();
+        QueryFactura instance = new QueryFactura();
         instance.buscarFacturas(parametroBusqueda, buscarPorFacturas, buscarPorCliente, buscarPorFecha);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -87,7 +87,7 @@ public class queryFacturaIT {
         boolean buscarPorFacturas = false;
         boolean buscarPorCliente = false;
         boolean buscarPorFecha = false;
-        queryFactura instance = new queryFactura();
+        QueryFactura instance = new QueryFactura();
         instance.buscarFacturasporBusqueda(parametroBusqueda, buscarPorFacturas, buscarPorCliente, buscarPorFecha);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -100,7 +100,7 @@ public class queryFacturaIT {
     public void testBuscarFacturas_String() {
         System.out.println("buscarFacturas");
         String number = "";
-        queryFactura instance = new queryFactura();
+        QueryFactura instance = new QueryFactura();
         instance.buscarFacturas(number);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -113,7 +113,7 @@ public class queryFacturaIT {
     public void testBuscarFacturasDetall() {
         System.out.println("buscarFacturasDetall");
         String number = "";
-        queryFactura instance = new queryFactura();
+        QueryFactura instance = new QueryFactura();
         instance.buscarFacturasDetall(number);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

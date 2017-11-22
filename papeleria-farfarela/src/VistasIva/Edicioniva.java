@@ -5,8 +5,8 @@
  */
 package VistasIva;
 
-import MODELO.queryArticulo;
-import MODELO.queryIva;
+import MODELO.QueryArticulo;
+import MODELO.QueryIva;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author Daniel
  */
 public class Edicioniva extends javax.swing.JInternalFrame {
- queryIva artQuery=new queryIva();
+ QueryIva artQuery=new QueryIva();
     /**
      * Creates new form IvaEditar
      */

@@ -26,7 +26,7 @@ public class VentasView extends javax.swing.JInternalFrame {
     /**
      * Creates new form ListarCliente
      */
-    queryFactura qf = new queryFactura();
+    QueryFactura qf = new QueryFactura();
     
     public VentasView() throws ParseException {
         

@@ -5,7 +5,7 @@
  */
 package VistasFamilia;
 import MODELO.Conexion;
-import MODELO.queryFamilia;
+import MODELO.QueryFamilia;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,7 +23,7 @@ import papeleriafarfarela.Familia;
 public class NuevaFamilia extends javax.swing.JInternalFrame {
    ArrayList<Familia> lista;
    Familia fam_ingreso=new Familia();
-   queryFamilia art_query=new queryFamilia();
+   QueryFamilia art_query=new QueryFamilia();
    int pro_id;
    int iva_id;
   public int idfamilia;

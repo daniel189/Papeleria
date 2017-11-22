@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Crispin
  */
-public class queryArticulo {
+public class QueryArticulo {
       PreparedStatement sentencia;
       PreparedStatement busqueda;
     ResultSet resul;
@@ -68,7 +68,7 @@ public class queryArticulo {
              resul.close();
              cone.close();
           } catch (SQLException ex) {
-              Logger.getLogger(queryArticulo.class.getName()).log(Level.SEVERE, null, ex);
+              Logger.getLogger(QueryArticulo.class.getName()).log(Level.SEVERE, null, ex);
           }
           return cboxprovedor;
    
@@ -87,7 +87,7 @@ public class queryArticulo {
               resul.close();
               cone.close();
           } catch (SQLException ex) {
-              Logger.getLogger(queryArticulo.class.getName()).log(Level.SEVERE, null, ex);
+              Logger.getLogger(QueryArticulo.class.getName()).log(Level.SEVERE, null, ex);
           }
           return cboxfamilia;
    
@@ -198,7 +198,7 @@ public boolean setArticulo(Articulo art,int id_familia,int id_provedor){
           return modelo;  
         }
         catch(SQLException ex){
-            Logger.getLogger(queryUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QueryUsuario.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }

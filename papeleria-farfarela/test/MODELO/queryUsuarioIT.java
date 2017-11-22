@@ -46,7 +46,7 @@ public class queryUsuarioIT {
     public void testGetcuenta() {
         System.out.println("getcuenta");
         String parametroCuenta = "";
-        queryUsuario instance = new queryUsuario();
+        QueryUsuario instance = new QueryUsuario();
         ArrayList<String> expResult = null;
         ArrayList<String> result = instance.getcuenta(parametroCuenta);
         assertEquals(expResult, result);
@@ -60,7 +60,7 @@ public class queryUsuarioIT {
     @Test
     public void testGetCuentas() {
         System.out.println("getCuentas");
-        queryUsuario instance = new queryUsuario();
+        QueryUsuario instance = new QueryUsuario();
         ArrayList<Cuenta> expResult = null;
         ArrayList<Cuenta> result = instance.getCuentas();
         assertEquals(expResult, result);
@@ -75,7 +75,7 @@ public class queryUsuarioIT {
     public void testSetCuenta() {
         System.out.println("setCuenta");
         Cuenta cue = null;
-        queryUsuario instance = new queryUsuario();
+        QueryUsuario instance = new QueryUsuario();
         instance.setCuenta(cue);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -88,7 +88,7 @@ public class queryUsuarioIT {
     public void testEliminarRegistro() {
         System.out.println("EliminarRegistro");
         String cuenta = "";
-        queryUsuario instance = new queryUsuario();
+        QueryUsuario instance = new QueryUsuario();
         instance.EliminarRegistro(cuenta);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -101,7 +101,7 @@ public class queryUsuarioIT {
     public void testUpdateCuenta() {
         System.out.println("updateCuenta");
         ArrayList<String> lista = null;
-        queryUsuario instance = new queryUsuario();
+        QueryUsuario instance = new QueryUsuario();
         instance.updateCuenta(lista);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -115,7 +115,7 @@ public class queryUsuarioIT {
         System.out.println("resetCuenta");
         String cuenta = "";
         String pass = "";
-        queryUsuario instance = new queryUsuario();
+        QueryUsuario instance = new QueryUsuario();
         instance.resetCuenta(cuenta, pass);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
