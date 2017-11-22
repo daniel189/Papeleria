@@ -5,7 +5,7 @@
  */
 package MODELO;
 import VistasVentas.VentasNew;
-import papeleriafarfarela.Articulos;
+import papeleriafarfarela.Articulo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -134,20 +134,20 @@ public class queryArticulo {
           } 
        return idasignar;
    }     
-public boolean setArticulo(Articulos art,int id_familia,int id_provedor){
+public boolean setArticulo(Articulo art,int id_familia,int id_provedor){
     boolean identificador=true;  
     Connection cone= Conexion.getConexion();
       float pro_id_encontrado=0;
         PreparedStatement sentencia;
           try {
               sentencia = cone.prepareStatement("INSERT INTO articulos(ART_ID,PRO_ID,FAM_ID,ART_NOMBRE,ART_DESCRIPCION,ART_PRECIO,ART_STOCK) VALUES (?,?,?,?,?,?,?)");
-               sentencia.setInt(1, art.getArtId());
+               sentencia.setInt(1, art.getArticuloId());
               sentencia.setInt(2, id_provedor);
               sentencia.setInt(3, id_familia);
-              sentencia.setString(4, art.getArtNombre());
-              sentencia.setString(5, art.getArtDescripcion());
-              sentencia.setFloat(6, art.getArtPrecio());
-               sentencia.setDouble(7,art.getArtStock());
+              sentencia.setString(4, art.getArticuloNombre());
+              sentencia.setString(5, art.getArticuloDescripcion());
+              sentencia.setFloat(6, art.getArticuloPrecio());
+               sentencia.setDouble(7,art.getArticuloStock());
 
                     int res=sentencia.executeUpdate();
                     if(res>0){

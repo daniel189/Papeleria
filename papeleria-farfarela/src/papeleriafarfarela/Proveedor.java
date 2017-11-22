@@ -9,7 +9,7 @@ package papeleriafarfarela;
 
 import java.util.*;
 
-/** Proveedores de Articulos para la papeleria
+/** Proveedores de Articulo para la papeleria
  * 
  * @pdOid 736b7e57-47d8-4b3f-9a22-354d770af94f */
 public class Proveedor {
@@ -39,45 +39,45 @@ public class Proveedor {
    public java.lang.String proDireccion;
    
    /** @pdRoleInfo migr=no name=Articulos assc=proporciona coll=java.util.Collection impl=java.util.HashSet mult=1..* */
-   public java.util.Collection<Articulos> articulos;
+   public java.util.Collection<Articulo> articulos;
    
    
    /** @pdGenerated default getter */
-   public java.util.Collection<Articulos> getArticulos() {
+   public java.util.Collection<Articulo> getArticulos() {
       if (articulos == null)
-         articulos = new java.util.HashSet<Articulos>();
+         articulos = new java.util.HashSet<Articulo>();
       return articulos;
    }
    
    /** @pdGenerated default iterator getter */
    public java.util.Iterator getIteratorArticulos() {
       if (articulos == null)
-         articulos = new java.util.HashSet<Articulos>();
+         articulos = new java.util.HashSet<Articulo>();
       return articulos.iterator();
    }
    
    /** @pdGenerated default setter
      * @param newArticulos */
-   public void setArticulos(java.util.Collection<Articulos> newArticulos) {
+   public void setArticulos(java.util.Collection<Articulo> newArticulos) {
       removeAllArticulos();
       for (java.util.Iterator iter = newArticulos.iterator(); iter.hasNext();)
-         addArticulos((Articulos)iter.next());
+         addArticulos((Articulo)iter.next());
    }
    
    /** @pdGenerated default add
      * @param newArticulos */
-   public void addArticulos(Articulos newArticulos) {
+   public void addArticulos(Articulo newArticulos) {
       if (newArticulos == null)
          return;
       if (this.articulos == null)
-         this.articulos = new java.util.HashSet<Articulos>();
+         this.articulos = new java.util.HashSet<Articulo>();
       if (!this.articulos.contains(newArticulos))
          this.articulos.add(newArticulos);
    }
    
    /** @pdGenerated default remove
      * @param oldArticulos */
-   public void removeArticulos(Articulos oldArticulos) {
+   public void removeArticulos(Articulo oldArticulos) {
       if (oldArticulos == null)
          return;
       if (this.articulos != null)

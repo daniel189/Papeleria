@@ -13,7 +13,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import papeleriafarfarela.Articulos;
+import papeleriafarfarela.Articulo;
 
 /**
  *
@@ -104,7 +104,7 @@ public class queryArticuloIT {
     @Test
     public void testSetArticulo() {
         System.out.println("setArticulo");
-        Articulos art = null;
+        Articulo art = null;
         int id_familia = 0;
         int id_provedor = 0;
         queryArticulo instance = new queryArticulo();

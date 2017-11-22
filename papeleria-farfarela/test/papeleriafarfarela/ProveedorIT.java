@@ -46,8 +46,8 @@ public class ProveedorIT {
     public void testGetArticulos() {
         System.out.println("getArticulos");
         Proveedor instance = new Proveedor();
-        Collection<Articulos> expResult = null;
-        Collection<Articulos> result = instance.getArticulos();
+        Collection<Articulo> expResult = null;
+        Collection<Articulo> result = instance.getArticulos();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -73,7 +73,7 @@ public class ProveedorIT {
     @Test
     public void testSetArticulos() {
         System.out.println("setArticulos");
-        Collection<Articulos> newArticulos = null;
+        Collection<Articulo> newArticulos = null;
         Proveedor instance = new Proveedor();
         instance.setArticulos(newArticulos);
         // TODO review the generated test code and remove the default call to fail.
@@ -86,7 +86,7 @@ public class ProveedorIT {
     @Test
     public void testAddArticulos() {
         System.out.println("addArticulos");
-        Articulos newArticulos = null;
+        Articulo newArticulos = null;
         Proveedor instance = new Proveedor();
         instance.addArticulos(newArticulos);
         // TODO review the generated test code and remove the default call to fail.
@@ -99,7 +99,7 @@ public class ProveedorIT {
     @Test
     public void testRemoveArticulos() {
         System.out.println("removeArticulos");
-        Articulos oldArticulos = null;
+        Articulo oldArticulos = null;
         Proveedor instance = new Proveedor();
         instance.removeArticulos(oldArticulos);
         // TODO review the generated test code and remove the default call to fail.

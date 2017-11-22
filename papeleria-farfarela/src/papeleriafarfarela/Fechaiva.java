@@ -17,7 +17,7 @@ public class Fechaiva {
    /** @pdOid bca6b240-cd12-429f-809a-3ba60bdfe36e */
    public java.util.Date fecFin;
    
-   public Articulos articulosA;
+   public Articulo articulosA;
    public Iva ivaB;
 
 }

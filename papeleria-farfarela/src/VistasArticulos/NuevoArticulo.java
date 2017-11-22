@@ -5,7 +5,7 @@
  */
 package VistasArticulos;
 import MODELO.Conexion;
-import papeleriafarfarela.Articulos;
+import papeleriafarfarela.Articulo;
 import MODELO.queryArticulo;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -22,14 +22,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class NuevoArticulo extends javax.swing.JInternalFrame {
 
-     Articulos artIngreso=new Articulos();
+     Articulo artIngreso=new Articulo();
    queryArticulo artQuery=new queryArticulo();
    int pro_id;
   int fam_id;
   int valor_encontrado;
   int comprovador;
       Conexion conectar = new Conexion();
-ArrayList<Articulos> lista = new ArrayList<>();
+ArrayList<Articulo> lista = new ArrayList<>();
 
  String titulos[]={"Art Id","Fam Id","Pro Id","Nombre","Descripcion","Precio","Stoc"};
         DefaultTableModel modelo=new DefaultTableModel(null,titulos);// si no usan el null y no le ponen titulos noo les  imprime 
@@ -369,22 +369,22 @@ public int idarticulo;
     }
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        artIngreso.setArtId(idarticulo);
-        artIngreso.setArtDescripcion(txt_descripcion.getText());
-        artIngreso.setArtNombre(txt_nombre.getText());
-        artIngreso.setArtPrecio(Float.parseFloat(txt_precio.getText()));
-        artIngreso.setArtStock(Double.parseDouble(txt_stock.getText()));
+        artIngreso.setArticuloId(idarticulo);
+        artIngreso.setArticuloDescripcion(txt_descripcion.getText());
+        artIngreso.setArticuloNombre(txt_nombre.getText());
+        artIngreso.setArticuloPrecio(Float.parseFloat(txt_precio.getText()));
+        artIngreso.setArticuloStock(Double.parseDouble(txt_stock.getText()));
 
         if((artQuery.setArticulo(artIngreso, fam_id, pro_id)==true))
         {          
               String[] fila=new String[7];
-             fila[0]=String.valueOf(artIngreso.getArtId());
+             fila[0]=String.valueOf(artIngreso.getArticuloId());
              fila[1]=String.valueOf(txt_familia.getText());
              fila[2]=String.valueOf(txt_prov_id.getText());
-              fila[3]=String.valueOf(artIngreso.getArtNombre());
-              fila[4]=String.valueOf(artIngreso.getArtDescripcion());
-              fila[5]=String.valueOf(artIngreso.getArtPrecio());
-              fila[6]=String.valueOf(artIngreso.getArtStock());
+              fila[3]=String.valueOf(artIngreso.getArticuloNombre());
+              fila[4]=String.valueOf(artIngreso.getArticuloDescripcion());
+              fila[5]=String.valueOf(artIngreso.getArticuloPrecio());
+              fila[6]=String.valueOf(artIngreso.getArticuloStock());
               modelo.addRow(fila);
               tabla_articulos.setModel(modelo);
    

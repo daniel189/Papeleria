@@ -14,6 +14,6 @@ public class Detalle {
    public double detCantidad;
    
    public Facturas facturasA;
-   public Articulos articulosB;
+   public Articulo articulosB;
 
 }
