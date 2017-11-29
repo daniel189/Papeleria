@@ -89,7 +89,7 @@ public class HomeAplicativo extends javax.swing.JFrame {
         lblNivel.setVisible(false);
     }
     public static boolean Cerrado(Object obj) {
-        JInternalFrame[] activos = escritorio.getAllFrames();
+        JInternalFrame[] activos =  escritorio.getAllFrames();
         boolean cerrado = true;
         int i = 0;
         while (i < activos.length && cerrado) {
@@ -181,7 +181,7 @@ public class HomeAplicativo extends javax.swing.JFrame {
                 .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(824, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 688, Short.MAX_VALUE)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
                         .addComponent(lblCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
