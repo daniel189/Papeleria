@@ -51,7 +51,7 @@ public class QueryEmpleado {
     Conexion conexion = new Conexion();
     DefaultTableModel modelo;
     String[] titulosColumnas = {"CÓDIGO", "IDENTIFICADOR", "NOMBRES", "APELLIDOS", "DIRECCION", "TELEFONO", "CARGO", "F.NACIMIENTO", "F.INGRESO"};
-    String info[][] = {};
+    String information[][] = {};
     //-----------------------------------------------------------------------------------
 
     public void agregarEmpleado(int cod, String id, String nombres, String apellidos,
@@ -112,9 +112,9 @@ public class QueryEmpleado {
     public boolean buscarRepetido(String identificador) {
 
         try {
-            Connection reg = Conexion.getConexion();
+            Connection registro = Conexion.getConexion();
 
-            sentencia = reg.createStatement();
+            sentencia = registro.createStatement();
             String consultaSQL = "SELECT emp_identificador FROM EMPLEADO where emp_identificador=" + identificador;
             resultado = sentencia.executeQuery(consultaSQL);
 
@@ -179,7 +179,7 @@ public class QueryEmpleado {
 //-----------------------------------------------------------------------------------
     public void listarTodosEmpleados() {
 
-        modelo = new DefaultTableModel(info, titulosColumnas) {
+        modelo = new DefaultTableModel(information, titulosColumnas) {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -271,19 +271,19 @@ public class QueryEmpleado {
 //            my_pdf_report.add(new Paragraph("                                           ---------------------------------------------------------"));
             PdfPTable my_report_table = new PdfPTable(6);
             PdfPCell table_cell;
-table_cell = new PdfPCell(new Phrase("codigo"));
- my_report_table.addCell(table_cell);
-table_cell = new PdfPCell(new Phrase("Identificador"));
- my_report_table.addCell(table_cell);
-table_cell = new PdfPCell(new Phrase("Nombres"));
- my_report_table.addCell(table_cell);
-table_cell = new PdfPCell(new Phrase("Apellidos"));
- my_report_table.addCell(table_cell);
-table_cell = new PdfPCell(new Phrase("Cargo"));
- my_report_table.addCell(table_cell);
-table_cell = new PdfPCell(new Phrase("Fecha Ingreso"));
- my_report_table.addCell(table_cell);
-while (resultado.next()) {
+            table_cell = new PdfPCell(new Phrase("codigo"));
+             my_report_table.addCell(table_cell);
+            table_cell = new PdfPCell(new Phrase("Identificador"));
+             my_report_table.addCell(table_cell);
+            table_cell = new PdfPCell(new Phrase("Nombres"));
+             my_report_table.addCell(table_cell);
+            table_cell = new PdfPCell(new Phrase("Apellidos"));
+             my_report_table.addCell(table_cell);
+            table_cell = new PdfPCell(new Phrase("Cargo"));
+             my_report_table.addCell(table_cell);
+            table_cell = new PdfPCell(new Phrase("Fecha Ingreso"));
+             my_report_table.addCell(table_cell);
+            while (resultado.next()) {
 
                 String codigo = resultado.getString("EMP_ID");
                 table_cell = new PdfPCell(new Phrase(codigo));

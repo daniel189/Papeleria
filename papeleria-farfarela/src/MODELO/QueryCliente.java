@@ -29,13 +29,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class QueryCliente {
     PreparedStatement sentencia;
-    ResultSet resul;
-    Connection cone;
+    ResultSet result;
+    Connection conection;
     DefaultTableModel modelo;
     //vector conexion los titulos de cada columna
     String[] titulosColumnas = {"CED/RUC/PASAPORTE", "NOMBRE", "APELLIDO"};
     //matriz donde se almacena los datos de cada celda de la tabla
-    String info[][] = {};
+    String information[][] = {};
     // Conectar Base de Datos
     Conexion conectar = new Conexion();
     public void setCliente(ArrayList<String> lista){
@@ -138,7 +138,7 @@ public class QueryCliente {
      */
     public void listarTodosClientes() {
 
-        modelo = new DefaultTableModel(info, titulosColumnas) {
+        modelo = new DefaultTableModel(information, titulosColumnas) {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -153,7 +153,7 @@ public class QueryCliente {
     
         public void CargarClientes() {
 
-        modelo = new DefaultTableModel(info, titulosColumnas) {
+        modelo = new DefaultTableModel(information, titulosColumnas) {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -221,7 +221,7 @@ public class QueryCliente {
 
         
 
-            modelo = new DefaultTableModel(info, titulosColumnas) {
+            modelo = new DefaultTableModel(information, titulosColumnas) {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -245,25 +245,25 @@ public class QueryCliente {
     public void buscarRegistroCedulaONombreOapellido(String parametroBusqueda, boolean buscarPorCedula, boolean buscarPorNombre, boolean buscarPorApellido) {
 
         try {
-            Connection con;
-            con = Conexion.getConexion();
+            Connection conection1;
+            conection1 = Conexion.getConexion();
             String selectSQL;
             resultado = null;
             if (buscarPorCedula == true) {               
                 selectSQL = "SELECT * FROM cliente WHERE CLI_IDENTIFICADOR LIKE ? ORDER BY CLI_APELIDOS ASC";
 
                 ps.setString(1, "%" + parametroBusqueda + "%");
-                  ps = con.prepareStatement(selectSQL);
+                  ps = conection1.prepareStatement(selectSQL);
             } 
             else if(buscarPorNombre== true){
                 selectSQL = "SELECT * FROM cliente WHERE CLI_NOMBRES LIKE ? ORDER BY CLI_APELIDOS ASC";
-                ps = con.prepareStatement(selectSQL);
+                ps = conection1.prepareStatement(selectSQL);
                 ps.setString(1, "%" + parametroBusqueda + "%");
             }
             else if(buscarPorApellido== true){
 
                 selectSQL = "SELECT * FROM cliente WHERE CLI_APELIDOS LIKE ? ORDER BY CLI_APELIDOS ASC";
-                ps = con.prepareStatement(selectSQL);
+                ps = conection1.prepareStatement(selectSQL);
                 ps.setString(1, "%" + parametroBusqueda + "%");
             }
         
@@ -283,7 +283,7 @@ public class QueryCliente {
                 modelo.addRow(info);
 
             }
-            con.close();
+            conection1.close();
         } catch (Exception e) {
             //JOptionPane.showMessageDialog(null,"Error\n Por la Causa" + e);
         }  finally {
