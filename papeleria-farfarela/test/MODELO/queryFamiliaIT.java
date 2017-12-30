@@ -49,7 +49,7 @@ public class queryFamiliaIT {
         int iva_ide = 0;
         String fam_nom = "";
         String fam_descripcion = "";
-        queryFamilia instance = new queryFamilia();
+        QueryFamilia instance = new QueryFamilia();
         instance.modificarFamilia(fami_id, iva_ide, fam_nom, fam_descripcion);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -61,7 +61,7 @@ public class queryFamiliaIT {
     @Test
     public void testCargariva() {
         System.out.println("cargariva");
-        queryFamilia instance = new queryFamilia();
+        QueryFamilia instance = new QueryFamilia();
         JComboBox expResult = null;
         JComboBox result = instance.cargariva();
         assertEquals(expResult, result);
@@ -76,7 +76,7 @@ public class queryFamiliaIT {
     public void testAsignariva() {
         System.out.println("asignariva");
         int iva = 0;
-        queryFamilia instance = new queryFamilia();
+        QueryFamilia instance = new QueryFamilia();
         int expResult = 0;
         int result = instance.asignariva(iva);
         assertEquals(expResult, result);
@@ -92,7 +92,7 @@ public class queryFamiliaIT {
         System.out.println("UpdateFamilia");
         String texto = "";
         int item = 0;
-        queryFamilia instance = new queryFamilia();
+        QueryFamilia instance = new QueryFamilia();
         DefaultTableModel expResult = null;
         DefaultTableModel result = instance.UpdateFamilia(texto, item);
         assertEquals(expResult, result);
@@ -110,7 +110,7 @@ public class queryFamiliaIT {
         int iva = 0;
         String nombre = "";
         String detalle = "";
-        queryFamilia instance = new queryFamilia();
+        QueryFamilia instance = new QueryFamilia();
         boolean expResult = false;
         boolean result = instance.setFamilia(id, iva, nombre, detalle);
         assertEquals(expResult, result);

@@ -12,14 +12,14 @@ import java.util.*;
  * 
  * @pdOid 532ba145-291e-4b4c-ac3d-89fe8db52f6a */
 public class Cuenta {
-    private String cuenta, pass, habilitado;
-    private int nivel, emp_id;
+    private String cuenta, password, habilitado;
+    private int nivel, empleadoId;
     /*Constructor*/
     public Cuenta(String cuentaC, String passC, int nivelC, int emp_idC, String h){
         this.cuenta = cuentaC;
-        this.pass = passC;
+        this.password = passC;
         this.nivel = nivelC;
-        this.emp_id = emp_idC;
+        this.empleadoId = emp_idC;
         this.habilitado=h;
     }
     
@@ -33,7 +33,7 @@ public class Cuenta {
    public double cueNivel;
    
    /** @pdRoleInfo migr=no name=Facturas assc=factura coll=java.util.Collection impl=java.util.HashSet mult=0..* */
-   public java.util.Collection<Facturas> facturas;
+   public java.util.Collection<Factura> facturas;
 
     public Cuenta() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -41,25 +41,25 @@ public class Cuenta {
    
    
    /** @pdGenerated default getter */
-   public java.util.Collection<Facturas> getFacturas() {
+   public java.util.Collection<Factura> getFacturas() {
       if (facturas == null)
-         facturas = new java.util.HashSet<Facturas>();
+         facturas = new java.util.HashSet<Factura>();
       return facturas;
    }
    /** @pdGenerated default add
      * @param newFacturas */
-   public void addFacturas(Facturas newFacturas) {
+   public void addFacturas(Factura newFacturas) {
       if (newFacturas == null)
          return;
       if (this.facturas == null)
-         this.facturas = new java.util.HashSet<Facturas>();
+         this.facturas = new java.util.HashSet<Factura>();
       if (!this.facturas.contains(newFacturas))
          this.facturas.add(newFacturas);
    }
    
    /** @pdGenerated default remove
      * @param oldFacturas */
-   public void removeFacturas(Facturas oldFacturas) {
+   public void removeFacturas(Factura oldFacturas) {
       if (oldFacturas == null)
          return;
       if (this.facturas != null)
@@ -92,14 +92,14 @@ public class Cuenta {
      * @return the pass
      */
     public String getPass() {
-        return pass;
+        return password;
     }
 
     /**
      * @param pass the pass to set
      */
     public void setPass(String pass) {
-        this.pass = pass;
+        this.password = pass;
     }
 
     /**
@@ -120,14 +120,14 @@ public class Cuenta {
      * @return the emp_id
      */
     public int getEmp_id() {
-        return emp_id;
+        return empleadoId;
     }
 
     /**
      * @param emp_id the emp_id to set
      */
     public void setEmp_id(int emp_id) {
-        this.emp_id = emp_id;
+        this.empleadoId = emp_id;
     }
 
     public String getHabilitado() {

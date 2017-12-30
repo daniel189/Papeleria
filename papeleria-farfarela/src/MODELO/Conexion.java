@@ -17,10 +17,10 @@ import javax.swing.JOptionPane;
 public class Conexion {
     //CON SINGLETON
     public static Connection getConexion(){
-        Connection con=null;
+        Connection conection=null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con=DriverManager.getConnection("jdbc:mysql://localhost/papeleriafarfarela","root","root");
+            conection=DriverManager.getConnection("jdbc:mysql://localhost/papeleriafarfarela","root","");
             //con=DriverManager.getConnection("jdbc:mysql://localhost/farfarela","root","************"); Conexion 2IS 
             //con=DriverManager.getConnection("jdbc:mysql://localhost/papeleriafarfarela","root","++++++"); Conexion Danny
         } catch (ClassNotFoundException ex) {
@@ -37,6 +37,6 @@ public class Conexion {
         
         
         
-        return con;
+        return conection;
     }
 }

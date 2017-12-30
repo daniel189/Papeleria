@@ -45,7 +45,7 @@ public class CerrarConexionIT {
      * Test of CerrarConexion method, of class CerrarConexiones.
      */
     @Test
-    public void testMetodoCerrarConexiones() {
+    public void testCerrarConexiones() {
         System.out.println("metodoCerrarConexiones");
         Connection conexion = null;
         Statement sentencia = null;

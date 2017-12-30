@@ -5,7 +5,7 @@
  */
 package VistasClientes;
 
-import MODELO.queryCliente;
+import MODELO.QueryCliente;
 import Vista.HomeAplicativo;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -268,7 +268,7 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
                     
                     lista.add(String.valueOf(sdf.format(date)));
                     //objeto para llamar el queryClientes
-                    queryCliente obj = new queryCliente();
+                    QueryCliente obj = new QueryCliente();
                     obj.setCliente(lista);
                     limpiarDatos();
                 }

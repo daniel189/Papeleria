@@ -10,31 +10,51 @@ package papeleriafarfarela;
  * @author Daniel
  */
 public class Familia {
-  private int FAM_id;
-private String FAM_nombre;
-private String FAM_detale;
+  private int familiaId;
+private String familiaNombre;
+private String familiaDetale;
 
-    public int getFAM_id() {
-        return FAM_id;
+    /**
+     * @return the familiaId
+     */
+    public int getFamiliaId() {
+        return familiaId;
     }
 
-    public void setFAM_id(int FAM_id) {
-        this.FAM_id = FAM_id;
+    /**
+     * @param familiaId the familiaId to set
+     */
+    public void setFamiliaId(int familiaId) {
+        this.familiaId = familiaId;
     }
 
-    public String getFAM_nombre() {
-        return FAM_nombre;
+    /**
+     * @return the familiaNombre
+     */
+    public String getFamiliaNombre() {
+        return familiaNombre;
     }
 
-    public void setFAM_nombre(String FAM_nombre) {
-        this.FAM_nombre = FAM_nombre;
+    /**
+     * @param familiaNombre the familiaNombre to set
+     */
+    public void setFamiliaNombre(String familiaNombre) {
+        this.familiaNombre = familiaNombre;
     }
 
-    public String getFAM_detale() {
-        return FAM_detale;
+    /**
+     * @return the familiaDetale
+     */
+    public String getFamiliaDetale() {
+        return familiaDetale;
     }
 
-    public void setFAM_detale(String FAM_detale) {
-        this.FAM_detale = FAM_detale;
+    /**
+     * @param familiaDetale the familiaDetale to set
+     */
+    public void setFamiliaDetale(String familiaDetale) {
+        this.familiaDetale = familiaDetale;
     }
+
+ 
 }

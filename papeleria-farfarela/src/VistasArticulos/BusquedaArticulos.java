@@ -5,11 +5,11 @@
  */
 package VistasArticulos;
 
-import MODELO.queryArticulo;
+import MODELO.QueryArticulo;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import papeleriafarfarela.Articulos;
+import papeleriafarfarela.Articulo;
 import VistasArticulos.EliminaArticulos;
 
 /**
@@ -18,8 +18,8 @@ import VistasArticulos.EliminaArticulos;
  */
 public class BusquedaArticulos extends javax.swing.JInternalFrame {
 
-    Articulos artIngreso=new Articulos();
-    queryArticulo artQuery=new queryArticulo();
+    Articulo artIngreso=new Articulo();
+    QueryArticulo artQuery=new QueryArticulo();
     DefaultTableModel modelo=new DefaultTableModel();
     int valor_encontrado;
     int pro_id;
@@ -30,7 +30,7 @@ public class BusquedaArticulos extends javax.swing.JInternalFrame {
    return valorencontrado=valor_encontrado;
    }
   
-ArrayList<Articulos> lista = new ArrayList<Articulos>();
+ArrayList<Articulo> lista = new ArrayList<Articulo>();
     public BusquedaArticulos() {
         initComponents();
     }

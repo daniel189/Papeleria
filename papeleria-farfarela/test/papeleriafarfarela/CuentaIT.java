@@ -45,8 +45,8 @@ public class CuentaIT {
     public void testGetFacturas() {
         System.out.println("getFacturas");
         Cuenta instance = new Cuenta();
-        Collection<Facturas> expResult = null;
-        Collection<Facturas> result = instance.getFacturas();
+        Collection<Factura> expResult = null;
+        Collection<Factura> result = instance.getFacturas();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -58,7 +58,7 @@ public class CuentaIT {
     @Test
     public void testAddFacturas() {
         System.out.println("addFacturas");
-        Facturas newFacturas = null;
+        Factura newFacturas = null;
         Cuenta instance = new Cuenta();
         instance.addFacturas(newFacturas);
         // TODO review the generated test code and remove the default call to fail.
@@ -71,7 +71,7 @@ public class CuentaIT {
     @Test
     public void testRemoveFacturas() {
         System.out.println("removeFacturas");
-        Facturas oldFacturas = null;
+        Factura oldFacturas = null;
         Cuenta instance = new Cuenta();
         instance.removeFacturas(oldFacturas);
         // TODO review the generated test code and remove the default call to fail.

@@ -45,7 +45,7 @@ public class FamiliaIT {
         System.out.println("getFAM_id");
         Familia instance = new Familia();
         int expResult = 0;
-        int result = instance.getFAM_id();
+        int result = instance.getFamiliaId();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -59,7 +59,7 @@ public class FamiliaIT {
         System.out.println("setFAM_id");
         int FAM_id = 0;
         Familia instance = new Familia();
-        instance.setFAM_id(FAM_id);
+        instance.setFamiliaId(FAM_id);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -72,7 +72,7 @@ public class FamiliaIT {
         System.out.println("getFAM_nombre");
         Familia instance = new Familia();
         String expResult = "";
-        String result = instance.getFAM_nombre();
+        String result = instance.getFamiliaNombre();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -86,7 +86,7 @@ public class FamiliaIT {
         System.out.println("setFAM_nombre");
         String FAM_nombre = "";
         Familia instance = new Familia();
-        instance.setFAM_nombre(FAM_nombre);
+        instance.setFamiliaNombre(FAM_nombre);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -99,7 +99,7 @@ public class FamiliaIT {
         System.out.println("getFAM_detale");
         Familia instance = new Familia();
         String expResult = "";
-        String result = instance.getFAM_detale();
+        String result = instance.getFamiliaDetale();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -113,7 +113,7 @@ public class FamiliaIT {
         System.out.println("setFAM_detale");
         String FAM_detale = "";
         Familia instance = new Familia();
-        instance.setFAM_detale(FAM_detale);
+        instance.setFamiliaDetale(FAM_detale);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

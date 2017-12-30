@@ -6,7 +6,7 @@
 package VistasUsuarios;
 
 import MODELO.CerrarConexion;
-import MODELO.queryUsuario;
+import MODELO.QueryUsuario;
 import MODELO.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -232,7 +232,7 @@ public class UsuariosNew extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        queryUsuario obj = new queryUsuario();
+        QueryUsuario obj = new QueryUsuario();
         String cedula;
         cedula = txtContraseña1.getText(); 
         if(txtCuenta.getText().length() > 0 && txtContraseña1.getText().length() > 0){

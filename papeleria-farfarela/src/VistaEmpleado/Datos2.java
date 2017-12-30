@@ -7,8 +7,8 @@ package VistaEmpleado;
 
 
 import MODELO.Conexion;
-import MODELO.queryEmpleado;
-import MODELO.queryProveedor;
+import MODELO.QueryEmpleado;
+import MODELO.QueryProveedor;
 import VistasUsuarios.*;
 import com.placeholder.PlaceHolder;
 import java.awt.Color;
@@ -538,7 +538,7 @@ public class Datos2 extends javax.swing.JDialog {
     }
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         cont = 0;
-        queryEmpleado qe = new queryEmpleado();
+        QueryEmpleado qe = new QueryEmpleado();
         Connection reg = conectar.getConexion();
         validarCamposVacios();
 
@@ -594,7 +594,7 @@ public class Datos2 extends javax.swing.JDialog {
                 }
 
             } else if (opcion == 2) {
-                queryEmpleado change = new queryEmpleado();
+                QueryEmpleado change = new QueryEmpleado();
                 String formato = jDateChooser.getDateFormatString();
                 java.util.Date date = jDateChooser.getDate();
                 SimpleDateFormat sdf = new SimpleDateFormat(formato);

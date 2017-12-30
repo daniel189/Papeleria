@@ -1,60 +1,55 @@
+package MODELO;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MODELO;
-
+import MODELO.CerrarConexion;
+import MODELO.Conexion;
+import VistaEmpleado.EmpleadoPrincipal;
+import VistaProveedor.ProveedorPrincipal1;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
-import VistaEmpleado.EmpleadoPrincipal1;
-import static VistaEmpleado.EmpleadoPrincipal1.jTableListarEmpleado;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Element;
-import static com.itextpdf.text.Element.ALIGN_CENTER;
-import com.itextpdf.text.Image;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.pdf.PdfContentByte;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfTemplate;
-import com.itextpdf.text.pdf.PdfWriter;
-import java.awt.Desktop;
-import java.awt.Graphics2D;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-//import net.proteanit.sql.DbUtils;
 
 /**
  *
  * @author Crispin
  */
-public class queryEmpleado {
-
+public class QueryProveedor {
     //Definiciones
+
     Conexion conexion = new Conexion();
     DefaultTableModel modelo;
-    String[] titulosColumnas = {"CÓDIGO", "IDENTIFICADOR", "NOMBRES", "APELLIDOS", "DIRECCION", "TELEFONO", "CARGO", "F.NACIMIENTO", "F.INGRESO"};
+    String[] titulosColumnas = {"CÓDIGO", "IDENTIFICADOR", "RAZÓN SOCIAL", "TELEFONO", "CONTACTO", "TELEFONO-CONTACTO", "DIRECCION"};
     String info[][] = {};
     //-----------------------------------------------------------------------------------
 
-    public void agregarEmpleado(int cod, String id, String nombres, String apellidos,
+    public void agregarProveedor(int cod, String id, String nombres, String apellidos,
             String direccion, String telefono, String observacion,
             Date fNacimiento, Date fIngreso) {
 
@@ -62,8 +57,6 @@ public class queryEmpleado {
 
         String sql = "INSERT INTO EMPLEADO ( EMP_ID, EMP_IDENTIFICADOR, EMP_NOMBRES,EMP_APELLIDOS,EMP_DIRECCION,EMP_TELEFONO,EMP_OBSERVACION,EMP_FECHANACIMIENTO,EMP_FECHAINGRESO)VALUES (?,?,?,?,?,?,?,?,?)";
         try {
-            SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-mm-dd");
-            Date fecha = null;
             PreparedStatement pst = reg.prepareStatement(sql);
             pst.setInt(1, cod);
             pst.setString(2, id);
@@ -72,9 +65,6 @@ public class queryEmpleado {
             pst.setString(5, direccion);
             pst.setString(6, telefono);
             pst.setString(7, observacion);
-
-            pst.setDate(7, (java.sql.Date) fNacimiento);
-            pst.setDate(8, (java.sql.Date) fIngreso);
             int n = pst.executeUpdate();
             if (n > 0) {
                 JOptionPane.showMessageDialog(null, "Empleado Regristado Exitosamente");
@@ -82,25 +72,25 @@ public class queryEmpleado {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error - " + ex);
-            Logger.getLogger(queryEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QueryProveedor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//cierra metodo agregarVendedor
 
     //-----------------------------------------------------------------------------------
-    public void eliminarEmpleado(int code) {
+    public void eliminarProveedor(int code) {
 
         try {
-            //Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/farfarela", "ECUATORIANO16", "root");
             Connection conexion = Conexion.getConexion();
             Statement comando = conexion.createStatement();
-            int cantidad = comando.executeUpdate("delete from empleado where emp_id=" + code);
+            int cantidad = comando.executeUpdate("delete from PROVEEDOR where PRO_ID=" + code);
             if (cantidad == 1) {
 
                 JOptionPane.showMessageDialog(null, "Eliminado");
             } else {
-                JOptionPane.showMessageDialog(null, "No existe Cliente de Codigo " + code);
+                JOptionPane.showMessageDialog(null, "No existe Proveedor de Codigo " + code);
             }
             conexion.close();
+            //System.out.println("Conexion cerrada");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "error, no se puede eliminar, tiene datos asociados ");
         }
@@ -108,6 +98,55 @@ public class queryEmpleado {
     }//cierra metodo eliminar
 
 //-----------------------------------------------------------------------------------
+    public void modificarProveedor(int cod, String id, String razonSocial,
+            String telefono, String contacto,
+            String telfContacto, String direccion) {
+
+        try {
+            Connection conexion = Conexion.getConexion();
+            Statement comando = conexion.createStatement();
+
+            // linea de codigo de mysql que actualiza regristos que va modificar
+            int cantidad = comando.executeUpdate("update PROVEEDOR set PRO_IDENTIFICADOR ='" + id + "', "
+                    + " PRO_RAZONSOCIAL ='" + razonSocial
+                    + "',PRO_TELEFONO ='" + telefono
+                    + "',PRO_CONTACTO ='" + contacto
+                    + "',PRO_TELEFONOCONTACTO ='" + telfContacto
+                    + "',PRO_DIRECCION  ='" + direccion
+                    + "' where PRO_ID=" + cod);
+            if (cantidad == 1) {
+                JOptionPane.showMessageDialog(null, " Modifico con Exito");
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe Proveedor con codigo : " + cod);
+            }
+            conexion.close();
+            //System.out.println("Conexion cerrada");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error -->" + ex);
+        }
+    }//cierra metodo modificarEmpleado
+
+//-----------------------------------------------------------------------------------
+    public void actualizarTabla() {
+        listarTodosProveedores();
+    }
+
+    public void listarTodosProveedores() {
+
+        modelo = new DefaultTableModel(info, titulosColumnas) {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        //le asigna el modelo al jtable
+        ProveedorPrincipal1.jTableListarProveedor.setModel(modelo);
+
+        //ejecuta una consulta a la BD
+        ejecutarConsultaTodaTabla();
+
+    }//cierra metodo listarTodosClientes
+
+    //-----------------------------------------------------------------------------------
     //-----------------------------------------------------------------------------------
     public boolean buscarRepetido(String identificador) {
 
@@ -115,17 +154,16 @@ public class queryEmpleado {
             Connection reg = Conexion.getConexion();
 
             sentencia = reg.createStatement();
-            String consultaSQL = "SELECT emp_identificador FROM EMPLEADO where emp_identificador=" + identificador;
+            String consultaSQL = "SELECT pro_identificador FROM PROVEEDOR where pro_identificador=" + identificador;
             resultado = sentencia.executeQuery(consultaSQL);
 
             //mientras haya datos en la BD ejecutar eso...
             while (resultado.next()) {
 
-                String ident = resultado.getString("EMP_IDENTIFICADOR");
+                String ident = resultado.getString("PRO_IDENTIFICADOR");
 
                 if (ident.equals(identificador)) {
                     return true;
-
                 }
 
             }//cierra while (porque no hay mas datos en la BD)
@@ -136,7 +174,6 @@ public class queryEmpleado {
             JOptionPane.showMessageDialog(null, e);
             conexion = null;
         } finally {
-
             CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
 
         }
@@ -144,54 +181,6 @@ public class queryEmpleado {
     }//cierra metodo ejecutarConsulta
 
 //-----------------------------------------------------------------------------------
-    public void modificarEmpleado(int cod, String id, String nombres, String apellidos,
-            String direccion, String telefono, String cargo, String observacion,
-            String fNacimiento, String fIngreso) {
-
-        try {
-            //Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/farfarela", "ECUATORIANO16", "root");
-
-            Connection conexion = Conexion.getConexion();
-            Statement comando = conexion.createStatement();
-
-            // linea de codigo de mysql que actualiza regristos que va modificar
-            int cantidad = comando.executeUpdate("update EMPLEADO set EMP_IDENTIFICADOR ='" + id + "', "
-                    + " EMP_NOMBRES ='" + nombres
-                    + "', EMP_APELLIDOS ='" + apellidos
-                    + "', EMP_DIRECCION ='" + direccion
-                    + "', EMP_TELEFONO ='" + telefono
-                    + "', EMP_CARGO ='" + cargo
-                    + "', EMP_OBSERVACION ='" + observacion
-                    + "', EMP_FECHANACIMIENTO ='" + fNacimiento
-                    + "', EMP_FECHAINGRESO ='" + fIngreso
-                    + "' where EMP_ID=" + cod);
-            if (cantidad == 1) {
-                JOptionPane.showMessageDialog(null, " Modifico con Exito" + "nuevo:" + nombres);
-            } else {
-                JOptionPane.showMessageDialog(null, "No existe Vendedor de un codigo " + cod);
-            }
-            conexion.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error -->" + ex);
-        }
-    }//cierra metodo modificarEmpleado
-
-//-----------------------------------------------------------------------------------
-    public void listarTodosEmpleados() {
-
-        modelo = new DefaultTableModel(info, titulosColumnas) {
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-        //le asigna el modelo al jtable
-        EmpleadoPrincipal1.jTableListarEmpleado.setModel(modelo);
-
-        //ejecuta una consulta a la BD
-        ejecutarConsultaTodaTabla();
-
-    }//cierra metodo listarTodosClientes
-
 //-----------------------------------------------------------------------------------
     /**
      * Metodo para consultar todos los regsitros de la base de datos de clientes
@@ -202,31 +191,36 @@ public class queryEmpleado {
     ResultSet resultado = null;
     PreparedStatement ps = null;
 
+    /*public void Update_Table(){
+        try {
+            String consultaSQL = "SELECT * FROM PROVEEDOR ORDER BY PRO_ID ASC";
+            resultado = sentencia.executeQuery(consultaSQL);
+            ProveedorSearch.jTableListarProveedor.setModel(modelo);
+        } catch (Exception e) {
+        }
+    }*/
     public void ejecutarConsultaTodaTabla() {
 
         try {
             conexion2 = Conexion.getConexion();
 
             sentencia = conexion2.createStatement();
-            String consultaSQL = "SELECT * FROM EMPLEADO ORDER BY EMP_ID ASC";
+            String consultaSQL = "SELECT * FROM PROVEEDOR ORDER BY PRO_ID ASC";
             resultado = sentencia.executeQuery(consultaSQL);
 
             //mientras haya datos en la BD ejecutar eso...
             while (resultado.next()) {
 
-                int codigo = resultado.getInt("EMP_ID");
-                String identificador = resultado.getString("EMP_IDENTIFICADOR");
-                String nombres = resultado.getString("EMP_NOMBRES");
-                String apellidos = resultado.getString("EMP_APELLIDOS");
-                String direccion = resultado.getString("EMP_DIRECCION");
-                String telefono = resultado.getString("EMP_TELEFONO");
-                String cargo = resultado.getString("EMP_CARGO");
-                //String observacion = resultado.getString("EMP_OBSERVACION");
-                String fNacimiento = resultado.getString("EMP_FECHANACIMIENTO");
-                String fIngreso = resultado.getString("EMP_FECHAINGRESO");
+                int codigo = resultado.getInt("PRO_ID");
+                String identificador = resultado.getString("PRO_IDENTIFICADOR");
+                String razonSocial = resultado.getString("PRO_RAZONSOCIAL");
+                String telefono = resultado.getString("PRO_TELEFONO");
+                String contacto = resultado.getString("PRO_CONTACTO");
+                String telefonoContacto = resultado.getString("PRO_TELEFONOCONTACTO");
+                String direccion = resultado.getString("PRO_DIRECCION");
 
                 //crea un vector donde los está la informacion (se crea una fila)
-                Object[] info = {codigo, identificador, nombres, apellidos, direccion, telefono, cargo, fNacimiento, fIngreso};
+                Object[] info = {codigo, identificador, razonSocial, telefono, contacto, telefonoContacto, direccion};
 
                 //al modelo de la tabla le agrega una fila
                 //con los datos que están en info
@@ -247,172 +241,88 @@ public class queryEmpleado {
 
     }//cierra metodo ejecutarConsulta
 
-    /*REPORTE
+//-----------------------------------------------------------------------------------
+    public void buscarProveedor(String parametroBusqueda, boolean buscarPorCodigo, boolean buscarPorIdentificador, boolean buscarPorRazonSocial) {
+
+        modelo = new DefaultTableModel(info, titulosColumnas) {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        ;
+
+        //le asigna el modelo al jtable
+        /*ProveedorSearch.jTableListarProveedor.setModel(modelo);*/
+        ProveedorPrincipal1.jTableListarProveedor.setModel(modelo);
+        //ejecuta una consulta a la BD
+        buscarRegistroCodigoOIdentificadorONombreOapellido(parametroBusqueda, buscarPorCodigo, buscarPorIdentificador, buscarPorRazonSocial);
+
+    }//cierra metodo buscarEmpleado
+
+    //-----------------------------------------------------------------------------------
+    /**
+     * Método para buscar un registro en la base de datos dentro de la tabla
+     * clientes, se puede buscar por la cedula o por el nombre.
+     *
+     * @param parametroBusqueda
+     * @param buscarPorCodigo
+     * @param buscarPorIdentificador
+     * @param buscarPorRazonSocial
      */
-    public void reporteEmpleados() {
+    public void buscarRegistroCodigoOIdentificadorONombreOapellido(String parametroBusqueda, boolean buscarPorCodigo, boolean buscarPorIdentificador, boolean buscarPorRazonSocial) {
 
         try {
+
             conexion2 = Conexion.getConexion();
+            String selectSQL;
+            resultado = null;
+            if (buscarPorCodigo == true) {
+                selectSQL = "SELECT * FROM PROVEEDOR WHERE PRO_ID LIKE ? ORDER BY PRO_ID ASC";
+                ps = conexion2.prepareStatement(selectSQL);
+                ps.setString(1, "%" + parametroBusqueda + "%");
+                System.out.println(parametroBusqueda);
+            } else if (buscarPorIdentificador == true) {
+                selectSQL = "SELECT * FROM PROVEEDOR WHERE PRO_IDENTIFICADOR LIKE ? ORDER BY PRO_IDENTIFICADOR ASC";
+                ps = conexion2.prepareStatement(selectSQL);
+                ps.setString(1, "%" + parametroBusqueda + "%");
+            } else if (buscarPorRazonSocial == true) {
+                selectSQL = "SELECT * FROM PROVEEDOR WHERE PRO_RAZONSOCIAL LIKE ? ORDER BY PRO_RAZONSOCIAL ASC";
+                ps = conexion2.prepareStatement(selectSQL);
+                ps.setString(1, "%" + parametroBusqueda + "%");
+            }
+            resultado = ps.executeQuery();
 
-            sentencia = conexion2.createStatement();
-            String consultaSQL = "SELECT * FROM EMPLEADO ORDER BY EMP_ID ASC";
-            resultado = sentencia.executeQuery(consultaSQL);
-            Image portada;
-            Document my_pdf_report = new Document(new Rectangle(PageSize.A4.rotate()),1,1,1,1);
-            PdfWriter writer=PdfWriter.getInstance(my_pdf_report, new FileOutputStream("Empleados.pdf"));
-            my_pdf_report.open();
-            portada = Image.getInstance("portada.jpg");
-            portada.setAlignment(Element.ALIGN_CENTER);
-            portada.scalePercent(45f);// tamaño de imagen
+            while (resultado.next()) {
 
-            my_pdf_report.add(portada);
-//            my_pdf_report.add(new Paragraph("                                           ---------------------------------------------------------"));
-//            my_pdf_report.add(new Paragraph("                                          |    EMPLEADOS PAPELERIA FARFARELA         |"));
-//            my_pdf_report.add(new Paragraph("                                           ---------------------------------------------------------"));
-            PdfPTable my_report_table = new PdfPTable(6);
-            PdfPCell table_cell;
-table_cell = new PdfPCell(new Phrase("codigo"));
- my_report_table.addCell(table_cell);
-table_cell = new PdfPCell(new Phrase("Identificador"));
- my_report_table.addCell(table_cell);
-table_cell = new PdfPCell(new Phrase("Nombres"));
- my_report_table.addCell(table_cell);
-table_cell = new PdfPCell(new Phrase("Apellidos"));
- my_report_table.addCell(table_cell);
-table_cell = new PdfPCell(new Phrase("Cargo"));
- my_report_table.addCell(table_cell);
-table_cell = new PdfPCell(new Phrase("Fecha Ingreso"));
- my_report_table.addCell(table_cell);
-while (resultado.next()) {
+                int codigo = resultado.getInt("PRO_ID");
+                String identificador = resultado.getString("PRO_IDENTIFICADOR");
+                String razonSocial = resultado.getString("PRO_RAZONSOCIAL");
+                String telefono = resultado.getString("PRO_TELEFONO");
+                String contacto = resultado.getString("PRO_CONTACTO");
+                String telefonoContacto = resultado.getString("PRO_TELEFONOCONTACTO");
+                String direccion = resultado.getString("PRO_DIRECCION");
 
-                String codigo = resultado.getString("EMP_ID");
-                table_cell = new PdfPCell(new Phrase(codigo));
-                my_report_table.addCell(table_cell);
-                String identificador = resultado.getString("EMP_IDENTIFICADOR");
-                table_cell = new PdfPCell(new Phrase(identificador));
-                my_report_table.addCell(table_cell);
-                String nombres = resultado.getString("EMP_NOMBRES");
-                table_cell = new PdfPCell(new Phrase(nombres));
-                my_report_table.addCell(table_cell);
-                String apellidos = resultado.getString("EMP_APELLIDOS");
-                table_cell = new PdfPCell(new Phrase(apellidos));
-                my_report_table.addCell(table_cell);
-//                String direccion = resultado.getString("EMP_DIRECCION");
-//                table_cell=new PdfPCell(new Phrase(direccion));
-//                my_report_table.addCell(table_cell);
-//                String telefono = resultado.getString("EMP_TELEFONO");
-//                table_cell=new PdfPCell(new Phrase(telefono));
-//                my_report_table.addCell(table_cell);
-                String cargo = resultado.getString("EMP_CARGO");
-                table_cell = new PdfPCell(new Phrase(cargo));
-                my_report_table.addCell(table_cell);
-//                String observacion = resultado.getString("EMP_OBSERVACION");
-//                table_cell=new PdfPCell(new Phrase(observacion));
-//                my_report_table.addCell(table_cell);
-//                String fNacimiento = resultado.getString("EMP_FECHANACIMIENTO");
-//                table_cell=new PdfPCell(new Phrase(fNacimiento));
-//                my_report_table.addCell(table_cell);
-                String fIngreso = resultado.getString("EMP_FECHAINGRESO");
-                table_cell = new PdfPCell(new Phrase(fIngreso));
-                my_report_table.addCell(table_cell);
+                //crea un vector donde los está la informacion (se crea una fila)
+                Object[] info = {codigo, identificador, razonSocial, telefono, contacto, telefonoContacto, direccion};
+
+                //al modelo de la tabla le agrega una fila
+                //con los datos que están en info
+                modelo.addRow(info);
 
             }//cierra while (porque no hay mas datos en la BD)
-            /* Attach report table to PDF */
-            my_pdf_report.add(my_report_table);
-            
-            
-          
-            
-            my_pdf_report.close();
-            
-            JOptionPane.showMessageDialog(null, "PDF Generado Exitosamente.");
-             try {
-                File path = new File("Empleados.pdf");
-                Desktop.getDesktop().open(path);
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(null, "Error al abrir el pdf:\n");
-            }
-            
 
-            /* Close all DB related objects */
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n");
-            conexion = null;
+            JOptionPane.showMessageDialog(null, "Error\n Por la Causa" + e);
         } finally {
             CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
 
-
-        }
-    }
-
-    ////
-    public void UpdateTable() {
-        try {
-            String sql = "SELECT * FROM EMPLEADO WHERE EMP_ID LIKE ? ORDER BY EMP_ID ASC";
-            ps = conexion2.prepareStatement(sql);
-            resultado = ps.executeQuery(sql);
-            //EmpleadoPrincipal.jTableListarEmpleado.setModel(DbUtils.resultSetToTableModel(resultado));
-        } catch (Exception e) {
-        }
-    }
-
-    public void actualizarTabla() {
-        listarTodosEmpleados();
-    }
-
-    public boolean validadorDeCedula(String cedula, int opcion) {
-        boolean cedulaCorrecta = false;
-
-        try {
-
-            if (cedula.length() == 10) // ConstantesApp.LongitudCedula
-            {
-                int tercerDigito = Integer.parseInt(cedula.substring(2, 3));
-                if (tercerDigito < 6) {
-// Coeficientes de validación cédula
-// El decimo digito se lo considera dígito verificador
-                    int[] coefValCedula = {2, 1, 2, 1, 2, 1, 2, 1, 2};
-                    int verificador = Integer.parseInt(cedula.substring(9, 10));
-                    int suma = 0;
-                    int digito = 0;
-                    for (int i = 0; i < (cedula.length() - 1); i++) {
-                        digito = Integer.parseInt(cedula.substring(i, i + 1)) * coefValCedula[i];
-                        suma += ((digito % 10) + (digito / 10));
-                    }
-
-                    if ((suma % 10 == 0) && (suma % 10 == verificador)) {
-                        cedulaCorrecta = true;
-                    } else if ((10 - (suma % 10)) == verificador) {
-                        cedulaCorrecta = true;
-                    } else {
-                        cedulaCorrecta = false;
-                    }
-                } else {
-                    cedulaCorrecta = false;
-                }
-            } else {
-                cedulaCorrecta = false;
-            }
-        } catch (NumberFormatException nfe) {
-            cedulaCorrecta = false;
-        } catch (Exception err) {
-            System.out.println("Una excepcion ocurrio en el proceso de validadcion");
-            cedulaCorrecta = false;
         }
 
-        if (!cedulaCorrecta) {
-            System.out.println("La Cédula ingresada es Incorrecta");
-        }
-        return cedulaCorrecta;
-    }
+    }//cierra metodo buscarRegistro
+    //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    /*
     
-    
-     */
-    public boolean validarDocumento(JTextField numero) {
+        public boolean validarDocumento(JTextField numero) {
         boolean valor = true;
         try {
             int suma = 0;
@@ -601,5 +511,95 @@ while (resultado.next()) {
         return valor;
     }
 
-    /////
+    
+    
+    /*REPORTE
+     */
+    public void reporteProveedores() {
+
+        try {
+            conexion2 = Conexion.getConexion();
+
+            sentencia = conexion2.createStatement();
+            String consultaSQL = "SELECT * FROM PROVEEDOR ORDER BY PRO_ID ASC";
+            resultado = sentencia.executeQuery(consultaSQL);
+            Image portada;
+            Document my_pdf_report = new Document(new Rectangle(PageSize.A4.rotate()), 1, 1, 1, 1);
+            PdfWriter writer = PdfWriter.getInstance(my_pdf_report, new FileOutputStream("Proveedores.pdf"));
+            my_pdf_report.open();
+            portada = Image.getInstance("portada.jpg");
+            portada.setAlignment(Element.ALIGN_CENTER);
+            portada.scalePercent(45f);// tamaño de imagen
+
+            my_pdf_report.add(portada);
+//            my_pdf_report.add(new Paragraph("                                           ---------------------------------------------------------"));
+//            my_pdf_report.add(new Paragraph("                                          |    EMPLEADOS PAPELERIA FARFARELA         |"));
+//            my_pdf_report.add(new Paragraph("                                           ---------------------------------------------------------"));
+            PdfPTable my_report_table = new PdfPTable(6);
+            PdfPCell table_cell;
+            table_cell = new PdfPCell(new Phrase("codigo"));
+            my_report_table.addCell(table_cell);
+            table_cell = new PdfPCell(new Phrase("Identificador"));
+            my_report_table.addCell(table_cell);
+            table_cell = new PdfPCell(new Phrase("RAZON SOCIAL"));
+            my_report_table.addCell(table_cell);
+            table_cell = new PdfPCell(new Phrase("TELEFONO"));
+            my_report_table.addCell(table_cell);
+            table_cell = new PdfPCell(new Phrase("CONTACTO"));
+            my_report_table.addCell(table_cell);
+            table_cell = new PdfPCell(new Phrase("TELEFONO CONTACTO"));
+            my_report_table.addCell(table_cell);
+
+            while (resultado.next()) {
+
+                String codigo = resultado.getString("PRO_ID");
+                table_cell = new PdfPCell(new Phrase(codigo));
+                my_report_table.addCell(table_cell);
+                String identificador = resultado.getString("PRO_IDENTIFICADOR");
+                table_cell = new PdfPCell(new Phrase(identificador));
+                my_report_table.addCell(table_cell);
+                String nombres = resultado.getString("PRO_RAZONSOCIAL");
+                table_cell = new PdfPCell(new Phrase(nombres));
+                my_report_table.addCell(table_cell);
+                String apellidos = resultado.getString("PRO_TELEFONO");
+                table_cell = new PdfPCell(new Phrase(apellidos));
+                my_report_table.addCell(table_cell);
+                String cargo = resultado.getString("PRO_CONTACTO");
+                table_cell = new PdfPCell(new Phrase(cargo));
+                my_report_table.addCell(table_cell);
+
+                String tContacto = resultado.getString("PRO_TELEFONOCONTACTO");
+                table_cell = new PdfPCell(new Phrase(tContacto));
+                my_report_table.addCell(table_cell);
+
+            }//cierra while (porque no hay mas datos en la BD)
+            /* Attach report table to PDF */
+            my_pdf_report.add(my_report_table);
+
+            my_pdf_report.close();
+
+             JOptionPane.showMessageDialog(null, "PDF Generado Exitosamente.");
+             try {
+                File path = new File("Proveedores.pdf");
+                Desktop.getDesktop().open(path);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "Error al abrir el pdf:\n");
+            }
+            
+            /* Close all DB related objects */
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n" );
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n");
+            conexion = null;
+        } finally {
+
+            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+
+        }
+        
+        
+    }
+
+    ////
 }

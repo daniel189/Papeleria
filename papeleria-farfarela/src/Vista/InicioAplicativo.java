@@ -5,7 +5,7 @@
  */
 package Vista;
 
-import MODELO.queryUsuario;
+import MODELO.QueryUsuario;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -146,7 +146,7 @@ int contador = 0;
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         if(txtCuenta.getText().length() > 0 && txtPass.getText().length() > 0){
             ArrayList<String> cuenta = new ArrayList<String>();
-            queryUsuario queryU = new queryUsuario();
+            QueryUsuario queryU = new QueryUsuario();
             cuenta = queryU.getcuenta(txtCuenta.getText());
             if(cuenta.get(4).equals("1")){
                 if(cuenta.get(2).equals(txtPass.getText()) == true){

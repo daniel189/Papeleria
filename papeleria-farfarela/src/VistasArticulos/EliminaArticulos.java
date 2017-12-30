@@ -5,7 +5,7 @@
  */
 package VistasArticulos;
 
-import MODELO.queryArticulo;
+import MODELO.QueryArticulo;
 import javax.swing.JFrame;
 
 /**
@@ -13,7 +13,7 @@ import javax.swing.JFrame;
  * @author Ricardo
  */
 public class EliminaArticulos extends javax.swing.JInternalFrame {
-   queryArticulo artQuery=new queryArticulo();
+   QueryArticulo artQuery=new QueryArticulo();
    BusquedaArticulos art=new BusquedaArticulos();
    int  valor_encontrado; 
    public EliminaArticulos() {

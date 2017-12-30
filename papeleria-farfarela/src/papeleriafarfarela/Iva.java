@@ -13,6 +13,6 @@ public class Iva {
    public double ivaValor;
    
    /** Asociación entre tabla IVA y ARTICULOS */
-   public java.util.Collection fechaiva;
+   public java.util.Collection fechaIva;
 
 }

@@ -5,7 +5,7 @@
  */
 package VistaProveedor;
 
-import MODELO.queryProveedor;
+import MODELO.QueryProveedor;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.RowFilter;
@@ -20,7 +20,7 @@ public class ProveedorPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form UsuariosNew
      */
-          queryProveedor queryE = new queryProveedor();
+          QueryProveedor queryE = new QueryProveedor();
 
     public ProveedorPrincipal() {
         initComponents();
@@ -330,7 +330,7 @@ public void HabilitarBotones(boolean Crear,boolean Ver,boolean Editar,boolean El
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if(jTableListarProveedor.getSelectedRows().length>0){
-        queryProveedor bash = new queryProveedor();  
+        QueryProveedor bash = new QueryProveedor();  
         int code = Integer.parseInt(jTableListarProveedor.getValueAt(jTableListarProveedor.getSelectedRow(), 0).toString());
         bash.eliminarProveedor(code);
         bash.actualizarTabla();

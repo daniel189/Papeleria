@@ -26,7 +26,7 @@ public class VentasView extends javax.swing.JInternalFrame {
     /**
      * Creates new form ListarCliente
      */
-    queryFactura qf = new queryFactura();
+    QueryFactura queryFactura = new QueryFactura();
     
     public VentasView() throws ParseException {
         
@@ -38,7 +38,7 @@ public class VentasView extends javax.swing.JInternalFrame {
 
     private void DetailsFacturas(String number) {
 
-        qf.buscarFacturas(number);
+        queryFactura.buscarFacturas(number);
         //Centramos nuestro jDialog
         DetalleFacturas.setLocation(300,100);
         //La hacemos modal
@@ -433,7 +433,7 @@ public class VentasView extends javax.swing.JInternalFrame {
         }
         
       
-        qf.buscarFacturas(parametroBusqueda,buscarPorFacturas,buscarPorCliente, buscarPorFecha);
+        queryFactura.buscarFacturas(parametroBusqueda,buscarPorFacturas,buscarPorCliente, buscarPorFecha);
         
         }
         catch(Exception e){
@@ -443,7 +443,7 @@ public class VentasView extends javax.swing.JInternalFrame {
 
     private void jButtonBuscarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarTodosActionPerformed
   
-        qf.listarTodosFacturas();
+        queryFactura.listarTodosFacturas();
         
     }//GEN-LAST:event_jButtonBuscarTodosActionPerformed
 

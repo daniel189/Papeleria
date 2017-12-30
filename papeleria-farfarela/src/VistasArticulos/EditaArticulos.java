@@ -5,10 +5,10 @@
  */
 package VistasArticulos;
 
-import MODELO.queryArticulo;
+import MODELO.QueryArticulo;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import papeleriafarfarela.Articulos;
+import papeleriafarfarela.Articulo;
 
 /**
  *
@@ -16,8 +16,8 @@ import papeleriafarfarela.Articulos;
  */
 public class EditaArticulos extends javax.swing.JInternalFrame {
  DefaultTableModel modelo=new DefaultTableModel();
-    Articulos artIngreso=new Articulos();
-   queryArticulo artQuery=new queryArticulo();
+    Articulo artIngreso=new Articulo();
+   QueryArticulo artQuery=new QueryArticulo();
    int pro_id;
    int fam_id;
    int valor_encontrado;

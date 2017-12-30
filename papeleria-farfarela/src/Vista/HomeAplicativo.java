@@ -5,9 +5,9 @@
  */
 package Vista;
 
-import MODELO.queryEmpleado;
-import MODELO.queryProducto;
-import MODELO.queryProveedor;
+import MODELO.QueryEmpleado;
+import MODELO.QueryProducto;
+import MODELO.QueryProveedor;
 import VistaEmpleado.DatosEmpleados;
 import VistaEmpleado.EmpleadoPrincipal;
 import VistaEmpleado.EmpleadoPrincipal1;
@@ -89,7 +89,7 @@ public class HomeAplicativo extends javax.swing.JFrame {
         lblNivel.setVisible(false);
     }
     public static boolean Cerrado(Object obj) {
-        JInternalFrame[] activos = escritorio.getAllFrames();
+        JInternalFrame[] activos =  escritorio.getAllFrames();
         boolean cerrado = true;
         int i = 0;
         while (i < activos.length && cerrado) {
@@ -181,7 +181,7 @@ public class HomeAplicativo extends javax.swing.JFrame {
                 .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(824, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 688, Short.MAX_VALUE)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
                         .addComponent(lblCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -539,12 +539,12 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_jProveedoresActionPerformed
 
     private void rptEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rptEmpleadosActionPerformed
-        queryEmpleado qe = new queryEmpleado();
+        QueryEmpleado qe = new QueryEmpleado();
         qe.reporteEmpleados();
     }//GEN-LAST:event_rptEmpleadosActionPerformed
 
     private void rptProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rptProveedoresActionPerformed
-       queryProveedor qe = new queryProveedor();
+       QueryProveedor qe = new QueryProveedor();
        qe.reporteProveedores();
         
     }//GEN-LAST:event_rptProveedoresActionPerformed
@@ -804,14 +804,14 @@ EmpleadoPrincipal1 empleadoPrincipal;
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        queryProducto queryProduct = new queryProducto();
+        QueryProducto queryProduct = new QueryProducto();
         queryProduct.reportePrductosMasV();
         
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        queryProducto queryProduct = new queryProducto();
+        QueryProducto queryProduct = new QueryProducto();
         queryProduct.reportePrductosMenosV();
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed

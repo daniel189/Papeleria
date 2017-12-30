@@ -23,7 +23,7 @@ import VistasUsuarios.UsuariosNew;
  *
  * @author Crispin
  */
-public class queryUsuario {
+public class QueryUsuario {
     PreparedStatement sentencia;
     ResultSet resul;
     Connection cone;
@@ -43,7 +43,7 @@ public class queryUsuario {
                 cuenta.add(rs.getString(5));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(queryUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QueryUsuario.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Error al traer las Cuentas", "Error DB", JOptionPane.ERROR_MESSAGE);
         }
         return cuenta;
@@ -66,7 +66,7 @@ public class queryUsuario {
                 listado.add(cuen);
             }
         }catch(SQLException ex){
-            Logger.getLogger(queryUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QueryUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listado;
     }
@@ -91,7 +91,7 @@ public class queryUsuario {
                 JOptionPane.showMessageDialog(null,"ERROR, DATOS FALLIDOS");
             }
         } catch (SQLException ex) {
-            Logger.getLogger(queryUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QueryUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -110,7 +110,7 @@ public class queryUsuario {
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Fallo, Los datos no han podido ser eliminados puesto a que este usuario tiene registros asociados");
-            Logger.getLogger(queryUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QueryUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

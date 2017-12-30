@@ -6,8 +6,8 @@
 package VistasIva;
 import MODELO.Conexion;
 import VistasFamilia.*;
-import MODELO.queryFamilia;
-import MODELO.queryIva;
+import MODELO.QueryFamilia;
+import MODELO.QueryIva;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,12 +25,12 @@ import papeleriafarfarela.Familia;
  */
 public class NuevoIva extends javax.swing.JInternalFrame {
     ArrayList<Familia> lista;
-    Familia famIngreso=new Familia();
-    queryFamilia artQuery=new queryFamilia();
+    Familia familiaIngreso=new Familia();
+    QueryFamilia artQuery=new QueryFamilia();
     int pro_id;
-    int iva_id;
+    int ivaId;
     Conexion conectar = new Conexion();
-    queryIva obj = new queryIva();
+    QueryIva objeto = new QueryIva();
     public NuevoIva() {  
         initComponents();
         claveMax();      
@@ -209,10 +209,10 @@ public class NuevoIva extends javax.swing.JInternalFrame {
             if (registro.next() == true) {
                 if (registro.getString("max(iva_id)+1") == null) {
                     txtCodigo.setText("1");
-                    iva_id=Integer.parseInt(txtCodigo.getText());
+                    ivaId=Integer.parseInt(txtCodigo.getText());
                 } else {
                     txtCodigo.setText(registro.getString("max(iva_id)+1"));
-                       iva_id=Integer.parseInt(txtCodigo.getText());
+                       ivaId=Integer.parseInt(txtCodigo.getText());
                 }
 
             } else {
@@ -232,11 +232,11 @@ public class NuevoIva extends javax.swing.JInternalFrame {
                 SimpleDateFormat sdf = new SimpleDateFormat(formato);
                 lista.add(String.valueOf(sdf.format(date)));
                                
-                if(   obj.setIVas(lista))
+                if(   objeto.setIVas(lista))
         {          
    
-           iva_id++;
-           txtCodigo.setText(String.valueOf(iva_id));
+           ivaId++;
+           txtCodigo.setText(String.valueOf(ivaId));
            
         }
    

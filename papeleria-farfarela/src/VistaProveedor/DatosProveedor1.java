@@ -6,7 +6,7 @@
 package VistaProveedor;
 
 import MODELO.Conexion;
-import MODELO.queryProveedor;
+import MODELO.QueryProveedor;
 import Vista.HomeAplicativo;
 import static Vista.HomeAplicativo.escritorio;
 import VistasUsuarios.*;
@@ -436,7 +436,7 @@ public class DatosProveedor1 extends javax.swing.JInternalFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         cont = 0;
-        queryProveedor queryE = new queryProveedor();
+        QueryProveedor queryE = new QueryProveedor();
         validarCamposVacios();
         if (cont == 0) {
             Connection reg = conectar.getConexion();
@@ -470,7 +470,7 @@ public class DatosProveedor1 extends javax.swing.JInternalFrame {
                 }
             } else if (this.opcion == 2) {
                 lblEstado.setText("Proveedor - Modificar");
-                queryProveedor change = new queryProveedor();
+                QueryProveedor change = new QueryProveedor();
                 int code = Integer.parseInt(txtCodigo.getText());
                 String identificador = txtIdentificador.getText();
                 String razonSocial = txtRazonSocial.getText();
@@ -546,7 +546,7 @@ public class DatosProveedor1 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtContactoKeyTyped
 
     private void txtIdentificadorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdentificadorFocusLost
-         queryProveedor queryE = new queryProveedor();
+         QueryProveedor queryE = new QueryProveedor();
         if (txtIdentificador.getText().length() > 0) {
             queryE.validarDocumento(txtIdentificador);
         }

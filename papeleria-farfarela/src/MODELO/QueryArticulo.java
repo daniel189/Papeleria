@@ -5,7 +5,7 @@
  */
 package MODELO;
 import VistasVentas.VentasNew;
-import papeleriafarfarela.Articulos;
+import papeleriafarfarela.Articulo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,11 +25,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Crispin
  */
-public class queryArticulo {
-      PreparedStatement sentencia;
-      PreparedStatement busqueda;
-    ResultSet resul;
-    Connection cone;
+public class QueryArticulo {
+    PreparedStatement sentencia;
+    PreparedStatement busqueda;
+    ResultSet result;
+    Connection conection;
     Conexion conexion;
     
      
@@ -38,37 +38,37 @@ public class queryArticulo {
     //vector con los titulos de cada columna
     String[] titulosColumnas = {"CÓDIGO", "NOMBRE", "DESCRIPCIÓN", "PRECIO"};
     //matriz donde se almacena los datos de cada celda de la tabla
-    String info[][] = {};
+    String informacion[][] = {};
     
        /** @pdOid 368c9303-adc2-4bfa-a4fd-3acfae6fa040 */
-   public double artId;
+   public double articuloId;
    /** @pdOid fb83f19b-3315-4022-92f7-8fe2aac9ba1a */
-   public java.lang.String artNombre;
+   public java.lang.String articuloNombre;
    /** @pdOid 24285171-a826-4535-933c-447008699d9c */
-   public java.lang.String artDescripcion;
+   public java.lang.String articuloDescripcion;
    /** @pdOid 5eb2a7d9-ee26-47b4-9982-113c37b6812e */
-   public float artPrecio;
+   public float articuloPrecio;
    /** numero de stock disponible
     * 
     * @pdOid 8535f7c3-1e9f-4a1b-8b10-27a128dcccbb */
-   public double artStock;
+   public double articuloStock;
    JComboBox cboxprovedor=new JComboBox();
    JComboBox cboxfamilia=new JComboBox();  
    public JComboBox cargarprovedores()
    {
-       Connection cone= Conexion.getConexion();
+       Connection conection= Conexion.getConexion();
           try {
-              Statement buscarnombre= cone.createStatement();
+              Statement buscarnombre= conection.createStatement();
               String consulta="select pro_identificador from proveedor";
-              resul=buscarnombre.executeQuery(consulta);
-              while(resul.next()){
+              result=buscarnombre.executeQuery(consulta);
+              while(result.next()){
                
-              cboxprovedor.addItem(resul.getString(1));
+              cboxprovedor.addItem(result.getString(1));
               }
-             resul.close();
-             cone.close();
+             result.close();
+             conection.close();
           } catch (SQLException ex) {
-              Logger.getLogger(queryArticulo.class.getName()).log(Level.SEVERE, null, ex);
+              Logger.getLogger(QueryArticulo.class.getName()).log(Level.SEVERE, null, ex);
           }
           return cboxprovedor;
    
@@ -79,15 +79,15 @@ public class queryArticulo {
           try {
               Statement buscarnombre= cone.createStatement();
               String consulta="select fam_nombre from familiasarticulos";
-              resul=buscarnombre.executeQuery(consulta);
-              while(resul.next()){
+              result=buscarnombre.executeQuery(consulta);
+              while(result.next()){
                
-              cboxfamilia.addItem(resul.getString(1));
+              cboxfamilia.addItem(result.getString(1));
               }
-              resul.close();
+              result.close();
               cone.close();
           } catch (SQLException ex) {
-              Logger.getLogger(queryArticulo.class.getName()).log(Level.SEVERE, null, ex);
+              Logger.getLogger(QueryArticulo.class.getName()).log(Level.SEVERE, null, ex);
           }
           return cboxfamilia;
    
@@ -101,12 +101,12 @@ public class queryArticulo {
               String sql = "SELECT * FROM PROVEEDOR WHERE PRO_IDENTIFICADOR LIKE ? ORDER BY PRO_IDENTIFICADOR ASC";
               busqueda = cone.prepareStatement(sql);
               busqueda.setString(1, "%" + nombre + "%");
-              resul=busqueda.executeQuery();
-              while(resul.next())
+              result=busqueda.executeQuery();
+              while(result.next())
               {
-                idasignar = resul.getInt("PRO_ID");
+                idasignar = result.getInt("PRO_ID");
               }
-              resul.close();
+              result.close();
               cone.close();
               } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error\n Por la Causa" + ex);
@@ -122,32 +122,32 @@ public class queryArticulo {
               String sql = "SELECT * FROM FAMILIASARTICULOS WHERE FAM_NOMBRE LIKE ?";
               busqueda = cone.prepareStatement(sql);
               busqueda.setString(1, "%" + nombre + "%");
-              resul=busqueda.executeQuery();
-              while(resul.next())
+              result=busqueda.executeQuery();
+              while(result.next())
               {
-                idasignar = resul.getInt("FAM_ID");
+                idasignar = result.getInt("FAM_ID");
               }
-              resul.close();
+              result.close();
               cone.close();
               } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error\n Por la Causa" + ex);
           } 
        return idasignar;
    }     
-public boolean setArticulo(Articulos art,int id_familia,int id_provedor){
+public boolean setArticulo(Articulo art,int id_familia,int id_provedor){
     boolean identificador=true;  
     Connection cone= Conexion.getConexion();
       float pro_id_encontrado=0;
         PreparedStatement sentencia;
           try {
               sentencia = cone.prepareStatement("INSERT INTO articulos(ART_ID,PRO_ID,FAM_ID,ART_NOMBRE,ART_DESCRIPCION,ART_PRECIO,ART_STOCK) VALUES (?,?,?,?,?,?,?)");
-               sentencia.setInt(1, art.getArtId());
+               sentencia.setInt(1, art.getArticuloId());
               sentencia.setInt(2, id_provedor);
               sentencia.setInt(3, id_familia);
-              sentencia.setString(4, art.getArtNombre());
-              sentencia.setString(5, art.getArtDescripcion());
-              sentencia.setFloat(6, art.getArtPrecio());
-               sentencia.setDouble(7,art.getArtStock());
+              sentencia.setString(4, art.getArticuloNombre());
+              sentencia.setString(5, art.getArticuloDescripcion());
+              sentencia.setFloat(6, art.getArticuloPrecio());
+               sentencia.setDouble(7,art.getArticuloStock());
 
                     int res=sentencia.executeUpdate();
                     if(res>0){
@@ -167,7 +167,7 @@ public boolean setArticulo(Articulos art,int id_familia,int id_provedor){
         DefaultTableModel modelo=new DefaultTableModel(null,titulos);// si no usan el null y no le ponen titulos noo les  imprime 
         String Filtro=""+texto+"_%";
         String[] fila=new String[7];
-        cone = Conexion.getConexion();
+        conection = Conexion.getConexion();
         String      instruccionsql=    "  SELECT * FROM articulos WHERE art_nombre like " +'"' + Filtro  +'"';
         try {
       if(item==0)// si se selecciona x id cambia la sentencia sql
@@ -176,29 +176,29 @@ public boolean setArticulo(Articulos art,int id_familia,int id_provedor){
          instruccionsql=  ("SELECT * FROM articulos WHERE art_id = '"+ id +"'");
       }
     
-         sentencia=cone.prepareStatement( instruccionsql);
-            resul=sentencia.executeQuery( instruccionsql);
+         sentencia=conection.prepareStatement( instruccionsql);
+            result=sentencia.executeQuery( instruccionsql);
            
-            while(resul.next())
+            while(result.next())
             {
-                fila[0]=resul.getString(1);
-                fila[1]=resul.getString(2);
-                fila[2]=resul.getString(3);
-                fila[3]=resul.getString(4);
-                fila[4]=resul.getString(5);
-                fila[5]=resul.getString(6);
-                fila[6]=resul.getString(7);
+                fila[0]=result.getString(1);
+                fila[1]=result.getString(2);
+                fila[2]=result.getString(3);
+                fila[3]=result.getString(4);
+                fila[4]=result.getString(5);
+                fila[5]=result.getString(6);
+                fila[6]=result.getString(7);
               modelo.addRow(fila);
                       
             }        
             
-        resul.close();
+        result.close();
      
-        cone.close();
+        conection.close();
           return modelo;  
         }
         catch(SQLException ex){
-            Logger.getLogger(queryUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QueryUsuario.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
@@ -208,9 +208,9 @@ public boolean setArticulo(Articulos art,int id_familia,int id_provedor){
 
     
         try {
-            cone = Conexion.getConexion();
+            conection = Conexion.getConexion();
          
-            Statement comando = cone.createStatement();
+            Statement comando = conection.createStatement();
 
             // linea de codigo de mysql que actualiza regristos que va modificar
          
@@ -229,7 +229,7 @@ public boolean setArticulo(Articulos art,int id_familia,int id_provedor){
                     }
           
         
-            cone.close();
+            conection.close();
             //System.out.println("Conexion cerrada");
         } catch (SQLException ex) {
        JOptionPane.showMessageDialog(null,"SELECCIONE FAMILIA Y PROVEDOR ");
@@ -238,8 +238,8 @@ public boolean setArticulo(Articulos art,int id_familia,int id_provedor){
     public void eliminarProveedor(int code) {
 
         try {            
-            cone = Conexion.getConexion();
-            Statement comando = cone.createStatement();
+            conection = Conexion.getConexion();
+            Statement comando = conection.createStatement();
             int cantidad = comando.executeUpdate("delete from ARTICULOS where ART_ID=" + code);
             if (cantidad == 1) {
    
@@ -247,7 +247,7 @@ public boolean setArticulo(Articulos art,int id_familia,int id_provedor){
             } else {
                 JOptionPane.showMessageDialog(null,"No existe Articulo con el Codigo Ingresado "+code);
             }
-            cone.close();
+            conection.close();
             //System.out.println("Conexion cerrada");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"error "+ex);
@@ -262,7 +262,7 @@ public boolean setArticulo(Articulos art,int id_familia,int id_provedor){
     
      public void CargarArticulos(){
          
-         modelo = new DefaultTableModel(info, titulosColumnas) {
+         modelo = new DefaultTableModel(informacion, titulosColumnas) {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -331,7 +331,7 @@ public boolean setArticulo(Articulos art,int id_familia,int id_provedor){
 
         
 
-            modelo = new DefaultTableModel(info, titulosColumnas) {
+            modelo = new DefaultTableModel(informacion, titulosColumnas) {
                 public boolean isCellEditable(int row, int column) {
                     return false;
                 }

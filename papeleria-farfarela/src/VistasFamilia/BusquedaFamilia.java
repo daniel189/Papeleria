@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package VistasFamilia;
-import MODELO.queryFamilia;
+import MODELO.QueryFamilia;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -16,12 +16,12 @@ import papeleriafarfarela.Familia;
  * @author martha
  */
 public class BusquedaFamilia extends javax.swing.JInternalFrame {
-   Familia fam_ingreso=new Familia();
-   queryFamilia art_query=new queryFamilia();
-   int pro_id;
-   int iva_id;
-   int fam_id;
-   int iv_id;
+   Familia familiaIngreso=new Familia();
+   QueryFamilia articuloQuery=new QueryFamilia();
+   int productoId;
+   int ivaId;
+   int familiaId;
+   
    DefaultTableModel modelo=new DefaultTableModel();  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -202,7 +202,7 @@ public class BusquedaFamilia extends javax.swing.JInternalFrame {
         }
         else
         {
-            modelo=art_query.UpdateFamilia(txtingreso.getText(),seleccionaritem());
+            modelo=articuloQuery.UpdateFamilia(txtingreso.getText(),seleccionaritem());
             tab_familias.setModel(modelo);
             this.tab_familias.setModel(modelo);// hay q poner dos veces xq si no se ejecuta
         }
