@@ -1,5 +1,5 @@
 # Papeleria Farfarela
-=====================
+
 Software destinado a la administracion de recursos de un Bazar.
 
 Versionamiento
