@@ -508,17 +508,29 @@ EmpleadoPrincipal1 empleadoPrincipal;
         switch (aux) {
             case "1":
                 //Administrador
+                prodAgregar.setVisible(false);
+                prodModificar.setVisible(false);
+                jVentas.setVisible(false);
                 System.out.println("Admin");
                 break;
             case "2":
                 //Empleado
                 jEmpleados.setVisible(false);
+                jProveedores.setVisible(false);
                 mbUsuarios.setVisible(false);
+                prodAgregar.setVisible(false);
+                prodModificar.setVisible(false);
+                jReportes.setVisible(false);
+                Ivas.setVisible(false);
                 System.out.println("Empleado");
                 break;
             case "3":
                 //Bodeguero
                 jVentas.setVisible(false);
+                jUsuarios.setVisible(false);
+                Ivas.setVisible(false);
+                rptEmpleados.setVisible(false);
+                //modificar funcion inventario para el uso en bodega
                 System.out.println("Bodegero");
                 break;
             default:
