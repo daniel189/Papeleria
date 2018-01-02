@@ -135,9 +135,15 @@ public class HomeAplicativo extends javax.swing.JFrame {
         jInventarios = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jReportes = new javax.swing.JMenu();
-        rptEmpleados = new javax.swing.JMenuItem();
-        rptProveedores = new javax.swing.JMenuItem();
+        rptEmpleados = new javax.swing.JMenu();
+        reporteEmpleadoXls = new javax.swing.JMenuItem();
+        reporteEmpleadoPdf = new javax.swing.JMenuItem();
+        rptProveedores = new javax.swing.JMenu();
+        reporteProvedorXls = new javax.swing.JMenuItem();
+        reporteProvedorPdf = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
+        nasVendidoExcelo = new javax.swing.JMenuItem();
+        menosVendidoExcel = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jConfiguracion = new javax.swing.JMenu();
@@ -351,24 +357,70 @@ public class HomeAplicativo extends javax.swing.JFrame {
         jReportes.setText("Reportes");
 
         rptEmpleados.setText("Empleados");
-        rptEmpleados.addActionListener(new java.awt.event.ActionListener() {
+
+        reporteEmpleadoXls.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/excel.png"))); // NOI18N
+        reporteEmpleadoXls.setText("Reporte Empleado Excel");
+        reporteEmpleadoXls.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rptEmpleadosActionPerformed(evt);
+                reporteEmpleadoXlsActionPerformed(evt);
             }
         });
+        rptEmpleados.add(reporteEmpleadoXls);
+
+        reporteEmpleadoPdf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/pdf.png"))); // NOI18N
+        reporteEmpleadoPdf.setText("Reporte Empleado Pdf");
+        reporteEmpleadoPdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reporteEmpleadoPdfActionPerformed(evt);
+            }
+        });
+        rptEmpleados.add(reporteEmpleadoPdf);
+
         jReportes.add(rptEmpleados);
 
-        rptProveedores.setText("Proveedores");
-        rptProveedores.addActionListener(new java.awt.event.ActionListener() {
+        rptProveedores.setText("Provedores");
+
+        reporteProvedorXls.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/excel.png"))); // NOI18N
+        reporteProvedorXls.setText("Reporte Provedores Excel");
+        reporteProvedorXls.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rptProveedoresActionPerformed(evt);
+                reporteProvedorXlsActionPerformed(evt);
             }
         });
+        rptProveedores.add(reporteProvedorXls);
+
+        reporteProvedorPdf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/pdf.png"))); // NOI18N
+        reporteProvedorPdf.setText("Reportes Provedores Pdf");
+        reporteProvedorPdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reporteProvedorPdfActionPerformed(evt);
+            }
+        });
+        rptProveedores.add(reporteProvedorPdf);
+
         jReportes.add(rptProveedores);
 
         jMenu1.setText("Productos");
 
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/masVen.png"))); // NOI18N
+        nasVendidoExcelo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/excel.png"))); // NOI18N
+        nasVendidoExcelo.setText("Mas Vendido Excel");
+        nasVendidoExcelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nasVendidoExceloActionPerformed(evt);
+            }
+        });
+        jMenu1.add(nasVendidoExcelo);
+
+        menosVendidoExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/excel.png"))); // NOI18N
+        menosVendidoExcel.setText("Menos Vendido Excel");
+        menosVendidoExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menosVendidoExcelActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menosVendidoExcel);
+
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/pdf.png"))); // NOI18N
         jMenuItem3.setText("Mas Vendidos");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -377,7 +429,7 @@ public class HomeAplicativo extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/menosVen.png"))); // NOI18N
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/pdf.png"))); // NOI18N
         jMenuItem2.setText("Menos Vendidos");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -549,17 +601,6 @@ EmpleadoPrincipal1 empleadoPrincipal;
 
         }
     }//GEN-LAST:event_jProveedoresActionPerformed
-
-    private void rptEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rptEmpleadosActionPerformed
-        QueryEmpleado qe = new QueryEmpleado();
-        qe.reporteEmpleados();
-    }//GEN-LAST:event_rptEmpleadosActionPerformed
-
-    private void rptProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rptProveedoresActionPerformed
-       QueryProveedor qe = new QueryProveedor();
-       qe.reporteProveedores();
-        
-    }//GEN-LAST:event_rptProveedoresActionPerformed
 
     private void jClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jClientesActionPerformed
         GestionCliente obj = new GestionCliente();
@@ -828,6 +869,38 @@ EmpleadoPrincipal1 empleadoPrincipal;
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void nasVendidoExceloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nasVendidoExceloActionPerformed
+        //LLAMA AL METODO MAS VENBDIDO QUE GENERA EL DOCUMENTO XCEL Y SE GUARDA EN ELESCRIORI
+        QueryProducto queryProduct = new QueryProducto();
+        queryProduct.excelMasvendidos();
+    }//GEN-LAST:event_nasVendidoExceloActionPerformed
+
+    private void menosVendidoExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menosVendidoExcelActionPerformed
+       //LLAMA AL METODO MENOS VENBDIDO QUE GENERA EL DOCUMENTO XCEL Y SE GUARDA EN ELESCRIORI
+        QueryProducto queryProduct = new QueryProducto();
+        queryProduct.excelMenosvendidos();
+    }//GEN-LAST:event_menosVendidoExcelActionPerformed
+
+    private void reporteProvedorXlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteProvedorXlsActionPerformed
+       QueryProveedor proveedor=new QueryProveedor();
+       proveedor.reporteProvedoresExcel();
+    }//GEN-LAST:event_reporteProvedorXlsActionPerformed
+
+    private void reporteProvedorPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteProvedorPdfActionPerformed
+         QueryProveedor proveedor=new QueryProveedor();
+       proveedor.reporteProveedores();
+    }//GEN-LAST:event_reporteProvedorPdfActionPerformed
+
+    private void reporteEmpleadoXlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteEmpleadoXlsActionPerformed
+        QueryEmpleado empleado=new QueryEmpleado();
+        empleado.reporteEmpleadosExcel();
+    }//GEN-LAST:event_reporteEmpleadoXlsActionPerformed
+
+    private void reporteEmpleadoPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteEmpleadoPdfActionPerformed
+        QueryEmpleado empleado=new QueryEmpleado();
+        empleado.reporteEmpleados();
+    }//GEN-LAST:event_reporteEmpleadoPdfActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -900,11 +973,17 @@ EmpleadoPrincipal1 empleadoPrincipal;
     private javax.swing.JMenuItem mEliminar3;
     private javax.swing.JMenuItem mModificar3;
     private javax.swing.JMenu mbUsuarios;
+    private javax.swing.JMenuItem menosVendidoExcel;
+    private javax.swing.JMenuItem nasVendidoExcelo;
     private javax.swing.JMenuItem prodAgregar;
     private javax.swing.JMenuItem prodConsultar;
     private javax.swing.JMenuItem prodModificar;
-    private javax.swing.JMenuItem rptEmpleados;
-    private javax.swing.JMenuItem rptProveedores;
+    private javax.swing.JMenuItem reporteEmpleadoPdf;
+    private javax.swing.JMenuItem reporteEmpleadoXls;
+    private javax.swing.JMenuItem reporteProvedorPdf;
+    private javax.swing.JMenuItem reporteProvedorXls;
+    private javax.swing.JMenu rptEmpleados;
+    private javax.swing.JMenu rptProveedores;
     private javax.swing.JMenuItem venNueva;
     // End of variables declaration//GEN-END:variables
 

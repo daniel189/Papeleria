@@ -35,6 +35,13 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import jxl.Workbook;
+import jxl.WorkbookSettings;
+import jxl.write.WritableCellFormat;
+import jxl.write.WritableFont;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
 
 /**
  *
@@ -602,4 +609,76 @@ public class QueryProveedor {
     }
 
     ////
+     public void reporteProvedoresExcel()
+    {
+      String[][] entrada = new String[1000][6];
+        entrada[0][0]="Codigo";
+        entrada[0][1]="Identificador";
+        entrada[0][2]="Razon Social";
+        entrada[0][3]="Telefono";
+        entrada[0][4]="Contacto";
+        entrada[0][5]="Direccion";
+        
+        String Ruta="/Users/Daniel/Desktop/ReporteProvedores.xls";
+         try {
+            conexion2 = Conexion.getConexion();
+            sentencia = conexion2.createStatement();
+            String consultaSQL = "SELECT * FROM PROVEEDOR ORDER BY PRO_ID ASC";
+            resultado = sentencia.executeQuery(consultaSQL);
+             int cont=1;   
+            while (resultado.next()) 
+            {
+               
+                String codigo = resultado.getString("PRO_ID");
+                entrada[cont][0]=codigo;
+                String identificador = resultado.getString("PRO_IDENTIFICADOR");
+                entrada[cont][1]=identificador;
+                String razonSocial = resultado.getString("PRO_RAZONSOCIAL");
+                entrada[cont][2]=razonSocial;
+                String telefono = resultado.getString("PRO_TELEFONO");
+                entrada[cont][3]=telefono;
+                String contacto = resultado.getString("PRO_CONTACTO");
+                entrada[cont][4]=contacto;
+                String direccion = resultado.getString("PRO_DIRECCION");
+                entrada[cont][5]=direccion;              
+                cont++;
+
+            } 
+           } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error con la base de Datos:\n" );
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n");
+            conexion = null;
+        } finally {
+            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+
+        }
+        
+        WorkbookSettings conf=new WorkbookSettings ();
+        conf.setEncoding("ISO-8859-1");
+        try {
+            WritableWorkbook workbook =Workbook.createWorkbook(new File(Ruta),conf);
+            WritableSheet sheet= workbook.createSheet("reporteProvedores", 0);
+            WritableFont h=new WritableFont(WritableFont.COURIER,16,WritableFont.NO_BOLD);
+            WritableCellFormat hFormat=new WritableCellFormat(h);
+            for(int i=0;i<entrada.length;i++)
+            {
+                for(int j=0;j<entrada[i].length;j++)
+                {            
+                  sheet.addCell(new jxl.write.Label(j,i,entrada[i][j],hFormat));
+                   
+                }
+            }
+            workbook .write();
+            workbook.close();       
+            
+        } catch (IOException ex) {
+            Logger.getLogger(QueryProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (WriteException ex) 
+        {
+          Logger.getLogger(QueryProveedor.class.getName()).log(Level.SEVERE, null, ex);           
+        }
+       
+    }
 }
