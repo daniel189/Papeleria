@@ -28,3 +28,15 @@ Cambio y agregacion de botones en las vistas, de acuerdo a los diferentes metodo
 Roles de Usuario
 
 Acceso personalizado a los metodos del sistema, de acuerdo a los respectivos roles de usuario.
+
++ v.1.1.1
+
+Generacion de Reportes 
+
+Si bien el software ya realizaba esta accion generando pdf, en esta ocasion se agrego la generacion de reportes en Excel.
+
++ v.1.1.2
+
+Alertas de Stock
+
+Manejo de alertas emergentes, mediantes las cuales el sistema informa que los recursos estan por agotarse.
