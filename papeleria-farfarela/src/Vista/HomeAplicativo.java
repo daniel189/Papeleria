@@ -4,7 +4,14 @@
  * and open the template in the editor.
  */
 package Vista;
-
+import MODELO.CerrarConexion;
+import MODELO.Conexion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import MODELO.QueryEmpleado;
 import MODELO.QueryProducto;
 import MODELO.QueryProveedor;
@@ -61,7 +68,11 @@ public class HomeAplicativo extends javax.swing.JFrame {
      */
     private static String cuenta;
     private static String nivel;
-
+      Conexion conexion = new Conexion();
+    Connection conexion2 = null;
+    Statement sentencia = null;
+    ResultSet resultado = null;
+    PreparedStatement ps = null;
     public HomeAplicativo() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -127,6 +138,7 @@ public class HomeAplicativo extends javax.swing.JFrame {
         mEliminar3 = new javax.swing.JMenuItem();
         mConsultar3 = new javax.swing.JMenuItem();
         jProductos = new javax.swing.JMenu();
+        Alerta = new javax.swing.JMenuItem();
         prodAgregar = new javax.swing.JMenuItem();
         prodModificar = new javax.swing.JMenuItem();
         prodConsultar = new javax.swing.JMenuItem();
@@ -296,6 +308,15 @@ public class HomeAplicativo extends javax.swing.JFrame {
 
         jProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/carro.png"))); // NOI18N
         jProductos.setText("Productos");
+
+        Alerta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/alerta.jpg"))); // NOI18N
+        Alerta.setText("Alerta Stock");
+        Alerta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AlertaActionPerformed(evt);
+            }
+        });
+        jProductos.add(Alerta);
 
         prodAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/agrega-producto.png"))); // NOI18N
         prodAgregar.setText("Agregar");
@@ -901,6 +922,45 @@ EmpleadoPrincipal1 empleadoPrincipal;
         empleado.reporteEmpleados();
     }//GEN-LAST:event_reporteEmpleadoPdfActionPerformed
 
+    private void AlertaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlertaActionPerformed
+     
+        String[][] entrada = new String[1000][3];
+        entrada[0][0]="Codigo";
+        entrada[0][1]="Nombre";
+        entrada[0][2]="Cantidad";
+         try {
+            conexion2 = Conexion.getConexion();
+            sentencia = conexion2.createStatement();
+             String consultaSQL = "SELECT *FROM articulos WHERE ART_STOCK<=20;";
+            resultado = sentencia.executeQuery(consultaSQL);
+             int cont=1;   
+            while (resultado.next()) {
+               String codigo = String.valueOf(resultado.getInt(1));
+               entrada[cont][0]=codigo;
+               String nombre = resultado.getString(4);
+               entrada[cont][1]=nombre;
+           
+               cont++;
+
+            }
+            String aviso ="";
+            
+            for(int i=1;i<cont;i++)
+            {
+                aviso+="Codigo: "+entrada[i][0]+" Nombre: "+entrada[i][1]+"\n";
+            }
+            JOptionPane.showMessageDialog(null,aviso );
+             
+           } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error con la base de Datos:\n" );
+        }finally {
+
+            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+
+
+        }
+    }//GEN-LAST:event_AlertaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -938,6 +998,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Alerta;
     private javax.swing.JMenuItem Cuenta;
     private javax.swing.JMenuItem FamiEdit;
     private javax.swing.JMenuItem FamiNew;
