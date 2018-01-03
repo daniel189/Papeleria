@@ -923,7 +923,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_reporteEmpleadoPdfActionPerformed
 
     private void AlertaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlertaActionPerformed
-     
+     //Realiza una consulta a la base de datos de los articulos que tengan un stock menor que 20 y los muestra en una ventana de dialogo
         String[][] entrada = new String[1000][3];
         entrada[0][0]="Codigo";
         entrada[0][1]="Nombre";
