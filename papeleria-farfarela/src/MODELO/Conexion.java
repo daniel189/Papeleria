@@ -20,9 +20,9 @@ public class Conexion {
         Connection conection=null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            //conection=DriverManager.getConnection("jdbc:mysql://localhost/papeleriafarfarela","root","");
-            conection=DriverManager.getConnection("jdbc:mysql://localhost/farfarela","root","**********"); //Conexion 2IS 
-            //con=DriverManager.getConnection("jdbc:mysql://localhost/papeleriafarfarela","root","++++++"); Conexion Danny
+            conection=DriverManager.getConnection("jdbc:mysql://localhost/papeleriafarfarela","root","");
+            //conection=DriverManager.getConnection("jdbc:mysql://localhost/farfarela","root","**********"); //Conexion 2IS 
+            //con=DriverManager.getConnection("jdbc:mysql://localhost/papeleriafarfarela","root","++++++"); //Conexion Danny
         } catch (ClassNotFoundException ex) {
             System.out.println("1");
             System.out.println("error de conexion");

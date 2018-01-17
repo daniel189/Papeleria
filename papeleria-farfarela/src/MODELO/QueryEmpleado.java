@@ -39,6 +39,13 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import jxl.Workbook;
+import jxl.WorkbookSettings;
+import jxl.write.WritableCellFormat;
+import jxl.write.WritableFont;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
 //import net.proteanit.sql.DbUtils;
 
 /**
@@ -46,6 +53,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Crispin
  */
 public class QueryEmpleado {
+
+    public QueryEmpleado() {
+    }
 
     //Definiciones
     Conexion conexion = new Conexion();
@@ -602,4 +612,77 @@ public class QueryEmpleado {
     }
 
     /////
+     public void reporteEmpleadosExcel()
+    {
+
+         String[][] entrada = new String[1000][6];
+        entrada[0][0]="Codigo";
+        entrada[0][1]="Identificador";
+        entrada[0][2]="Nombres";
+        entrada[0][3]="Apellidos";
+        entrada[0][4]="Cargo";
+        entrada[0][5]="Fecha de Ingreso";
+        
+        String Ruta="/Users/Daniel/Desktop/ReporteEmpleados.xls";
+         try {
+            conexion2 = Conexion.getConexion();
+            sentencia = conexion2.createStatement();
+             String consultaSQL = "SELECT * FROM EMPLEADO ORDER BY EMP_ID ASC";
+             resultado = sentencia.executeQuery(consultaSQL);
+             int cont=1;   
+            while (resultado.next()) {
+                String codigo = resultado.getString("EMP_ID");
+                entrada[cont][0]=codigo;
+                String identificador = resultado.getString("EMP_IDENTIFICADOR");
+                entrada[cont][1]=identificador;
+                String nombres = resultado.getString("EMP_NOMBRES");
+                entrada[cont][2]=nombres;
+                String apellidos = resultado.getString("EMP_APELLIDOS");
+                entrada[cont][3]=apellidos;
+                String cargo = resultado.getString("EMP_CARGO");
+                entrada[cont][4]=cargo;
+                String fIngreso = resultado.getString("EMP_FECHAINGRESO");
+                entrada[cont][5]=fIngreso;
+          
+               cont++;
+
+            } 
+           } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error con la base de Datos:\n" );
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n");
+            conexion = null;
+        } finally {
+            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+
+        }
+        
+        WorkbookSettings conf=new WorkbookSettings ();
+        conf.setEncoding("ISO-8859-1");
+        try {
+            WritableWorkbook workbook =Workbook.createWorkbook(new File(Ruta),conf);
+            WritableSheet sheet= workbook.createSheet("ReporteEmpleados", 0);
+            WritableFont h=new WritableFont(WritableFont.COURIER,16,WritableFont.NO_BOLD);
+            WritableCellFormat hFormat=new WritableCellFormat(h);
+            for(int i=0;i<entrada.length;i++)
+            {
+                for(int j=0;j<entrada[i].length;j++)
+                {            
+                  sheet.addCell(new jxl.write.Label(j,i,entrada[i][j],hFormat));
+                   
+                }
+            }
+            workbook .write();
+            workbook.close();       
+            
+        } catch (IOException ex) {
+            Logger.getLogger(QueryEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (WriteException ex) 
+        {
+          Logger.getLogger(QueryEmpleado.class.getName()).log(Level.SEVERE, null, ex);           
+        }
+    
+                
+    }
 }
