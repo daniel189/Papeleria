@@ -18,6 +18,8 @@ import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Crispin
+ * @editor Yury
+ * 
  */
 public class UsuariosSearch extends javax.swing.JInternalFrame {
 
