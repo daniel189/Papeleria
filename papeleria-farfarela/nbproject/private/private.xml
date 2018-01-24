@@ -3,15 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/DOSIS/Documents/GitHub/Papeleria/papeleria-farfarela/src/Vista/HomeAplicativo.java</file>
-=======
-            <file>file:/C:/Users/Lizeth/Documents/GitHub/Papeleria/papeleria-farfarela/src/MODELO/Conexion.java</file>
-            <file>file:/C:/Users/Lizeth/Documents/GitHub/Papeleria/papeleria-farfarela/src/MODELO/QueryProducto.java</file>
-            <file>file:/C:/Users/Lizeth/Documents/GitHub/Papeleria/papeleria-farfarela/src/MODELO/QueryEmpleado.java</file>
-            <file>file:/C:/Users/Lizeth/Documents/GitHub/Papeleria/papeleria-farfarela/src/VistasVentas/VentasNew.java</file>
-            <file>file:/C:/Users/Lizeth/Documents/GitHub/Papeleria/papeleria-farfarela/src/VistasVentas/VentasView.java</file>
->>>>>>> b1d77f356141620a6388f9a14c15179421f42227
+            <file>file:/D:/Papeleria/papeleria-farfarela/src/VistasVentas/VentasView.java</file>
+            <file>file:/D:/Papeleria/papeleria-farfarela/src/papeleriafarfarela/Cuenta.java</file>
+            <file>file:/D:/Papeleria/papeleria-farfarela/src/papeleriafarfarela/Cliente.java</file>
+            <file>file:/D:/Papeleria/papeleria-farfarela/src/VistasUsuarios/UsuariosCuenta.java</file>
+            <file>file:/D:/Papeleria/papeleria-farfarela/src/VistasVentas/VentasNew.java</file>
+            <file>file:/D:/Papeleria/papeleria-farfarela/src/papeleriafarfarela/Articulo.java</file>
+            <file>file:/D:/Papeleria/papeleria-farfarela/test/VistasUsuarios/UsuariosCuentaIT.java</file>
+            <file>file:/D:/Papeleria/papeleria-farfarela/src/VistasUsuarios/UsuariosSearch.java</file>
         </group>
     </open-files>
 </project-private>

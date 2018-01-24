@@ -23,11 +23,11 @@ import javax.swing.JTable;
 
 public class VentasView extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form ListarCliente
-     */
-    QueryFactura queryFactura = new QueryFactura();
     
+    QueryFactura queryFactura = new QueryFactura();
+    /**
+     * Creacion de un nuevo formularo de visualizacion de ventas
+     */
     public VentasView() throws ParseException {
         
         initComponents();
@@ -35,7 +35,10 @@ public class VentasView extends javax.swing.JInternalFrame {
         jDateChooser.setVisible(false);
         jDateChooser.getJCalendar().setSelectableDateRange(new SimpleDateFormat("MM-DD-YYYY").parse("05-05-1900"), new java.util.Date());
     }
-
+/**
+ * Funcion para presentar una cantidad de facturas en un JDialog
+ * @param number 
+ */
     private void DetailsFacturas(String number) {
 
         queryFactura.buscarFacturas(number);
@@ -370,6 +373,10 @@ public class VentasView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Funcion para cambiar el parametro de busqueda 
+     * @param evt 
+     */
     private void cboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxActionPerformed
         
         if (cbox.getSelectedIndex() == 0){
@@ -391,14 +398,20 @@ public class VentasView extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_cboxActionPerformed
 
+    /**
+     * Funcion para cerrar la ventana
+     * @param evt 
+     */
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         System.gc();//limpiar basura
         this.dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
+    /**
+     * funcion para la bsuqueda con filtro 
+     * @param evt 
+     */
     private void jButtonBuscarFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarFiltroActionPerformed
-       
-        
         boolean buscarPorFacturas = true;
         boolean buscarPorCliente = true;
         boolean buscarPorFecha = true;
@@ -441,12 +454,20 @@ public class VentasView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButtonBuscarFiltroActionPerformed
 
+    /**
+     * Funcion par alistar todas las facturas presentes
+     * @param evt 
+     */
     private void jButtonBuscarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarTodosActionPerformed
   
         queryFactura.listarTodosFacturas();
         
     }//GEN-LAST:event_jButtonBuscarTodosActionPerformed
 
+    /**
+     * Funcion para cargar los reportes de ventas e imprimior
+     * @param evt 
+     */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         
@@ -473,11 +494,20 @@ public class VentasView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    /**
+     * funcion para cerrar la ventana de detalle de facturacion 
+     * @param evt 
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         DetalleFacturas.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    /**
+     * Funcion para ver el nombre de un empleado asignado a un usuario
+     * @param cuenta variable que detalla la cuenta de usuario
+     * @return nombre y apellido de la persona asociada a esa cuenta
+     */
     public String verEmpleado(String cuenta) {
         int idEmpleado = 0;
         PreparedStatement busqueda;
@@ -519,14 +549,17 @@ public class VentasView extends javax.swing.JInternalFrame {
         return cadena;
     }
     
+    /**
+     * funcion par ver el detalle de la venta y cargar una nueva interfaz
+     * @param evt 
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
        
-              int i = jTableListarFacturas.getSelectedRow();
+        int i = jTableListarFacturas.getSelectedRow();
         if (i == -1) {
             JOptionPane.showMessageDialog(null, "Por favor seleccione una fila");
         } else {
-
             int numero = Integer.parseInt(jTableListarFacturas.getValueAt(i, 0).toString());//obtener valor para la consulta de lista de compras
             jTextFieldCodFacturas.setText(String.valueOf(jTableListarFacturas.getValueAt(i, 0)));// enviar datos de tabla a detalles de facturas
             jTextFieldFecha.setText(String.valueOf(jTableListarFacturas.getValueAt(i, 2)));

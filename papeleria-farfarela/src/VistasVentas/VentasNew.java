@@ -45,9 +45,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VentasNew extends javax.swing.JInternalFrame{
 
-    /**
-     * Creates new form VentasNew
-     */
+    
     int n = 0, item = -1;
     double totals = 0;
     DefaultTableModel modelo;
@@ -57,6 +55,9 @@ public class VentasNew extends javax.swing.JInternalFrame{
     boolean u = false, nombre = false, apellido = false;
     int bandera = 1;
 
+    /**
+     * Crea nuevo formulario para el ingreso de un registro de ventas
+     */
     public VentasNew() {
         //super(parent, modal);
         initComponents();
@@ -118,13 +119,19 @@ public class VentasNew extends javax.swing.JInternalFrame{
         //-------------------------------------------
     }
 
-    public String verEmpleado(String cuenta){return null;
-}
+    /**
+     * 
+     * @param cuenta para metro de cuenta de usuario
+     * @return nulo
+     */
+    public String verEmpleado(String cuenta){return null;}
        
     
     
     
-    //ventana de ARTICULOS
+    /**
+     * Funcion encargada de cargar los articuos en un JDialog
+     */
     private void llamarArticulos() {
 
         // llamada de datos
@@ -143,6 +150,10 @@ public class VentasNew extends javax.swing.JInternalFrame{
         jDialogArticulos.setVisible(true);
     }
 
+    /**
+     * funcion que carga la lista de clientes en un JDialog con el usod e una 
+     * consulta en la base de datos
+     */
     private void llamarCliente() {
 
         // llamada de datos
@@ -809,20 +820,31 @@ public class VentasNew extends javax.swing.JInternalFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * 
+     * @param evt funcion que busca el cliente en la base de datos
+     */
     private void btnClienteExistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteExistenteActionPerformed
-
         llamarCliente();
     }//GEN-LAST:event_btnClienteExistenteActionPerformed
 
     private void txtCodArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodArticuloActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodArticuloActionPerformed
-
+    /**
+     * 
+     * @param evt funcion que carga la informacion del articulo de la abse de datos
+     */
     private void btnNuevoArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoArticuloActionPerformed
         llamarArticulos();
     }//GEN-LAST:event_btnNuevoArticuloActionPerformed
 
-
+    /**
+     * 
+     * @param idArticulo id del articulo a ser buscado dentro de la db para 
+     * conocer la familia del articulo
+     * @return 
+     */
     public int verFamilia(int idArticulo)
    {
        PreparedStatement busqueda;
@@ -909,6 +931,11 @@ public class VentasNew extends javax.swing.JInternalFrame{
 //       return stock;
 //   }  
     
+    /**
+     * 
+     * @param idArticulo mediante el cual se conocera el stock del mismo
+     * @return la cantidad de articulos disponibles en bodega
+     */
       public int verStock(int idArticulo)
    {
        PreparedStatement busqueda;
@@ -935,10 +962,12 @@ public class VentasNew extends javax.swing.JInternalFrame{
          System.out.println("stock " + stock);
        return stock;
    }  
-     
+    
+      /**
+       * funcion encargada de cargar el articulo en la tabla de la interfaz
+       * @param evt 
+       */
     private void btnAgregarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarArticuloActionPerformed
-
-        
         try {
             if ((int) xcant.getValue() == 0) {
                 JOptionPane.showMessageDialog(null, "Debe agregar por lo menos un artículo");
@@ -1000,9 +1029,11 @@ public class VentasNew extends javax.swing.JInternalFrame{
 
     }//GEN-LAST:event_jLabel15MouseClicked
 
+    /**
+     * Funcion encargada de sacar un articulod e la tabla del formulario
+     * @param evt 
+     */
     private void btnQuitarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarArticuloActionPerformed
-        // TODO add your handling code here:
-
         // seleccion la fila
         int i = JTableArticulos.getSelectedRow();
         if (i == -1) {
@@ -1012,7 +1043,6 @@ public class VentasNew extends javax.swing.JInternalFrame{
             // coje variable de valTotal que elimino
             String nums = (String) JTableArticulos.getValueAt(i, 5);
             double restar = Double.parseDouble(nums);
-
              int aux = 0, subIVA = 0;
                 double valor = 0, iva = 0;
                 aux = Integer.parseInt(txtCodArticulo.getText());
@@ -1024,18 +1054,12 @@ public class VentasNew extends javax.swing.JInternalFrame{
                 iva = DosDecimales(iva);
                 
                 jTextFieldIVA.setText(String.valueOf(iva));
-            
             // cambiarlo de subtotalas que va eliminar
             // sumar total
             totals = Double.parseDouble(jTextFieldSubTotal.getText());
             totals -= restar;
             totals = DosDecimales(totals);
             jTextFieldSubTotal.setText(String.valueOf(totals));
-            
-            
-            
-            
-
             // eliminar fila
             this.modelo.removeRow(i);
             // restar un aticulos
@@ -1051,11 +1075,20 @@ public class VentasNew extends javax.swing.JInternalFrame{
         }
     }//GEN-LAST:event_btnQuitarArticuloActionPerformed
 
+    /**
+     * 
+     * @param evt funcion para cerrar la ventana del formulario
+     */
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
+    /**
+     * Funcion para registrar la factura dingresada validando si el cliente esta
+     * registrado en la base de datos o si es un nuevo cliente registrandolo.
+     * @param evt clickeo en el boton Registrar factura
+     */
     private void btnRegistrarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarFacturaActionPerformed
 
         //PARA DETERMINAR SI ES CLIENTE EXISTENTE O NO
@@ -1091,7 +1124,10 @@ public class VentasNew extends javax.swing.JInternalFrame{
 
     }//GEN-LAST:event_btnRegistrarFacturaActionPerformed
 
-    
+    /**
+     * Funcion para ingresar la factura en la base de datos
+     * @return 
+     */
     
     public boolean GenerarFactura() {
         // TODO add your handling code here:
@@ -1131,6 +1167,10 @@ public class VentasNew extends javax.swing.JInternalFrame{
         return ident;
     }
 
+    /**
+     * Funcion para guardar los articulos en la tabla detalle de la base de 
+     * datos
+     */
     public void GuardarArticulos(){
         
         Connection cone = Conexion.getConexion();
@@ -1162,17 +1202,16 @@ public class VentasNew extends javax.swing.JInternalFrame{
         
     }
     
+    /**
+     * Funcion para generar un documento PDF con el uso de la libreria itextpdf
+     */
      public void GenerarPDF() {
         
         Image portada;
-
-        
         Document document = new Document(PageSize.LETTER, 50, 50, 50, 50);
-
         try {
             PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("facturas/" + jTextFieldCodFacturas.getText() + ".pdf"));
             document.open();
-
             portada = Image.getInstance("portada.jpg");
             portada.setAlignment(Element.ALIGN_CENTER);
             portada.scalePercent(45f);// tamaño de imagen
@@ -1219,6 +1258,11 @@ public class VentasNew extends javax.swing.JInternalFrame{
             JOptionPane.showMessageDialog(null, "El archivo no existe o está actualmente en uso.");
         }
     }
+     
+     /**
+      * Funcion para seleccionar un articulo dentro de la tabla de la interfas
+      * @param evt 
+      */
 
     private void btnSeleccionarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarArticuloActionPerformed
         // boton de selecciona productos
@@ -1240,6 +1284,10 @@ public class VentasNew extends javax.swing.JInternalFrame{
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldValTotalActionPerformed
 
+    /**
+     * Funcion para generar el total deduido de la compra a registrar
+     * @param evt 
+     */
     private void btnGenerarTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarTotalActionPerformed
 //        int aux=0, subIVA =0;
 //        aux = Integer.parseInt(txtCodArticulo.getText());
@@ -1278,6 +1326,11 @@ public class VentasNew extends javax.swing.JInternalFrame{
         }
     }//GEN-LAST:event_btnGenerarTotalActionPerformed
 
+    /**
+     * Funcion para hacer un parser de dos decimales a cualquier valor
+     * @param valor es el valor a ser redondeado.
+     * @return un valor redondeado 
+     */
     public double DosDecimales(double valor) {
         valor *= 100;
         valor = Math.round(valor);
@@ -1286,6 +1339,12 @@ public class VentasNew extends javax.swing.JInternalFrame{
         return valor;
     }
 
+    /**
+     * funcion para remplazar caraceres
+     * @param s_cadena cadena en la que se trabaja
+     * @param s_caracteres caracteres a remplazar
+     * @return la nueva cadena
+     */
     public String EliminaCaracteres(String s_cadena, String s_caracteres) {
 
         String nueva_cadena = "";
@@ -1295,6 +1354,11 @@ public class VentasNew extends javax.swing.JInternalFrame{
         return nueva_cadena;
     }
 
+    /**
+     * funcion para seleccionar cliente de la lista presentada y setear los 
+     * valores en la interfaz principal
+     * @param evt 
+     */
     private void btnSeleccionarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarClienteActionPerformed
 
         // boton de seleccionado
@@ -1317,6 +1381,11 @@ public class VentasNew extends javax.swing.JInternalFrame{
 
     }//GEN-LAST:event_btnSeleccionarClienteActionPerformed
 
+    /**
+     * Funcion para limpiar la interfaz de cliente y setear nuevos valores
+     * @param evt 
+     */
+    
     private void btnLimpiarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarClienteActionPerformed
 
         jTextFieldCodigoCliente.setText("");
@@ -1327,23 +1396,39 @@ public class VentasNew extends javax.swing.JInternalFrame{
         jTextFieldApellido.setEditable(true);
     }//GEN-LAST:event_btnLimpiarClienteActionPerformed
 
+    /**
+     * funcion para cerrar la ventana de seleccion de clietne
+     * @param evt 
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         jDialogCliente.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    /**
+     * boton para cerrar la ventana de seleccion de articulo
+     * @param evt 
+     */
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         jDialogArticulos.dispose();
-
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    /**
+     * funcion par avalidar que el dato ingresado sea en efecto un codigo
+     * de cliente 
+     * @param evt 
+     */
     private void jTextFieldCodigoClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCodigoClienteKeyTyped
-
         char car = evt.getKeyChar();
         if ((((int) car >= 1 && (int) car <= 47)) || (((int) car >= 58 && (int) car <= 500))) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldCodigoClienteKeyTyped
 
+    /**
+     * Funcion apra validar que el texto ingresado corresponda a la informacion
+     * de clientes y sean valores String y no numeros 
+     * @param evt 
+     */
     private void jTextFieldNombreClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreClienteKeyTyped
         
         char car = evt.getKeyChar();
@@ -1352,6 +1437,11 @@ public class VentasNew extends javax.swing.JInternalFrame{
         }
     }//GEN-LAST:event_jTextFieldNombreClienteKeyTyped
 
+    /**
+     * funcion para validar que el apellido sea en efecto una cadena de 
+     * caracteres y no numeros
+     * @param evt 
+     */
     private void jTextFieldApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldApellidoKeyTyped
 
         char car = evt.getKeyChar();
@@ -1362,6 +1452,10 @@ public class VentasNew extends javax.swing.JInternalFrame{
 
     }//GEN-LAST:event_jTextFieldApellidoKeyTyped
 
+    /**
+     * Funcion para realizar una busqueda respecto a un cliente
+     * @param evt 
+     */
     private void txtParametroBusqueda3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtParametroBusqueda3KeyReleased
 
         QueryCliente qc = new QueryCliente();
@@ -1371,8 +1465,11 @@ public class VentasNew extends javax.swing.JInternalFrame{
 
     }//GEN-LAST:event_txtParametroBusqueda3KeyReleased
 
+    /**
+     * funcion par avalidar el estado del checkBox
+     * @param evt 
+     */
     private void cboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboxItemStateChanged
-
         item = cbox.getSelectedIndex();
         if (item == 0) {
             u = true;
@@ -1387,7 +1484,6 @@ public class VentasNew extends javax.swing.JInternalFrame{
             nombre = false;
             apellido = true;
         }
-
         System.out.println(item);
         System.out.println(String.valueOf(u));
         System.out.println(String.valueOf(nombre));
@@ -1395,6 +1491,10 @@ public class VentasNew extends javax.swing.JInternalFrame{
 
     }//GEN-LAST:event_cboxItemStateChanged
 
+    /**
+     * funcion para relizar la busqueda de un articulo para venta
+     * @param evt 
+     */
     private void txtParametroBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtParametroBusquedaKeyReleased
 
         QueryArticulo cc = new QueryArticulo();
@@ -1404,6 +1504,10 @@ public class VentasNew extends javax.swing.JInternalFrame{
 
     }//GEN-LAST:event_txtParametroBusquedaKeyReleased
 
+    /**
+     * funcion para el calculo y seteeo del subtotal de la factura
+     * @param evt 
+     */
     private void jTextFieldSubTotalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSubTotalKeyTyped
 
         double val = Double.parseDouble(jTextFieldSubTotal.getText());
@@ -1412,6 +1516,10 @@ public class VentasNew extends javax.swing.JInternalFrame{
         jTextFieldSubTotal.setText(String.valueOf(val));
     }//GEN-LAST:event_jTextFieldSubTotalKeyTyped
 
+    /**
+     * Funcion para el calculo del descuento
+     * @param evt 
+     */
     private void jTextFieldDescuentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDescuentoKeyTyped
 
         char car = evt.getKeyChar();
@@ -1421,6 +1529,10 @@ public class VentasNew extends javax.swing.JInternalFrame{
 
     }//GEN-LAST:event_jTextFieldDescuentoKeyTyped
 
+    /**
+     * funcion para el calculo del total final 
+     * @param evt 
+     */
     private void jTextFieldGranTotalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldGranTotalKeyTyped
 
         double val1 = Double.parseDouble(jTextFieldGranTotal.getText());
@@ -1430,12 +1542,20 @@ public class VentasNew extends javax.swing.JInternalFrame{
 
     }//GEN-LAST:event_jTextFieldGranTotalKeyTyped
 
+    /**
+     * Funcion para cambiar el nombre del cliente a mayusculas
+     * @param evt 
+     */
     private void jTextFieldNombreClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreClienteKeyReleased
 
         jTextFieldNombreCliente.setText(jTextFieldNombreCliente.getText().toUpperCase());
 
     }//GEN-LAST:event_jTextFieldNombreClienteKeyReleased
 
+    /**
+     * funcion para cambiar el apellido del cliente a mayusculas
+     * @param evt 
+     */
     private void jTextFieldApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldApellidoKeyReleased
 
         jTextFieldApellido.setText(jTextFieldApellido.getText().toUpperCase());
