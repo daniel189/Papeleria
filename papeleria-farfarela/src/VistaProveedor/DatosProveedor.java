@@ -56,6 +56,11 @@ public class DatosProveedor extends javax.swing.JDialog {
 
     }
 
+    
+    /**
+     * Esta funcion verifica que por lo menos 
+     * se tenga un empleado en los registros.
+     */
     public void claveMax() {
         try {
             Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/farfarela", "ECUATORIANO16", "root");
@@ -78,6 +83,10 @@ public class DatosProveedor extends javax.swing.JDialog {
         }
     }
 
+     /**
+     * Funcion la cual ubica los placeholder 
+     * correspondientes a cada txt de la vista
+     */
     public final void Hint() {
         PlaceHolder holder;
         holder = new PlaceHolder(txtIdentificador, "Ruc");
@@ -91,6 +100,16 @@ public class DatosProveedor extends javax.swing.JDialog {
     public DatosProveedor() {
     }
 
+    /**
+     * 
+     * @param cod codido del proveedor 
+     * @param idt identificacion del provedor RUC
+     * @param rsocial rason social tipo de proveedor
+     * @param telf telefono de contacto
+     * @param contacto nombre del contacto 
+     * @param tcontc telefono del contacto 
+     * @param direcc direccion del proveedor
+     */
     public DatosProveedor(String cod, String idt, String rsocial, String telf, String contacto, String tcontc, String direcc) {
         /*this.cod=cod;
         this.idt=idt;
@@ -105,6 +124,10 @@ public class DatosProveedor extends javax.swing.JDialog {
     }
     int cont = 0;
 
+    /**
+     * Esta funcion marca los campos obligatorios
+     * para poder contar siempre con los datos relevantes
+     */
     public void validarCamposVacios() {
         if (txtIdentificador.getText().equals("")) {
             validacion1.setVisible(true);
@@ -136,6 +159,17 @@ public class DatosProveedor extends javax.swing.JDialog {
         }
     }
 
+    
+    /**
+     * 
+     * @param cod codido del proveedor 
+     * @param idt identificacion del provedor RUC
+     * @param rsocial rason social tipo de proveedor
+     * @param telf telefono de contacto
+     * @param contacto nombre del contacto 
+     * @param tcontc telefono del contacto 
+     * @param direcc direccion del proveedor
+     */
     public final void Llenar(String cod, String idt, String rsocial, String telf, String contacto, String tcontc, String direcc) {
         txtCodigo.setText(cod);
         txtIdentificador.setText(idt);
@@ -146,6 +180,11 @@ public class DatosProveedor extends javax.swing.JDialog {
         txtDireccion.setText(direcc);
     }
 
+    /**
+     * Funcion desarrollada con el fin de bloquear
+     * o evitar la manipulacion de los componentes 
+     * de la vista una vez que se ingressaron o se ingresan
+     */
     public final void Deshabilitar() {
         lblEstado.setText("Proveedor - Nuevo");
         txtCodigo.setEnabled(false);
@@ -159,6 +198,10 @@ public class DatosProveedor extends javax.swing.JDialog {
         btnGuardar.setVisible(false);
     }
 
+    /**
+     * Esta funcion limpia los componetes de la vista
+     * @throws ParseException manejo de excepciones
+     */
     public void Limpiar() {
         txtCodigo.setText("");
         txtIdentificador.setText("");
@@ -425,6 +468,13 @@ public class DatosProveedor extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+        /**
+         * Funcion la cual reacciona al evento del boton
+         * mediante la cual se realiza la insercion de los datos
+         * a la base de datos, controlando los mismos y verificando 
+         * podibles duplicaciones o redundancias.
+         */
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         cont = 0;
         QueryProveedor queryE = new QueryProveedor();
@@ -483,10 +533,18 @@ public class DatosProveedor extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btnGuardarActionPerformed
 
+    /**
+     * Funcion que cierra la vista actual
+     * @param evt 
+     */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    /**
+     * funcion la cual evita el ingreso de letras
+     * @param evt 
+     */
     private void txtIdentificadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdentificadorKeyTyped
         char caracter = evt.getKeyChar();
         if (Character.isLetter(caracter)) {
@@ -517,6 +575,12 @@ public class DatosProveedor extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_txtTelefonoContactoKeyTyped
 
+    //-----------------------------------------------------
+    
+    /**
+     * funcion la cual evita el ingreso de letras
+     * @param evt 
+     */
     private void txtContactoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContactoKeyTyped
          char caracter = evt.getKeyChar();
         if (Character.isDigit(caracter)) {

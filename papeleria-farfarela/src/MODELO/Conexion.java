@@ -10,8 +10,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author Crispin
+ *En esta clase se maneja el metodo Connection 
+ * el cual nos permite comunicacion con nuestra base de datos
  */
 
 public class Conexion {
@@ -20,8 +20,8 @@ public class Conexion {
         Connection conection=null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            conection=DriverManager.getConnection("jdbc:mysql://localhost/papeleriafarfarela","root","");
-            //conection=DriverManager.getConnection("jdbc:mysql://localhost/farfarela","root","**********"); //Conexion 2IS 
+            //conection=DriverManager.getConnection("jdbc:mysql://localhost/papeleriafarfarela","root","");
+            conection=DriverManager.getConnection("jdbc:mysql://localhost/farfarela","root","SQLdosis622"); //Conexion 2IS 
             //con=DriverManager.getConnection("jdbc:mysql://localhost/papeleriafarfarela","root","++++++"); //Conexion Danny
         } catch (ClassNotFoundException ex) {
             System.out.println("1");
