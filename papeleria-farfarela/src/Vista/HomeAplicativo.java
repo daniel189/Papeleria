@@ -891,13 +891,13 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void nasVendidoExceloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nasVendidoExceloActionPerformed
-        //LLAMA AL METODO MAS VENBDIDO QUE GENERA EL DOCUMENTO XCEL Y SE GUARDA EN ELESCRIORI
+        //LLAMA AL METODO MAS VENDIDO QUE GENERA EL DOCUMENTO EXCEL Y SE GUARDA EN EL ESCRITORIO
         QueryProducto queryProduct = new QueryProducto();
         queryProduct.excelMasvendidos();
     }//GEN-LAST:event_nasVendidoExceloActionPerformed
 
     private void menosVendidoExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menosVendidoExcelActionPerformed
-       //LLAMA AL METODO MENOS VENBDIDO QUE GENERA EL DOCUMENTO XCEL Y SE GUARDA EN ELESCRIORI
+       //LLAMA AL METODO MENOS VENDIDO QUE GENERA EL DOCUMENTO EXCEL Y SE GUARDA EN EL ESCRITORIO
         QueryProducto queryProduct = new QueryProducto();
         queryProduct.excelMenosvendidos();
     }//GEN-LAST:event_menosVendidoExcelActionPerformed
