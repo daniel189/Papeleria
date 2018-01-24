@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/Papeleria/papeleria-farfarela/src/VistasVentas/VentasView.java</file>
             <file>file:/D:/Papeleria/papeleria-farfarela/src/papeleriafarfarela/Cuenta.java</file>
             <file>file:/D:/Papeleria/papeleria-farfarela/src/papeleriafarfarela/Cliente.java</file>
@@ -11,6 +12,16 @@
             <file>file:/D:/Papeleria/papeleria-farfarela/src/papeleriafarfarela/Articulo.java</file>
             <file>file:/D:/Papeleria/papeleria-farfarela/test/VistasUsuarios/UsuariosCuentaIT.java</file>
             <file>file:/D:/Papeleria/papeleria-farfarela/src/VistasUsuarios/UsuariosSearch.java</file>
+=======
+<<<<<<< HEAD
+            <file>file:/C:/Users/Lizeth/Documents/GitHub/Papeleria/papeleria-farfarela/src/MODELO/QueryCliente.java</file>
+=======
+            <file>file:/C:/Users/DOSIS/Documents/GitHub/Papeleria/papeleria-farfarela/src/MODELO/Conexion.java</file>
+            <file>file:/C:/Users/DOSIS/Documents/GitHub/Papeleria/papeleria-farfarela/src/VistaProveedor/DatosProveedor.java</file>
+            <file>file:/C:/Users/DOSIS/Documents/GitHub/Papeleria/papeleria-farfarela/src/VistaEmpleado/DatosEmpleados.java</file>
+            <file>file:/C:/Users/DOSIS/Documents/GitHub/Papeleria/papeleria-farfarela/src/VistaProveedor/ProveedorPrincipal.java</file>
+>>>>>>> 9a06655bf0ca518b13a810bbfee3cc7faf602f1c
+>>>>>>> 583d5df6e4e7c6076e1686d7a9355cc9b1cc9b9f
         </group>
     </open-files>
 </project-private>

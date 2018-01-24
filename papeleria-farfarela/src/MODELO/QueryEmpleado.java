@@ -52,12 +52,20 @@ import jxl.write.WriteException;
  *
  * @author Crispin
  */
+
+
 public class QueryEmpleado {
 
     public QueryEmpleado() {
     }
 
-    //Definiciones
+    /**
+     * Declaraciones de variables.
+     * conexion: realiza la conexion de la base de datos cuando se realiza la peticion
+     * modelo: instancia a la tabla, donde se depegara los datos
+     * titulosColumnas: variable que posee los nombres de cadaa columna de las tablas
+     * informacion: variable para el arreglo de datos de la informacion solicitada cuando se ejecuta la consulta
+     */
     Conexion conexion = new Conexion();
     DefaultTableModel modelo;
     String[] titulosColumnas = {"CÓDIGO", "IDENTIFICADOR", "NOMBRES", "APELLIDOS", "DIRECCION", "TELEFONO", "CARGO", "F.NACIMIENTO", "F.INGRESO"};

@@ -257,13 +257,27 @@ private TableRowSorter trsFiltro;
     private void jTextFieldParametroBusquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldParametroBusquedaKeyPressed
 
     }//GEN-LAST:event_jTextFieldParametroBusquedaKeyPressed
-public void HabilitarBotones(boolean Crear,boolean Ver,boolean Editar,boolean Eliminar){
+
+    /**
+     * Funcion inicial la cual activa los botonoes
+     * @param Crear ingresar registro
+     * @param Ver visualizar todos los registros
+     * @param Editar editar un registro 
+     * @param Eliminar  eliminar un registro
+     */
+    public void HabilitarBotones(boolean Crear,boolean Ver,boolean Editar,boolean Eliminar){
     this.btnCrear.setEnabled(Crear);
     this.btnVer.setEnabled(Ver);
     this.btnEditar.setEnabled(Editar);
     this.btnEliminar.setEnabled(Eliminar);
     
 }
+    
+    /**
+     * Funcion la cual filtra segun el parametro para 
+     * realizar la busqueda dentro de la base de datos
+     * @param evt 
+     */
         public void Filtrar() {
         int columnaABuscar = 0;
 
@@ -301,6 +315,13 @@ public void HabilitarBotones(boolean Crear,boolean Ver,boolean Editar,boolean El
         
     }//GEN-LAST:event_jTextFieldParametroBusquedaKeyTyped
 
+    
+    /**
+     * Esta funcion permite la agregacion de un reggistro  
+     * manera rapida
+     * 
+     * @param evt 
+     */
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         DatosProveedor datos=new DatosProveedor(this,true);
         datos.setOpcion(1);
@@ -308,9 +329,16 @@ public void HabilitarBotones(boolean Crear,boolean Ver,boolean Editar,boolean El
   
     }//GEN-LAST:event_btnCrearActionPerformed
 
-   
+   /**
+     * Esta funcion permite la edicion de un dato guardado 
+     * pulsando sobre el mismo para poder editarlos de 
+     * manera rapida
+     * 
+     * @param evt 
+     */
   
 
+    
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         if(jTableListarProveedor.getSelectedRows().length>0){
         DatosProveedor datos=new DatosProveedor(this,true);
@@ -328,6 +356,12 @@ public void HabilitarBotones(boolean Crear,boolean Ver,boolean Editar,boolean El
         
     }//GEN-LAST:event_btnEditarActionPerformed
 
+    /**
+     * Funcion la cual permite la eliminacion de un dato
+     * o registro seleccionado.
+     * @param evt 
+     */
+    
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if(jTableListarProveedor.getSelectedRows().length>0){
         QueryProveedor bash = new QueryProveedor();  
@@ -337,6 +371,16 @@ public void HabilitarBotones(boolean Crear,boolean Ver,boolean Editar,boolean El
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    
+    
+    
+    
+    /**
+     * Funcio qu epemrite la visualizacion de los datos
+     * extrayendolos de la tabla que contiene la vista.
+     * @param evt 
+     */
+    
     private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
         if(jTableListarProveedor.getSelectedRows().length>0){ 
         DatosProveedor datos=new DatosProveedor(this,true);

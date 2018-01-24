@@ -20,20 +20,26 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author martha
  */
+/**
+ * 
+ * @author Lizeth
+ * esta clase nos permite ingresar un nuev ariculo en nuestra base de datos
+ */
 public class NuevoArticulo extends javax.swing.JInternalFrame {
-
-     Articulo artIngreso=new Articulo();
-   QueryArticulo artQuery=new QueryArticulo();
-   int pro_id;
-  int fam_id;
-  int valor_encontrado;
-  int comprovador;
-      Conexion conectar = new Conexion();
-ArrayList<Articulo> lista = new ArrayList<>();
-
- String titulos[]={"Art Id","Fam Id","Pro Id","Nombre","Descripcion","Precio","Stoc"};
-        DefaultTableModel modelo=new DefaultTableModel(null,titulos);// si no usan el null y no le ponen titulos noo les  imprime 
-public int idarticulo;
+    /**
+     * artIngreso: es una variable instancia de la clase Articulo
+     * artQuery: nos permite realizar el respectivo query a la base de datos
+     * pro_id: variable para el comboBox que nos permitira seleccionar el item
+     * fam_id: 
+     */
+    Articulo artIngreso=new Articulo();
+    QueryArticulo artQuery=new QueryArticulo();
+    int pro_id;
+    int fam_id;
+    Conexion conectar = new Conexion();
+    String titulos[]={"Art Id","Fam Id","Pro Id","Nombre","Descripcion","Precio","Stoc"};
+    DefaultTableModel modelo=new DefaultTableModel(null,titulos);// si no usan el null y no le ponen titulos noo les  imprime 
+    public int idarticulo;
 /**
      * Creates new form ArticulosNew
      */

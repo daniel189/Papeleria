@@ -14,21 +14,27 @@ import papeleriafarfarela.Articulo;
  *
  * @author Daniel
  */
+/**
+ * @author Lizeth
+ * esta clase es para mostrar la interfaz que nos ayudará a editar el contenido de los articulos en nuestra
+ * base de datos
+ */
 public class EditaArticulos extends javax.swing.JInternalFrame {
- DefaultTableModel modelo=new DefaultTableModel();
-    Articulo artIngreso=new Articulo();
-   QueryArticulo artQuery=new QueryArticulo();
-   int pro_id;
-   int fam_id;
-   int valor_encontrado;
     /**
-     * Creates new form ArticulosBuscar
+     * modelo es el nombre de la tabla
+     * artQuery: nos permite realizar la busqueda de los datos
+     * pro_id : variable para la busqueda del articulo
+     * fam_id: variable que define el nombre de la familia
+     * valor_encontrado: nos devuelve el valor que buscamos en la base datos.
      */
-   public int getvalorencontrado()
-   {
-   int valorencontrado=valor_encontrado;
-   return valorencontrado=valor_encontrado;
-   }
+    DefaultTableModel modelo=new DefaultTableModel();
+    QueryArticulo artQuery=new QueryArticulo();
+    int pro_id;
+    int fam_id;
+    int valor_encontrado;
+  /**
+   * funcion que edita los articulos que se hayan obtenido de la tablaa
+   */
     public EditaArticulos() {
         initComponents();
         cboxprovedor.setModel(artQuery.cargarprovedores().getModel());
@@ -349,32 +355,45 @@ public class EditaArticulos extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-public int seleccionaritem()
-{
-    int item=cbox.getSelectedIndex();
-    return item;
-}
-
-public void cargarTxt(){
-    int filaSeleccionada=tab_articulos.getSelectedRow();
-    if(filaSeleccionada==-1){
-                JOptionPane.showMessageDialog(null,"Seleccione primero la columna" );
-    }
-    else
+    
+    /**
+     * variable que nos permite obtener el valor del comboBox
+     * @return nos retorna el item seleccionado del comboBox
+     */
+    public int seleccionaritem()
     {
-        String auxiliar=tab_articulos.getValueAt(filaSeleccionada, 0).toString();
-        valor_encontrado=Integer.parseInt(auxiliar);  
-        txt_art.setText(tab_articulos.getValueAt(filaSeleccionada, 3).toString());
-        txt_des.setText(tab_articulos.getValueAt(filaSeleccionada, 4).toString());
-        txt_pre.setText(tab_articulos.getValueAt(filaSeleccionada, 5).toString());
-        txt_stock.setText(tab_articulos.getValueAt(filaSeleccionada, 6).toString());
-}
+        int item=cbox.getSelectedIndex();
+        return item;
+    }
+    /**
+     * esta funcion nos permite seleccionar de la tabla los datos para que se desplieguen el txt
+     * podremos ir editando cada campo despues del despliegue de esta informacion
+     * los datos son dirigidos desde la tabla hasta los txt
+     */
+    public void cargarTxt(){
+        int filaSeleccionada=tab_articulos.getSelectedRow();
+        if(filaSeleccionada==-1){
+                    JOptionPane.showMessageDialog(null,"Seleccione primero la columna" );
+        }
+        else
+        {
+            String auxiliar=tab_articulos.getValueAt(filaSeleccionada, 0).toString();
+            valor_encontrado=Integer.parseInt(auxiliar);  
+            txt_art.setText(tab_articulos.getValueAt(filaSeleccionada, 3).toString());
+            txt_des.setText(tab_articulos.getValueAt(filaSeleccionada, 4).toString());
+            txt_pre.setText(tab_articulos.getValueAt(filaSeleccionada, 5).toString());
+            txt_stock.setText(tab_articulos.getValueAt(filaSeleccionada, 6).toString());
+    }
 
 }
     private void tab_articulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_articulosMouseClicked
         cargarTxt();
     }//GEN-LAST:event_tab_articulosMouseClicked
-
+    /**
+     * la funcion de este boton nos ayuda a guardar los datos, verificando si se ha modificado o llenado
+     * los campos necesarios, para gusrdar en la base
+     * @param evt 
+     */
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
       
        if((txt_stock.getText().equals("") )||txt_art.getText().equals("")||txt_des.equals(""))
@@ -394,10 +413,12 @@ public void cargarTxt(){
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
-
+    /**
+     * en este evento de ingreso al presionar el boton se almacenaran los datos en la base de datos
+     * @param evt 
+     */
     private void txtingresoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtingresoKeyReleased
-
-             
+  
         if(txtingreso.getText().isEmpty())
         {
             for (int i = 0; i < tab_articulos.getRowCount(); i++) {
@@ -412,20 +433,31 @@ public void cargarTxt(){
             this.tab_articulos.setModel(modelo);// hay q poner dos veces xq si no se ejecuta
     }//GEN-LAST:event_txtingresoKeyReleased
  }
+    /**
+     * se asigna una familia de items para la busqueda del comboBox
+     * @param evt parametro del evento
+     */
     private void cboxfamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxfamiliaActionPerformed
         String nombre_familia=String.valueOf(cboxfamilia.getSelectedItem());
         fam_id=  artQuery.asignarfamilia(nombre_familia);
         txt_familia.setText(Integer.toString(fam_id));  
       
     }//GEN-LAST:event_cboxfamiliaActionPerformed
-
+    /*
+    se despliega en el combobox los proveedores que hayan sido almacenados en la base de datos
+    se podra seleccionar en el evento y obtendremos el valor para poder modificar en la base
+    */
     private void cboxprovedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxprovedorActionPerformed
         String nombre_provedor=String.valueOf(cboxprovedor.getSelectedItem());
         pro_id=  artQuery.asignarprovedor(nombre_provedor);
         txt_prov_id.setText(Integer.toString(pro_id)); 
                                                
     }//GEN-LAST:event_cboxprovedorActionPerformed
-
+/**
+ * este evento del texto de ingreso nos permite validar los datos que estamos ingresando para la busqueda 
+ * en el caso de que la queramos realizar manualmente la busqueda
+ * @param evt 
+ */
     private void txtingresoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtingresoKeyTyped
         String nombre=String.valueOf(cbox.getSelectedItem());
         System.out.println(nombre);
@@ -458,7 +490,10 @@ public void cargarTxt(){
     private void cboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxActionPerformed
 txtingreso.setText("");
     }//GEN-LAST:event_cboxActionPerformed
-
+/**
+ * validacion del ingreso en el txtIngreso
+ * @param evt parametri del evento
+ */
     private void txt_artKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_artKeyTyped
         char caracter = evt.getKeyChar();
             if (Character.isDigit(caracter)) {
@@ -467,7 +502,10 @@ txtingreso.setText("");
                 
             }
     }//GEN-LAST:event_txt_artKeyTyped
-
+/**
+ * validacion del ingreso en el txtIngreso
+ * @param evt parametri del evento
+ */
     private void txt_desKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_desKeyTyped
         char caracter = evt.getKeyChar();
             if (Character.isDigit(caracter)) {
@@ -478,7 +516,10 @@ txtingreso.setText("");
             }
         
     }//GEN-LAST:event_txt_desKeyTyped
-
+/**
+ * validacion del ingreso en el txtIngreso
+ * @param evt parametri del evento
+ */
     private void txt_preKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_preKeyTyped
        char caracter = evt.getKeyChar();
        if (((caracter < '0') || (caracter > '9')) &&  (caracter != '.')) {
@@ -488,7 +529,10 @@ txtingreso.setText("");
        evt.consume();
     }
     }//GEN-LAST:event_txt_preKeyTyped
-
+/**
+ * validacion del ingreso en el txtIngreso
+ * @param evt parametri del evento
+ */
     private void txt_stockKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_stockKeyTyped
         // TODO add your handling code here:
          char caracter = evt.getKeyChar();

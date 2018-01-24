@@ -251,6 +251,11 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
      
+    /**
+     * Funcion la cual escoge el parametro para 
+     * realizar la busqueda dentro de la base de datos
+     * @param evt 
+     */
     private void jCmbTipoBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCmbTipoBusquedaActionPerformed
         if (jCmbTipoBusqueda.getSelectedIndex() == 0){
             jLabelBuscado.setText("Codigo");
@@ -266,6 +271,7 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jCmbTipoBusquedaActionPerformed
 
+    
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
          System.gc();//limpiar basura
         dispose();
@@ -275,6 +281,11 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTextFieldParametroBusquedaKeyPressed
 
+    /**
+     * Funcion encragada de mostrar los resultados 
+     * que se asocioan al ingreso que realiza el usuario
+     * @param evt 
+     */
     private void jTextFieldParametroBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldParametroBusquedaKeyTyped
          jTextFieldParametroBusqueda.addKeyListener(new KeyAdapter() {
             public void keyReleased(final KeyEvent e) {
@@ -295,6 +306,13 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCrearActionPerformed
 
+    /**
+     * Esta funcion permite la edicion de un dato guardado 
+     * pulsando sobre el mismo para poder editarlos de 
+     * manera rapida
+     * 
+     * @param evt 
+     */
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         if(jTableListarEmpleado.getSelectedRows().length>0){
             Datos2 datos=new Datos2(this,true);
@@ -320,6 +338,11 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnEditarActionPerformed
 
+    /**
+     * Funcion la cual permite la eliminacion de un dato
+     * o registro seleccionado.
+     * @param evt 
+     */
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if(jTableListarEmpleado.getSelectedRows().length>0){
             QueryEmpleado bash = new QueryEmpleado();
@@ -329,6 +352,13 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    
+    
+    /**
+     * Funcio qu epemrite la visualizacion de los datos
+     * extrayendolos de la tabla que contiene la vista.
+     * @param evt 
+     */
     private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
         if(jTableListarEmpleado.getSelectedRows().length>0){
             Datos2 datos=new Datos2(this,true);
@@ -353,7 +383,14 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
             datos.setVisible(true);
         }
     }//GEN-LAST:event_btnVerActionPerformed
-public void Filtrar() {
+
+    /**
+     * Funcion la cual filtra segun el parametro para 
+     * realizar la busqueda dentro de la base de datos
+     * @param evt 
+     */
+    
+    public void Filtrar() {
 
         int columnaABuscar = 0;
 
