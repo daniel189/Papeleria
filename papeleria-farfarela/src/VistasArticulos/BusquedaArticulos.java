@@ -16,48 +16,58 @@ import VistasArticulos.EliminaArticulos;
  *
  * @author Daniel
  */
+/**
+ * 
+ * @author Lizeth
+ * esta clase nos muestra la interfaz para la busqueda de articulos que se encuentran reegistrados 
+ * o dados de baja dentro de la empresa Farfarela
+ */
 public class BusquedaArticulos extends javax.swing.JInternalFrame {
 
-    Articulo artIngreso=new Articulo();
+    /**
+     * la declaración de estasa variables nos ayudaran a:
+     * artQuery: me permite hacer la busqueda del articulo en la base de datos
+     * modelo: nombre de la tabla donde se desplegaran los datos
+     * valr_encontrado: nos permitira saber si los datos han sido encontrados en la base de datos
+     * lista: variable que nos permitira almacenar los datos que se recuperen de la base de datos
+     */
     QueryArticulo artQuery=new QueryArticulo();
     DefaultTableModel modelo=new DefaultTableModel();
     int valor_encontrado;
-    int pro_id;
-    int fam_id;
-  public int getvalorencontrado()
-   {
-   int valorencontrado=valor_encontrado;
-   return valorencontrado=valor_encontrado;
-   }
-  
-ArrayList<Articulo> lista = new ArrayList<Articulo>();
+    ArrayList<Articulo> lista = new ArrayList<Articulo>();
+    /**
+     * constructor
+     */
     public BusquedaArticulos() {
         initComponents();
     }
-public int seleccionaritem()
-{
-int item=cbox.getSelectedIndex();
-return item;
-}
-public void cargartxt(){
-int filasel=tab_articulos.getSelectedRow();
-if(filasel==-1){
-            JOptionPane.showMessageDialog(null,"Seleccione primero la columna" );
-}
-else
-{
-    String auxiliar=tab_articulos.getValueAt(filasel, 0).toString();
-    valor_encontrado=Integer.parseInt(auxiliar);
-    System.out.println(valor_encontrado);
-    //ArticulosDelete d = new EliminaArticulos();
-    EliminaArticulos.txtArticulo.setText(String.valueOf(valor_encontrado));
-}
-}
-public  int getvalor()
-{
-    int aux=valor_encontrado;
-    return aux;
-}
+    /**
+     * esta funcion nos devuelve el valor que se haya elegido en el 
+     * comboBox para la respectiva busqueda del articulo
+     * @return nos retorna el valor seleccionado del combo
+     */
+    public int seleccionaritem()
+    {
+        int item=cboxBusqueda.getSelectedIndex();
+        return item;
+    }
+    /**
+     * una funcion que nos permite cargar los datos a la tabla 
+     * y a su vez podemos eliminar cuando se haya seleccionado algun articulo en especial
+     */
+    public void cargartxt(){
+    int filasel=tab_articulos.getSelectedRow();
+    if(filasel==-1){
+                JOptionPane.showMessageDialog(null,"Seleccione primero la columna" );
+    }
+    else
+    {
+        String auxiliar=tab_articulos.getValueAt(filasel, 0).toString();
+        valor_encontrado=Integer.parseInt(auxiliar);
+        System.out.println(valor_encontrado);
+        EliminaArticulos.txtArticulo.setText(String.valueOf(valor_encontrado));
+    }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,7 +81,7 @@ public  int getvalor()
         tab_articulos = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        cbox = new javax.swing.JComboBox<>();
+        cboxBusqueda = new javax.swing.JComboBox<>();
         txtingreso = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
@@ -101,11 +111,11 @@ public  int getvalor()
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setText("Seleccione Opcion de Busqueda");
 
-        cbox.setFont(new java.awt.Font("Tempus Sans ITC", 0, 14)); // NOI18N
-        cbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Articulo Id", "Nombre" }));
-        cbox.addActionListener(new java.awt.event.ActionListener() {
+        cboxBusqueda.setFont(new java.awt.Font("Tempus Sans ITC", 0, 14)); // NOI18N
+        cboxBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Articulo Id", "Nombre" }));
+        cboxBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboxActionPerformed(evt);
+                cboxBusquedaActionPerformed(evt);
             }
         });
 
@@ -139,7 +149,7 @@ public  int getvalor()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(cbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cboxBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtingreso, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 70, Short.MAX_VALUE))
@@ -153,7 +163,7 @@ public  int getvalor()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cboxBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtingreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -197,19 +207,21 @@ public  int getvalor()
     }// </editor-fold>//GEN-END:initComponents
 
     private void tab_articulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_articulosMouseClicked
-   cargartxt();
-   this.setVisible(false);
+        cargartxt();
+        this.setVisible(false);
     }//GEN-LAST:event_tab_articulosMouseClicked
 
     private void txtingresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtingresoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtingresoActionPerformed
-
+/*
+ *Este metodo nos permite ir guardando los datos dependiendo a la columnda que designemos
+ * @param evt evento de la tabla
+ */
     private void txtingresoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtingresoKeyReleased
 
         if(txtingreso.getText().isEmpty())
         {
-
             for (int i = 0; i < tab_articulos.getRowCount(); i++) {
                 modelo.removeRow(i);
                 i-=1;
@@ -224,8 +236,12 @@ public  int getvalor()
            
     }//GEN-LAST:event_txtingresoKeyReleased
     }
+    /**
+     * al momento de seleccionar en el combox guardamos el valor que tomamos y realozamos la respectiva busqueda y comparacion
+     * @param evt 
+     */
     private void txtingresoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtingresoKeyTyped
-        String nombre=String.valueOf(cbox.getSelectedItem());
+        String nombre=String.valueOf(cboxBusqueda.getSelectedItem());
                 System.out.println(nombre);
               String c="Nombre";
         if(nombre.equals(c))
@@ -239,8 +255,7 @@ public  int getvalor()
             }
         }
         else{
-           
-             char caracter = evt.getKeyChar();
+            char caracter = evt.getKeyChar();
             
             // Verificar si la tecla pulsada no es un digito
             if(((caracter < '0') ||
@@ -249,13 +264,12 @@ public  int getvalor()
             {
                 evt.consume();  // ignorar el evento de teclado
             }
-            
         }
     }//GEN-LAST:event_txtingresoKeyTyped
 
-    private void cboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxActionPerformed
+    private void cboxBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxBusquedaActionPerformed
         txtingreso.setText("");
-    }//GEN-LAST:event_cboxActionPerformed
+    }//GEN-LAST:event_cboxBusquedaActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
@@ -264,7 +278,7 @@ public  int getvalor()
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JComboBox<String> cbox;
+    private javax.swing.JComboBox<String> cboxBusqueda;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;

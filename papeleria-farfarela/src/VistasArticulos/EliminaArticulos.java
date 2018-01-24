@@ -12,10 +12,19 @@ import javax.swing.JFrame;
  *
  * @author Ricardo
  */
+
+/**
+ * 
+ * @author Lizeth
+ * esta funcion nos permite elimanr articulos de la base de datos
+ */
 public class EliminaArticulos extends javax.swing.JInternalFrame {
+    /**
+     * artQuery: nos permite realizar la busqueda en la base de datos
+     * art: es el parametro por el cual se busca para eliminar el articulo
+     */
    QueryArticulo artQuery=new QueryArticulo();
    BusquedaArticulos art=new BusquedaArticulos();
-   int  valor_encontrado; 
    public EliminaArticulos() {
         initComponents();
     }
@@ -176,12 +185,18 @@ public class EliminaArticulos extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * funcion del boton que nos permite obtener el valor que hemos ingresado
+ * @param evt 
+ */
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         artQuery.eliminarProveedor(Integer.parseInt(txtArticulo.getText()));
         art.setVisible(true);
     }//GEN-LAST:event_btnEliminarActionPerformed
-
+/**
+ * nos busca el articulo que se desea eliminar
+ * @param evt 
+ */
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
          
          art.setVisible(true);
@@ -191,7 +206,10 @@ public class EliminaArticulos extends javax.swing.JInternalFrame {
     private void BuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuscarMouseClicked
 
     }//GEN-LAST:event_BuscarMouseClicked
-
+/**
+ * valida el texto ingresado que se ha ingresado en el txt
+ * @param evt 
+ */
     private void txtArticuloKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtArticuloKeyReleased
         // TODO add your handling code here:
         char caracter = evt.getKeyChar();
