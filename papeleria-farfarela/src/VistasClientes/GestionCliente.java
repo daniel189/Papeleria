@@ -38,7 +38,9 @@ public class GestionCliente extends javax.swing.JInternalFrame {
         btnGuardar.setVisible(false);
         llenarClientes("", 1);
     }
-    
+    /**
+     * la funcion nos permite limpiar los textbox o cualquier otro componente que se encuentre con datos
+     */
     public void limparDatos(){
         txtIdentificador.setText("");
         txtNombres.setText("");
@@ -46,7 +48,11 @@ public class GestionCliente extends javax.swing.JInternalFrame {
         txtDireccion.setText("");
         txtTelefono.setText("");
     }
-    //vr
+    /**
+     * la funcion nos permite llenar la tabla con los datos que se obtengan de la base de datos
+     * en el caso de que no encuentre los datos no desplegará nada
+     * solamente se  mostrara el nombre de las columnas de las tablas
+     */
     Connection cone = Conexion.getConexion();
     public void llenarClientes(String condicion, int aux){
         DefaultTableModel modelo = new DefaultTableModel();
@@ -451,7 +457,11 @@ public class GestionCliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Seleccione Un Registro para eliminar.", "Sin Selcción.", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
-
+/**
+ * el boton nos permitirá almacenar los datos dentro de la base, para ello es necesario tener los campos obligatorios llenos
+ * pone ciertos campos no visibles al usuario
+ * @param evt 
+ */
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if(txtIdentificador.getText().length() > 0 && txtNombres.getText().length() > 0 && txtApellidos.getText().length() > 0
                 && txtDireccion.getText().length() > 0 && txtTelefono.getText().length() > 0){
@@ -484,7 +494,10 @@ public class GestionCliente extends javax.swing.JInternalFrame {
             dcFechaNacimiento.setEnabled(false);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
-
+/**
+ * ante la presion de este boton el evento de mouse se activara para poner los datos obtenidos de la seleccion en la tabla
+ * @param evt 
+ */
     private void tbClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbClientesMouseClicked
         int fila = tbClientes.getSelectedRow();
         txtIdentificador.setText(tbClientes.getValueAt(fila, 0).toString());

@@ -417,6 +417,11 @@ public class EditaArticulos extends javax.swing.JInternalFrame {
      * en este evento de ingreso al presionar el boton se almacenaran los datos en la base de datos
      * @param evt 
      */
+    public int getvalorencontrado()
+    {
+        int valorencontrado=valor_encontrado;
+        return valorencontrado=valor_encontrado;
+    }
     private void txtingresoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtingresoKeyReleased
   
         if(txtingreso.getText().isEmpty())

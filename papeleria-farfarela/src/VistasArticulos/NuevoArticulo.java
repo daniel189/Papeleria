@@ -30,7 +30,11 @@ public class NuevoArticulo extends javax.swing.JInternalFrame {
      * artIngreso: es una variable instancia de la clase Articulo
      * artQuery: nos permite realizar el respectivo query a la base de datos
      * pro_id: variable para el comboBox que nos permitira seleccionar el item
-     * fam_id: 
+     * fam_id: variable para el comboBox que nos permita seleccionar el item de la familia que pertenece el id
+     * conectar: es una variable que nos permitira hacer coneccion con la base de datos
+     * titulos: arreglo que define los nombres de las tablas
+     * modelo: nombre de la variable de la tabla
+     * idarticulos: variable que define al identificador de los articulos 
      */
     Articulo artIngreso=new Articulo();
     QueryArticulo artQuery=new QueryArticulo();
@@ -40,9 +44,12 @@ public class NuevoArticulo extends javax.swing.JInternalFrame {
     String titulos[]={"Art Id","Fam Id","Pro Id","Nombre","Descripcion","Precio","Stoc"};
     DefaultTableModel modelo=new DefaultTableModel(null,titulos);// si no usan el null y no le ponen titulos noo les  imprime 
     public int idarticulo;
-/**
+     /**
      * Creates new form ArticulosNew
+     * la funcion nos permite crear un nuevo articlo, aqui se puede seleccionar desde los comboBox 
+     * algunos atributos que seran datos para la base
      */
+
     public NuevoArticulo() {
         initComponents();
          claveMax();
@@ -349,7 +356,10 @@ public class NuevoArticulo extends javax.swing.JInternalFrame {
     private void txt_familiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_familiaActionPerformed
 
     }//GEN-LAST:event_txt_familiaActionPerformed
-
+/**
+ * esta funcion nos realiza una consulta a la base de datos y al tomar el valor maximo del codigo de un producto
+ * incrementa este codigo a 1 oara un nuevo articulo
+ */
   public final void claveMax() {
         try {
             //Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/farfarela", "ECUATORIANO16", "root");
@@ -373,7 +383,10 @@ public class NuevoArticulo extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Error " + ex);
         }
     }
-
+/**
+ * este boton nos permite hacer el ingreso de los datos a nuestra base
+ * @param evt 
+ */
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         artIngreso.setArticuloId(idarticulo);
         artIngreso.setArticuloDescripcion(txt_descripcion.getText());
@@ -444,7 +457,10 @@ public void validarletra(java.awt.event.KeyEvent evt)
 
         }
     }//GEN-LAST:event_txt_nombreKeyTyped
-
+/**
+ * esta funcion nos valida el ingreso de numeros y el punto para el ingreso del precio dentro de la base 
+ * @param evt 
+ */
     private void txt_precioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_precioKeyTyped
         char c = evt.getKeyChar();
 

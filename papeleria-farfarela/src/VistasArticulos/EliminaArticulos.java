@@ -194,7 +194,7 @@ public class EliminaArticulos extends javax.swing.JInternalFrame {
         art.setVisible(true);
     }//GEN-LAST:event_btnEliminarActionPerformed
 /**
- * nos busca el articulo que se desea eliminar
+ * busca el articulo que se desea eliminar
  * @param evt 
  */
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed

@@ -35,12 +35,19 @@ public class BusquedaArticulos extends javax.swing.JInternalFrame {
     DefaultTableModel modelo=new DefaultTableModel();
     int valor_encontrado;
     ArrayList<Articulo> lista = new ArrayList<Articulo>();
+    
+    public int getvalorencontrado()
+    {
+         int valorencontrado=valor_encontrado;
+        return valorencontrado=valor_encontrado;
+    }
     /**
      * constructor
      */
     public BusquedaArticulos() {
         initComponents();
     }
+    
     /**
      * esta funcion nos devuelve el valor que se haya elegido en el 
      * comboBox para la respectiva busqueda del articulo
@@ -50,6 +57,11 @@ public class BusquedaArticulos extends javax.swing.JInternalFrame {
     {
         int item=cboxBusqueda.getSelectedIndex();
         return item;
+    }
+    public  int getvalor()
+    {
+       int aux=valor_encontrado;
+       return aux;
     }
     /**
      * una funcion que nos permite cargar los datos a la tabla 
@@ -286,4 +298,8 @@ public class BusquedaArticulos extends javax.swing.JInternalFrame {
     private javax.swing.JTable tab_articulos;
     private javax.swing.JTextField txtingreso;
     // End of variables declaration//GEN-END:variables
+
+/*    public int getvalorencontrado() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }*/
 }
