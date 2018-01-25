@@ -27,7 +27,7 @@ import papeleriafarfarela.Cuenta;
 public class UsuariosNew extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form UsuariosNew
+     * Crea nuevo formulario para ingreso de cuentas y asignacion aempleados
      */
     private DefaultComboBoxModel modeloCombo;
     public UsuariosNew() {
@@ -36,19 +36,31 @@ public class UsuariosNew extends javax.swing.JInternalFrame {
         llenarEmpleados();
     }
     
+    /**
+     * Funcion encargada de resetear las cajas de texto
+     */
+    
     public void limpiarD()
     {
         txtCuenta.setText("");
         txtContraseña1.setText("");
     }
     
-    //variables para la BD
+    /**
+     * Variables globales relacionadas a obtener informacion de la tabla cuenta
+     */
     PreparedStatement sentencia;
     Connection conexion;
     ResultSet resul;
     ArrayList<String> emple = new ArrayList<String>();
     ArrayList<Integer> cod = new ArrayList<Integer>();
     
+    /**
+     * Funcion que llena las listas cod, y emple, a la vez de llenar el combobox
+     * de la interfaz, con informacion de la base de datos proveniente de la 
+     * tabla empleado
+     * 
+     */
     private void llenarEmpleados(){
         conexion = Conexion.getConexion();
         try {
@@ -231,6 +243,12 @@ public class UsuariosNew extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * 
+     * @param evt evento de presion de boton, que registra la informacion en la 
+     * base de datos en la tabla cuenta.
+     * 
+     */
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         QueryUsuario obj = new QueryUsuario();
         String cedula;
@@ -248,10 +266,22 @@ public class UsuariosNew extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCuentaActionPerformed
 
+    /**
+     * 
+     * @param evt evento de presion de boton para calcelar interaccion en la
+     * interfaz
+     * 
+     */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
     
+    /**
+     * 
+     * @return funcion que crea un objeto tipo Cuenta, extrayendo la informacion
+     * de los componentes de la interfaz 
+     * 
+     */
     private Cuenta getDatos(){
         String cuenta, contrasena;
         int nivel,empleado, aux;
