@@ -28,6 +28,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Crispin
  */
+/**
+ * 
+ * @author Lizeth
+ * esta clase nos permite hacer la gestion de los clientes es decir: ingresar, modificar, eliminar
+ */
 public class GestionCliente extends javax.swing.JInternalFrame {
 
     /**

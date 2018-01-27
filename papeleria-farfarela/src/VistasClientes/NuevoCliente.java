@@ -16,6 +16,11 @@ import javax.swing.JOptionPane;
  *
  * @author Crispin
  */
+/**
+ * 
+ * @author Lizeth
+ * esta clase nos permite hacer el ingreso de nuevos clientes
+ */
 public class NuevoCliente extends javax.swing.JInternalFrame {
 
     /**
@@ -24,22 +29,26 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
     public NuevoCliente() {
         initComponents();
     }
-    
-    public static boolean valida(String x){
+    /**
+     * la funcion nos ayuda en la validacion de la cedula de identidad
+     * @param cedula parametro que recibe para la validacion
+     * @return 
+     */
+    public static boolean valida(String cedula){
         int suma=0;
-        if(x.length()==9){
+        if(cedula.length()==9){
           System.out.println("Ingrese su cedula de 10 digitos");
           return false;
         }else{
-          int arreglo1[]=new int [x.length()/2];
-          int arreglo2[]=new int [(x.length()/2)];
+          int arreglo1[]=new int [cedula.length()/2];
+          int arreglo2[]=new int [(cedula.length()/2)];
           int c=0;
           int d=1;
-          for (int i = 0; i < x.length()/2; i++) {
-            arreglo1[i]=Integer.parseInt(String.valueOf(x.charAt(c)));
+          for (int i = 0; i < cedula.length()/2; i++) {
+            arreglo1[i]=Integer.parseInt(String.valueOf(cedula.charAt(c)));
             c=c+2;
-            if (i < (x.length()/2)-1) {
-              arreglo2[i]=Integer.parseInt(String.valueOf(x.charAt(d)));
+            if (i < (cedula.length()/2)-1) {
+              arreglo2[i]=Integer.parseInt(String.valueOf(cedula.charAt(d)));
               d=d+2;
             }
           }
@@ -53,10 +62,10 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
           } 
           int aux=suma/10;
           int dec=(aux+1)*10;
-          if ((dec - suma) == Integer.parseInt(String.valueOf(x.charAt(x.length()-1))))
+          if ((dec - suma) == Integer.parseInt(String.valueOf(cedula.charAt(cedula.length()-1))))
             return true;
           else
-            if(suma%10==0 && x.charAt(x.length()-1)=='0'){
+            if(suma%10==0 && cedula.charAt(cedula.length()-1)=='0'){
               return true;
             }else{
               return false;
@@ -249,7 +258,10 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * este es un evento propio del boton que nos permite almacenar los datos a nuestra base
+     * @param evt 
+     */
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if(txtIdentificador.getText().length() > 0 && txtNombres.getText().length() > 0 && txtApellidos.getText().length() > 0
                 && txtDireccion.getText().length() > 0 && txtTelefono.getText().length() > 0 ){
@@ -284,6 +296,9 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Debe llenar todos los campos.", "Datos incompletos", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
+   /**
+    * la funcion permite vaciar los textBox  
+    */
     public void limpiarDatos(){
         txtIdentificador.setText("");
         txtNombres.setText("");
