@@ -81,39 +81,39 @@ public class ClienteIT {
     }
 
     /**
-     * Test of addFacturas method, of class Cliente.
+     * Test of agregarFacturas method, of class Cliente.
      */
     @Test
     public void testAddFacturas() {
         System.out.println("addFacturas");
         Factura newFacturas = null;
         Cliente instance = new Cliente();
-        instance.addFacturas(newFacturas);
+        instance.agregarFacturas(newFacturas);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of removeFacturas method, of class Cliente.
+     * Test of eliminarFacturas method, of class Cliente.
      */
     @Test
     public void testRemoveFacturas() {
         System.out.println("removeFacturas");
         Factura oldFacturas = null;
         Cliente instance = new Cliente();
-        instance.removeFacturas(oldFacturas);
+        instance.eliminarFacturas(oldFacturas);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of removeAllFacturas method, of class Cliente.
+     * Test of eliminarTodasLasFacturas method, of class Cliente.
      */
     @Test
     public void testRemoveAllFacturas() {
         System.out.println("removeAllFacturas");
         Cliente instance = new Cliente();
-        instance.removeAllFacturas();
+        instance.eliminarTodasLasFacturas();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

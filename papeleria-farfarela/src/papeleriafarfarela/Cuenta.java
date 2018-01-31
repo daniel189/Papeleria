@@ -15,6 +15,14 @@ public class Cuenta {
     private String cuenta, password, habilitado;
     private int nivel, empleadoId;
     /*Constructor*/
+    /**
+     * 
+     * @param cuentaC nombre de la cuenta
+     * @param passC password de la cuenta
+     * @param nivelC nivel de permiso de la cuenta
+     * @param emp_idC id de empleado asociado a la cuenta
+     * @param h estado de la cuenta
+     */
     public Cuenta(String cuentaC, String passC, int nivelC, int emp_idC, String h){
         this.cuenta = cuentaC;
         this.password = passC;
@@ -22,16 +30,7 @@ public class Cuenta {
         this.empleadoId = emp_idC;
         this.habilitado=h;
     }
-    
-   /** @pdOid de399a0e-232a-44e0-8bac-460acb2ba75d */
-   public java.lang.String cueCuenta;
-   /** @pdOid d3d6b90c-0f69-4418-9b34-2b3e423c03a0 */
-   public java.lang.String cuePass;
-   /** Nivel o ROL que cumple esta cuenta para limitar accesos al sistema.
-    * 
-    * @pdOid 8b233316-dfef-4c1c-ab2a-488c256d1a82 */
-   public double cueNivel;
-   
+     
    /** @pdRoleInfo migr=no name=Facturas assc=factura coll=java.util.Collection impl=java.util.HashSet mult=0..* */
    public java.util.Collection<Factura> facturas;
 
@@ -46,29 +45,29 @@ public class Cuenta {
          facturas = new java.util.HashSet<Factura>();
       return facturas;
    }
-   /** @pdGenerated default add
-     * @param newFacturas */
-   public void addFacturas(Factura newFacturas) {
-      if (newFacturas == null)
+   /** *  @pdGenerated default add
+     * @param facturasNuevas */
+   public void agregarFacturas(Factura facturasNuevas) {
+      if (facturasNuevas == null)
          return;
       if (this.facturas == null)
          this.facturas = new java.util.HashSet<Factura>();
-      if (!this.facturas.contains(newFacturas))
-         this.facturas.add(newFacturas);
+      if (!this.facturas.contains(facturasNuevas))
+         this.facturas.add(facturasNuevas);
    }
    
-   /** @pdGenerated default remove
-     * @param oldFacturas */
-   public void removeFacturas(Factura oldFacturas) {
-      if (oldFacturas == null)
+   /** *  @pdGenerated default remove
+     * @param facturasViejas */
+   public void eliminarFacturas(Factura facturasViejas) {
+      if (facturasViejas == null)
          return;
       if (this.facturas != null)
-         if (this.facturas.contains(oldFacturas))
-            this.facturas.remove(oldFacturas);
+         if (this.facturas.contains(facturasViejas))
+            this.facturas.remove(facturasViejas);
    }
    
    /** @pdGenerated default removeAll */
-   public void removeAllFacturas() {
+   public void eliminarTodasLasFacturas() {
       if (facturas != null)
          facturas.clear();
    }

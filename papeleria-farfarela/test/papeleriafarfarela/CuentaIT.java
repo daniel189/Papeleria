@@ -53,39 +53,39 @@ public class CuentaIT {
     }
 
     /**
-     * Test of addFacturas method, of class Cuenta.
+     * Test of agregarFacturas method, of class Cuenta.
      */
     @Test
     public void testAddFacturas() {
         System.out.println("addFacturas");
         Factura newFacturas = null;
         Cuenta instance = new Cuenta();
-        instance.addFacturas(newFacturas);
+        instance.agregarFacturas(newFacturas);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of removeFacturas method, of class Cuenta.
+     * Test of eliminarFacturas method, of class Cuenta.
      */
     @Test
     public void testRemoveFacturas() {
         System.out.println("removeFacturas");
         Factura oldFacturas = null;
         Cuenta instance = new Cuenta();
-        instance.removeFacturas(oldFacturas);
+        instance.eliminarFacturas(oldFacturas);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of removeAllFacturas method, of class Cuenta.
+     * Test of eliminarTodasLasFacturas method, of class Cuenta.
      */
     @Test
     public void testRemoveAllFacturas() {
         System.out.println("removeAllFacturas");
         Cuenta instance = new Cuenta();
-        instance.removeAllFacturas();
+        instance.eliminarTodasLasFacturas();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
