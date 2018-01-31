@@ -15,14 +15,20 @@ import papeleriafarfarela.Familia;
  *
  * @author martha
  */
+/**
+ * 
+ * @author Lizeth
+ * esta clase nos permite almacenar al grupo al que pertenece e articulo de la 
+ * papeleria
+ */
 public class BusquedaFamilia extends javax.swing.JInternalFrame {
-   Familia familiaIngreso=new Familia();
-   QueryFamilia articuloQuery=new QueryFamilia();
-   int productoId;
-   int ivaId;
-   int familiaId;
-   
-   DefaultTableModel modelo=new DefaultTableModel();  
+    /**
+     * familiaIngreso instancia familia del paquete papeleriafarfarela
+     * articuloQuery instancia de la clase QueryFamilia  dentro del paquete Modelo
+     * modelo instancia del componente table
+     */
+    QueryFamilia articuloQuery=new QueryFamilia();
+    DefaultTableModel modelo=new DefaultTableModel();  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -177,13 +183,17 @@ public class BusquedaFamilia extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-  public BusquedaFamilia() {
+    public BusquedaFamilia() {
   
         initComponents();
 
     }
-
-  public int seleccionaritem()
+    /**
+     * funcion que nos permite seleccionar un iten del combioBox para la 
+     * busqueda de la familia de productos
+     * @return retorna el item seleccionado del comboBox
+     */
+    public int seleccionaritem()
     {
        int item=cbox.getSelectedIndex();
        return item;
@@ -191,7 +201,11 @@ public class BusquedaFamilia extends javax.swing.JInternalFrame {
     private void tab_familiasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_familiasMouseClicked
 
     }//GEN-LAST:event_tab_familiasMouseClicked
-
+    /**
+     * 
+     * @param evt evento exige ese parametro
+     * este evento es para seleccionar datos de una tabla
+     */
     private void txtingresoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtingresoKeyReleased
         if(txtingreso.getText().isEmpty())
         {
@@ -207,7 +221,12 @@ public class BusquedaFamilia extends javax.swing.JInternalFrame {
             this.tab_familias.setModel(modelo);// hay q poner dos veces xq si no se ejecuta
         }
     }//GEN-LAST:event_txtingresoKeyReleased
-
+    /**
+     * 
+     * @param evt especifica del evento
+     * nos sirve para seleccionar algun valor del comboBox y asi poder realizar
+     * la busqueda de la familia que deseemos
+     */
     private void txtingresoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtingresoKeyTyped
         String nombre=String.valueOf(cbox.getSelectedItem());
               System.out.println(nombre);
