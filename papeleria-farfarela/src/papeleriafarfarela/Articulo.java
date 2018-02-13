@@ -5,24 +5,21 @@ package papeleriafarfarela;
  * Author:  Crispin!!
  * Purpose: Defines the Class Articulos
  ***********************************************************************/
-
-import java.util.*;
-
 /** Articulo a la venta que contiene la papeleria.
  * 
- * @pdOid d90d6935-b1ae-4bb4-b48a-192d367cfdb0 */
+ */
 public class Articulo {
-   /** @pdOid 368c9303-adc2-4bfa-a4fd-3acfae6fa040 */
+   /**
+    * @articuloId Id para el articulo a ser ingresado
+    */
    private int articuloId;
-   /** @pdOid fb83f19b-3315-4022-92f7-8fe2aac9ba1a */
-   private java.lang.String articuloNombre;
-   /** @pdOid 24285171-a826-4535-933c-447008699d9c */
-   private java.lang.String articuloDescripcion;
-   /** @pdOid 5eb2a7d9-ee26-47b4-9982-113c37b6812e */
+   /** @articuloNombre nombre del articulo */
+   private String articuloNombre;
+   /** @articuloDescripcion descripcion del articulo */
+   private String articuloDescripcion;
+   /** @articuloPrecio precio del articulo */
    private float articuloPrecio;
-   /** numero de stock disponible
-    * 
-    * @pdOid 8535f7c3-1e9f-4a1b-8b10-27a128dcccbb */
+   /**  @pdOid Stock del articulo ingresado */
    private double articuloStock;
    
    /** Asociación entre tabla IVA y ARTICULOS */
@@ -30,13 +27,7 @@ public class Articulo {
    private java.util.Collection detalle;
 
     /**
-     * @return the artId
-     */
-   
-   
-
-    /**
-     * @return the detalle
+     * @return retorne el detalle
      */
     public java.util.Collection getDetalle() {
         return detalle;
@@ -120,14 +111,14 @@ public class Articulo {
     }
 
     /**
-     * @return the fechaIva
+     * @return devuelve la coleccion de iva a la fecha
      */
     public java.util.Collection getFechaIva() {
         return fechaIva;
     }
 
     /**
-     * @param fechaIva the fechaIva to set
+     * @param fechaIva setea la coleccion de Iva a la fecha
      */
     public void setFechaIva(java.util.Collection fechaIva) {
         this.fechaIva = fechaIva;
