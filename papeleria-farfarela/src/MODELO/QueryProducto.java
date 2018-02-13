@@ -100,17 +100,6 @@ String datos[]=new String[3];
                 String cantidad = String.valueOf(resultado.getString(3));
                 table_cell = new PdfPCell(new Phrase(cantidad));
                 my_report_table.addCell(table_cell);
-                //String apellidos = resultado.getString("DET_VALOR");
-                //table_cell = new PdfPCell(new Phrase(apellidos));
-//                my_report_table.addCell(table_cell);
-//                String cargo = resultado.getString("PRO_CONTACTO");
-//                table_cell = new PdfPCell(new Phrase(cargo));
-//                my_report_table.addCell(table_cell);
-//
-//                String tContacto = resultado.getString("PRO_TELEFONOCONTACTO");
-//                table_cell = new PdfPCell(new Phrase(tContacto));
-//                my_report_table.addCell(table_cell);
-
             }//cierra while (porque no hay mas datos en la BD)
             /* Attach report table to PDF */
             my_pdf_report.add(my_report_table);
@@ -134,22 +123,15 @@ String datos[]=new String[3];
         } finally {
 
             CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
-
         }
-        
-        
     }
-    
-    
     public void reportePrductosMenosV() {
-
         try {
             conexion2 = Conexion.getConexion();
             String datos[]=new String[3];
             sentencia = conexion2.createStatement();
             String consultaSQL = "select articulos.ART_ID,articulos.ART_NOMBRE,detalle.DET_CANTIDAD from papeleriafarfarela.detalle, papeleriafarfarela.articulos where detalle.ART_ID=articulos.ART_ID order by detalle.DET_CANTIDAD asc limit 4;";
-            resultado = sentencia.executeQuery(consultaSQL);
-//         
+            resultado = sentencia.executeQuery(consultaSQL);    
             Image portada;
             Document my_pdf_report = new Document(new Rectangle(PageSize.A4.rotate()), 1, 1, 1, 1);
             PdfWriter writer = PdfWriter.getInstance(my_pdf_report, new FileOutputStream("ProductosMenosV.pdf"));
@@ -170,13 +152,6 @@ String datos[]=new String[3];
             my_report_table.addCell(table_cell);
             table_cell = new PdfPCell(new Phrase("Cantidad"));
             my_report_table.addCell(table_cell);
-            //table_cell = new PdfPCell(new Phrase("Valor"));
-            //my_report_table.addCell(table_cell);
-//            table_cell = new PdfPCell(new Phrase("CONTACTO"));
-//            my_report_table.addCell(table_cell);
-//            table_cell = new PdfPCell(new Phrase("TELEFONO CONTACTO"));
-//            my_report_table.addCell(table_cell);
-
             while (resultado.next()) {
 
                 String codigo = String.valueOf(resultado.getInt(1));
@@ -188,31 +163,17 @@ String datos[]=new String[3];
                 String cantidad = String.valueOf(resultado.getString(3));
                 table_cell = new PdfPCell(new Phrase(cantidad));
                 my_report_table.addCell(table_cell);
-                //String apellidos = resultado.getString("DET_VALOR");
-                //table_cell = new PdfPCell(new Phrase(apellidos));
-//                my_report_table.addCell(table_cell);
-//                String cargo = resultado.getString("PRO_CONTACTO");
-//                table_cell = new PdfPCell(new Phrase(cargo));
-//                my_report_table.addCell(table_cell);
-//
-//                String tContacto = resultado.getString("PRO_TELEFONOCONTACTO");
-//                table_cell = new PdfPCell(new Phrase(tContacto));
-//                my_report_table.addCell(table_cell);
-
             }//cierra while (porque no hay mas datos en la BD)
             /* Attach report table to PDF */
             my_pdf_report.add(my_report_table);
-
             my_pdf_report.close();
-
              JOptionPane.showMessageDialog(null, "PDF Generado Exitosamente.");
              try {
                 File path = new File("ProductosMenosV.pdf");
                 Desktop.getDesktop().open(path);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "Error al abrir el pdf:\n");
-            }
-            
+            }            
             /* Close all DB related objects */
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n" );
@@ -222,14 +183,10 @@ String datos[]=new String[3];
         } finally {
 
             CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
-
-
         }
-        
-        
     }
-      public void excelMasvendidos()
-    {
+    public void excelMasvendidos()
+       {
         String[][] entrada = new String[1000][3];
         entrada[0][0]="Codigo";
         entrada[0][1]="Nombre";
@@ -321,10 +278,7 @@ String datos[]=new String[3];
         }finally {
 
             CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
-
-
-        }
-       
+        }      
         
         WorkbookSettings conf=new WorkbookSettings ();
         conf.setEncoding("ISO-8859-1");

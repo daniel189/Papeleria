@@ -643,16 +643,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
     private void jAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAcercaDeActionPerformed
-        Acerca obj = new Acerca();
-        HomeAplicativo.escritorio.add(obj);
-        obj.toFront();
-        //centrar
-        //Para centrar la ventana abierta
-        Dimension dimension = escritorio.getSize();
-        Dimension FrameSize = obj.getSize();
-        obj.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
-        //
-        obj.show();
+
     }//GEN-LAST:event_jAcercaDeActionPerformed
 
     private void mAgregar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAgregar3ActionPerformed
