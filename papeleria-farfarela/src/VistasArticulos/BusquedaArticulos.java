@@ -6,11 +6,9 @@
 package VistasArticulos;
 
 import MODELO.QueryArticulo;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import papeleriafarfarela.Articulo;
-import VistasArticulos.EliminaArticulos;
 
 /**
  *
@@ -25,21 +23,16 @@ import VistasArticulos.EliminaArticulos;
 public class BusquedaArticulos extends javax.swing.JInternalFrame {
 
     /**
-     * la declaración de estasa variables nos ayudaran a:
-     * artQuery: me permite hacer la busqueda del articulo en la base de datos
+     * la declaración de estas variables nos ayudaran a:
      * modelo: nombre de la tabla donde se desplegaran los datos
-     * valr_encontrado: nos permitira saber si los datos han sido encontrados en la base de datos
-     * lista: variable que nos permitira almacenar los datos que se recuperen de la base de datos
+     * valor_encontrado: nos permitira saber si los datos han sido encontrados en la base de datos
      */
-    QueryArticulo artQuery=new QueryArticulo();
     DefaultTableModel modelo=new DefaultTableModel();
     int valor_encontrado;
-    ArrayList<Articulo> lista = new ArrayList<Articulo>();
-    
+        
     public int getvalorencontrado()
     {
-         int valorencontrado=valor_encontrado;
-        return valorencontrado=valor_encontrado;
+        return valor_encontrado;
     }
     /**
      * constructor
@@ -67,18 +60,19 @@ public class BusquedaArticulos extends javax.swing.JInternalFrame {
      * una funcion que nos permite cargar los datos a la tabla 
      * y a su vez podemos eliminar cuando se haya seleccionado algun articulo en especial
      */
-    public void cargartxt(){
-    int filasel=tab_articulos.getSelectedRow();
-    if(filasel==-1){
-                JOptionPane.showMessageDialog(null,"Seleccione primero la columna" );
-    }
-    else
-    {
-        String auxiliar=tab_articulos.getValueAt(filasel, 0).toString();
-        valor_encontrado=Integer.parseInt(auxiliar);
-        System.out.println(valor_encontrado);
-        EliminaArticulos.txtArticulo.setText(String.valueOf(valor_encontrado));
-    }
+     public void Loadtxt(){
+    
+        int filasel=tab_articulos.getSelectedRow();
+        if(filasel==-1){
+            JOptionPane.showMessageDialog(null,"Seleccione primero la columna" );
+        }
+        else
+            {
+                String auxiliar=tab_articulos.getValueAt(filasel, 0).toString();
+                valor_encontrado=Integer.parseInt(auxiliar);
+                System.out.println(valor_encontrado);
+                EliminaArticulos.txtArticulo.setText(String.valueOf(valor_encontrado));
+            }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -219,7 +213,7 @@ public class BusquedaArticulos extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tab_articulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_articulosMouseClicked
-        cargartxt();
+        Loadtxt();
         this.setVisible(false);
     }//GEN-LAST:event_tab_articulosMouseClicked
 
@@ -231,31 +225,30 @@ public class BusquedaArticulos extends javax.swing.JInternalFrame {
  * @param evt evento de la tabla
  */
     private void txtingresoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtingresoKeyReleased
-
+       QueryArticulo artQuery=new QueryArticulo();
         if(txtingreso.getText().isEmpty())
         {
             for (int i = 0; i < tab_articulos.getRowCount(); i++) {
                 modelo.removeRow(i);
                 i-=1;
             }
-
         }
         else
         {
             modelo=artQuery.UpdateArticulo(txtingreso.getText(),seleccionaritem());
             tab_articulos.setModel(modelo);
             this.tab_articulos.setModel(modelo);// hay q poner dos veces xq si no se ejecuta
-           
+        }                
     }//GEN-LAST:event_txtingresoKeyReleased
-    }
+
     /**
      * al momento de seleccionar en el combox guardamos el valor que tomamos y realozamos la respectiva busqueda y comparacion
      * @param evt 
      */
     private void txtingresoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtingresoKeyTyped
         String nombre=String.valueOf(cboxBusqueda.getSelectedItem());
-                System.out.println(nombre);
-              String c="Nombre";
+        System.out.println(nombre);
+        String c="Nombre";
         if(nombre.equals(c))
         {
             char caracter = evt.getKeyChar();
@@ -298,8 +291,4 @@ public class BusquedaArticulos extends javax.swing.JInternalFrame {
     private javax.swing.JTable tab_articulos;
     private javax.swing.JTextField txtingreso;
     // End of variables declaration//GEN-END:variables
-
-/*    public int getvalorencontrado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
 }

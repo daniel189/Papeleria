@@ -75,9 +75,9 @@ public class QueryArticulo {
    }   
    public JComboBox cargarfamilias()
    {
-       Connection cone= Conexion.getConexion();
+       Connection conection= Conexion.getConexion();
           try {
-              Statement buscarnombre= cone.createStatement();
+              Statement buscarnombre= conection.createStatement();
               String consulta="select fam_nombre from familiasarticulos";
               result=buscarnombre.executeQuery(consulta);
               while(result.next()){
@@ -85,7 +85,7 @@ public class QueryArticulo {
               cboxfamilia.addItem(result.getString(1));
               }
               result.close();
-              cone.close();
+              conection.close();
           } catch (SQLException ex) {
               Logger.getLogger(QueryArticulo.class.getName()).log(Level.SEVERE, null, ex);
           }
@@ -95,11 +95,11 @@ public class QueryArticulo {
    public int asignarprovedor(String nombre)
    {
        int idasignar=0;
-      Connection cone= Conexion.getConexion();
+      Connection conection= Conexion.getConexion();
     
           try { 
               String sql = "SELECT * FROM PROVEEDOR WHERE PRO_IDENTIFICADOR LIKE ? ORDER BY PRO_IDENTIFICADOR ASC";
-              busqueda = cone.prepareStatement(sql);
+              busqueda = conection.prepareStatement(sql);
               busqueda.setString(1, "%" + nombre + "%");
               result=busqueda.executeQuery();
               while(result.next())
@@ -107,7 +107,7 @@ public class QueryArticulo {
                 idasignar = result.getInt("PRO_ID");
               }
               result.close();
-              cone.close();
+              conection.close();
               } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error\n Por la Causa" + ex);
           } 

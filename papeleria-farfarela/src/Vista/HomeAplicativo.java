@@ -68,7 +68,7 @@ public class HomeAplicativo extends javax.swing.JFrame {
      */
     private static String cuenta;
     private static String nivel;
-      Conexion conexion = new Conexion();
+    Conexion conexion = new Conexion();
     Connection conexion2 = null;
     Statement sentencia = null;
     ResultSet resultado = null;
@@ -947,8 +947,6 @@ EmpleadoPrincipal1 empleadoPrincipal;
         }finally {
 
             CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
-
-
         }
     }//GEN-LAST:event_AlertaActionPerformed
 

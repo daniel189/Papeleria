@@ -60,7 +60,7 @@ public class ArticuloUpdateIT {
         System.out.println("seleccionaritem");
         EditaArticulos instance = new EditaArticulos();
         int expResult = 0;
-        int result = instance.seleccionaritem();
+        int result = instance.selectItem();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -73,7 +73,7 @@ public class ArticuloUpdateIT {
     public void testCargartxt() {
         System.out.println("cargartxt");
         EditaArticulos instance = new EditaArticulos();
-        instance.cargarTxt();
+        instance.loadTxt();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

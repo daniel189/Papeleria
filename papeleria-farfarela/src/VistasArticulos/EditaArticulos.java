@@ -8,7 +8,6 @@ package VistasArticulos;
 import MODELO.QueryArticulo;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import papeleriafarfarela.Articulo;
 
 /**
  *
@@ -23,14 +22,9 @@ public class EditaArticulos extends javax.swing.JInternalFrame {
     /**
      * modelo es el nombre de la tabla
      * artQuery: nos permite realizar la busqueda de los datos
-     * pro_id : variable para la busqueda del articulo
-     * fam_id: variable que define el nombre de la familia
      * valor_encontrado: nos devuelve el valor que buscamos en la base datos.
-     */
-    DefaultTableModel modelo=new DefaultTableModel();
-    QueryArticulo artQuery=new QueryArticulo();
-    int pro_id;
-    int fam_id;
+     */    
+    QueryArticulo artQuery=new QueryArticulo();    
     int valor_encontrado;
   /**
    * funcion que edita los articulos que se hayan obtenido de la tablaa
@@ -51,7 +45,7 @@ public class EditaArticulos extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        tab_articulos = new javax.swing.JTable();
+        tableArticles = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
@@ -78,7 +72,7 @@ public class EditaArticulos extends javax.swing.JInternalFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        tab_articulos.setModel(new javax.swing.table.DefaultTableModel(
+        tableArticles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -89,12 +83,12 @@ public class EditaArticulos extends javax.swing.JInternalFrame {
                 "Articulo Id", "Provedor Id", "Nombre", "Descripcion", "Precio", "Stock"
             }
         ));
-        tab_articulos.addMouseListener(new java.awt.event.MouseAdapter() {
+        tableArticles.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tab_articulosMouseClicked(evt);
+                tableArticlesMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(tab_articulos);
+        jScrollPane2.setViewportView(tableArticles);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -360,7 +354,7 @@ public class EditaArticulos extends javax.swing.JInternalFrame {
      * variable que nos permite obtener el valor del comboBox
      * @return nos retorna el item seleccionado del comboBox
      */
-    public int seleccionaritem()
+    public int selectItem()
     {
         int item=cbox.getSelectedIndex();
         return item;
@@ -370,32 +364,33 @@ public class EditaArticulos extends javax.swing.JInternalFrame {
      * podremos ir editando cada campo despues del despliegue de esta informacion
      * los datos son dirigidos desde la tabla hasta los txt
      */
-    public void cargarTxt(){
-        int filaSeleccionada=tab_articulos.getSelectedRow();
+    public void loadTxt(){
+        int filaSeleccionada=tableArticles.getSelectedRow();
         if(filaSeleccionada==-1){
                     JOptionPane.showMessageDialog(null,"Seleccione primero la columna" );
         }
         else
         {
-            String auxiliar=tab_articulos.getValueAt(filaSeleccionada, 0).toString();
+            String auxiliar=tableArticles.getValueAt(filaSeleccionada, 0).toString();
             valor_encontrado=Integer.parseInt(auxiliar);  
-            txt_art.setText(tab_articulos.getValueAt(filaSeleccionada, 3).toString());
-            txt_des.setText(tab_articulos.getValueAt(filaSeleccionada, 4).toString());
-            txt_pre.setText(tab_articulos.getValueAt(filaSeleccionada, 5).toString());
-            txt_stock.setText(tab_articulos.getValueAt(filaSeleccionada, 6).toString());
+            txt_art.setText(tableArticles.getValueAt(filaSeleccionada, 3).toString());
+            txt_des.setText(tableArticles.getValueAt(filaSeleccionada, 4).toString());
+            txt_pre.setText(tableArticles.getValueAt(filaSeleccionada, 5).toString());
+            txt_stock.setText(tableArticles.getValueAt(filaSeleccionada, 6).toString());
     }
 
 }
-    private void tab_articulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_articulosMouseClicked
-        cargarTxt();
-    }//GEN-LAST:event_tab_articulosMouseClicked
+    private void tableArticlesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableArticlesMouseClicked
+        loadTxt();
+    }//GEN-LAST:event_tableArticlesMouseClicked
     /**
      * la funcion de este boton nos ayuda a guardar los datos, verificando si se ha modificado o llenado
      * los campos necesarios, para gusrdar en la base
      * @param evt 
      */
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-      
+      int pro_id = 0;
+      int fam_id = 0;
        if((txt_stock.getText().equals("") )||txt_art.getText().equals("")||txt_des.equals(""))
        {
             JOptionPane.showMessageDialog(null,"Llene los campos ");
@@ -419,23 +414,22 @@ public class EditaArticulos extends javax.swing.JInternalFrame {
      */
     public int getvalorencontrado()
     {
-        int valorencontrado=valor_encontrado;
-        return valorencontrado=valor_encontrado;
+        return valor_encontrado;
     }
     private void txtingresoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtingresoKeyReleased
-  
+        DefaultTableModel modelo=new DefaultTableModel();
         if(txtingreso.getText().isEmpty())
         {
-            for (int i = 0; i < tab_articulos.getRowCount(); i++) {
+            for (int i = 0; i < tableArticles.getRowCount(); i++) {
                 modelo.removeRow(i);
                 i-=1;
             }
         }
         else
         {
-            modelo=artQuery.UpdateArticulo(txtingreso.getText(),seleccionaritem());
-            tab_articulos.setModel(modelo);
-            this.tab_articulos.setModel(modelo);// hay q poner dos veces xq si no se ejecuta
+            modelo=artQuery.UpdateArticulo(txtingreso.getText(),selectItem());
+            tableArticles.setModel(modelo);
+            this.tableArticles.setModel(modelo);// hay q poner dos veces xq si no se ejecuta
     }//GEN-LAST:event_txtingresoKeyReleased
  }
     /**
@@ -443,6 +437,7 @@ public class EditaArticulos extends javax.swing.JInternalFrame {
      * @param evt parametro del evento
      */
     private void cboxfamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxfamiliaActionPerformed
+        int fam_id;
         String nombre_familia=String.valueOf(cboxfamilia.getSelectedItem());
         fam_id=  artQuery.asignarfamilia(nombre_familia);
         txt_familia.setText(Integer.toString(fam_id));  
@@ -453,6 +448,7 @@ public class EditaArticulos extends javax.swing.JInternalFrame {
     se podra seleccionar en el evento y obtendremos el valor para poder modificar en la base
     */
     private void cboxprovedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxprovedorActionPerformed
+        int pro_id;
         String nombre_provedor=String.valueOf(cboxprovedor.getSelectedItem());
         pro_id=  artQuery.asignarprovedor(nombre_provedor);
         txt_prov_id.setText(Integer.toString(pro_id)); 
@@ -574,7 +570,7 @@ txtingreso.setText("");
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tab_articulos;
+    private javax.swing.JTable tableArticles;
     private javax.swing.JTextField txt_art;
     private javax.swing.JTextField txt_des;
     private javax.swing.JTextField txt_familia;

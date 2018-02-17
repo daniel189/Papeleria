@@ -39,20 +39,6 @@ public class ArticuloBuscarIT {
     }
 
     /**
-     * Test of getvalorencontrado method, of class BusquedaArticulos.
-     */
-    @Test
-    public void testGetvalorencontrado() {
-        System.out.println("getvalorencontrado");
-        BusquedaArticulos instance = new BusquedaArticulos();
-        int expResult = 0;
-        int result = instance.getvalorencontrado();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of seleccionaritem method, of class BusquedaArticulos.
      */
     @Test
@@ -73,7 +59,7 @@ public class ArticuloBuscarIT {
     public void testCargartxt() {
         System.out.println("cargartxt");
         BusquedaArticulos instance = new BusquedaArticulos();
-        instance.cargartxt();
+        //instance.txt();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
