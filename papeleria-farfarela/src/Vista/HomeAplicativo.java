@@ -20,10 +20,10 @@ import VistaEmpleado.EmpleadoPrincipal;
 import VistaEmpleado.EmpleadoPrincipal1;
 import VistaProveedor.ProveedorPrincipal;
 import VistaProveedor.ProveedorPrincipal1;
-import VistasArticulos.BusquedaArticulos;
-import VistasArticulos.EliminaArticulos;
+import VistasArticulos.FoundArticles;
+import VistasArticulos.RemoveArticles;
 import VistasArticulos.NuevoArticulo;
-import VistasArticulos.EditaArticulos;
+import VistasArticulos.EditArticles;
 import VistasClientes.GestionCliente;
 import VistasFamilia.BusquedaFamilia;
 import VistasFamilia.NuevaFamilia;
@@ -720,7 +720,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_prodAgregarActionPerformed
 
     private void prodModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prodModificarActionPerformed
-        EditaArticulos updateArticulos = new EditaArticulos();
+        EditArticles updateArticulos = new EditArticles();
         HomeAplicativo.escritorio.add(updateArticulos);
         updateArticulos.toFront();
         //centrar
@@ -733,7 +733,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_prodModificarActionPerformed
 
     private void prodConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prodConsultarActionPerformed
-        BusquedaArticulos buscarArticulos = new BusquedaArticulos();
+        FoundArticles buscarArticulos = new FoundArticles();
         HomeAplicativo.escritorio.add(buscarArticulos);
         buscarArticulos.toFront();
         //centrar

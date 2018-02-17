@@ -6,7 +6,6 @@
 package VistasArticulos;
 
 import MODELO.QueryArticulo;
-import javax.swing.JFrame;
 
 /**
  *
@@ -18,14 +17,12 @@ import javax.swing.JFrame;
  * @author Lizeth
  * esta funcion nos permite elimanr articulos de la base de datos
  */
-public class EliminaArticulos extends javax.swing.JInternalFrame {
+public class RemoveArticles extends javax.swing.JInternalFrame {
     /**
-     * artQuery: nos permite realizar la busqueda en la base de datos
      * art: es el parametro por el cual se busca para eliminar el articulo
      */
-   QueryArticulo artQuery=new QueryArticulo();
-   BusquedaArticulos art=new BusquedaArticulos();
-   public EliminaArticulos() {
+   FoundArticles art=new FoundArticles();
+   public RemoveArticles() {
         initComponents();
     }
 
@@ -190,7 +187,8 @@ public class EliminaArticulos extends javax.swing.JInternalFrame {
  * @param evt 
  */
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        artQuery.eliminarProveedor(Integer.parseInt(txtArticulo.getText()));
+        QueryArticulo articleQuery=new QueryArticulo();
+        articleQuery.eliminarProveedor(Integer.parseInt(txtArticulo.getText()));
         art.setVisible(true);
     }//GEN-LAST:event_btnEliminarActionPerformed
 /**

@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  * esta clase nos muestra la interfaz para la busqueda de articulos que se encuentran reegistrados 
  * o dados de baja dentro de la empresa Farfarela
  */
-public class BusquedaArticulos extends javax.swing.JInternalFrame {
+public class FoundArticles extends javax.swing.JInternalFrame {
 
     /**
      * la declaración de estas variables nos ayudaran a:
@@ -37,7 +37,7 @@ public class BusquedaArticulos extends javax.swing.JInternalFrame {
     /**
      * constructor
      */
-    public BusquedaArticulos() {
+    public FoundArticles() {
         initComponents();
     }
     
@@ -68,10 +68,10 @@ public class BusquedaArticulos extends javax.swing.JInternalFrame {
         }
         else
             {
-                String auxiliar=tab_articulos.getValueAt(filasel, 0).toString();
-                valor_encontrado=Integer.parseInt(auxiliar);
-                System.out.println(valor_encontrado);
-                EliminaArticulos.txtArticulo.setText(String.valueOf(valor_encontrado));
+                String assistant=tab_articulos.getValueAt(filasel, 0).toString();
+                valor_encontrado=Integer.parseInt(assistant);
+                System.out.println("este valor"+valor_encontrado);
+                RemoveArticles.txtArticulo.setText(String.valueOf(valor_encontrado));
             }
     }
     /**
@@ -246,10 +246,10 @@ public class BusquedaArticulos extends javax.swing.JInternalFrame {
      * @param evt 
      */
     private void txtingresoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtingresoKeyTyped
-        String nombre=String.valueOf(cboxBusqueda.getSelectedItem());
-        System.out.println(nombre);
-        String c="Nombre";
-        if(nombre.equals(c))
+        String name=String.valueOf(cboxBusqueda.getSelectedItem());
+        System.out.println(name);
+        String constant="Nombre";
+        if(name.equals(constant))
         {
             char caracter = evt.getKeyChar();
             if (Character.isDigit(caracter)) {

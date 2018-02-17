@@ -18,21 +18,20 @@ import javax.swing.table.DefaultTableModel;
  * esta clase es para mostrar la interfaz que nos ayudará a editar el contenido de los articulos en nuestra
  * base de datos
  */
-public class EditaArticulos extends javax.swing.JInternalFrame {
+public class EditArticles extends javax.swing.JInternalFrame {
     /**
-     * modelo es el nombre de la tabla
      * artQuery: nos permite realizar la busqueda de los datos
      * valor_encontrado: nos devuelve el valor que buscamos en la base datos.
      */    
-    QueryArticulo artQuery=new QueryArticulo();    
-    int valor_encontrado;
+    QueryArticulo articleQuery=new QueryArticulo();    
+    int valueFound;
   /**
    * funcion que edita los articulos que se hayan obtenido de la tablaa
    */
-    public EditaArticulos() {
+    public EditArticles() {
         initComponents();
-        cboxprovedor.setModel(artQuery.cargarprovedores().getModel());
-        cboxfamilia.setModel(artQuery.cargarfamilias().getModel());
+        cboxprovedor.setModel(articleQuery.cargarprovedores().getModel());
+        cboxfamilia.setModel(articleQuery.cargarfamilias().getModel());
     }
 
     /**
@@ -372,7 +371,7 @@ public class EditaArticulos extends javax.swing.JInternalFrame {
         else
         {
             String auxiliar=tableArticles.getValueAt(filaSeleccionada, 0).toString();
-            valor_encontrado=Integer.parseInt(auxiliar);  
+            valueFound=Integer.parseInt(auxiliar);  
             txt_art.setText(tableArticles.getValueAt(filaSeleccionada, 3).toString());
             txt_des.setText(tableArticles.getValueAt(filaSeleccionada, 4).toString());
             txt_pre.setText(tableArticles.getValueAt(filaSeleccionada, 5).toString());
@@ -396,7 +395,7 @@ public class EditaArticulos extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,"Llene los campos ");
        }
        else{
-        artQuery.modificarArticulo(valor_encontrado,pro_id,  fam_id,txt_art.getText(), txt_des.getText(), Float.parseFloat(txt_pre.getText()), Integer.parseInt(txt_stock.getText()));
+        articleQuery.modificarArticulo(valueFound,pro_id,  fam_id,txt_art.getText(), txt_des.getText(), Float.parseFloat(txt_pre.getText()), Integer.parseInt(txt_stock.getText()));
 
            txt_art.setText("");
            txt_des.setText("");
@@ -414,7 +413,7 @@ public class EditaArticulos extends javax.swing.JInternalFrame {
      */
     public int getvalorencontrado()
     {
-        return valor_encontrado;
+        return valueFound;
     }
     private void txtingresoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtingresoKeyReleased
         DefaultTableModel modelo=new DefaultTableModel();
@@ -427,7 +426,7 @@ public class EditaArticulos extends javax.swing.JInternalFrame {
         }
         else
         {
-            modelo=artQuery.UpdateArticulo(txtingreso.getText(),selectItem());
+            modelo=articleQuery.UpdateArticulo(txtingreso.getText(),selectItem());
             tableArticles.setModel(modelo);
             this.tableArticles.setModel(modelo);// hay q poner dos veces xq si no se ejecuta
     }//GEN-LAST:event_txtingresoKeyReleased
@@ -439,7 +438,7 @@ public class EditaArticulos extends javax.swing.JInternalFrame {
     private void cboxfamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxfamiliaActionPerformed
         int fam_id;
         String nombre_familia=String.valueOf(cboxfamilia.getSelectedItem());
-        fam_id=  artQuery.asignarfamilia(nombre_familia);
+        fam_id=  articleQuery.asignarfamilia(nombre_familia);
         txt_familia.setText(Integer.toString(fam_id));  
       
     }//GEN-LAST:event_cboxfamiliaActionPerformed
@@ -450,7 +449,7 @@ public class EditaArticulos extends javax.swing.JInternalFrame {
     private void cboxprovedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxprovedorActionPerformed
         int pro_id;
         String nombre_provedor=String.valueOf(cboxprovedor.getSelectedItem());
-        pro_id=  artQuery.asignarprovedor(nombre_provedor);
+        pro_id=  articleQuery.asignarprovedor(nombre_provedor);
         txt_prov_id.setText(Integer.toString(pro_id)); 
                                                
     }//GEN-LAST:event_cboxprovedorActionPerformed
@@ -460,10 +459,10 @@ public class EditaArticulos extends javax.swing.JInternalFrame {
  * @param evt 
  */
     private void txtingresoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtingresoKeyTyped
-        String nombre=String.valueOf(cbox.getSelectedItem());
-        System.out.println(nombre);
-        String nombreC="Nombre";
-        if(nombre.equals(nombreC))
+        String name=String.valueOf(cbox.getSelectedItem());
+        System.out.println(name);
+        String nameC="Nombre";
+        if(name.equals(nameC))
         {
             char caracter = evt.getKeyChar();
             if (Character.isDigit(caracter)) {
@@ -532,7 +531,7 @@ txtingreso.setText("");
     }//GEN-LAST:event_txt_preKeyTyped
 /**
  * validacion del ingreso en el txtIngreso
- * @param evt parametri del evento
+ * @param evt parametro del evento
  */
     private void txt_stockKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_stockKeyTyped
         // TODO add your handling code here:

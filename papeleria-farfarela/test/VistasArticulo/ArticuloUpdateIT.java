@@ -5,7 +5,7 @@
  */
 package VistasArticulo;
 
-import VistasArticulos.EditaArticulos;
+import VistasArticulos.EditArticles;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -44,7 +44,7 @@ public class ArticuloUpdateIT {
     @Test
     public void testGetvalorencontrado() {
         System.out.println("getvalorencontrado");
-        EditaArticulos instance = new EditaArticulos();
+        EditArticles instance = new EditArticles();
         int expResult = 0;
         int result = instance.getvalorencontrado();
         assertEquals(expResult, result);
@@ -58,7 +58,7 @@ public class ArticuloUpdateIT {
     @Test
     public void testSeleccionaritem() {
         System.out.println("seleccionaritem");
-        EditaArticulos instance = new EditaArticulos();
+        EditArticles instance = new EditArticles();
         int expResult = 0;
         int result = instance.selectItem();
         assertEquals(expResult, result);
@@ -72,7 +72,7 @@ public class ArticuloUpdateIT {
     @Test
     public void testCargartxt() {
         System.out.println("cargartxt");
-        EditaArticulos instance = new EditaArticulos();
+        EditArticles instance = new EditArticles();
         instance.loadTxt();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

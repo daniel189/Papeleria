@@ -38,30 +38,5 @@ public class ArticuloNewIT {
     @After
     public void tearDown() {
     }
-
-    /**
-     * Test of claveMax method, of class NuevoArticulo.
-     */
-    @Test
-    public void testClaveMax() {
-        System.out.println("claveMax");
-        NuevoArticulo instance = new NuevoArticulo();
-        instance.claveMax();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of validarletra method, of class NuevoArticulo.
-     */
-    @Test
-    public void testValidarletra() {
-        System.out.println("validarletra");
-        KeyEvent evt = null;
-        NuevoArticulo instance = new NuevoArticulo();
-        instance.validarletra(evt);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
+   
 }
