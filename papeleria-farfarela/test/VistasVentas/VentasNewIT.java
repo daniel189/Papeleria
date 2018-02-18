@@ -53,7 +53,7 @@ public class VentasNewIT {
     }
 
     /**
-     * Test of verFamilia method, of class NewSale.
+     * Test of chargeFamily method, of class NewSale.
      */
     @Test
     public void testVerFamilia() {
@@ -61,14 +61,14 @@ public class VentasNewIT {
         int idArticulo = 0;
         NewSale instance = new NewSale();
         int expResult = 0;
-        int result = instance.verFamilia(idArticulo);
+        int result = instance.chargeFamily(idArticulo);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of verStock method, of class NewSale.
+     * Test of getStock method, of class NewSale.
      */
     @Test
     public void testVerStock() {
@@ -127,7 +127,7 @@ public class VentasNewIT {
     public void testDosDecimales() {
         System.out.println("DosDecimales");
         double valor = 0.0;
-        NewSale instance = new NewSale();
+        NewSaleWindowHelper instance = new NewSaleWindowHelper();
         double expResult = 0.0;
         double result = instance.DosDecimales(valor);
         assertEquals(expResult, result, 0.0);
