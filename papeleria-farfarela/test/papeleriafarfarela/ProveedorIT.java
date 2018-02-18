@@ -5,6 +5,8 @@
  */
 package papeleriafarfarela;
 
+import PapeleriaFarfarela.Provider;
+import PapeleriaFarfarela.Article;
 import java.util.Collection;
 import java.util.Iterator;
 import org.junit.After;
@@ -40,80 +42,80 @@ public class ProveedorIT {
     }
 
     /**
-     * Test of getArticulos method, of class Proveedor.
+     * Test of getArticle method, of class Provider.
      */
     @Test
     public void testGetArticulos() {
         System.out.println("getArticulos");
-        Proveedor instance = new Proveedor();
-        Collection<Articulo> expResult = null;
-        Collection<Articulo> result = instance.getArticulos();
+        Provider instance = new Provider();
+        Collection<Article> expResult = null;
+        Collection<Article> result = instance.getArticle();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getIteratorArticulos method, of class Proveedor.
+     * Test of getArticleIterator method, of class Provider.
      */
     @Test
     public void testGetIteratorArticulos() {
         System.out.println("getIteratorArticulos");
-        Proveedor instance = new Proveedor();
+        Provider instance = new Provider();
         Iterator expResult = null;
-        Iterator result = instance.getIteratorArticulos();
+        Iterator result = instance.getArticleIterator();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setArticulos method, of class Proveedor.
+     * Test of setArticle method, of class Provider.
      */
     @Test
     public void testSetArticulos() {
         System.out.println("setArticulos");
-        Collection<Articulo> newArticulos = null;
-        Proveedor instance = new Proveedor();
-        instance.setArticulos(newArticulos);
+        Collection<Article> newArticulos = null;
+        Provider instance = new Provider();
+        instance.setArticle(newArticulos);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of addArticulos method, of class Proveedor.
+     * Test of addAticle method, of class Provider.
      */
     @Test
     public void testAddArticulos() {
         System.out.println("addArticulos");
-        Articulo newArticulos = null;
-        Proveedor instance = new Proveedor();
-        instance.addArticulos(newArticulos);
+        Article newArticulos = null;
+        Provider instance = new Provider();
+        instance.addAticle(newArticulos);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of removeArticulos method, of class Proveedor.
+     * Test of removeArticle method, of class Provider.
      */
     @Test
     public void testRemoveArticulos() {
         System.out.println("removeArticulos");
-        Articulo oldArticulos = null;
-        Proveedor instance = new Proveedor();
-        instance.removeArticulos(oldArticulos);
+        Article oldArticulos = null;
+        Provider instance = new Provider();
+        instance.removeArticle(oldArticulos);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of removeAllArticulos method, of class Proveedor.
+     * Test of removeAllArticle method, of class Provider.
      */
     @Test
     public void testRemoveAllArticulos() {
         System.out.println("removeAllArticulos");
-        Proveedor instance = new Proveedor();
-        instance.removeAllArticulos();
+        Provider instance = new Provider();
+        instance.removeAllArticle();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

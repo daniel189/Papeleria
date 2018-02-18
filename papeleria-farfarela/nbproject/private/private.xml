@@ -3,11 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Lizeth/Documents/GitHub/Papeleria/papeleria-farfarela/src/ViewIva/NewIva.java</file>
             <file>file:/C:/Users/Lizeth/Documents/GitHub/Papeleria/papeleria-farfarela/src/ViewIva/EditionIva.java</file>
             <file>file:/C:/Users/Lizeth/Documents/GitHub/Papeleria/papeleria-farfarela/src/ViewIva/ReadIva.java</file>
             <file>file:/C:/Users/Lizeth/Documents/GitHub/Papeleria/papeleria-farfarela/test/VistasIva/IvaNewIT.java</file>
             <file>file:/C:/Users/Lizeth/Documents/GitHub/Papeleria/papeleria-farfarela/src/ViewIva/NewIvaMethods.java</file>
+=======
+            <file>file:/D:/Papeleria/papeleria-farfarela/src/papeleriafarfarela/Proveedor.java</file>
+            <file>file:/D:/Papeleria/papeleria-farfarela/src/VistaEmpleado/EmpleadoPrincipal.java</file>
+            <file>file:/D:/Papeleria/papeleria-farfarela/src/Vista/HomeAplicativo.java</file>
+            <file>file:/D:/Papeleria/papeleria-farfarela/src/MODELO/QueryProveedor.java</file>
+>>>>>>> d7885020c301026e219e63ea8773c0ce7c64ac53
         </group>
     </open-files>
 </project-private>

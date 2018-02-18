@@ -7,11 +7,8 @@ package VistasVentas;
 
 //import Modelo.Conexion;
 import MODELO.*;
-import Vista.HomeAplicativo;
-import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
@@ -29,13 +26,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import static javax.management.Query.gt;
-import static javax.management.Query.lt;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -43,35 +35,34 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Ricardo
  */
-public class VentasNew extends javax.swing.JInternalFrame{
+public class NewSale extends javax.swing.JInternalFrame{
 
     
     int n = 0, item = -1;
     double totals = 0;
-    DefaultTableModel modelo;
+    DefaultTableModel salesTebleModel;
     // llamada clase de conexion
-    Conexion conectar = new Conexion();
-    String ClienteExistente = "no";
-    boolean u = false, nombre = false, apellido = false;
+    Conexion conection = new Conexion();
+    String clientExist = "no";
+    boolean searchById = false, searchByName = false, searchByLastName = false;
     int bandera = 1;
 
     /**
      * Crea nuevo formulario para el ingreso de un registro de ventas
      */
-    public VentasNew() {
+    public NewSale() {
         //super(parent, modal);
         initComponents();
-
-        modelo = new DefaultTableModel();
+        salesTebleModel = new DefaultTableModel();
         // Agrega fila
-        modelo.addColumn("No.");
-        modelo.addColumn("Código");
-        modelo.addColumn("Artículo");
-        modelo.addColumn("Cantidad");
-        modelo.addColumn("Valor Unitario");
-        modelo.addColumn("Valor Subtotal");
+        salesTebleModel.addColumn("No.");
+        salesTebleModel.addColumn("Código");
+        salesTebleModel.addColumn("Artículo");
+        salesTebleModel.addColumn("Cantidad");
+        salesTebleModel.addColumn("Valor Unitario");
+        salesTebleModel.addColumn("Valor Subtotal");
         
-        this.JTableArticulos.setModel(modelo);
+        NewSale.JTableArticulos.setModel(salesTebleModel);
         //setLocationRelativeTo(null);
 
         String cuenta = Vista.HomeAplicativo.getCuenta1();
@@ -125,52 +116,177 @@ public class VentasNew extends javax.swing.JInternalFrame{
      * @return nulo
      */
     public String verEmpleado(String cuenta){return null;}
-       
-    
-    
-    
+        
     /**
      * Funcion encargada de cargar los articuos en un JDialog
      */
-    private void llamarArticulos() {
+    private void showArticles(){
+        NewSaleWindowHelper windowOfArticles = NewSaleHelper();
+        windowOfArticles.showArticles();
+    }
 
-        // llamada de datos
-        QueryArticulo load = new QueryArticulo();
-        load.CargarArticulos();
-        //Centramos nuestro jDialog
-        jDialogArticulos.setLocation(200, 100);
-        //La hacemos modal
-        jDialogArticulos.setModal(true);
-        //Establecemos dimensiones.
-        jDialogArticulos.setMinimumSize(new Dimension(747, 385));
-
-        //Establecemos un título para el jDialog
-        jDialogArticulos.setTitle("Lista de Artículos.");
-        //La hacemos visible.
-        jDialogArticulos.setVisible(true);
+/**
+     * Funcion para guardar los articulos en la tabla detalle de la base de
+     * datos
+     */
+    public void GuardarArticulos() {
+        Connection cone = Conexion.getConexion();
+        for (int w = 0; w < n; w = w + 1) {
+            //obteniendo valor fila por columna a la vez y w es fila y n es total de articulos comprados
+            String col1 = (String) NewSale.JTableArticulos.getValueAt(w, 1); // codigo articulo
+            String col2 = (String) NewSale.JTableArticulos.getValueAt(w, 3); // cantidad articulos
+            String col3 = (String) NewSale.JTableArticulos.getValueAt(w, 5); // costo
+            String sql_Ventas = "INSERT INTO detalle (FAC_ID,ART_ID,DET_CANTIDAD,DET_VALOR)VALUES (?,?,?,?)";
+            try {
+                PreparedStatement pst = cone.prepareStatement(sql_Ventas);
+                pst.setString(1, jTextFieldCodFacturas.getText());
+                pst.setString(2, col1);
+                pst.setString(3, col2);
+                pst.setString(4, col3);
+                int ns = pst.executeUpdate();
+                if (ns > 0) {
+                    System.out.println("Registrado Exitosamente en Detalle de Facturas: " + col1);
+                }
+                cone.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error - " + ex);
+                //Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     /**
-     * funcion que carga la lista de clientes en un JDialog con el usod e una 
+     * Funcion para hacer un parser de dos decimales a cualquier valor
+     * @param valor es el valor a ser redondeado.
+     * @return un valor redondeado
+     */
+    public double DosDecimales(double valor) {
+        valor *= 100;
+        valor = Math.round(valor);
+        valor /= 100;
+        return valor;
+    }
+
+    /**
+     * Funcion para generar un documento PDF con el uso de la libreria itextpdf
+     */
+    public void GenerarPDF() {
+        Image portada;
+        Document document = new Document(PageSize.LETTER, 50, 50, 50, 50);
+        try {
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("facturas/" + jTextFieldCodFacturas.getText() + ".pdf"));
+            document.open();
+            portada = Image.getInstance("portada.jpg");
+            portada.setAlignment(Element.ALIGN_CENTER);
+            portada.scalePercent(45.0F); // tamaño de imagen
+            float totales = Float.parseFloat(jTextFieldGranTotal.getText());
+            document.add(portada);
+            document.add(new Paragraph("---------------------------------------------------------"));
+            document.add(new Paragraph("|   FACTURA PAPELERIA FARFARELA   |"));
+            document.add(new Paragraph("---------------------------------------------------------"));
+            document.add(new Paragraph("Numero Fact. : " + jTextFieldCodFacturas.getText()));
+            document.add(new Paragraph("Cliente : " + jTextFieldNombreCliente.getText() + " " + jTextFieldApellido.getText() + " - ID : " + jTextFieldCodigoCliente.getText()));
+            document.add(new Paragraph("Atendido por : " + verEmpleado(jTextFieldCodVendedor.getText())));
+            document.add(new Paragraph("Fecha   : [ " + jTextFieldFecha.getText()));
+            document.add(new Paragraph(" TOTAL A PAGAR : $ " + totales + "  d\u00f3lares"));
+            document.add(new Paragraph("| No. |  CODIGO  | ARTICULOS                                      | CANTIDAD | VAL UNIT | SUBTOTAL"));
+            document.add(new Paragraph("-----------------------------------------------------------------------" + "--------------------------------------------------------"));
+            // parte de dibujo la tabla
+            PdfContentByte cb = writer.getDirectContent();
+            PdfTemplate tp = cb.createTemplate(900, 500);
+            Graphics2D g2;
+            g2 = tp.createGraphicsShapes(900, 500);
+            // g2 = tp.createGraphics(500, 500);
+            NewSale.JTableArticulos.print(g2);
+            ///////IMPRIME
+            g2.dispose();
+            //posicion de la tabla de lista de compras
+            cb.addTemplate(tp, 50, -85);
+            //cierra el documento
+            document.close();
+            JOptionPane.showMessageDialog(null, "PDF Generado Exitosamente.");
+            try {
+                File path = new File("facturas/" + jTextFieldCodFacturas.getText() + ".pdf");
+                Desktop.getDesktop().open(path);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "El archivo no existe o est\u00e1 actualmente en uso.");
+        }
+    }
+
+    /**
+     * funcion para remplazar caraceres
+     * @param s_cadena cadena en la que se trabaja
+     * @param s_caracteres caracteres a remplazar
+     * @return la nueva cadena
+     */
+    public String EliminaCaracteres(String s_cadena, String s_caracteres) {
+        String nueva_cadena = "";
+        nueva_cadena = s_cadena.replace(s_caracteres, "");
+        System.out.println(nueva_cadena);
+        return nueva_cadena;
+    }
+
+    /**
+     * funcion que carga la lista de clientes en un JDialog con el usod e una
      * consulta en la base de datos
      */
-    private void llamarCliente() {
-
+    void llamarCliente() {
         // llamada de datos
         QueryCliente loadss = new QueryCliente();
         loadss.CargarClientes();
         //Centramos nuestro jDialog
-        jDialogCliente.setLocation(250, 150);
+        JdialogClient.setLocation(250, 150);
         //La hacemos modal
-        jDialogCliente.setModal(true);
+        JdialogClient.setModal(true);
         //Establecemos dimensiones.
-        jDialogCliente.setMinimumSize(new Dimension(530, 358));
+        JdialogClient.setMinimumSize(new Dimension(530, 358));
         //Establecemos un título para el jDialog
-        jDialogCliente.setTitle("Lista de Clientes.");
+        JdialogClient.setTitle("Lista de Clientes.");
         //La hacemos visible.
-        jDialogCliente.setVisible(true);
+        JdialogClient.setVisible(true);
     }
 
+    /**
+     * Funcion para ingresar la factura en la base de datos
+     * @return
+     */
+    public boolean GenerarFactura() {
+        // TODO add your handling code here:
+        // conection
+        boolean ident = true;
+        Connection reg = conection.getConexion();
+        // registro de BD a la tabla de Facturas
+        if (Double.parseDouble(jTextFieldSubTotal.getText()) == 0 || Double.parseDouble(jTextFieldIVA.getText()) == 0 || Double.parseDouble(jTextFieldGranTotal.getText()) == 0) {
+            JOptionPane.showMessageDialog(null, "Datos Incompletos. Factura no generada");
+            ident = false;
+        } else {
+            String sql_Facturas = "INSERT INTO facturas (fac_id,cli_identificador,cue_cuenta, fac_fecha,fac_descuento,fac_estado,fac_total)VALUES (?,?,?,?,?,?,?)";
+            try {
+                PreparedStatement pst = reg.prepareStatement(sql_Facturas);
+                pst.setString(1, jTextFieldCodFacturas.getText());
+                pst.setString(2, jTextFieldCodigoCliente.getText());
+                pst.setString(3, jTextFieldCodVendedor.getText());
+                pst.setString(4, jTextFieldFecha.getText());
+                pst.setString(5, jTextFieldDescuento.getText());
+                pst.setString(6, "0");
+                pst.setString(7, jTextFieldGranTotal.getText());
+                int ns = pst.executeUpdate();
+                if (ns > 0) {
+                    JOptionPane.showMessageDialog(null, "Factura Registrada Exitosamente");
+                }
+                GuardarArticulos();
+                GenerarPDF();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Datos de vendedor incorrectos");
+                //            Logger.getLogger(NewSale.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return ident;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -180,7 +296,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialogArticulos = new javax.swing.JDialog();
+        jDialogArticles = new javax.swing.JDialog();
         jScrollPane1 = new javax.swing.JScrollPane();
         SeleccionarArticulos = new javax.swing.JTable();
         btnSeleccionarArticulo = new javax.swing.JButton();
@@ -188,7 +304,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
         jLabel21 = new javax.swing.JLabel();
         txtParametroBusqueda = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
-        jDialogCliente = new javax.swing.JDialog();
+        JdialogClient = new javax.swing.JDialog();
         jPanel7 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         txtParametroBusqueda3 = new javax.swing.JTextField();
@@ -315,34 +431,34 @@ public class VentasNew extends javax.swing.JInternalFrame{
             }
         });
 
-        javax.swing.GroupLayout jDialogArticulosLayout = new javax.swing.GroupLayout(jDialogArticulos.getContentPane());
-        jDialogArticulos.getContentPane().setLayout(jDialogArticulosLayout);
-        jDialogArticulosLayout.setHorizontalGroup(
-            jDialogArticulosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialogArticulosLayout.createSequentialGroup()
+        javax.swing.GroupLayout jDialogArticlesLayout = new javax.swing.GroupLayout(jDialogArticles.getContentPane());
+        jDialogArticles.getContentPane().setLayout(jDialogArticlesLayout);
+        jDialogArticlesLayout.setHorizontalGroup(
+            jDialogArticlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialogArticlesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jDialogArticulosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDialogArticlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
-                    .addGroup(jDialogArticulosLayout.createSequentialGroup()
+                    .addGroup(jDialogArticlesLayout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 403, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jDialogArticulosLayout.createSequentialGroup()
+            .addGroup(jDialogArticlesLayout.createSequentialGroup()
                 .addGap(174, 174, 174)
                 .addComponent(btnSeleccionarArticulo)
                 .addGap(92, 92, 92)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jDialogArticulosLayout.setVerticalGroup(
-            jDialogArticulosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialogArticulosLayout.createSequentialGroup()
+        jDialogArticlesLayout.setVerticalGroup(
+            jDialogArticlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialogArticlesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jDialogArticulosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDialogArticlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSeleccionarArticulo)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -420,33 +536,33 @@ public class VentasNew extends javax.swing.JInternalFrame{
             }
         });
 
-        javax.swing.GroupLayout jDialogClienteLayout = new javax.swing.GroupLayout(jDialogCliente.getContentPane());
-        jDialogCliente.getContentPane().setLayout(jDialogClienteLayout);
-        jDialogClienteLayout.setHorizontalGroup(
-            jDialogClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialogClienteLayout.createSequentialGroup()
-                .addGroup(jDialogClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDialogClienteLayout.createSequentialGroup()
+        javax.swing.GroupLayout JdialogClientLayout = new javax.swing.GroupLayout(JdialogClient.getContentPane());
+        JdialogClient.getContentPane().setLayout(JdialogClientLayout);
+        JdialogClientLayout.setHorizontalGroup(
+            JdialogClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JdialogClientLayout.createSequentialGroup()
+                .addGroup(JdialogClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JdialogClientLayout.createSequentialGroup()
                         .addGap(85, 85, 85)
                         .addComponent(btnSeleccionarCliente)
                         .addGap(134, 134, 134)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDialogClienteLayout.createSequentialGroup()
+                    .addGroup(JdialogClientLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jDialogClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(JdialogClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jDialogClienteLayout.setVerticalGroup(
-            jDialogClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialogClienteLayout.createSequentialGroup()
+        JdialogClientLayout.setVerticalGroup(
+            JdialogClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JdialogClientLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jDialogClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(JdialogClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSeleccionarCliente))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -836,7 +952,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
      * @param evt funcion que carga la informacion del articulo de la abse de datos
      */
     private void btnNuevoArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoArticuloActionPerformed
-        llamarArticulos();
+        showArticles();
     }//GEN-LAST:event_btnNuevoArticuloActionPerformed
 
     /**
@@ -904,33 +1020,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
          System.out.println("idasignar " + idasignar);
        return idasignar;
    }  
-    
-//     public int verIDEmpleado(int idArticulo)
-//   {
-//       PreparedStatement busqueda;
-//       ResultSet resul;
-//       int stock=0;
-//      Connection cone= Conexion.getConexion();
-//    
-//          try { 
-//              String sql = "SELECT FAM_ID FROM ARTICULOS WHERE ART_ID = ?";
-//              busqueda = cone.prepareStatement(sql);
-//              busqueda.setInt(1, idArticulo);
-//              resul=busqueda.executeQuery();
-//              while(resul.next())
-//              {
-//                stock = resul.getInt("FAM_ID");
-//              }
-//              resul.close();
-//              cone.close();
-//              } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null,"Error\n Por la Causa" + ex);
-//          } 
-//        
-//         System.out.println("stock " + stock);
-//       return stock;
-//   }  
-    
+      
     /**
      * 
      * @param idArticulo mediante el cual se conocera el stock del mismo
@@ -997,7 +1087,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
                 datos[3] = jTextFieldCant.getText();
                 datos[4] = jTextFieldValor.getText();
                 datos[5] = String.valueOf(valTotal);
-                modelo.addRow(datos);
+                salesTebleModel.addRow(datos);
 
                 totals = Double.parseDouble(jTextFieldSubTotal.getText());
                 totals += valTotal;
@@ -1061,7 +1151,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
             totals = DosDecimales(totals);
             jTextFieldSubTotal.setText(String.valueOf(totals));
             // eliminar fila
-            this.modelo.removeRow(i);
+            this.salesTebleModel.removeRow(i);
             // restar un aticulos
             n = n - 1;
             // poner nuevo ciclo
@@ -1092,7 +1182,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
     private void btnRegistrarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarFacturaActionPerformed
 
         //PARA DETERMINAR SI ES CLIENTE EXISTENTE O NO
-        if (ClienteExistente.equals("si")) {
+        if (clientExist.equals("si")) {
             JOptionPane.showMessageDialog(null, "Cliente existente");
             GenerarFactura();
 
@@ -1124,140 +1214,6 @@ public class VentasNew extends javax.swing.JInternalFrame{
 
     }//GEN-LAST:event_btnRegistrarFacturaActionPerformed
 
-    /**
-     * Funcion para ingresar la factura en la base de datos
-     * @return 
-     */
-    
-    public boolean GenerarFactura() {
-        // TODO add your handling code here:
-        // conectar
-        boolean ident = true;
-        Connection reg = conectar.getConexion();
-        // registro de BD a la tabla de Facturas
-        if (Double.parseDouble(jTextFieldSubTotal.getText()) == 0
-                || Double.parseDouble(jTextFieldIVA.getText()) == 0
-                || Double.parseDouble(jTextFieldGranTotal.getText()) == 0) {
-            JOptionPane.showMessageDialog(null, "Datos Incompletos. Factura no generada");
-            ident=false;
-        } else {
-
-            String sql_Facturas = "INSERT INTO facturas (fac_id,cli_identificador,cue_cuenta, fac_fecha,fac_descuento,fac_estado,fac_total)VALUES (?,?,?,?,?,?,?)";
-            try {
-                PreparedStatement pst = reg.prepareStatement(sql_Facturas);
-                pst.setString(1, jTextFieldCodFacturas.getText());
-                pst.setString(2, jTextFieldCodigoCliente.getText());
-                pst.setString(3, jTextFieldCodVendedor.getText());
-                pst.setString(4, jTextFieldFecha.getText());
-                pst.setString(5, jTextFieldDescuento.getText());
-                pst.setString(6, "0");
-                pst.setString(7, jTextFieldGranTotal.getText());
-                int ns = pst.executeUpdate();
-                if (ns > 0) {
-                    JOptionPane.showMessageDialog(null, "Factura Registrada Exitosamente");
-                }
-                GuardarArticulos();
-                GenerarPDF();
-                
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Datos de vendedor incorrectos");
-//            Logger.getLogger(VentasNew.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        return ident;
-    }
-
-    /**
-     * Funcion para guardar los articulos en la tabla detalle de la base de 
-     * datos
-     */
-    public void GuardarArticulos(){
-        
-        Connection cone = Conexion.getConexion();
-         for (int w = 0; w < n; w = w + 1) {
-            //obteniendo valor fila por columna a la vez y w es fila y n es total de articulos comprados
-            
-            String col1 = (String) JTableArticulos.getValueAt(w, 1);// codigo articulo
-            String col2 = (String) JTableArticulos.getValueAt(w, 3);// cantidad articulos
-            String col3 = (String) JTableArticulos.getValueAt(w, 5);// costo
-
-            String sql_Ventas = "INSERT INTO detalle (FAC_ID,ART_ID,DET_CANTIDAD,DET_VALOR)VALUES (?,?,?,?)";
-            try {
-                PreparedStatement pst = cone.prepareStatement(sql_Ventas);
-                pst.setString(1, jTextFieldCodFacturas.getText());
-                pst.setString(2, col1);
-                pst.setString(3, col2);
-                pst.setString(4, col3);
-                int ns = pst.executeUpdate();
-                if (ns > 0) {
-
-                    System.out.println("Registrado Exitosamente en Detalle de Facturas: " + col1);
-                }
-                cone.close();
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error - " + ex);
-                //Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        
-    }
-    
-    /**
-     * Funcion para generar un documento PDF con el uso de la libreria itextpdf
-     */
-     public void GenerarPDF() {
-        
-        Image portada;
-        Document document = new Document(PageSize.LETTER, 50, 50, 50, 50);
-        try {
-            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("facturas/" + jTextFieldCodFacturas.getText() + ".pdf"));
-            document.open();
-            portada = Image.getInstance("portada.jpg");
-            portada.setAlignment(Element.ALIGN_CENTER);
-            portada.scalePercent(45f);// tamaño de imagen
-            float totales=Float.parseFloat(jTextFieldGranTotal.getText());
-            document.add(portada);
-            document.add(new Paragraph("---------------------------------------------------------"));
-            document.add(new Paragraph("|   FACTURA PAPELERIA FARFARELA   |"));
-            document.add(new Paragraph("---------------------------------------------------------"));
-            document.add(new Paragraph("Numero Fact. : " + jTextFieldCodFacturas.getText()));
-            document.add(new Paragraph("Cliente : " + jTextFieldNombreCliente.getText() + " " + jTextFieldApellido.getText() + " - ID : " + jTextFieldCodigoCliente.getText()));
-            document.add(new Paragraph("Atendido por : " + verEmpleado(jTextFieldCodVendedor.getText())));
-            document.add(new Paragraph("Fecha   : [ " + jTextFieldFecha.getText() )); 
-            document.add(new Paragraph( " TOTAL A PAGAR : $ " + totales + "  dólares"));
-            
-            document.add(new Paragraph("| No. |  CODIGO  | ARTICULOS                                      | CANTIDAD | VAL UNIT | SUBTOTAL"));
-            document.add(new Paragraph("-----------------------------------------------------------------------"
-                    + "--------------------------------------------------------"));
-
-            // parte de dibujo la tabla
-            PdfContentByte cb = writer.getDirectContent();
-            PdfTemplate tp = cb.createTemplate(900, 500);
-            Graphics2D g2;
-            g2 = tp.createGraphicsShapes(900, 500);
-            // g2 = tp.createGraphics(500, 500);
-            
-            JTableArticulos.print(g2);
-            ///////IMPRIME
-              
-            g2.dispose();
-            //posicion de la tabla de lista de compras
-            cb.addTemplate(tp, 50, -85);
-              //cierra el documento
-            document.close();
-          
-            JOptionPane.showMessageDialog(null, "PDF Generado Exitosamente.");
-            try {
-                File path = new File("facturas/" + jTextFieldCodFacturas.getText() + ".pdf");
-                Desktop.getDesktop().open(path);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "El archivo no existe o está actualmente en uso.");
-        }
-    }
      
      /**
       * Funcion para seleccionar un articulo dentro de la tabla de la interfas
@@ -1275,7 +1231,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
             txtCodArticulo.setText(String.valueOf(SeleccionarArticulos.getValueAt(i, 0)));
             txtArticulos.setText(String.valueOf(SeleccionarArticulos.getValueAt(i, 1)));
             jTextFieldValor.setText(String.valueOf(SeleccionarArticulos.getValueAt(i, 3)));
-            jDialogArticulos.dispose();
+            jDialogArticles.dispose();
         }
 
     }//GEN-LAST:event_btnSeleccionarArticuloActionPerformed
@@ -1326,33 +1282,6 @@ public class VentasNew extends javax.swing.JInternalFrame{
         }
     }//GEN-LAST:event_btnGenerarTotalActionPerformed
 
-    /**
-     * Funcion para hacer un parser de dos decimales a cualquier valor
-     * @param valor es el valor a ser redondeado.
-     * @return un valor redondeado 
-     */
-    public double DosDecimales(double valor) {
-        valor *= 100;
-        valor = Math.round(valor);
-        valor /= 100;
-
-        return valor;
-    }
-
-    /**
-     * funcion para remplazar caraceres
-     * @param s_cadena cadena en la que se trabaja
-     * @param s_caracteres caracteres a remplazar
-     * @return la nueva cadena
-     */
-    public String EliminaCaracteres(String s_cadena, String s_caracteres) {
-
-        String nueva_cadena = "";
-
-        nueva_cadena = s_cadena.replace(s_caracteres, "");
-        System.out.println(nueva_cadena);
-        return nueva_cadena;
-    }
 
     /**
      * funcion para seleccionar cliente de la lista presentada y setear los 
@@ -1367,7 +1296,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
             JOptionPane.showMessageDialog(null, "Por favor seleccione una fila");
         } else//de lo contrario si se selecciono la fila 
         {
-            ClienteExistente = "si";
+            clientExist = "si";
             // obtener valor de tabla por columna y enviar datos a texfield
             jTextFieldCodigoCliente.setText(String.valueOf(SeleccionarCliente.getValueAt(i, 0)));
             jTextFieldNombreCliente.setText(String.valueOf(SeleccionarCliente.getValueAt(i, 1)));
@@ -1375,7 +1304,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
             jTextFieldCodigoCliente.setEditable(false);
             jTextFieldNombreCliente.setEditable(false);
             jTextFieldApellido.setEditable(false);
-            jDialogCliente.dispose();
+            JdialogClient.dispose();
         }
 
 
@@ -1401,7 +1330,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
      * @param evt 
      */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jDialogCliente.dispose();
+        JdialogClient.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -1409,7 +1338,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
      * @param evt 
      */
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        jDialogArticulos.dispose();
+        jDialogArticles.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
@@ -1438,8 +1367,8 @@ public class VentasNew extends javax.swing.JInternalFrame{
     }//GEN-LAST:event_jTextFieldNombreClienteKeyTyped
 
     /**
-     * funcion para validar que el apellido sea en efecto una cadena de 
-     * caracteres y no numeros
+     * funcion para validar que el searchByLastName sea en efecto una cadena de 
+ caracteres y no numeros
      * @param evt 
      */
     private void jTextFieldApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldApellidoKeyTyped
@@ -1460,7 +1389,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
 
         QueryCliente qc = new QueryCliente();
         String parametroBusqueda = txtParametroBusqueda3.getText();
-        qc.buscarCliente(parametroBusqueda, u, nombre, apellido);
+        qc.buscarCliente(parametroBusqueda, searchById, searchByName, searchByLastName);
 
 
     }//GEN-LAST:event_txtParametroBusqueda3KeyReleased
@@ -1472,22 +1401,22 @@ public class VentasNew extends javax.swing.JInternalFrame{
     private void cboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboxItemStateChanged
         item = cbox.getSelectedIndex();
         if (item == 0) {
-            u = true;
-            nombre = false;
-            apellido = false;
+            searchById = true;
+            searchByName = false;
+            searchByLastName = false;
         } else if (item == 1) {
-            u = false;
-            nombre = true;
-            apellido = false;
+            searchById = false;
+            searchByName = true;
+            searchByLastName = false;
         } else if (item == 2) {
-            u = false;
-            nombre = false;
-            apellido = true;
+            searchById = false;
+            searchByName = false;
+            searchByLastName = true;
         }
         System.out.println(item);
-        System.out.println(String.valueOf(u));
-        System.out.println(String.valueOf(nombre));
-        System.out.println(String.valueOf(apellido));
+        System.out.println(String.valueOf(searchById));
+        System.out.println(String.valueOf(searchByName));
+        System.out.println(String.valueOf(searchByLastName));
 
     }//GEN-LAST:event_cboxItemStateChanged
 
@@ -1543,7 +1472,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
     }//GEN-LAST:event_jTextFieldGranTotalKeyTyped
 
     /**
-     * Funcion para cambiar el nombre del cliente a mayusculas
+     * Funcion para cambiar el searchByName del cliente a mayusculas
      * @param evt 
      */
     private void jTextFieldNombreClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreClienteKeyReleased
@@ -1553,7 +1482,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
     }//GEN-LAST:event_jTextFieldNombreClienteKeyReleased
 
     /**
-     * funcion para cambiar el apellido del cliente a mayusculas
+     * funcion para cambiar el searchByLastName del cliente a mayusculas
      * @param evt 
      */
     private void jTextFieldApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldApellidoKeyReleased
@@ -1579,26 +1508,27 @@ public class VentasNew extends javax.swing.JInternalFrame{
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(VentasNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(NewSale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(VentasNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(NewSale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(VentasNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(NewSale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(VentasNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(NewSale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new VentasNew().setVisible(true);
+//                new NewSale().setVisible(true);
 //            }
 //        });
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTable JTableArticulos;
+    private javax.swing.JDialog JdialogClient;
     private javax.swing.JLabel LabelCant;
     public static javax.swing.JTable SeleccionarArticulos;
     public static javax.swing.JTable SeleccionarCliente;
@@ -1615,8 +1545,7 @@ public class VentasNew extends javax.swing.JInternalFrame{
     private javax.swing.JComboBox<String> cbox;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
-    public static javax.swing.JDialog jDialogArticulos;
-    private javax.swing.JDialog jDialogCliente;
+    public static javax.swing.JDialog jDialogArticles;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1668,4 +1597,8 @@ public class VentasNew extends javax.swing.JInternalFrame{
     private javax.swing.JLabel vendedors;
     private javax.swing.JSpinner xcant;
     // End of variables declaration//GEN-END:variables
+
+    private NewSaleWindowHelper NewSaleHelper() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

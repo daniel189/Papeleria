@@ -3,23 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package papeleriafarfarela;
+package PapeleriaFarfarela;
 
-import Vista.InicioAplicativo;
+import Vista.AppStart;
 
 /**
  *
  * @author Crispin
  */
-public class PapeleriaFarfarela {
+public class FarfarelaStationery {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        InicioAplicativo boj = new InicioAplicativo();
-        boj.show();
+        // AppStartWindow es un objeto de la vista de AppStart para iniciar el aplciativo
+        AppStart appStartWindow = new AppStart();
+        //Show method was deprecated
+        appStartWindow.setVisible(true);
     }
     
 }

@@ -21,14 +21,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 
-public class VentasView extends javax.swing.JInternalFrame {
+public class SalesView extends javax.swing.JInternalFrame {
 
     
     QueryFactura queryFactura = new QueryFactura();
     /**
      * Creacion de un nuevo formularo de visualizacion de ventas
      */
-    public VentasView() throws ParseException {
+    public SalesView() throws ParseException {
         
         initComponents();
         
@@ -365,7 +365,7 @@ public class VentasView extends javax.swing.JInternalFrame {
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonBuscarTodos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jButtonCancelar)
                 .addContainerGap())
         );
@@ -490,7 +490,7 @@ public class VentasView extends javax.swing.JInternalFrame {
             //Imprimir JTable
             jTableListarFacturas.print(JTable.PrintMode.FIT_WIDTH, headerFormat, footerFormat);
         } catch (PrinterException ex) {
-            Logger.getLogger(VentasView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SalesView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -666,13 +666,13 @@ public class VentasView extends javax.swing.JInternalFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(VentasView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(SalesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(VentasView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(SalesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(VentasView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(SalesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(VentasView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(SalesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //        //</editor-fold>
@@ -680,7 +680,7 @@ public class VentasView extends javax.swing.JInternalFrame {
 //        /* Create and display the dialog */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                VentasView dialog = new VentasView();
+//                SalesView dialog = new SalesView();
 //                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 //                  
 //                });

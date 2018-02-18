@@ -5,6 +5,7 @@
  */
 package papeleriafarfarela;
 
+import PapeleriaFarfarela.FarfarelaStationery;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -38,13 +39,13 @@ public class PapeleriaFarfarelaIT {
     }
 
     /**
-     * Test of main method, of class PapeleriaFarfarela.
+     * Test of main method, of class FarfarelaStationery.
      */
     @Test
     public void testMain() {
         System.out.println("main");
         String[] args = null;
-        PapeleriaFarfarela.main(args);
+        FarfarelaStationery.main(args);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

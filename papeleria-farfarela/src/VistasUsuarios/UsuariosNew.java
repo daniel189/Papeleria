@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import papeleriafarfarela.Cuenta;
+import PapeleriaFarfarela.Account;
 
 /**
  *
@@ -278,11 +278,11 @@ public class UsuariosNew extends javax.swing.JInternalFrame {
     
     /**
      * 
-     * @return funcion que crea un objeto tipo Cuenta, extrayendo la informacion
-     * de los componentes de la interfaz 
+     * @return funcion que crea un objeto tipo Account, extrayendo la informacion
+ de los componentes de la interfaz 
      * 
      */
-    private Cuenta getDatos(){
+    private Account getDatos(){
         String cuenta, contrasena;
         int nivel,empleado, aux;
         cuenta = txtCuenta.getText();
@@ -292,7 +292,7 @@ public class UsuariosNew extends javax.swing.JInternalFrame {
         aux = cbEmpleados.getSelectedIndex();
         empleado = cod.get(aux);
         //System.out.println("Codi Epleado: "+empleado);
-        Cuenta obj = new Cuenta(cuenta,contrasena,nivel,empleado,"1");
+        Account obj = new Account(cuenta,contrasena,nivel,empleado,"1");
         return obj;
     }
 
