@@ -6,8 +6,9 @@
 package MODELO;
 
 import MODELO.Conexion;
-import VistasClientes.NuevoCliente;
-import VistasClientes.GestionCliente;
+import ViewClients.CustomerManagemetMethods;
+import ViewClients.NewCustomer;
+import ViewClients.CustomerManagement;
 import VistasVentas.VentasNew;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,6 +22,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -38,6 +40,11 @@ public class QueryCliente {
     String information[][] = {};
     // Conectar Base de Datos
     Conexion conectar = new Conexion();
+    JTextField txtIdentificador;
+    JTextField txtApellidos;
+    JTextField txtNombres;
+    JTextField txtDireccion;
+    JTextField txtTelefono;
     public void setCliente(ArrayList<String> lista){
         Connection cone = Conexion.getConexion();
         try {
@@ -53,7 +60,7 @@ public class QueryCliente {
             int res=sentencia.executeUpdate();
             if(res>0){
                 JOptionPane.showMessageDialog(null,"OK, DATOS GUARDADOS");
-                NuevoCliente obj = new NuevoCliente();
+                NewCustomer obj = new NewCustomer();
                 obj.dispose();
             }
             else{
@@ -72,8 +79,8 @@ public class QueryCliente {
             int res = sentencia.executeUpdate();
             if(res>0){
                 JOptionPane.showMessageDialog(null,"OK, DATOS ELIMINADOS");
-                GestionCliente obj = new GestionCliente();
-                obj.limparDatos();
+                CustomerManagemetMethods obj = new  CustomerManagemetMethods();
+                obj.limparDatos(txtIdentificador, txtApellidos, txtNombres, txtDireccion, txtTelefono);
             }
             else{
                 JOptionPane.showMessageDialog(null,"ERROR, DATOS FALLIDOS O DATOS RELACIONADOS CON MAS ELEMENTOS");
@@ -94,8 +101,8 @@ public class QueryCliente {
             int res=sentencia.executeUpdate();
             if(res>0){
                 JOptionPane.showMessageDialog(null,"OK, DATOS EDITADOS");
-                GestionCliente obj = new  GestionCliente();
-                obj.limparDatos();
+                CustomerManagemetMethods obj = new  CustomerManagemetMethods();
+                obj.limparDatos(txtIdentificador, txtApellidos, txtNombres, txtDireccion, txtTelefono);
             }
             else{
                 JOptionPane.showMessageDialog(null,"ERROR, DATOS FALLIDOS");

@@ -3,13 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package VistasFamilia;
+package ViewFamily;
 import MODELO.QueryFamilia;
-import java.util.ArrayList;
-import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import papeleriafarfarela.Familia;
 
 /**
  *
@@ -21,14 +17,8 @@ import papeleriafarfarela.Familia;
  * esta clase nos permite almacenar al grupo al que pertenece e articulo de la 
  * papeleria
  */
-public class BusquedaFamilia extends javax.swing.JInternalFrame {
-    /**
-     * familiaIngreso instancia familia del paquete papeleriafarfarela
-     * articuloQuery instancia de la clase QueryFamilia  dentro del paquete Modelo
-     * modelo instancia del componente table
-     */
-    QueryFamilia articuloQuery=new QueryFamilia();
-    DefaultTableModel modelo=new DefaultTableModel();  
+public class SearchFamily extends javax.swing.JInternalFrame {
+     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -183,7 +173,7 @@ public class BusquedaFamilia extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public BusquedaFamilia() {
+    public SearchFamily() {
   
         initComponents();
 
@@ -207,6 +197,8 @@ public class BusquedaFamilia extends javax.swing.JInternalFrame {
      * este evento es para seleccionar datos de una tabla
      */
     private void txtingresoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtingresoKeyReleased
+        QueryFamilia articuloQuery=new QueryFamilia();
+        DefaultTableModel modelo=new DefaultTableModel();
         if(txtingreso.getText().isEmpty())
         {
             for (int i = 0; i < tab_familias.getRowCount(); i++) {
@@ -237,8 +229,7 @@ public class BusquedaFamilia extends javax.swing.JInternalFrame {
             if (Character.isDigit(caracter)) {
                 
                 evt.consume();
-                txtingreso.setCursor(null);
-                
+                txtingreso.setCursor(null); 
             }
         }
         else{

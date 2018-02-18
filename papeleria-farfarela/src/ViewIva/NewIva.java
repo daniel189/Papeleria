@@ -3,37 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package VistasIva;
-import MODELO.Conexion;
-import VistasFamilia.*;
-import MODELO.QueryFamilia;
+package ViewIva;
 import MODELO.QueryIva;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import papeleriafarfarela.Familia;
 
 /**
  *
  * @author martha
  */
-public class NuevoIva extends javax.swing.JInternalFrame {
-    ArrayList<Familia> lista;
-    Familia familiaIngreso=new Familia();
-    QueryFamilia artQuery=new QueryFamilia();
-    int pro_id;
+public class NewIva extends javax.swing.JInternalFrame {
+    NewIvaMethods methods=new NewIvaMethods();
     int ivaId;
-    Conexion conectar = new Conexion();
-    QueryIva objeto = new QueryIva();
-    public NuevoIva() {  
+    
+    
+    public NewIva() {  
+        
         initComponents();
-        claveMax();      
+        methods.claveMax(txtCodigo, ivaId);      
     }
 
   
@@ -200,44 +189,21 @@ public class NuevoIva extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
- public final void claveMax() {
-        try {
-            //Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/farfarela", "ECUATORIANO16", "root");
-            Connection conexion = conectar.getConexion();
-            Statement comando = conexion.createStatement();
-            ResultSet registro = comando.executeQuery("select max(iva_id)+1 FROM IVA");
-            if (registro.next() == true) {
-                if (registro.getString("max(iva_id)+1") == null) {
-                    txtCodigo.setText("1");
-                    ivaId=Integer.parseInt(txtCodigo.getText());
-                } else {
-                    txtCodigo.setText(registro.getString("max(iva_id)+1"));
-                       ivaId=Integer.parseInt(txtCodigo.getText());
-                }
 
-            } else {
-                JOptionPane.showMessageDialog(null, "Error");
-            }
-            conexion.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error " + ex);
-        }
-    }
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        QueryIva objeto = new QueryIva();
         ArrayList<String> lista = new ArrayList<>();
-                lista.add(txtCodigo.getText());
-                lista.add(txt_valor.getText());
-                String formato =dcFechaNacimiento.getDateFormatString();
-                Date date  = dcFechaNacimiento.getDate();
-                SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                lista.add(String.valueOf(sdf.format(date)));
+        lista.add(txtCodigo.getText());
+        lista.add(txt_valor.getText());
+        String formato =dcFechaNacimiento.getDateFormatString();
+        Date date  = dcFechaNacimiento.getDate();
+        SimpleDateFormat sdf = new SimpleDateFormat(formato);
+        lista.add(String.valueOf(sdf.format(date)));
                                
-                if(   objeto.setIVas(lista))
-        {          
-   
+        if(objeto.setIVas(lista))
+        {     
            ivaId++;
-           txtCodigo.setText(String.valueOf(ivaId));
-           
+           txtCodigo.setText(String.valueOf(ivaId));  
         }
    
         

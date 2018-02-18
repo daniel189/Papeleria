@@ -5,7 +5,7 @@
  */
 package VistasArticulo;
 
-import VistasArticulos.EditArticles;
+import ViewArticles.EditArticles;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

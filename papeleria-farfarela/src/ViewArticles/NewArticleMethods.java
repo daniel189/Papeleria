@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package VistasArticulos;
+package ViewArticles;
 
 import MODELO.Conexion;
 import MODELO.QueryArticulo;
@@ -21,7 +21,7 @@ import papeleriafarfarela.Articulo;
  *
  * @author Lizeth
  */
-public class newArticleclass {
+public class NewArticleMethods {
      Articulo artIngreso=new Articulo();
      public int idarticulo;
      int fam_id;

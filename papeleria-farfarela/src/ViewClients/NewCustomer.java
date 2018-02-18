@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package VistasClientes;
+package ViewClients;
 
 import MODELO.QueryCliente;
-import Vista.HomeAplicativo;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,57 +20,15 @@ import javax.swing.JOptionPane;
  * @author Lizeth
  * esta clase nos permite hacer el ingreso de nuevos clientes
  */
-public class NuevoCliente extends javax.swing.JInternalFrame {
+public class NewCustomer extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ClienteNew
      */
-    public NuevoCliente() {
+    public NewCustomer() {
         initComponents();
     }
-    /**
-     * la funcion nos ayuda en la validacion de la cedula de identidad
-     * @param cedula parametro que recibe para la validacion
-     * @return 
-     */
-    public static boolean valida(String cedula){
-        int suma=0;
-        if(cedula.length()==9){
-          System.out.println("Ingrese su cedula de 10 digitos");
-          return false;
-        }else{
-          int arreglo1[]=new int [cedula.length()/2];
-          int arreglo2[]=new int [(cedula.length()/2)];
-          int c=0;
-          int d=1;
-          for (int i = 0; i < cedula.length()/2; i++) {
-            arreglo1[i]=Integer.parseInt(String.valueOf(cedula.charAt(c)));
-            c=c+2;
-            if (i < (cedula.length()/2)-1) {
-              arreglo2[i]=Integer.parseInt(String.valueOf(cedula.charAt(d)));
-              d=d+2;
-            }
-          }
-        
-          for (int i = 0; i < arreglo1.length; i++) {
-            arreglo1[i]=arreglo1[i]*2;
-            if (arreglo1[i] >9){
-              arreglo1[i]=arreglo1[i]-9;
-            }
-            suma=suma+arreglo1[i]+arreglo2[i];
-          } 
-          int aux=suma/10;
-          int dec=(aux+1)*10;
-          if ((dec - suma) == Integer.parseInt(String.valueOf(cedula.charAt(cedula.length()-1))))
-            return true;
-          else
-            if(suma%10==0 && cedula.charAt(cedula.length()-1)=='0'){
-              return true;
-            }else{
-              return false;
-            }
-        }
-    }
+  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -263,9 +220,10 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
      * @param evt 
      */
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        CustomerManagemetMethods methods=new CustomerManagemetMethods();
         if(txtIdentificador.getText().length() > 0 && txtNombres.getText().length() > 0 && txtApellidos.getText().length() > 0
                 && txtDireccion.getText().length() > 0 && txtTelefono.getText().length() > 0 ){
-            if(valida(txtIdentificador.getText())){
+            if(methods.validateID(txtIdentificador.getText())){
                 Date fechaActual = new Date();
                 String formato =dcFechaNacimiento.getDateFormatString();
                 Date date  = dcFechaNacimiento.getDate();
@@ -282,30 +240,24 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
                     //objeto para llamar el queryClientes
                     QueryCliente obj = new QueryCliente();
                     obj.setCliente(lista);
-                    limpiarDatos();
+                    methods.limparDatos(txtIdentificador, txtApellidos, txtNombres, txtDireccion, txtTelefono);
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "La fecha de Nacimiento ingresada es Incorrecta, Ingrese una verdadera.", "Fecha Incorrecta", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "La fecha de Nacimiento ingresada es Incorrecta, "
+                            + "Ingrese una verdadera.", "Fecha Incorrecta", JOptionPane.WARNING_MESSAGE);
                 }
             }
             else{
-                JOptionPane.showMessageDialog(null, "La cédula ingresada es Incorrecta, Ingrese una verdadera.", "Cédula Incorrecta", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "La cédula ingresada es Incorrecta, Ingrese una verdadera.",
+                        "Cédula Incorrecta", JOptionPane.WARNING_MESSAGE);
             }
         }
         else{
-            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos.", "Datos incompletos", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos.", "Datos incompletos", 
+                    JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
-   /**
-    * la funcion permite vaciar los textBox  
-    */
-    public void limpiarDatos(){
-        txtIdentificador.setText("");
-        txtNombres.setText("");
-        txtApellidos.setText("");
-        txtDireccion.setText("");
-        txtTelefono.setText("");
-    }
+
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
         

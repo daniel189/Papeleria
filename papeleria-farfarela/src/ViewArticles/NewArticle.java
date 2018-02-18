@@ -3,7 +3,7 @@
  * To change this tartlate file, choose Tools | Tartlates
  * and open the tartlate in the editor.
  */
-package VistasArticulos;
+package ViewArticles;
 import MODELO.QueryArticulo;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Lizeth
  * esta clase nos permite ingresar un nuev ariculo en nuestra base de datos
  */
-public class NuevoArticulo extends javax.swing.JInternalFrame {
+public class NewArticle extends javax.swing.JInternalFrame {
     /**
      * artIngreso: es una variable instancia de la clase Articulo
      * artQuery: nos permite realizar el respectivo query a la base de datos
@@ -40,8 +40,8 @@ public class NuevoArticulo extends javax.swing.JInternalFrame {
      * algunos atributos que seran datos para la base
      */
 
-    public NuevoArticulo() {
-        newArticleclass newArticle=new newArticleclass();
+    public NewArticle() {
+        NewArticleMethods newArticle=new NewArticleMethods();
         initComponents();
         newArticle.claveMax(txtCodigo);
         cboxprovedor.setModel(artQuery.cargarprovedores().getModel());
@@ -357,7 +357,7 @@ public class NuevoArticulo extends javax.swing.JInternalFrame {
  * @param evt 
  */
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-            newArticleclass newArticle=new newArticleclass();
+            NewArticleMethods newArticle=new NewArticleMethods();
             newArticle.mostrar(txt_descripcion, txt_nombre, txt_precio, txt_stock,
                                txt_familia, txt_prov_id, txtCodigo, tabla_articulos);
     }//GEN-LAST:event_btnGuardarActionPerformed

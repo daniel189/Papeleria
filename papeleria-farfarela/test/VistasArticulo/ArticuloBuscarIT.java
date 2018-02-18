@@ -5,7 +5,7 @@
  */
 package VistasArticulo;
 
-import VistasArticulos.FoundArticles;
+import ViewArticles.FoundArticles;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

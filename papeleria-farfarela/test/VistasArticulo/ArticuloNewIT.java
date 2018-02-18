@@ -5,7 +5,7 @@
  */
 package VistasArticulo;
 
-import VistasArticulos.NuevoArticulo;
+import ViewArticles.NewArticle;
 import java.awt.event.KeyEvent;
 import org.junit.After;
 import org.junit.AfterClass;

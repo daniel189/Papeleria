@@ -3,18 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package VistasClientes;
-
-import MODELO.Conexion;
+package ViewClients;
 import MODELO.QueryCliente;
 import Vista.HomeAplicativo;
 import static Vista.HomeAplicativo.escritorio;
-import VistasUsuarios.UsuariosEdit;
 import java.awt.Dimension;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,7 +15,6 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -33,68 +25,20 @@ import javax.swing.table.DefaultTableModel;
  * @author Lizeth
  * esta clase nos permite hacer la gestion de los clientes es decir: ingresar, modificar, eliminar
  */
-public class GestionCliente extends javax.swing.JInternalFrame {
+public class CustomerManagement extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ClienteSearch
      */
-    public GestionCliente() {
+    CustomerManagemetMethods methods= new CustomerManagemetMethods();
+    public CustomerManagement() {
         initComponents();
         btnGuardar.setVisible(false);
-        llenarClientes("", 1);
+        methods.llenarClientes("", 1, tbClientes);
     }
-    /**
-     * la funcion nos permite limpiar los textbox o cualquier otro componente que se encuentre con datos
-     */
-    public void limparDatos(){
-        txtIdentificador.setText("");
-        txtNombres.setText("");
-        txtApellidos.setText("");
-        txtDireccion.setText("");
-        txtTelefono.setText("");
-    }
-    /**
-     * la funcion nos permite llenar la tabla con los datos que se obtengan de la base de datos
-     * en el caso de que no encuentre los datos no desplegará nada
-     * solamente se  mostrara el nombre de las columnas de las tablas
-     */
-    Connection cone = Conexion.getConexion();
-    public void llenarClientes(String condicion, int aux){
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("Identificador");
-        modelo.addColumn("Nombres");
-        modelo.addColumn("Apellidos");
-        modelo.addColumn("Dirección");
-        modelo.addColumn("Teléfono");
-        modelo.addColumn("Fecha Nac.");
-        tbClientes.setModel(modelo);
-        String sql;
-        if(aux == 1){ //Idetificador
-            sql = "SELECT * FROM cliente WHERE cli_identificador LIKE '%"+condicion+"%'";
-        }else if(aux == 2){ //nombres
-            sql = "SELECT * FROM cliente WHERE cli_nombres LIKE '%"+condicion+"%'";
-        }else{ //apllidos
-            sql = "SELECT * FROM cliente WHERE cli_apelidos LIKE '%"+condicion+"%'";
-        }
-        String datos[] = new String[6];
-        try {
-            Statement st = cone.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while(rs.next()){
-                datos[0] = rs.getString(1);
-                datos[1] = rs.getString(2);
-                datos[2] = rs.getString(3);
-                datos[3] = rs.getString(4);
-                datos[4] = rs.getString(5);
-                datos[5] = rs.getString(6);
-                modelo.addRow(datos);
-            }
-            tbClientes.setModel(modelo);
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuariosEdit.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Error al traer los clientes", "Error DB", JOptionPane.ERROR_MESSAGE);
-        }
-    }
+
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -437,29 +381,30 @@ public class GestionCliente extends javax.swing.JInternalFrame {
             txtApellidos.enable(true);
             txtDireccion.enable(true);
             txtTelefono.enable(true);
-            
             btnEditar.setVisible(false);
             btnEliminar.setVisible(false);
             btnGuardar.setVisible(true);
-            
             dcFechaNacimiento.setEnabled(true);
         }
         else{
-            JOptionPane.showMessageDialog(null, "Seleccione Un Registro antes de Editar.", "Sin Selcción.", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Seleccione Un Registro antes de "
+                    + "Editar.", "Sin Selcción.", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if(txtIdentificador.getText().length() > 0){
-            int n = JOptionPane.showConfirmDialog(null, "Esta seguro de borrar el cliente : " + txtIdentificador.getText() , "Confirmar.", JOptionPane.YES_NO_OPTION);
+            int n = JOptionPane.showConfirmDialog(null, "Esta seguro de borrar el "
+                    + "cliente : " + txtIdentificador.getText() , "Confirmar.", JOptionPane.YES_NO_OPTION);
             if(n == JOptionPane.YES_OPTION){
                 QueryCliente obj = new QueryCliente();
                 obj.EliminarRegistro(txtIdentificador.getText());
-                llenarClientes("", 1);
+                methods.llenarClientes("", 1, tbClientes);
             }
         }
         else{
-            JOptionPane.showMessageDialog(null, "Seleccione Un Registro para eliminar.", "Sin Selcción.", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Seleccione Un Registro para "
+                    + "eliminar.", "Sin Selcción.", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 /**
@@ -485,7 +430,7 @@ public class GestionCliente extends javax.swing.JInternalFrame {
             lista.add(String.valueOf(sdf.format(date)));
             //llamamos a la funcion Update
             obj.updateCliente(lista);
-            llenarClientes("", 1);
+            methods.llenarClientes("", 1, tbClientes);
             
             //habilitamos botones
             btnEditar.setVisible(true);
@@ -516,7 +461,7 @@ public class GestionCliente extends javax.swing.JInternalFrame {
             Date fecha = formatter.parse(date);
             dcFechaNacimiento.setDate(fecha);
         } catch (ParseException ex) {
-            Logger.getLogger(GestionCliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerManagement.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Error al comvertir la fecha.", "Fecha Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_tbClientesMouseClicked
@@ -524,17 +469,17 @@ public class GestionCliente extends javax.swing.JInternalFrame {
     private void txtBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyReleased
         int c = cbBusqueda.getSelectedIndex();
         if(c == 0){
-            llenarClientes(txtBusqueda.getText(), 1);
+            methods.llenarClientes(txtBusqueda.getText(), 1, tbClientes);
         }else if(c == 1){
-            llenarClientes(txtBusqueda.getText(), 2);
+            methods.llenarClientes(txtBusqueda.getText(), 2,tbClientes);
         }
         else {
-            llenarClientes(txtBusqueda.getText(), 3);
+            methods.llenarClientes(txtBusqueda.getText(), 3,tbClientes);
         }
     }//GEN-LAST:event_txtBusquedaKeyReleased
 
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
-        NuevoCliente obj = new NuevoCliente();
+        NewCustomer obj = new NewCustomer();
         HomeAplicativo.escritorio.add(obj);
         obj.toFront();
         //centrar

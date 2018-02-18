@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package VistasIva;
+package ViewIva;
 
-import MODELO.QueryArticulo;
 import MODELO.QueryIva;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,12 +15,12 @@ import javax.swing.JOptionPane;
  *
  * @author Daniel
  */
-public class Edicioniva extends javax.swing.JInternalFrame {
+public class EditionIva extends javax.swing.JInternalFrame {
  QueryIva artQuery=new QueryIva();
     /**
      * Creates new form IvaEditar
      */
-    public Edicioniva() {
+    public EditionIva() {
         initComponents();
            cboxiva.setModel(artQuery.cargarIvas().getModel());
     }

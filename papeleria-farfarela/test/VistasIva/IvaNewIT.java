@@ -35,18 +35,5 @@ public class IvaNewIT {
     
     @After
     public void tearDown() {
-    }
-
-    /**
-     * Test of claveMax method, of class NuevoIva.
-     */
-    @Test
-    public void testClaveMax() {
-        System.out.println("claveMax");
-        NuevoIva instance = new NuevoIva();
-        instance.claveMax();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
+    }    
 }

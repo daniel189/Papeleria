@@ -20,17 +20,17 @@ import VistaEmpleado.EmpleadoPrincipal;
 import VistaEmpleado.EmpleadoPrincipal1;
 import VistaProveedor.ProveedorPrincipal;
 import VistaProveedor.ProveedorPrincipal1;
-import VistasArticulos.FoundArticles;
-import VistasArticulos.RemoveArticles;
-import VistasArticulos.NuevoArticulo;
-import VistasArticulos.EditArticles;
-import VistasClientes.GestionCliente;
-import VistasFamilia.BusquedaFamilia;
-import VistasFamilia.NuevaFamilia;
-import VistasFamilia.EditaFamilia;
-import VistasIva.Edicioniva;
-import VistasIva.LecturaIva;
-import VistasIva.NuevoIva;
+import ViewArticles.FoundArticles;
+import ViewArticles.RemoveArticles;
+import ViewArticles.NewArticle;
+import ViewArticles.EditArticles;
+import ViewClients.CustomerManagement;
+import ViewFamily.SearchFamily;
+import ViewFamily.NewFamily;
+import ViewFamily.EditFamily;
+import ViewIva.EditionIva;
+import ViewIva.ReadIva;
+import ViewIva.NewIva;
 import VistasUsuarios.UsuariosCuenta;
 import VistasUsuarios.UsuariosDelete;
 import VistasUsuarios.UsuariosEdit;
@@ -624,7 +624,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_jProveedoresActionPerformed
 
     private void jClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jClientesActionPerformed
-        GestionCliente obj = new GestionCliente();
+        CustomerManagement obj = new CustomerManagement();
         HomeAplicativo.escritorio.add(obj);
         obj.toFront();
         //centrar
@@ -707,7 +707,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_mConsultar3ActionPerformed
 
     private void prodAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prodAgregarActionPerformed
-        NuevoArticulo newArticulos = new NuevoArticulo();
+        NewArticle newArticulos = new NewArticle();
         HomeAplicativo.escritorio.add(newArticulos);
         newArticulos.toFront();
         //centrar
@@ -746,7 +746,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_prodConsultarActionPerformed
 
     private void IvaNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IvaNewActionPerformed
-        NuevoIva newIva = new NuevoIva();
+        NewIva newIva = new NewIva();
         HomeAplicativo.escritorio.add(newIva);
         newIva.toFront();
         //centrar
@@ -759,7 +759,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_IvaNewActionPerformed
 
     private void IvaEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IvaEditActionPerformed
-        Edicioniva editIva = new Edicioniva();
+        EditionIva editIva = new EditionIva();
         HomeAplicativo.escritorio.add(editIva);
         editIva.toFront();
         //centrar
@@ -772,7 +772,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_IvaEditActionPerformed
 
     private void IvaSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IvaSearchActionPerformed
-        LecturaIva leerIva = new LecturaIva();
+        ReadIva leerIva = new ReadIva();
         HomeAplicativo.escritorio.add(leerIva);
         leerIva.toFront();
         //centrar
@@ -785,7 +785,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_IvaSearchActionPerformed
 
     private void FamiNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FamiNewActionPerformed
-        NuevaFamilia newFamilias = new NuevaFamilia();
+        NewFamily newFamilias = new NewFamily();
         HomeAplicativo.escritorio.add(newFamilias);
         newFamilias.toFront();
         //centrar
@@ -798,7 +798,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_FamiNewActionPerformed
 
     private void FamiEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FamiEditActionPerformed
-        EditaFamilia updateFamilias = new EditaFamilia();
+        EditFamily updateFamilias = new EditFamily();
         HomeAplicativo.escritorio.add(updateFamilias);
         updateFamilias.toFront();
         //centrar
@@ -811,7 +811,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_FamiEditActionPerformed
 
     private void FamiSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FamiSearchActionPerformed
-        BusquedaFamilia buscarFamilias = new BusquedaFamilia();
+        SearchFamily buscarFamilias = new SearchFamily();
         HomeAplicativo.escritorio.add(buscarFamilias);
         buscarFamilias.toFront();
         //centrar

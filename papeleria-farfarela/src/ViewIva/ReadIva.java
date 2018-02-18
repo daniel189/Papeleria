@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package VistasIva;
+package ViewIva;
 
 import MODELO.QueryIva;
 import javax.swing.table.DefaultTableModel;
@@ -12,13 +12,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Daniel
  */
-public class LecturaIva extends javax.swing.JInternalFrame {
+public class ReadIva extends javax.swing.JInternalFrame {
  QueryIva artQuery=new QueryIva();    
  DefaultTableModel modelo=new DefaultTableModel();
     /**
      * Creates new form IvaLeer
      */
-    public LecturaIva() {
+    public ReadIva() {
         initComponents();
     }
 
