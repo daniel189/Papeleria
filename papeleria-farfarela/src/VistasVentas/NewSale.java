@@ -125,7 +125,168 @@ public class NewSale extends javax.swing.JInternalFrame{
         windowOfArticles.showArticles();
     }
 
+/**
+     * Funcion para guardar los articulos en la tabla detalle de la base de
+     * datos
+     */
+    public void GuardarArticulos() {
+        Connection cone = Conexion.getConexion();
+        for (int w = 0; w < n; w = w + 1) {
+            //obteniendo valor fila por columna a la vez y w es fila y n es total de articulos comprados
+            String col1 = (String) NewSale.JTableArticulos.getValueAt(w, 1); // codigo articulo
+            String col2 = (String) NewSale.JTableArticulos.getValueAt(w, 3); // cantidad articulos
+            String col3 = (String) NewSale.JTableArticulos.getValueAt(w, 5); // costo
+            String sql_Ventas = "INSERT INTO detalle (FAC_ID,ART_ID,DET_CANTIDAD,DET_VALOR)VALUES (?,?,?,?)";
+            try {
+                PreparedStatement pst = cone.prepareStatement(sql_Ventas);
+                pst.setString(1, jTextFieldCodFacturas.getText());
+                pst.setString(2, col1);
+                pst.setString(3, col2);
+                pst.setString(4, col3);
+                int ns = pst.executeUpdate();
+                if (ns > 0) {
+                    System.out.println("Registrado Exitosamente en Detalle de Facturas: " + col1);
+                }
+                cone.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error - " + ex);
+                //Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 
+    /**
+     * Funcion para hacer un parser de dos decimales a cualquier valor
+     * @param valor es el valor a ser redondeado.
+     * @return un valor redondeado
+     */
+    public double DosDecimales(double valor) {
+        valor *= 100;
+        valor = Math.round(valor);
+        valor /= 100;
+        return valor;
+    }
+
+    /**
+     * Funcion para generar un documento PDF con el uso de la libreria itextpdf
+     */
+    public void GenerarPDF() {
+        Image portada;
+        Document document = new Document(PageSize.LETTER, 50, 50, 50, 50);
+        try {
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("facturas/" + jTextFieldCodFacturas.getText() + ".pdf"));
+            document.open();
+            portada = Image.getInstance("portada.jpg");
+            portada.setAlignment(Element.ALIGN_CENTER);
+            portada.scalePercent(45.0F); // tamaño de imagen
+            float totales = Float.parseFloat(jTextFieldGranTotal.getText());
+            document.add(portada);
+            document.add(new Paragraph("---------------------------------------------------------"));
+            document.add(new Paragraph("|   FACTURA PAPELERIA FARFARELA   |"));
+            document.add(new Paragraph("---------------------------------------------------------"));
+            document.add(new Paragraph("Numero Fact. : " + jTextFieldCodFacturas.getText()));
+            document.add(new Paragraph("Cliente : " + jTextFieldNombreCliente.getText() + " " + jTextFieldApellido.getText() + " - ID : " + jTextFieldCodigoCliente.getText()));
+            document.add(new Paragraph("Atendido por : " + verEmpleado(jTextFieldCodVendedor.getText())));
+            document.add(new Paragraph("Fecha   : [ " + jTextFieldFecha.getText()));
+            document.add(new Paragraph(" TOTAL A PAGAR : $ " + totales + "  d\u00f3lares"));
+            document.add(new Paragraph("| No. |  CODIGO  | ARTICULOS                                      | CANTIDAD | VAL UNIT | SUBTOTAL"));
+            document.add(new Paragraph("-----------------------------------------------------------------------" + "--------------------------------------------------------"));
+            // parte de dibujo la tabla
+            PdfContentByte cb = writer.getDirectContent();
+            PdfTemplate tp = cb.createTemplate(900, 500);
+            Graphics2D g2;
+            g2 = tp.createGraphicsShapes(900, 500);
+            // g2 = tp.createGraphics(500, 500);
+            NewSale.JTableArticulos.print(g2);
+            ///////IMPRIME
+            g2.dispose();
+            //posicion de la tabla de lista de compras
+            cb.addTemplate(tp, 50, -85);
+            //cierra el documento
+            document.close();
+            JOptionPane.showMessageDialog(null, "PDF Generado Exitosamente.");
+            try {
+                File path = new File("facturas/" + jTextFieldCodFacturas.getText() + ".pdf");
+                Desktop.getDesktop().open(path);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "El archivo no existe o est\u00e1 actualmente en uso.");
+        }
+    }
+
+    /**
+     * funcion para remplazar caraceres
+     * @param s_cadena cadena en la que se trabaja
+     * @param s_caracteres caracteres a remplazar
+     * @return la nueva cadena
+     */
+    public String EliminaCaracteres(String s_cadena, String s_caracteres) {
+        String nueva_cadena = "";
+        nueva_cadena = s_cadena.replace(s_caracteres, "");
+        System.out.println(nueva_cadena);
+        return nueva_cadena;
+    }
+
+    /**
+     * funcion que carga la lista de clientes en un JDialog con el usod e una
+     * consulta en la base de datos
+     */
+    void llamarCliente() {
+        // llamada de datos
+        QueryCliente loadss = new QueryCliente();
+        loadss.CargarClientes();
+        //Centramos nuestro jDialog
+        JdialogClient.setLocation(250, 150);
+        //La hacemos modal
+        JdialogClient.setModal(true);
+        //Establecemos dimensiones.
+        JdialogClient.setMinimumSize(new Dimension(530, 358));
+        //Establecemos un título para el jDialog
+        JdialogClient.setTitle("Lista de Clientes.");
+        //La hacemos visible.
+        JdialogClient.setVisible(true);
+    }
+
+    /**
+     * Funcion para ingresar la factura en la base de datos
+     * @return
+     */
+    public boolean GenerarFactura() {
+        // TODO add your handling code here:
+        // conection
+        boolean ident = true;
+        Connection reg = conection.getConexion();
+        // registro de BD a la tabla de Facturas
+        if (Double.parseDouble(jTextFieldSubTotal.getText()) == 0 || Double.parseDouble(jTextFieldIVA.getText()) == 0 || Double.parseDouble(jTextFieldGranTotal.getText()) == 0) {
+            JOptionPane.showMessageDialog(null, "Datos Incompletos. Factura no generada");
+            ident = false;
+        } else {
+            String sql_Facturas = "INSERT INTO facturas (fac_id,cli_identificador,cue_cuenta, fac_fecha,fac_descuento,fac_estado,fac_total)VALUES (?,?,?,?,?,?,?)";
+            try {
+                PreparedStatement pst = reg.prepareStatement(sql_Facturas);
+                pst.setString(1, jTextFieldCodFacturas.getText());
+                pst.setString(2, jTextFieldCodigoCliente.getText());
+                pst.setString(3, jTextFieldCodVendedor.getText());
+                pst.setString(4, jTextFieldFecha.getText());
+                pst.setString(5, jTextFieldDescuento.getText());
+                pst.setString(6, "0");
+                pst.setString(7, jTextFieldGranTotal.getText());
+                int ns = pst.executeUpdate();
+                if (ns > 0) {
+                    JOptionPane.showMessageDialog(null, "Factura Registrada Exitosamente");
+                }
+                GuardarArticulos();
+                GenerarPDF();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Datos de vendedor incorrectos");
+                //            Logger.getLogger(NewSale.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return ident;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -780,7 +941,7 @@ public class NewSale extends javax.swing.JInternalFrame{
      * @param evt funcion que busca el cliente en la base de datos
      */
     private void btnClienteExistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteExistenteActionPerformed
-        llamarCliente(this);
+        llamarCliente();
     }//GEN-LAST:event_btnClienteExistenteActionPerformed
 
     private void txtCodArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodArticuloActionPerformed
@@ -1023,7 +1184,7 @@ public class NewSale extends javax.swing.JInternalFrame{
         //PARA DETERMINAR SI ES CLIENTE EXISTENTE O NO
         if (clientExist.equals("si")) {
             JOptionPane.showMessageDialog(null, "Cliente existente");
-            GenerarFactura(this);
+            GenerarFactura();
 
         } //sino agregado cliente existente entonces lo guarda nuevo cliente
         else {
@@ -1034,7 +1195,7 @@ public class NewSale extends javax.swing.JInternalFrame{
                     || jTextFieldApellido.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Datos de cliente no válidos");
             } else {
-                if (GenerarFactura(this)) {
+                if (GenerarFactura()) {
                     try {
                         String uula = jTextFieldCodigoCliente.getText();
                         String nombre = jTextFieldNombreCliente.getText();
