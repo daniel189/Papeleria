@@ -9,7 +9,7 @@ import MODELO.Conexion;
 import ViewClients.CustomerManagemetMethods;
 import ViewClients.NewCustomer;
 import ViewClients.CustomerManagement;
-import VistasVentas.VentasNew;
+import VistasVentas.NewSale;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -150,8 +150,8 @@ public class QueryCliente {
                 return false;
             }
         };
-      //le asigna el modelo al jtable
-        VentasNew.SeleccionarCliente.setModel(modelo);
+      //le asigna el salesTebleModel al jtable
+        NewSale.SeleccionarCliente.setModel(modelo);
 
         //ejecuta una consulta a la BD
         ejecutarConsultaTodaTabla();
@@ -165,8 +165,8 @@ public class QueryCliente {
                 return false;
             }
         };
-      //le asigna el modelo al jtable
-        VentasNew.SeleccionarCliente.setModel(modelo);
+      //le asigna el salesTebleModel al jtable
+        NewSale.SeleccionarCliente.setModel(modelo);
 
         //ejecuta una consulta a la BD
         ejecutarConsultaTodaTabla();
@@ -206,7 +206,7 @@ public class QueryCliente {
                 //crea un vector donde los está la informacion (se crea una fila)
                 Object[] info = {codigo, nombre, apellido};
 
-                //al modelo de la tabla le agrega una fila
+                //al salesTebleModel de la tabla le agrega una fila
                 //con los datos que están en info
                 modelo.addRow(info);
                 
@@ -236,8 +236,8 @@ public class QueryCliente {
 
             
 
-            //le asigna el modelo al jtable
-            VentasNew.SeleccionarCliente.setModel(modelo);
+            //le asigna el salesTebleModel al jtable
+            NewSale.SeleccionarCliente.setModel(modelo);
             //ejecuta una consulta a la BD
             buscarRegistroCedulaONombreOapellido(parametroBusqueda, buscarPorCedula, buscarPorNombre, buscarPorApellido);
 
@@ -247,7 +247,7 @@ public class QueryCliente {
     
     /**
      * Método para buscar un registro en la base de datos dentro de la tabla
-     * clientes, se puede buscar por la cedula o por el nombre.
+ clientes, se puede buscar por la cedula o por el searchByName.
      */
     public void buscarRegistroCedulaONombreOapellido(String parametroBusqueda, boolean buscarPorCedula, boolean buscarPorNombre, boolean buscarPorApellido) {
 
@@ -285,7 +285,7 @@ public class QueryCliente {
 
                 //crea un vector donde los está la informacion (se crea una fila)
                 Object[] info = {cedula,nombre, apellido};
-                //al modelo de la tabla le agrega una fila
+                //al salesTebleModel de la tabla le agrega una fila
                 //con los datos que están en info
                 modelo.addRow(info);
 

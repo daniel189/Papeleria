@@ -15,14 +15,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import papeleriafarfarela.Articulo;
+import PapeleriaFarfarela.Article;
 
 /**
  *
  * @author Lizeth
  */
 public class NewArticleMethods {
-     Articulo artIngreso=new Articulo();
+     Article artIngreso=new Article();
      public int idarticulo;
      int fam_id;
      int pro_id;
@@ -31,22 +31,22 @@ public class NewArticleMethods {
      DefaultTableModel modelo=new DefaultTableModel(null,titulos);
      public void mostrar(JTextField txt_descripcion, JTextField txt_nombre, JTextField txt_precio, JTextField txt_stock,
                          JTextField  txt_familia, JTextField txt_prov_id,JTextField  txtCodigo,  JTable tabla_articulos){
-      artIngreso.setArticuloId(idarticulo);
-        artIngreso.setArticuloDescripcion(txt_descripcion.getText());
-        artIngreso.setArticuloNombre(txt_nombre.getText());
-        artIngreso.setArticuloPrecio(Float.parseFloat(txt_precio.getText()));
-        artIngreso.setArticuloStock(Double.parseDouble(txt_stock.getText()));
+      artIngreso.setArticleId(idarticulo);
+        artIngreso.setArticleDescription(txt_descripcion.getText());
+        artIngreso.setArticleName(txt_nombre.getText());
+        artIngreso.setArticlePrice(Float.parseFloat(txt_precio.getText()));
+        artIngreso.setArticleStock(Double.parseDouble(txt_stock.getText()));
 
         if((artQuery.setArticulo(artIngreso, fam_id, pro_id)==true))
         {          
               String[] fila=new String[7];
-             fila[0]=String.valueOf(artIngreso.getArticuloId());
+             fila[0]=String.valueOf(artIngreso.getArticleId());
              fila[1]=String.valueOf(txt_familia.getText());
              fila[2]=String.valueOf(txt_prov_id.getText());
-              fila[3]=String.valueOf(artIngreso.getArticuloNombre());
-              fila[4]=String.valueOf(artIngreso.getArticuloDescripcion());
-              fila[5]=String.valueOf(artIngreso.getArticuloPrecio());
-              fila[6]=String.valueOf(artIngreso.getArticuloStock());
+              fila[3]=String.valueOf(artIngreso.getArticleName());
+              fila[4]=String.valueOf(artIngreso.getArticleDescription());
+              fila[5]=String.valueOf(artIngreso.getArticlePrice());
+              fila[6]=String.valueOf(artIngreso.getArticleStock());
               modelo.addRow(fila);
               tabla_articulos.setModel(modelo);
    

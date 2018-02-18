@@ -5,6 +5,8 @@
  */
 package papeleriafarfarela;
 
+import PapeleriaFarfarela.Bill;
+import PapeleriaFarfarela.Account;
 import java.util.Collection;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -39,188 +41,188 @@ public class CuentaIT {
     }
 
     /**
-     * Test of getFacturas method, of class Cuenta.
+     * Test of getBills method, of class Account.
      */
     @Test
     public void testGetFacturas() {
         System.out.println("getFacturas");
-        Cuenta instance = new Cuenta();
-        Collection<Factura> expResult = null;
-        Collection<Factura> result = instance.getFacturas();
+        Account instance = new Account();
+        Collection<Bill> expResult = null;
+        Collection<Bill> result = instance.getBills();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of agregarFacturas method, of class Cuenta.
+     * Test of addBills method, of class Account.
      */
     @Test
     public void testAddFacturas() {
         System.out.println("addFacturas");
-        Factura newFacturas = null;
-        Cuenta instance = new Cuenta();
-        instance.agregarFacturas(newFacturas);
+        Bill newFacturas = null;
+        Account instance = new Account();
+        instance.addBills(newFacturas);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of eliminarFacturas method, of class Cuenta.
+     * Test of removeBills method, of class Account.
      */
     @Test
     public void testRemoveFacturas() {
         System.out.println("removeFacturas");
-        Factura oldFacturas = null;
-        Cuenta instance = new Cuenta();
-        instance.eliminarFacturas(oldFacturas);
+        Bill oldFacturas = null;
+        Account instance = new Account();
+        instance.removeBills(oldFacturas);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of eliminarTodasLasFacturas method, of class Cuenta.
+     * Test of removeAllBills method, of class Account.
      */
     @Test
     public void testRemoveAllFacturas() {
         System.out.println("removeAllFacturas");
-        Cuenta instance = new Cuenta();
-        instance.eliminarTodasLasFacturas();
+        Account instance = new Account();
+        instance.removeAllBills();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getCuenta method, of class Cuenta.
+     * Test of getAccountName method, of class Account.
      */
     @Test
     public void testGetCuenta() {
         System.out.println("getCuenta");
-        Cuenta instance = new Cuenta();
+        Account instance = new Account();
         String expResult = "";
-        String result = instance.getCuenta();
+        String result = instance.getAccountName();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setCuenta method, of class Cuenta.
+     * Test of setAccountName method, of class Account.
      */
     @Test
     public void testSetCuenta() {
         System.out.println("setCuenta");
         String cuenta = "";
-        Cuenta instance = new Cuenta();
-        instance.setCuenta(cuenta);
+        Account instance = new Account();
+        instance.setAccountName(cuenta);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getPass method, of class Cuenta.
+     * Test of getAccountPassword method, of class Account.
      */
     @Test
     public void testGetPass() {
         System.out.println("getPass");
-        Cuenta instance = new Cuenta();
+        Account instance = new Account();
         String expResult = "";
-        String result = instance.getPass();
+        String result = instance.getAccountPassword();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setPass method, of class Cuenta.
+     * Test of setAccountPassword method, of class Account.
      */
     @Test
     public void testSetPass() {
         System.out.println("setPass");
         String pass = "";
-        Cuenta instance = new Cuenta();
-        instance.setPass(pass);
+        Account instance = new Account();
+        instance.setAccountPassword(pass);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getNivel method, of class Cuenta.
+     * Test of getAccountAccessLevel method, of class Account.
      */
     @Test
     public void testGetNivel() {
         System.out.println("getNivel");
-        Cuenta instance = new Cuenta();
+        Account instance = new Account();
         int expResult = 0;
-        int result = instance.getNivel();
+        int result = instance.getAccountAccessLevel();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setNivel method, of class Cuenta.
+     * Test of setAccountAccessLevel method, of class Account.
      */
     @Test
     public void testSetNivel() {
         System.out.println("setNivel");
         int nivel = 0;
-        Cuenta instance = new Cuenta();
-        instance.setNivel(nivel);
+        Account instance = new Account();
+        instance.setAccountAccessLevel(nivel);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getEmp_id method, of class Cuenta.
+     * Test of getemployeeId method, of class Account.
      */
     @Test
     public void testGetEmp_id() {
         System.out.println("getEmp_id");
-        Cuenta instance = new Cuenta();
+        Account instance = new Account();
         int expResult = 0;
-        int result = instance.getEmp_id();
+        int result = instance.getemployeeId();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setEmp_id method, of class Cuenta.
+     * Test of setEmployeeId method, of class Account.
      */
     @Test
     public void testSetEmp_id() {
         System.out.println("setEmp_id");
         int emp_id = 0;
-        Cuenta instance = new Cuenta();
-        instance.setEmp_id(emp_id);
+        Account instance = new Account();
+        instance.setEmployeeId(emp_id);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getHabilitado method, of class Cuenta.
+     * Test of getAccountStatus method, of class Account.
      */
     @Test
     public void testGetHabilitado() {
         System.out.println("getHabilitado");
-        Cuenta instance = new Cuenta();
+        Account instance = new Account();
         String expResult = "";
-        String result = instance.getHabilitado();
+        String result = instance.getAccountStatus();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setHabilitado method, of class Cuenta.
+     * Test of setAccountStatus method, of class Account.
      */
     @Test
     public void testSetHabilitado() {
         System.out.println("setHabilitado");
         String habilitado = "";
-        Cuenta instance = new Cuenta();
-        instance.setHabilitado(habilitado);
+        Account instance = new Account();
+        instance.setAccountStatus(habilitado);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

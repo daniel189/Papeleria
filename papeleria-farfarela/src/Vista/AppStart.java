@@ -13,16 +13,16 @@ import javax.swing.JOptionPane;
  *
  * @author Crispin
  */
-public class InicioAplicativo extends javax.swing.JFrame {
+public class AppStart extends javax.swing.JFrame {
 
     /**
-     * Creates new form InicioAplicativo
+     * Creates new form AppStart
     
    */
    
     public static int cuentaEmpleado; 
     
-    public InicioAplicativo() {
+    public AppStart() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -194,14 +194,18 @@ int contador = 0;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InicioAplicativo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AppStart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InicioAplicativo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AppStart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InicioAplicativo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AppStart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InicioAplicativo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AppStart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -210,7 +214,7 @@ int contador = 0;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InicioAplicativo().setVisible(true);
+                new AppStart().setVisible(true);
             }
         });
     }

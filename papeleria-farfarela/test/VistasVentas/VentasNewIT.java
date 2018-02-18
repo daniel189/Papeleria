@@ -38,13 +38,13 @@ public class VentasNewIT {
     }
 
     /**
-     * Test of verEmpleado method, of class VentasNew.
+     * Test of verEmpleado method, of class NewSale.
      */
     @Test
     public void testVerEmpleado() {
         System.out.println("verEmpleado");
         String cuenta = "";
-        VentasNew instance = new VentasNew();
+        NewSale instance = new NewSale();
         String expResult = "";
         String result = instance.verEmpleado(cuenta);
         assertEquals(expResult, result);
@@ -53,13 +53,13 @@ public class VentasNewIT {
     }
 
     /**
-     * Test of verFamilia method, of class VentasNew.
+     * Test of verFamilia method, of class NewSale.
      */
     @Test
     public void testVerFamilia() {
         System.out.println("verFamilia");
         int idArticulo = 0;
-        VentasNew instance = new VentasNew();
+        NewSale instance = new NewSale();
         int expResult = 0;
         int result = instance.verFamilia(idArticulo);
         assertEquals(expResult, result);
@@ -68,13 +68,13 @@ public class VentasNewIT {
     }
 
     /**
-     * Test of verStock method, of class VentasNew.
+     * Test of verStock method, of class NewSale.
      */
     @Test
     public void testVerStock() {
         System.out.println("verStock");
         int idArticulo = 0;
-        VentasNew instance = new VentasNew();
+        NewSale instance = new NewSale();
         int expResult = 0;
         int result = instance.verStock(idArticulo);
         assertEquals(expResult, result);
@@ -83,12 +83,12 @@ public class VentasNewIT {
     }
 
     /**
-     * Test of GenerarFactura method, of class VentasNew.
+     * Test of GenerarFactura method, of class NewSale.
      */
     @Test
     public void testGenerarFactura() {
         System.out.println("GenerarFactura");
-        VentasNew instance = new VentasNew();
+        NewSale instance = new NewSale();
         boolean expResult = false;
         boolean result = instance.GenerarFactura();
         assertEquals(expResult, result);
@@ -97,37 +97,37 @@ public class VentasNewIT {
     }
 
     /**
-     * Test of GuardarArticulos method, of class VentasNew.
+     * Test of GuardarArticulos method, of class NewSale.
      */
     @Test
     public void testGuardarArticulos() {
         System.out.println("GuardarArticulos");
-        VentasNew instance = new VentasNew();
+        NewSale instance = new NewSale();
         instance.GuardarArticulos();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of GenerarPDF method, of class VentasNew.
+     * Test of GenerarPDF method, of class NewSale.
      */
     @Test
     public void testGenerarPDF() {
         System.out.println("GenerarPDF");
-        VentasNew instance = new VentasNew();
+        NewSale instance = new NewSale();
         instance.GenerarPDF();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of DosDecimales method, of class VentasNew.
+     * Test of DosDecimales method, of class NewSale.
      */
     @Test
     public void testDosDecimales() {
         System.out.println("DosDecimales");
         double valor = 0.0;
-        VentasNew instance = new VentasNew();
+        NewSale instance = new NewSale();
         double expResult = 0.0;
         double result = instance.DosDecimales(valor);
         assertEquals(expResult, result, 0.0);
@@ -136,14 +136,14 @@ public class VentasNewIT {
     }
 
     /**
-     * Test of EliminaCaracteres method, of class VentasNew.
+     * Test of EliminaCaracteres method, of class NewSale.
      */
     @Test
     public void testEliminaCaracteres() {
         System.out.println("EliminaCaracteres");
         String s_cadena = "";
         String s_caracteres = "";
-        VentasNew instance = new VentasNew();
+        NewSale instance = new NewSale();
         String expResult = "";
         String result = instance.EliminaCaracteres(s_cadena, s_caracteres);
         assertEquals(expResult, result);

@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Lizeth/Documents/GitHub/Papeleria/papeleria-farfarela/src/VistasArticulos/NuevoArticulo.java</file>
-            <file>file:/C:/Users/Lizeth/Documents/GitHub/Papeleria/papeleria-farfarela/src/VistasArticulos/FoundArticles.java</file>
-            <file>file:/C:/Users/Lizeth/Documents/GitHub/Papeleria/papeleria-farfarela/src/Vista/HomeAplicativo.java</file>
-            <file>file:/C:/Users/Lizeth/Documents/GitHub/Papeleria/papeleria-farfarela/src/VistasArticulos/RemoveArticles.java</file>
-            <file>file:/C:/Users/Lizeth/Documents/GitHub/Papeleria/papeleria-farfarela/src/VistasArticulos/newArticleclass.java</file>
-            <file>file:/C:/Users/Lizeth/Documents/GitHub/Papeleria/papeleria-farfarela/src/VistasArticulos/EditArticles.java</file>
-            <file>file:/C:/Users/Lizeth/Documents/GitHub/Papeleria/papeleria-farfarela/test/VistasArticulo/ArticuloNewIT.java</file>
-            <file>file:/C:/Users/Lizeth/Documents/GitHub/Papeleria/papeleria-farfarela/test/VistasArticulo/ArticuloUpdateIT.java</file>
+            <file>file:/D:/Papeleria/papeleria-farfarela/src/papeleriafarfarela/Proveedor.java</file>
+            <file>file:/D:/Papeleria/papeleria-farfarela/src/VistaEmpleado/EmpleadoPrincipal.java</file>
+            <file>file:/D:/Papeleria/papeleria-farfarela/src/Vista/HomeAplicativo.java</file>
+            <file>file:/D:/Papeleria/papeleria-farfarela/src/MODELO/QueryProveedor.java</file>
         </group>
     </open-files>
 </project-private>

@@ -5,6 +5,7 @@
  */
 package papeleriafarfarela;
 
+import PapeleriaFarfarela.Article;
 import java.util.Collection;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -39,190 +40,190 @@ public class ArticulosIT {
     }
 
     /**
-     * Test of getArtId method, of class Articulo.
+     * Test of getArtId method, of class Article.
      */
     @Test
     public void testGetArtId() {
         System.out.println("getArtId");
-        Articulo instance = new Articulo();
+        Article instance = new Article();
         int expResult = 0;
-        int result = instance.getArticuloId();
+        int result = instance.getArticleId();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setArtId method, of class Articulo.
+     * Test of setArtId method, of class Article.
      */
     @Test
     public void testSetArtId() {
         System.out.println("setArtId");
         int artId = 0;
-        Articulo instance = new Articulo();
-        instance.setArticuloId(artId);
+        Article instance = new Article();
+        instance.setArticleId(artId);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getArtNombre method, of class Articulo.
+     * Test of getArtNombre method, of class Article.
      */
     @Test
     public void testGetArtNombre() {
         System.out.println("getArtNombre");
-        Articulo instance = new Articulo();
+        Article instance = new Article();
         String expResult = "";
-        String result = instance.getArticuloNombre();
+        String result = instance.getArticleName();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setArtNombre method, of class Articulo.
+     * Test of setArtNombre method, of class Article.
      */
     @Test
     public void testSetArtNombre() {
         System.out.println("setArtNombre");
         String artNombre = "";
-        Articulo instance = new Articulo();
-        instance.setArticuloNombre(artNombre);
+        Article instance = new Article();
+        instance.setArticleName(artNombre);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getArtDescripcion method, of class Articulo.
+     * Test of getArtDescripcion method, of class Article.
      */
     @Test
     public void testGetArtDescripcion() {
         System.out.println("getArtDescripcion");
-        Articulo instance = new Articulo();
+        Article instance = new Article();
         String expResult = "";
-        String result = instance.getArticuloDescripcion();
+        String result = instance.getArticleDescription();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setArtDescripcion method, of class Articulo.
+     * Test of setArtDescripcion method, of class Article.
      */
     @Test
     public void testSetArtDescripcion() {
         System.out.println("setArtDescripcion");
         String artDescripcion = "";
-        Articulo instance = new Articulo();
-        instance.setArticuloDescripcion(artDescripcion);
+        Article instance = new Article();
+        instance.setArticleDescription(artDescripcion);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getArtPrecio method, of class Articulo.
+     * Test of getArtPrecio method, of class Article.
      */
     @Test
     public void testGetArtPrecio() {
         System.out.println("getArtPrecio");
-        Articulo instance = new Articulo();
+        Article instance = new Article();
         float expResult = 0.0F;
-        float result = instance.getArticuloPrecio();
+        float result = instance.getArticlePrice();
         assertEquals(expResult, result, 0.0);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setArtPrecio method, of class Articulo.
+     * Test of setArtPrecio method, of class Article.
      */
     @Test
     public void testSetArtPrecio() {
         System.out.println("setArtPrecio");
         float artPrecio = 0.0F;
-        Articulo instance = new Articulo();
-        instance.setArticuloPrecio(artPrecio);
+        Article instance = new Article();
+        instance.setArticlePrice(artPrecio);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getArtStock method, of class Articulo.
+     * Test of getArtStock method, of class Article.
      */
     @Test
     public void testGetArtStock() {
         System.out.println("getArtStock");
-        Articulo instance = new Articulo();
+        Article instance = new Article();
         double expResult = 0.0;
-        double result = instance.getArticuloStock();
+        double result = instance.getArticleStock();
         assertEquals(expResult, result, 0.0);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setArtStock method, of class Articulo.
+     * Test of setArtStock method, of class Article.
      */
     @Test
     public void testSetArtStock() {
         System.out.println("setArtStock");
         double artStock = 0.0;
-        Articulo instance = new Articulo();
-        instance.setArticuloStock(artStock);
+        Article instance = new Article();
+        instance.setArticleStock(artStock);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getFechaiva method, of class Articulo.
+     * Test of getFechaiva method, of class Article.
      */
     @Test
     public void testGetFechaiva() {
         System.out.println("getFechaiva");
-        Articulo instance = new Articulo();
+        Article instance = new Article();
         Collection expResult = null;
-        Collection result = instance.getFechaIva();
+        Collection result = instance.getVatDate();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setFechaiva method, of class Articulo.
+     * Test of setFechaiva method, of class Article.
      */
     @Test
     public void testSetFechaiva() {
         System.out.println("setFechaiva");
         Collection fechaiva = null;
-        Articulo instance = new Articulo();
-        instance.setFechaIva(fechaiva);
+        Article instance = new Article();
+        instance.setVatDate(fechaiva);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getDetalle method, of class Articulo.
+     * Test of getDetail method, of class Article.
      */
     @Test
     public void testGetDetalle() {
         System.out.println("getDetalle");
-        Articulo instance = new Articulo();
+        Article instance = new Article();
         Collection expResult = null;
-        Collection result = instance.getDetalle();
+        Collection result = instance.getDetail();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setDetalle method, of class Articulo.
+     * Test of setDetail method, of class Article.
      */
     @Test
     public void testSetDetalle() {
         System.out.println("setDetalle");
         Collection detalle = null;
-        Articulo instance = new Articulo();
-        instance.setDetalle(detalle);
+        Article instance = new Article();
+        instance.setDetail(detalle);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

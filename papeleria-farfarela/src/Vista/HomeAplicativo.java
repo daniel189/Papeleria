@@ -36,8 +36,8 @@ import VistasUsuarios.UsuariosDelete;
 import VistasUsuarios.UsuariosEdit;
 import VistasUsuarios.UsuariosNew;
 import VistasUsuarios.UsuariosSearch;
-import VistasVentas.VentasNew;
-import VistasVentas.VentasView;
+import VistasVentas.NewSale;
+import VistasVentas.SalesView;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Image;
@@ -638,7 +638,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
 
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
         this.dispose();
-        InicioAplicativo login = new InicioAplicativo();
+        AppStart login = new AppStart();
         login.setVisible(true);
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
@@ -824,7 +824,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_FamiSearchActionPerformed
 
     private void venNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_venNuevaActionPerformed
-       VentasNew newVentas = new VentasNew();
+       NewSale newVentas = new NewSale();
         HomeAplicativo.escritorio.add(newVentas);
         newVentas.toFront();
         //centrar
@@ -852,7 +852,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
 
         try {
-            VentasView viewVentas = new VentasView();
+            SalesView viewVentas = new SalesView();
             HomeAplicativo.escritorio.add(viewVentas);
             viewVentas.toFront();
             //centrar

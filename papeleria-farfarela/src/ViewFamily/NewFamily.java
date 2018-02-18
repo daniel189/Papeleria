@@ -8,15 +8,15 @@ import MODELO.Conexion;
 import MODELO.QueryFamilia;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import papeleriafarfarela.Familia;
+import PapeleriaFarfarela.Family;
 
 /**
  *
  * @author martha
  */
 public class NewFamily extends javax.swing.JInternalFrame {
-   ArrayList<Familia> lista;
-   Familia familiaIngreso=new Familia();
+   ArrayList<Family> lista;
+   Family familiaIngreso=new Family();
    QueryFamilia articuloQuery=new QueryFamilia();
    int proId;
    int ivaId;
@@ -253,16 +253,16 @@ public class NewFamily extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
        float proId_encontrado;
-       familiaIngreso.setFamiliaId(idfamilia);
-       familiaIngreso.setFamiliaDetale(txt_descripcion.getText());
-       familiaIngreso.setFamiliaNombre(txt_nombre.getText());
-       if((articuloQuery.setFamilia(familiaIngreso.getFamiliaId(),ivaId, familiaIngreso.getFamiliaNombre(), familiaIngreso.getFamiliaDetale())))
+       familiaIngreso.setFamilyId(idfamilia);
+       familiaIngreso.setFamilyDetail(txt_descripcion.getText());
+       familiaIngreso.setFamilyName(txt_nombre.getText());
+       if((articuloQuery.setFamilia(familiaIngreso.getFamilyId(),ivaId, familiaIngreso.getFamilyName(), familiaIngreso.getFamilyDetail())))
        {          
             String[] fila=new String[7];
-            fila[0]=String.valueOf(familiaIngreso.getFamiliaId());
+            fila[0]=String.valueOf(familiaIngreso.getFamilyId());
             fila[1]=String.valueOf(ivaId);
-            fila[2]=String.valueOf(familiaIngreso.getFamiliaNombre());
-            fila[3]=String.valueOf(familiaIngreso.getFamiliaDetale());
+            fila[2]=String.valueOf(familiaIngreso.getFamilyName());
+            fila[3]=String.valueOf(familiaIngreso.getFamilyDetail());
             modelo.addRow(fila);
             tabla_articulos.setModel(modelo);  
             idfamilia++;

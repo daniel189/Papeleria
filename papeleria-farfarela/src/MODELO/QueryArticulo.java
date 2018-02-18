@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package MODELO;
-import VistasVentas.VentasNew;
-import papeleriafarfarela.Articulo;
+import VistasVentas.NewSale;
+import PapeleriaFarfarela.Article;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -134,20 +134,20 @@ public class QueryArticulo {
           } 
        return idasignar;
    }     
-public boolean setArticulo(Articulo art,int id_familia,int id_provedor){
+public boolean setArticulo(Article art,int id_familia,int id_provedor){
     boolean identificador=true;  
     Connection cone= Conexion.getConexion();
       float pro_id_encontrado=0;
         PreparedStatement sentencia;
           try {
               sentencia = cone.prepareStatement("INSERT INTO articulos(ART_ID,PRO_ID,FAM_ID,ART_NOMBRE,ART_DESCRIPCION,ART_PRECIO,ART_STOCK) VALUES (?,?,?,?,?,?,?)");
-               sentencia.setInt(1, art.getArticuloId());
+               sentencia.setInt(1, art.getArticleId());
               sentencia.setInt(2, id_provedor);
               sentencia.setInt(3, id_familia);
-              sentencia.setString(4, art.getArticuloNombre());
-              sentencia.setString(5, art.getArticuloDescripcion());
-              sentencia.setFloat(6, art.getArticuloPrecio());
-               sentencia.setDouble(7,art.getArticuloStock());
+              sentencia.setString(4, art.getArticleName());
+              sentencia.setString(5, art.getArticleDescription());
+              sentencia.setFloat(6, art.getArticlePrice());
+               sentencia.setDouble(7,art.getArticleStock());
 
                     int res=sentencia.executeUpdate();
                     if(res>0){
@@ -267,9 +267,9 @@ public boolean setArticulo(Articulo art,int id_familia,int id_provedor){
                 return false;
             }
         };
-      //le asigna el modelo al jtable
+      //le asigna el salesTebleModel al jtable
         //modelo = UpdateArticulo("1", 0);
-        VentasNew.SeleccionarArticulos.setModel(modelo);
+        NewSale.SeleccionarArticulos.setModel(modelo);
         
         //ejecuta una consulta a la BD
         ejecutarConsultaTodaTabla();
@@ -307,7 +307,7 @@ public boolean setArticulo(Articulo art,int id_familia,int id_provedor){
                 //crea un vector donde los está la informacion (se crea una fila)
                 Object[] info = {codigo, nombre, descripcion, precio};
 
-                //al modelo de la tabla le agrega una fila
+                //al salesTebleModel de la tabla le agrega una fila
                 //con los datos que están en info
                 modelo.addRow(info);
 
@@ -338,9 +338,9 @@ public boolean setArticulo(Articulo art,int id_familia,int id_provedor){
             };
 
             ;
-            //le asigna el modelo al jtable
+            //le asigna el salesTebleModel al jtable
             //modelo = UpdateArticulo(parametroBusqueda, 1,1);
-            VentasNew.SeleccionarArticulos.setModel(modelo);
+            NewSale.SeleccionarArticulos.setModel(modelo);
             //ejecuta una consulta a la BD
             buscarRegistroArticulos(parametroBusqueda);
 
@@ -377,7 +377,7 @@ public boolean setArticulo(Articulo art,int id_familia,int id_provedor){
 
                 //crea un vector donde los está la informacion (se crea una fila)
                 Object[] info = {codigo,nombre,descripcion,precio};
-                //al modelo de la tabla le agrega una fila
+                //al salesTebleModel de la tabla le agrega una fila
                 //con los datos que están en info
                 modelo.addRow(info);
 

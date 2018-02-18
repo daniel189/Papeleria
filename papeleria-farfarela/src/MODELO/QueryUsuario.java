@@ -5,7 +5,7 @@
  */
 package MODELO;
 
-import papeleriafarfarela.Cuenta;
+import PapeleriaFarfarela.Account;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -48,20 +48,20 @@ public class QueryUsuario {
         }
         return cuenta;
     }
-    public ArrayList<Cuenta> getCuentas(){
-        ArrayList<Cuenta> listado = new ArrayList();
-        Cuenta cuen;
+    public ArrayList<Account> getCuentas(){
+        ArrayList<Account> listado = new ArrayList();
+        Account cuen;
         cone = Conexion.getConexion();
         try{
             sentencia = cone.prepareStatement("SELECT * FROM cuenta");
             resul= sentencia.executeQuery();
             while(resul.next()){
-                cuen = new Cuenta("","",0,0,"");
-                cuen.setCuenta(resul.getString(1));
-                cuen.setEmp_id(resul.getInt(2));
-                cuen.setPass(resul.getString(3));
-                cuen.setNivel(resul.getInt(4));
-                cuen.setHabilitado(resul.getString(5));
+                cuen = new Account("","",0,0,"");
+                cuen.setAccountName(resul.getString(1));
+                cuen.setEmployeeId(resul.getInt(2));
+                cuen.setAccountPassword(resul.getString(3));
+                cuen.setAccountAccessLevel(resul.getInt(4));
+                cuen.setAccountStatus(resul.getString(5));
                 //agregamos a la ARRAYLIST
                 listado.add(cuen);
             }
@@ -72,16 +72,16 @@ public class QueryUsuario {
     }
     
     
-    public void setCuenta(Cuenta cue){
+    public void setCuenta(Account cue){
         Connection cone = Conexion.getConexion();
         try {
             //SELECCIONO LAS SENTENCIAS DE SQL--------------
             PreparedStatement sentencia = cone.prepareStatement("INSERT INTO cuenta VALUES (?,?,?,?,?)");
-            sentencia.setString(1, cue.getCuenta());
-            sentencia.setInt(2, cue.getEmp_id());
-            sentencia.setString(3, cue.getPass());
-            sentencia.setInt(4, cue.getNivel());
-            sentencia.setString(5, cue.getHabilitado());
+            sentencia.setString(1, cue.getAccountName());
+            sentencia.setInt(2, cue.getemployeeId());
+            sentencia.setString(3, cue.getAccountPassword());
+            sentencia.setInt(4, cue.getAccountAccessLevel());
+            sentencia.setString(5, cue.getAccountStatus());
             //Este metodo actualiza y si afecta a mas de una columna se pone de 1 a mas
             int res=sentencia.executeUpdate();
             if(res>0){
