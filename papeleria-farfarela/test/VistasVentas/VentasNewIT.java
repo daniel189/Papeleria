@@ -51,37 +51,6 @@ public class VentasNewIT {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of chargeFamily method, of class NewSale.
-     */
-    @Test
-    public void testVerFamilia() {
-        System.out.println("verFamilia");
-        int idArticulo = 0;
-        NewSale instance = new NewSale();
-        int expResult = 0;
-        int result = instance.chargeFamily(idArticulo);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getStock method, of class NewSale.
-     */
-    @Test
-    public void testVerStock() {
-        System.out.println("verStock");
-        int idArticulo = 0;
-        NewSale instance = new NewSale();
-        int expResult = 0;
-        int result = instance.verStock(idArticulo);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
     /**
      * Test of GenerarFactura method, of class NewSale.
      */
@@ -134,21 +103,4 @@ public class VentasNewIT {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of EliminaCaracteres method, of class NewSale.
-     */
-    @Test
-    public void testEliminaCaracteres() {
-        System.out.println("EliminaCaracteres");
-        String s_cadena = "";
-        String s_caracteres = "";
-        NewSale instance = new NewSale();
-        String expResult = "";
-        String result = instance.EliminaCaracteres(s_cadena, s_caracteres);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }
