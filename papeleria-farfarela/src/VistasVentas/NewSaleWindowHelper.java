@@ -82,7 +82,7 @@ public class NewSaleWindowHelper {
         PreparedStatement search;
         ResultSet result;
         Connection dataBaseConection;
-        dataBaseConection = Connection.getConexion();
+        dataBaseConection = Conexion.getConnection();
         try{ 
             String sql = "SELECT "+idSelection+" FROM "+tableSql+" WHERE "+conditionSql+" = ?";
             search = dataBaseConection.prepareStatement(sql);
@@ -130,7 +130,7 @@ public class NewSaleWindowHelper {
         ResultSet resultado = null;
         int val = 0;
         try {
-            conexion = Connection.getConexion();
+            conexion = Conexion.getConnection();
             sentencia = conexion.createStatement();
             String consultaSQL = "SELECT max(fac_id) FROM facturas";
             resultado = sentencia.executeQuery(consultaSQL);

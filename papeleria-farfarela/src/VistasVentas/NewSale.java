@@ -41,7 +41,7 @@ public class NewSale extends javax.swing.JInternalFrame{
     int n = 0, item = -1;
     double totals = 0;
     DefaultTableModel salesTebleModel;
-    Connection conection = new Connection();
+    Conexion conection = new Conexion();
     String clientExist = "no";
     boolean searchById = false, searchByName = false, searchByLastName = false;
     int flag = 1;
@@ -98,7 +98,7 @@ public class NewSale extends javax.swing.JInternalFrame{
      * datos
      */
     public void GuardarArticulos() {
-        Connection cone = Connection.getConexion();
+        Connection cone = Conexion.getConnection();
         for (int w = 0; w < n; w = w + 1) {
             //obteniendo valor fila por columna a la vez y w es fila y n es total de articulos comprados
             String col1 = (String) JTableArticulos.getValueAt(w, 1); // codigo articulo
@@ -210,7 +210,7 @@ public class NewSale extends javax.swing.JInternalFrame{
         // TODO add your handling code here:
         // conection
         boolean ident = true;
-        Connection reg = conection.getConexion();
+        Connection reg = Conexion.getConnection();
         // registro de BD a la tabla de Facturas
         if (Double.parseDouble(jTextFieldSubTotal.getText()) == 0 || Double.parseDouble(jTextFieldIVA.getText()) == 0 || Double.parseDouble(jTextFieldGranTotal.getText()) == 0) {
             JOptionPane.showMessageDialog(null, "Datos Incompletos. Factura no generada");
