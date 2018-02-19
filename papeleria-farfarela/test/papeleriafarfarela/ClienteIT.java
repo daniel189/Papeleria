@@ -5,6 +5,8 @@
  */
 package papeleriafarfarela;
 
+import PapeleriaFarfarela.Bill;
+import PapeleriaFarfarela.Client;
 import java.util.Collection;
 import java.util.Iterator;
 import org.junit.After;
@@ -40,80 +42,80 @@ public class ClienteIT {
     }
 
     /**
-     * Test of getFacturas method, of class Cliente.
+     * Test of getBills method, of class Client.
      */
     @Test
     public void testGetFacturas() {
         System.out.println("getFacturas");
-        Cliente instance = new Cliente();
-        Collection<Factura> expResult = null;
-        Collection<Factura> result = instance.getFacturas();
+        Client instance = new Client();
+        Collection<Bill> expResult = null;
+        Collection<Bill> result = instance.getBills();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getIteratorFacturas method, of class Cliente.
+     * Test of getBillsIterator method, of class Client.
      */
     @Test
     public void testGetIteratorFacturas() {
         System.out.println("getIteratorFacturas");
-        Cliente instance = new Cliente();
+        Client instance = new Client();
         Iterator expResult = null;
-        Iterator result = instance.getIteratorFacturas();
+        Iterator result = instance.getBillsIterator();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setFacturas method, of class Cliente.
+     * Test of setBills method, of class Client.
      */
     @Test
     public void testSetFacturas() {
         System.out.println("setFacturas");
-        Collection<Factura> newFacturas = null;
-        Cliente instance = new Cliente();
-        instance.setFacturas(newFacturas);
+        Collection<Bill> newFacturas = null;
+        Client instance = new Client();
+        instance.setBills(newFacturas);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of addFacturas method, of class Cliente.
+     * Test of addBills method, of class Client.
      */
     @Test
     public void testAddFacturas() {
         System.out.println("addFacturas");
-        Factura newFacturas = null;
-        Cliente instance = new Cliente();
-        instance.addFacturas(newFacturas);
+        Bill newFacturas = null;
+        Client instance = new Client();
+        instance.addBills(newFacturas);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of removeFacturas method, of class Cliente.
+     * Test of removeBills method, of class Client.
      */
     @Test
     public void testRemoveFacturas() {
         System.out.println("removeFacturas");
-        Factura oldFacturas = null;
-        Cliente instance = new Cliente();
-        instance.removeFacturas(oldFacturas);
+        Bill oldFacturas = null;
+        Client instance = new Client();
+        instance.removeBills(oldFacturas);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of removeAllFacturas method, of class Cliente.
+     * Test of removeAllBills method, of class Client.
      */
     @Test
     public void testRemoveAllFacturas() {
         System.out.println("removeAllFacturas");
-        Cliente instance = new Cliente();
-        instance.removeAllFacturas();
+        Client instance = new Client();
+        instance.removeAllBills();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

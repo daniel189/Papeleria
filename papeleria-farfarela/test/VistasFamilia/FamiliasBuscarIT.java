@@ -5,6 +5,7 @@
  */
 package VistasFamilia;
 
+import ViewFamily.SearchFamily;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -43,7 +44,7 @@ public class FamiliasBuscarIT {
     @Test
     public void testSeleccionaritem() {
         System.out.println("seleccionaritem");
-        BusquedaFamilia instance = new BusquedaFamilia();
+        SearchFamily instance = new SearchFamily();
         int expResult = 0;
         int result = instance.seleccionaritem();
         assertEquals(expResult, result);

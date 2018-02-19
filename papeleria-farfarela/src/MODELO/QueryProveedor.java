@@ -198,14 +198,6 @@ public class QueryProveedor {
     ResultSet resultado = null;
     PreparedStatement ps = null;
 
-    /*public void Update_Table(){
-        try {
-            String consultaSQL = "SELECT * FROM PROVEEDOR ORDER BY PRO_ID ASC";
-            resultado = sentencia.executeQuery(consultaSQL);
-            ProveedorSearch.jTableListarProveedor.setModel(modelo);
-        } catch (Exception e) {
-        }
-    }*/
     public void ejecutarConsultaTodaTabla() {
 
         try {

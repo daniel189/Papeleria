@@ -37,16 +37,5 @@ public class FamiliasNewIT {
     public void tearDown() {
     }
 
-    /**
-     * Test of claveMax method, of class NuevaFamilia.
-     */
-    @Test
-    public void testClaveMax() {
-        System.out.println("claveMax");
-        NuevaFamilia instance = new NuevaFamilia();
-        instance.claveMax();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
     
 }

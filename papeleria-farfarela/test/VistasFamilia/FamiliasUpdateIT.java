@@ -35,32 +35,5 @@ public class FamiliasUpdateIT {
     
     @After
     public void tearDown() {
-    }
-
-    /**
-     * Test of cargartxt method, of class EditaFamilia.
-     */
-    @Test
-    public void testCargartxt() {
-        System.out.println("cargartxt");
-        EditaFamilia instance = new EditaFamilia();
-        instance.cargartxt();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of seleccionaritem method, of class EditaFamilia.
-     */
-    @Test
-    public void testSeleccionaritem() {
-        System.out.println("seleccionaritem");
-        EditaFamilia instance = new EditaFamilia();
-        int expResult = 0;
-        int result = instance.seleccionaritem();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
+    }    
 }

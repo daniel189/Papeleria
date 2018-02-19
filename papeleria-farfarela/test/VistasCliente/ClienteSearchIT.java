@@ -5,7 +5,7 @@
  */
 package VistasCliente;
 
-import VistasClientes.GestionCliente;
+import ViewClients.CustomerManagement;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -36,32 +36,6 @@ public class ClienteSearchIT {
     
     @After
     public void tearDown() {
-    }
-
-    /**
-     * Test of limparDatos method, of class GestionCliente.
-     */
-    @Test
-    public void testLimparDatos() {
-        System.out.println("limparDatos");
-        GestionCliente instance = new GestionCliente();
-        instance.limparDatos();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of llenarClientes method, of class GestionCliente.
-     */
-    @Test
-    public void testLlenarClientes() {
-        System.out.println("llenarClientes");
-        String condicion = "";
-        int aux = 0;
-        GestionCliente instance = new GestionCliente();
-        instance.llenarClientes(condicion, aux);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

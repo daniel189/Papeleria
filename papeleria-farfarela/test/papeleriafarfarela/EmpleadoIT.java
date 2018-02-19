@@ -5,6 +5,8 @@
  */
 package papeleriafarfarela;
 
+import PapeleriaFarfarela.Account;
+import PapeleriaFarfarela.Employee;
 import java.util.Collection;
 import java.util.Iterator;
 import org.junit.After;
@@ -40,80 +42,80 @@ public class EmpleadoIT {
     }
 
     /**
-     * Test of getCuenta method, of class Empleado.
+     * Test of getAccount method, of class Employee.
      */
     @Test
     public void testGetCuenta() {
         System.out.println("getCuenta");
-        Empleado instance = new Empleado();
-        Collection<Cuenta> expResult = null;
-        Collection<Cuenta> result = instance.getCuenta();
+        Employee instance = new Employee();
+        Collection<Account> expResult = null;
+        Collection<Account> result = instance.getAccount();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getIteratorCuenta method, of class Empleado.
+     * Test of getIteratorAccount method, of class Employee.
      */
     @Test
     public void testGetIteratorCuenta() {
         System.out.println("getIteratorCuenta");
-        Empleado instance = new Empleado();
+        Employee instance = new Employee();
         Iterator expResult = null;
-        Iterator result = instance.getIteratorCuenta();
+        Iterator result = instance.getIteratorAccount();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setCuenta method, of class Empleado.
+     * Test of setAccount method, of class Employee.
      */
     @Test
     public void testSetCuenta() {
         System.out.println("setCuenta");
-        Collection<Cuenta> newCuenta = null;
-        Empleado instance = new Empleado();
-        instance.setCuenta(newCuenta);
+        Collection<Account> newCuenta = null;
+        Employee instance = new Employee();
+        instance.setAccount(newCuenta);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of addCuenta method, of class Empleado.
+     * Test of addAccount method, of class Employee.
      */
     @Test
     public void testAddCuenta() {
         System.out.println("addCuenta");
-        Cuenta newCuenta = null;
-        Empleado instance = new Empleado();
-        instance.addCuenta(newCuenta);
+        Account newCuenta = null;
+        Employee instance = new Employee();
+        instance.addAccount(newCuenta);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of removeCuenta method, of class Empleado.
+     * Test of removeAccount method, of class Employee.
      */
     @Test
     public void testRemoveCuenta() {
         System.out.println("removeCuenta");
-        Cuenta oldCuenta = null;
-        Empleado instance = new Empleado();
-        instance.removeCuenta(oldCuenta);
+        Account oldCuenta = null;
+        Employee instance = new Employee();
+        instance.removeAccount(oldCuenta);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of removeAllCuenta method, of class Empleado.
+     * Test of removeAllAccount method, of class Employee.
      */
     @Test
     public void testRemoveAllCuenta() {
         System.out.println("removeAllCuenta");
-        Empleado instance = new Empleado();
-        instance.removeAllCuenta();
+        Employee instance = new Employee();
+        instance.removeAllAccount();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

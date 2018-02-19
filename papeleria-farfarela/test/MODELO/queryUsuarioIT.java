@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import papeleriafarfarela.Cuenta;
+import PapeleriaFarfarela.Account;
 
 /**
  *
@@ -61,8 +61,8 @@ public class queryUsuarioIT {
     public void testGetCuentas() {
         System.out.println("getCuentas");
         QueryUsuario instance = new QueryUsuario();
-        ArrayList<Cuenta> expResult = null;
-        ArrayList<Cuenta> result = instance.getCuentas();
+        ArrayList<Account> expResult = null;
+        ArrayList<Account> result = instance.getCuentas();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -74,7 +74,7 @@ public class queryUsuarioIT {
     @Test
     public void testSetCuenta() {
         System.out.println("setCuenta");
-        Cuenta cue = null;
+        Account cue = null;
         QueryUsuario instance = new QueryUsuario();
         instance.setCuenta(cue);
         // TODO review the generated test code and remove the default call to fail.

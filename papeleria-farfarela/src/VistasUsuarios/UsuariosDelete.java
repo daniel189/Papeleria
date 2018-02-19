@@ -11,6 +11,8 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Crispin
+ * @editor Yury
+ * 
  */
 public class UsuariosDelete extends javax.swing.JInternalFrame {
 
@@ -136,6 +138,14 @@ public class UsuariosDelete extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * 
+     * @param evt evento de presion de boton, para eliminicacion de un registro 
+     * en la tabla cuenta, donde el nombre de la cuenta sea el mismo que la
+     * secuencia de caracteres ingresada
+     * 
+     */
+    
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         String cuenta;
         cuenta = txtUsuario.getText();
@@ -147,6 +157,13 @@ public class UsuariosDelete extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    /**
+     * 
+     * @param evt, evento de presiond e boton para cancelaciond e operacion en
+     * la interfaz
+     * 
+     */
+    
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed

@@ -5,7 +5,7 @@
  */
 package VistasArticulo;
 
-import VistasArticulos.BusquedaArticulos;
+import ViewArticles.FoundArticles;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -39,26 +39,12 @@ public class ArticuloBuscarIT {
     }
 
     /**
-     * Test of getvalorencontrado method, of class BusquedaArticulos.
-     */
-    @Test
-    public void testGetvalorencontrado() {
-        System.out.println("getvalorencontrado");
-        BusquedaArticulos instance = new BusquedaArticulos();
-        int expResult = 0;
-        int result = instance.getvalorencontrado();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of seleccionaritem method, of class BusquedaArticulos.
      */
     @Test
     public void testSeleccionaritem() {
         System.out.println("seleccionaritem");
-        BusquedaArticulos instance = new BusquedaArticulos();
+        FoundArticles instance = new FoundArticles();
         int expResult = 0;
         int result = instance.seleccionaritem();
         assertEquals(expResult, result);
@@ -72,8 +58,8 @@ public class ArticuloBuscarIT {
     @Test
     public void testCargartxt() {
         System.out.println("cargartxt");
-        BusquedaArticulos instance = new BusquedaArticulos();
-        instance.cargartxt();
+        FoundArticles instance = new FoundArticles();
+        //instance.txt();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -84,7 +70,7 @@ public class ArticuloBuscarIT {
     @Test
     public void testGetvalor() {
         System.out.println("getvalor");
-        BusquedaArticulos instance = new BusquedaArticulos();
+        FoundArticles instance = new FoundArticles();
         int expResult = 0;
         int result = instance.getvalor();
         assertEquals(expResult, result);

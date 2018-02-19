@@ -18,17 +18,30 @@ import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Crispin
+ * @editor Yury
+ * 
  */
 public class UsuariosSearch extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form UsuariosSearch
+     * Crea un nuevo formulario para la busqueda de usuario
      */
     public UsuariosSearch() {
         initComponents();
         llenarCuentas("", 1);
     }
+    /**
+     * variable encargada de la conexion con la base de datos
+     */
     Connection cone = Conexion.getConexion();
+    
+    /**
+     * Funcion encargada de llear la tabla de contenidos con el uso de la 
+     * variable de condicion o de nivel
+     * 
+     * @param condicion es el nombre de la cuenta que se busca
+     * @param aux  es la variable que refiere al nivel de accesso del usuario
+     */
     private void llenarCuentas(String condicion, int aux){
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Cuenta");
@@ -283,10 +296,21 @@ public class UsuariosSearch extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * 
+     * @param evt evento de presion de boton, para terminar con el formulario
+     */
+    
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         this.hide();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    /**
+     * 
+     * @param evt evento de clickeo de mouse que setea el label de permiso segun
+     * el nivel de accesso que se confiera en la columna.
+     * 
+     */
     private void tbCuentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbCuentasMouseClicked
         int fila = tbCuentas.getSelectedRow();
         if(fila >= 0){
@@ -312,6 +336,12 @@ public class UsuariosSearch extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tbCuentasMouseClicked
 
+    /**
+     * 
+     * @param evt evento de release de tecla que actualiza la tabla dependiendo
+     * de la busqueda realizada
+     */
+    
     private void txtBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyReleased
         int c = cbCondicion.getSelectedIndex();
         if(c == 0){

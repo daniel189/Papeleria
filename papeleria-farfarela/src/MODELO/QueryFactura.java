@@ -5,8 +5,8 @@
  */
 package MODELO;
 
-import VistasVentas.VentasView;
-import static VistasVentas.VentasView.listadecompras;
+import VistasVentas.SalesView;
+import static VistasVentas.SalesView.listadecompras;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -44,7 +44,7 @@ public class QueryFactura {
             }
         };
       //le asigna el modelo al jtable
-        VentasView.jTableListarFacturas.setModel(modelo);
+        SalesView.jTableListarFacturas.setModel(modelo);
 
         //ejecuta una consulta a la BD
         ejecutarConsultaTodaTabladeFacturas();
@@ -123,7 +123,7 @@ public class QueryFactura {
           
 
             //le asigna el modelo al jtable
-            VentasView.jTableListarFacturas.setModel(modelo);
+            SalesView.jTableListarFacturas.setModel(modelo);
             //ejecuta una consulta a la BD
             buscarFacturasporBusqueda(parametroBusqueda, buscarPorFacturas, buscarPorCliente, buscarPorFecha);
 
@@ -215,7 +215,7 @@ public class QueryFactura {
          
          
         //le asigna el modelo al jtable
-       VentasView.listadecompras.setModel(modelo);
+       SalesView.listadecompras.setModel(modelo);
        
         int[] anchos = {80, 200,50,145};
         for(int i = 0; i < listadecompras.getColumnCount(); i++) {

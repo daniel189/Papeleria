@@ -1,8 +1,8 @@
 
 package MODELO;
 
-import VistasClientes.NuevoCliente;
-import VistasClientes.GestionCliente;
+import ViewClients.NewCustomer;
+import ViewClients.CustomerManagement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

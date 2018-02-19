@@ -11,11 +11,13 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Crispin
+ * @editor Yury
+ * 
  */
 public class UsuariosCuenta extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form UsuariosCuenta
+     * Creacion de un nuevo formulario para restablecimiento de contraseñas de Cuentas de usuario
      */
     public UsuariosCuenta(String cuenta, String nivel) {
         initComponents();
@@ -178,10 +180,20 @@ public class UsuariosCuenta extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * 
+     * @param evt evento de cancelacion, se cierra la ventana 
+     */
+    
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
-
+/**
+ * 
+ * @param evt, evento de presion de boton para restablecer contraseña
+ * valida si en efecto hay una neuva cadena de caracteres de entrada
+ * 
+ */
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if(lbUsuario.getText().length() > 0){
             if(txtPass.getText().length() > 0){
@@ -200,6 +212,9 @@ public class UsuariosCuenta extends javax.swing.JInternalFrame {
      * @param args the command line arguments
      */
 
+    /**
+     * Declaraciond e variables globales para e uso dentro de la interfaz
+     */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;

@@ -16,23 +16,36 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import papeleriafarfarela.Cuenta;
+import PapeleriaFarfarela.Account;
 
 /**
  *
  * @author Crispin
+ * @editor Yury
+ * 
  */
 public class UsuariosEdit extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form UsuariosEditar
+     * Crea nuevo formulario para edicion de informacion de usuarios
      */
     public UsuariosEdit() {
         initComponents();
         mostrarCuentas();
     }
-    //vr
+    
+    
+    /**
+     * Parametro que establece la coneccion con la base de datos
+     */
+    
     Connection cone = Conexion.getConexion();
+    
+    /**
+     * Funcion que carga la informacion de usuarios desde la tabla cuenta y la
+     * presenta en la tabla
+     * 
+     */
     public void mostrarCuentas(){
         
         DefaultTableModel modelo = new DefaultTableModel();
@@ -270,6 +283,13 @@ public class UsuariosEdit extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * 
+     * @param evt evento de presion de boton  que carga los datos en la lista, y 
+     * actualiza la tabla cuenta de la base de datos.
+     * 
+     */
+    
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         if(lbCuenta.getText().length() > 0){
             ArrayList<String> lista = new ArrayList<String>();
@@ -286,10 +306,20 @@ public class UsuariosEdit extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
+    /**
+     * 
+     * @param evt de presion de boton, para cancelar edicion
+     */
+    
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    /**
+     * 
+     * @param evt de click de mouse que permite extraer el nombre de la cuenta
+     */
+    
     private void tbCuentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbCuentasMouseClicked
         int fila = tbCuentas.getSelectedRow();
         if(fila >= 0){
@@ -303,6 +333,13 @@ public class UsuariosEdit extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tbCuentasMouseClicked
 
+    /**
+     * 
+     * @param evt de presion de boton de reseteo. Utilizado ar restablecer la 
+     * contrasenia 
+     * 
+     */
+    
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         if(lbCuenta.getText().length() > 0){
             String cuenta = lbCuenta.getText();

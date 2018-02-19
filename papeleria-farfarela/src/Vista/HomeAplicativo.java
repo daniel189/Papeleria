@@ -20,24 +20,24 @@ import VistaEmpleado.EmpleadoPrincipal;
 import VistaEmpleado.EmpleadoPrincipal1;
 import VistaProveedor.ProveedorPrincipal;
 import VistaProveedor.ProveedorPrincipal1;
-import VistasArticulos.BusquedaArticulos;
-import VistasArticulos.EliminaArticulos;
-import VistasArticulos.NuevoArticulo;
-import VistasArticulos.EditaArticulos;
-import VistasClientes.GestionCliente;
-import VistasFamilia.BusquedaFamilia;
-import VistasFamilia.NuevaFamilia;
-import VistasFamilia.EditaFamilia;
-import VistasIva.Edicioniva;
-import VistasIva.LecturaIva;
-import VistasIva.NuevoIva;
+import ViewArticles.FoundArticles;
+import ViewArticles.RemoveArticles;
+import ViewArticles.NewArticle;
+import ViewArticles.EditArticles;
+import ViewClients.CustomerManagement;
+import ViewFamily.SearchFamily;
+import ViewFamily.NewFamily;
+import ViewFamily.EditFamily;
+import ViewIva.EditionIva;
+import ViewIva.ReadIva;
+import ViewIva.NewIva;
 import VistasUsuarios.UsuariosCuenta;
 import VistasUsuarios.UsuariosDelete;
 import VistasUsuarios.UsuariosEdit;
 import VistasUsuarios.UsuariosNew;
 import VistasUsuarios.UsuariosSearch;
-import VistasVentas.VentasNew;
-import VistasVentas.VentasView;
+import VistasVentas.NewSale;
+import VistasVentas.SalesView;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Image;
@@ -68,7 +68,7 @@ public class HomeAplicativo extends javax.swing.JFrame {
      */
     private static String cuenta;
     private static String nivel;
-      Conexion conexion = new Conexion();
+    Conexion conexion = new Conexion();
     Connection conexion2 = null;
     Statement sentencia = null;
     ResultSet resultado = null;
@@ -624,7 +624,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_jProveedoresActionPerformed
 
     private void jClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jClientesActionPerformed
-        GestionCliente obj = new GestionCliente();
+        CustomerManagement obj = new CustomerManagement();
         HomeAplicativo.escritorio.add(obj);
         obj.toFront();
         //centrar
@@ -638,21 +638,12 @@ EmpleadoPrincipal1 empleadoPrincipal;
 
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
         this.dispose();
-        InicioAplicativo login = new InicioAplicativo();
+        AppStart login = new AppStart();
         login.setVisible(true);
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
     private void jAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAcercaDeActionPerformed
-        Acerca obj = new Acerca();
-        HomeAplicativo.escritorio.add(obj);
-        obj.toFront();
-        //centrar
-        //Para centrar la ventana abierta
-        Dimension dimension = escritorio.getSize();
-        Dimension FrameSize = obj.getSize();
-        obj.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
-        //
-        obj.show();
+
     }//GEN-LAST:event_jAcercaDeActionPerformed
 
     private void mAgregar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAgregar3ActionPerformed
@@ -716,7 +707,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_mConsultar3ActionPerformed
 
     private void prodAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prodAgregarActionPerformed
-        NuevoArticulo newArticulos = new NuevoArticulo();
+        NewArticle newArticulos = new NewArticle();
         HomeAplicativo.escritorio.add(newArticulos);
         newArticulos.toFront();
         //centrar
@@ -729,7 +720,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_prodAgregarActionPerformed
 
     private void prodModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prodModificarActionPerformed
-        EditaArticulos updateArticulos = new EditaArticulos();
+        EditArticles updateArticulos = new EditArticles();
         HomeAplicativo.escritorio.add(updateArticulos);
         updateArticulos.toFront();
         //centrar
@@ -742,7 +733,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_prodModificarActionPerformed
 
     private void prodConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prodConsultarActionPerformed
-        BusquedaArticulos buscarArticulos = new BusquedaArticulos();
+        FoundArticles buscarArticulos = new FoundArticles();
         HomeAplicativo.escritorio.add(buscarArticulos);
         buscarArticulos.toFront();
         //centrar
@@ -755,7 +746,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_prodConsultarActionPerformed
 
     private void IvaNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IvaNewActionPerformed
-        NuevoIva newIva = new NuevoIva();
+        NewIva newIva = new NewIva();
         HomeAplicativo.escritorio.add(newIva);
         newIva.toFront();
         //centrar
@@ -768,7 +759,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_IvaNewActionPerformed
 
     private void IvaEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IvaEditActionPerformed
-        Edicioniva editIva = new Edicioniva();
+        EditionIva editIva = new EditionIva();
         HomeAplicativo.escritorio.add(editIva);
         editIva.toFront();
         //centrar
@@ -781,7 +772,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_IvaEditActionPerformed
 
     private void IvaSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IvaSearchActionPerformed
-        LecturaIva leerIva = new LecturaIva();
+        ReadIva leerIva = new ReadIva();
         HomeAplicativo.escritorio.add(leerIva);
         leerIva.toFront();
         //centrar
@@ -794,7 +785,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_IvaSearchActionPerformed
 
     private void FamiNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FamiNewActionPerformed
-        NuevaFamilia newFamilias = new NuevaFamilia();
+        NewFamily newFamilias = new NewFamily();
         HomeAplicativo.escritorio.add(newFamilias);
         newFamilias.toFront();
         //centrar
@@ -807,7 +798,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_FamiNewActionPerformed
 
     private void FamiEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FamiEditActionPerformed
-        EditaFamilia updateFamilias = new EditaFamilia();
+        EditFamily updateFamilias = new EditFamily();
         HomeAplicativo.escritorio.add(updateFamilias);
         updateFamilias.toFront();
         //centrar
@@ -820,7 +811,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_FamiEditActionPerformed
 
     private void FamiSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FamiSearchActionPerformed
-        BusquedaFamilia buscarFamilias = new BusquedaFamilia();
+        SearchFamily buscarFamilias = new SearchFamily();
         HomeAplicativo.escritorio.add(buscarFamilias);
         buscarFamilias.toFront();
         //centrar
@@ -833,7 +824,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     }//GEN-LAST:event_FamiSearchActionPerformed
 
     private void venNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_venNuevaActionPerformed
-       VentasNew newVentas = new VentasNew();
+       NewSale newVentas = new NewSale();
         HomeAplicativo.escritorio.add(newVentas);
         newVentas.toFront();
         //centrar
@@ -861,7 +852,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
 
         try {
-            VentasView viewVentas = new VentasView();
+            SalesView viewVentas = new SalesView();
             HomeAplicativo.escritorio.add(viewVentas);
             viewVentas.toFront();
             //centrar
@@ -956,8 +947,6 @@ EmpleadoPrincipal1 empleadoPrincipal;
         }finally {
 
             CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
-
-
         }
     }//GEN-LAST:event_AlertaActionPerformed
 

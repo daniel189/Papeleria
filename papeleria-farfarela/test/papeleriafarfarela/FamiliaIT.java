@@ -5,6 +5,7 @@
  */
 package papeleriafarfarela;
 
+import PapeleriaFarfarela.Family;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -38,82 +39,82 @@ public class FamiliaIT {
     }
 
     /**
-     * Test of getFAM_id method, of class Familia.
+     * Test of getFAM_id method, of class Family.
      */
     @Test
     public void testGetFAM_id() {
         System.out.println("getFAM_id");
-        Familia instance = new Familia();
+        Family instance = new Family();
         int expResult = 0;
-        int result = instance.getFamiliaId();
+        int result = instance.getFamilyId();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setFAM_id method, of class Familia.
+     * Test of setFAM_id method, of class Family.
      */
     @Test
     public void testSetFAM_id() {
         System.out.println("setFAM_id");
         int FAM_id = 0;
-        Familia instance = new Familia();
-        instance.setFamiliaId(FAM_id);
+        Family instance = new Family();
+        instance.setFamilyId(FAM_id);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getFAM_nombre method, of class Familia.
+     * Test of getFAM_nombre method, of class Family.
      */
     @Test
     public void testGetFAM_nombre() {
         System.out.println("getFAM_nombre");
-        Familia instance = new Familia();
+        Family instance = new Family();
         String expResult = "";
-        String result = instance.getFamiliaNombre();
+        String result = instance.getFamilyName();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setFAM_nombre method, of class Familia.
+     * Test of setFAM_nombre method, of class Family.
      */
     @Test
     public void testSetFAM_nombre() {
         System.out.println("setFAM_nombre");
         String FAM_nombre = "";
-        Familia instance = new Familia();
-        instance.setFamiliaNombre(FAM_nombre);
+        Family instance = new Family();
+        instance.setFamilyName(FAM_nombre);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getFAM_detale method, of class Familia.
+     * Test of getFAM_detale method, of class Family.
      */
     @Test
     public void testGetFAM_detale() {
         System.out.println("getFAM_detale");
-        Familia instance = new Familia();
+        Family instance = new Family();
         String expResult = "";
-        String result = instance.getFamiliaDetale();
+        String result = instance.getFamilyDetail();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setFAM_detale method, of class Familia.
+     * Test of setFAM_detale method, of class Family.
      */
     @Test
     public void testSetFAM_detale() {
         System.out.println("setFAM_detale");
         String FAM_detale = "";
-        Familia instance = new Familia();
-        instance.setFamiliaDetale(FAM_detale);
+        Family instance = new Family();
+        instance.setFamilyDetail(FAM_detale);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
