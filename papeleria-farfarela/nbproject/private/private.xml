@@ -3,7 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/C:/Users/DOSIS/Documents/GitHub/Papeleria/papeleria-farfarela/src/ViewProvider/ProveedorPrincipal.java</file>
             <file>file:/C:/Users/DOSIS/Documents/GitHub/Papeleria/papeleria-farfarela/src/ViewEmployee/Datos2.java</file>
             <file>file:/C:/Users/DOSIS/Documents/GitHub/Papeleria/papeleria-farfarela/src/ViewEmployee/DatosEmpleados.java</file>
@@ -11,12 +10,7 @@
             <file>file:/C:/Users/DOSIS/Documents/GitHub/Papeleria/papeleria-farfarela/src/View/AppStart.java</file>
             <file>file:/C:/Users/DOSIS/Documents/GitHub/Papeleria/papeleria-farfarela/src/ViewProvider/DatosProveedor.java</file>
             <file>file:/C:/Users/DOSIS/Documents/GitHub/Papeleria/papeleria-farfarela/src/ViewEmployee/EmpleadoPrincipal.java</file>
-=======
-            <file>file:/C:/Users/Lizeth/Documents/GitHub/Papeleria/papeleria-farfarela/test/MODELO/ConexionIT.java</file>
-            <file>file:/C:/Users/Lizeth/Documents/GitHub/Papeleria/papeleria-farfarela/src/MODEL/Conexion.java</file>
-            <file>file:/C:/Users/Lizeth/Documents/GitHub/Papeleria/papeleria-farfarela/src/MODEL/QueryEmployee.java</file>
-            <file>file:/C:/Users/Lizeth/Documents/GitHub/Papeleria/papeleria-farfarela/test/VistasVentas/VentasNewIT.java</file>
->>>>>>> 460af5840bd0fa8743a9836509fba194bcad2290
+            <file>file:/C:/Users/DOSIS/Documents/GitHub/Papeleria/papeleria-farfarela/src/VistasVentas/NewSaleWindowHelper.java</file>
         </group>
     </open-files>
 </project-private>
