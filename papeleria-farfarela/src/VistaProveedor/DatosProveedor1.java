@@ -44,7 +44,7 @@ public class DatosProveedor1 extends javax.swing.JInternalFrame {
     private String contacto;
     private String tcontc;
     private String direcc;
-    Connection conectar = new Connection();
+    Conexion conectar = new Conexion();
     public DatosProveedor1() {
         initComponents();
 
@@ -60,7 +60,7 @@ public class DatosProveedor1 extends javax.swing.JInternalFrame {
     public void claveMax() {
         try {
             //Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/farfarela", "ECUATORIANO16", "root");
-            Connection conexion = Connection.getConexion();
+            Connection conexion = Conexion.getConnection();
             Statement comando = conexion.createStatement();
             ResultSet registro = comando.executeQuery("select max(pro_id)+1 from proveedor");
             //ResultSet registro = comando.executeQuery("select count(*) from proveedor");
@@ -439,7 +439,7 @@ public class DatosProveedor1 extends javax.swing.JInternalFrame {
         QueryProveedor queryE = new QueryProveedor();
         validarCamposVacios();
         if (cont == 0) {
-            Connection reg = conectar.getConexion();
+            Connection reg = Conexion.getConnection();
             if (this.opcion == 1) {
                 lblEstado.setText("Proveedor - Nuevo");
                 String sql = "INSERT INTO PROVEEDOR (PRO_ID,PRO_IDENTIFICADOR,PRO_RAZONSOCIAL,PRO_TELEFONO ,PRO_CONTACTO ,PRO_TELEFONOCONTACTO,PRO_DIRECCION)VALUES (?,?,?,?,?,?,?)";

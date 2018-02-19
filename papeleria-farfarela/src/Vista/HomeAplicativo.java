@@ -68,7 +68,7 @@ public class HomeAplicativo extends javax.swing.JFrame {
      */
     private static String cuenta;
     private static String nivel;
-    Connection conexion = new Connection();
+    Conexion conexion = new Conexion();
     Connection conexion2 = null;
     Statement sentencia = null;
     ResultSet resultado = null;
@@ -920,7 +920,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
         entrada[0][1]="Nombre";
         entrada[0][2]="Cantidad";
          try {
-            conexion2 = Connection.getConexion();
+            conexion2 = Conexion.getConnection();
             sentencia = conexion2.createStatement();
              String consultaSQL = "SELECT *FROM articulos WHERE ART_STOCK<=20;";
             resultado = sentencia.executeQuery(consultaSQL);

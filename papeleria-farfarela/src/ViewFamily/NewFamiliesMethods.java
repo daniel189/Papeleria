@@ -45,10 +45,10 @@ public class NewFamiliesMethods {
     return item;
 }
     public final void claveMax(JTextField txtCodigo, int idfamilia) {
-      Connection conectar = new Connection();
+      Conexion conectar = new Conexion();
         try {
             //Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/farfarela", "ECUATORIANO16", "root");
-            Connection conexion = conectar.getConexion();
+            Connection conexion = Conexion.getConnection();
             Statement comando = conexion.createStatement();
             ResultSet registro = comando.executeQuery("select max(FAM_id)+1 from familiasarticulos");
             if (registro.next() == true) {

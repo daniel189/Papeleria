@@ -19,10 +19,10 @@ import javax.swing.JTextField;
  */
 public class NewIvaMethods {
   public final void claveMax(JTextField txtCodigo,int ivaId) {
-      Connection conectar = new Connection();
+      Conexion conectar = new Conexion();
         try {
             //Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/farfarela", "ECUATORIANO16", "root");
-            Connection conexion = conectar.getConexion();
+            Connection conexion = Conexion.getConnection();
             Statement comando = conexion.createStatement();
             ResultSet registro = comando.executeQuery("select max(iva_id)+1 FROM IVA");
             if (registro.next() == true) {

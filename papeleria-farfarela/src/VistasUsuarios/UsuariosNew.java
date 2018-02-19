@@ -62,7 +62,7 @@ public class UsuariosNew extends javax.swing.JInternalFrame {
      * 
      */
     private void llenarEmpleados(){
-        conexion = Connection.getConexion();
+        conexion = Conexion.getConnection();
         try {
             sentencia = conexion.prepareStatement("SELECT emp_id, emp_nombres, emp_apellidos FROM empleado");
             resul= sentencia.executeQuery();

@@ -480,7 +480,7 @@ public class DatosProveedor extends javax.swing.JDialog {
         QueryProveedor queryE = new QueryProveedor();
         validarCamposVacios();
         if (cont == 0) {
-            Connection reg = conectar.getConexion();
+            Connection reg = Conexion.getConnection();
             if (this.opcion == 1) {
                 lblEstado.setText("Proveedor - Nuevo");
                 String sql = "INSERT INTO PROVEEDOR (PRO_ID,PRO_IDENTIFICADOR,PRO_RAZONSOCIAL,PRO_TELEFONO ,PRO_CONTACTO ,PRO_TELEFONOCONTACTO,PRO_DIRECCION)VALUES (?,?,?,?,?,?,?)";
@@ -590,7 +590,7 @@ public class DatosProveedor extends javax.swing.JDialog {
 
         }
     }//GEN-LAST:event_txtContactoKeyTyped
-    Connection conectar = new Connection();
+    Conexion conectar = new Conexion();
 
     /**
      * @param args the command line arguments

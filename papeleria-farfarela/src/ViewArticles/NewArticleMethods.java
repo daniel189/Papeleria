@@ -59,9 +59,9 @@ public class NewArticleMethods {
         }
      }
       public final void claveMax(JTextField txtCodigo) {  
-        Connection conectar = new Connection();
+        //Conexion conectar = new Conexion();
         try {
-            Connection conexion = conectar.getConexion();
+            Connection conexion = Conexion.getConnection();
             Statement comando = conexion.createStatement();
             ResultSet registro = comando.executeQuery("select max(art_id)+1 FROM ARTICULOS");
             if (registro.next() == true) {
