@@ -46,7 +46,7 @@ public class QueryCliente {
     JTextField txtDireccion;
     JTextField txtTelefono;
     public void setCliente(ArrayList<String> lista){
-        Connection cone = Conexion.getConexion();
+        Connection cone = Conexion.getConnection();
         try {
             //SELECCIONO LAS SENTENCIAS DE SQL--------------
             PreparedStatement sentencia = cone.prepareStatement("INSERT INTO cliente VALUES (?,?,?,?,?,?)");
@@ -73,7 +73,7 @@ public class QueryCliente {
     }
     
     public void EliminarRegistro(String iden){
-        Connection cone= Conexion.getConexion();
+        Connection cone= Conexion.getConnection();
         try {
             PreparedStatement sentencia = cone.prepareStatement("DELETE FROM cliente WHERE cli_identificador = '"+ iden +"'");
             int res = sentencia.executeUpdate();
@@ -92,7 +92,7 @@ public class QueryCliente {
     }
     
     public void updateCliente(ArrayList<String> lista){
-        Connection cone = Conexion.getConexion();
+        Connection cone = Conexion.getConnection();
         try{
             PreparedStatement sentencia = cone.prepareStatement("UPDATE cliente SET cli_nombres = '"+ lista.get(1) +"',cli_apelidos = '"+
                     lista.get(2)+"',cli_direccion = '"+ lista.get(3) + "',cli_telefono = '"+lista.get(4) +"',cli_fechaNacimiento = '"+
@@ -117,7 +117,7 @@ public class QueryCliente {
     
      public void agregarCliente(String cedula, String nombre, String apellido) {
 
-         Connection reg = Conexion.getConexion();
+         Connection reg = Conexion.getConnection();
         
          String sql = "INSERT INTO cliente ( CLI_IDENTIFICADOR, CLI_NOMBRES, CLI_APELIDOS)VALUES (?,?,?)";
             try {
@@ -185,7 +185,7 @@ public class QueryCliente {
     public void ejecutarConsultaTodaTabla() {
 
         try {
-            conexion = Conexion.getConexion();
+            conexion = Conexion.getConnection();
 
             sent = conexion.createStatement();
             String consultaSQL = "SELECT * FROM cliente ORDER BY CLI_APELIDOS ASC";
@@ -253,7 +253,7 @@ public class QueryCliente {
 
         try {
             Connection conection1;
-            conection1 = Conexion.getConexion();
+            conection1 = Conexion.getConnection();
             String selectSQL;
             resultado = null;
             if (buscarPorCedula == true) {               

@@ -39,7 +39,7 @@ public class UsuariosEdit extends javax.swing.JInternalFrame {
      * Parametro que establece la coneccion con la base de datos
      */
     
-    Connection cone = Conexion.getConexion();
+    Connection cone = Connection.getConexion();
     
     /**
      * Funcion que carga la informacion de usuarios desde la tabla cuenta y la

@@ -45,7 +45,7 @@ public class NewFamiliesMethods {
     return item;
 }
     public final void claveMax(JTextField txtCodigo, int idfamilia) {
-      Conexion conectar = new Conexion();
+      Connection conectar = new Connection();
         try {
             //Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/farfarela", "ECUATORIANO16", "root");
             Connection conexion = conectar.getConexion();

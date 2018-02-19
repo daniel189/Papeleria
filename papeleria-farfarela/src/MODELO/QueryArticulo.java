@@ -26,21 +26,21 @@ import javax.swing.table.DefaultTableModel;
  * @author Crispin
  */
 public class QueryArticulo {
-    PreparedStatement sentencia;
-    PreparedStatement busqueda;
+    PreparedStatement sentence;
+    PreparedStatement search;
     ResultSet result;
-    Connection conection;
-    Conexion conexion;
+    Connection connection;
+    //Connection conexion;
     
      
-         //modelo para la tabla
-    DefaultTableModel modelo;
+    //modelo para la tabla
+    DefaultTableModel model;
     //vector con los titulos de cada columna
     String[] titulosColumnas = {"CÓDIGO", "NOMBRE", "DESCRIPCIÓN", "PRECIO"};
     //matriz donde se almacena los datos de cada celda de la tabla
     String informacion[][] = {};
     
-       /** @pdOid 368c9303-adc2-4bfa-a4fd-3acfae6fa040 */
+    /** @pdOid 368c9303-adc2-4bfa-a4fd-3acfae6fa040 */
    public double articuloId;
    /** @pdOid fb83f19b-3315-4022-92f7-8fe2aac9ba1a */
    public java.lang.String articuloNombre;
@@ -56,7 +56,7 @@ public class QueryArticulo {
    JComboBox cboxfamilia=new JComboBox();  
    public JComboBox cargarprovedores()
    {
-       Connection conection= Conexion.getConexion();
+       Connection conection= Conexion.getConnection();
           try {
               Statement buscarnombre= conection.createStatement();
               String consulta="select pro_identificador from proveedor";
@@ -75,7 +75,7 @@ public class QueryArticulo {
    }   
    public JComboBox cargarfamilias()
    {
-       Connection conection= Conexion.getConexion();
+       Connection conection= Conexion.getConnection();
           try {
               Statement buscarnombre= conection.createStatement();
               String consulta="select fam_nombre from familiasarticulos";
@@ -95,13 +95,13 @@ public class QueryArticulo {
    public int asignarprovedor(String nombre)
    {
        int idasignar=0;
-      Connection conection= Conexion.getConexion();
+      Connection conection= Conexion.getConnection();
     
           try { 
               String sql = "SELECT * FROM PROVEEDOR WHERE PRO_IDENTIFICADOR LIKE ? ORDER BY PRO_IDENTIFICADOR ASC";
-              busqueda = conection.prepareStatement(sql);
-              busqueda.setString(1, "%" + nombre + "%");
-              result=busqueda.executeQuery();
+              search = conection.prepareStatement(sql);
+              search.setString(1, "%" + nombre + "%");
+              result=search.executeQuery();
               while(result.next())
               {
                 idasignar = result.getInt("PRO_ID");
@@ -116,13 +116,13 @@ public class QueryArticulo {
  public int asignarfamilia(String nombre)
    {
        int idasignar=0;
-      Connection cone= Conexion.getConexion();
+      Connection cone= Conexion.getConnection();
     
           try { 
               String sql = "SELECT * FROM FAMILIASARTICULOS WHERE FAM_NOMBRE LIKE ?";
-              busqueda = cone.prepareStatement(sql);
-              busqueda.setString(1, "%" + nombre + "%");
-              result=busqueda.executeQuery();
+              search = cone.prepareStatement(sql);
+              search.setString(1, "%" + nombre + "%");
+              result=search.executeQuery();
               while(result.next())
               {
                 idasignar = result.getInt("FAM_ID");
@@ -136,7 +136,7 @@ public class QueryArticulo {
    }     
 public boolean setArticulo(Article art,int id_familia,int id_provedor){
     boolean identificador=true;  
-    Connection cone= Conexion.getConexion();
+    Connection cone= Conexion.getConnection();
       float pro_id_encontrado=0;
         PreparedStatement sentencia;
           try {
@@ -167,17 +167,17 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
         DefaultTableModel modelo=new DefaultTableModel(null,titulos);// si no usan el null y no le ponen titulos noo les  imprime 
         String Filtro=""+texto+"_%";
         String[] fila=new String[7];
-        conection = Conexion.getConexion();
+        connection = Conexion.getConnection();
         String      instruccionsql=    "  SELECT * FROM articulos WHERE art_nombre like " +'"' + Filtro  +'"';
         try {
-      if(item==0)// si se selecciona x id cambia la sentencia sql
+      if(item==0)// si se selecciona x id cambia la sentence sql
       {
           float id=Integer.parseInt(texto);
          instruccionsql=  ("SELECT * FROM articulos WHERE art_id = '"+ id +"'");
       }
     
-         sentencia=conection.prepareStatement( instruccionsql);
-            result=sentencia.executeQuery( instruccionsql);
+         sentence=connection.prepareStatement( instruccionsql);
+            result=sentence.executeQuery( instruccionsql);
            
             while(result.next())
             {
@@ -194,7 +194,7 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
             
         result.close();
      
-        conection.close();
+        connection.close();
           return modelo;  
         }
         catch(SQLException ex){
@@ -208,9 +208,9 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
 
     
         try {
-            conection = Conexion.getConexion();
+            connection = Conexion.getConnection();
          
-            Statement comando = conection.createStatement();
+            Statement comando = connection.createStatement();
 
             // linea de codigo de mysql que actualiza regristos que va modificar
          
@@ -229,8 +229,8 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
                     }
           
         
-            conection.close();
-            //System.out.println("Conexion cerrada");
+            connection.close();
+            //System.out.println("Connection cerrada");
         } catch (SQLException ex) {
        JOptionPane.showMessageDialog(null,"SELECCIONE FAMILIA Y PROVEDOR ");
         }
@@ -238,8 +238,8 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
     public void eliminarProveedor(int code) {
 
         try {            
-            conection = Conexion.getConexion();
-            Statement comando = conection.createStatement();
+            connection = Conexion.getConnection();
+            Statement comando = connection.createStatement();
             int cantidad = comando.executeUpdate("delete from ARTICULOS where ART_ID=" + code);
             if (cantidad == 1) {
    
@@ -247,8 +247,8 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
             } else {
                 JOptionPane.showMessageDialog(null,"No existe Articulo con el Codigo Ingresado "+code);
             }
-            conection.close();
-            //System.out.println("Conexion cerrada");
+            connection.close();
+            //System.out.println("Connection cerrada");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"error "+ex);
         }
@@ -262,14 +262,14 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
     
      public void CargarArticulos(){
          
-         modelo = new DefaultTableModel(informacion, titulosColumnas) {
+         model = new DefaultTableModel(informacion, titulosColumnas) {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
       //le asigna el salesTebleModel al jtable
         //modelo = UpdateArticulo("1", 0);
-        NewSale.SeleccionarArticulos.setModel(modelo);
+        NewSale.SeleccionarArticulos.setModel(model);
         
         //ejecuta una consulta a la BD
         ejecutarConsultaTodaTabla();
@@ -286,7 +286,7 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
          
          
         try {
-            conexion = Conexion.getConexion();
+            conexion = Conexion.getConnection();
 
             sentencia = conexion.createStatement();
             String consultaSQL = "SELECT * FROM articulos ORDER BY art_nombre ASC";
@@ -309,7 +309,7 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
 
                 //al salesTebleModel de la tabla le agrega una fila
                 //con los datos que están en info
-                modelo.addRow(info);
+                model.addRow(info);
 
             }//cierra while (porque no hay mas datos en la BD)
 
@@ -331,7 +331,7 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
 
         
 
-            modelo = new DefaultTableModel(informacion, titulosColumnas) {
+            model = new DefaultTableModel(informacion, titulosColumnas) {
                 public boolean isCellEditable(int row, int column) {
                     return false;
                 }
@@ -340,7 +340,7 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
             ;
             //le asigna el salesTebleModel al jtable
             //modelo = UpdateArticulo(parametroBusqueda, 1,1);
-            NewSale.SeleccionarArticulos.setModel(modelo);
+            NewSale.SeleccionarArticulos.setModel(model);
             //ejecuta una consulta a la BD
             buscarRegistroArticulos(parametroBusqueda);
 
@@ -357,7 +357,7 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
         
         try {
 
-            conexion = Conexion.getConexion();
+            conexion = Conexion.getConnection();
             String selectSQL;
             resultado = null;
                             
@@ -379,7 +379,7 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
                 Object[] info = {codigo,nombre,descripcion,precio};
                 //al salesTebleModel de la tabla le agrega una fila
                 //con los datos que están en info
-                modelo.addRow(info);
+                model.addRow(info);
 
             }
             conexion.close();

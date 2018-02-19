@@ -30,7 +30,7 @@ public class QueryUsuario {
     
     public ArrayList<String> getcuenta(String parametroCuenta){
             ArrayList<String> cuenta = new ArrayList<>();
-            Connection cone = Conexion.getConexion();
+            Connection cone = Conexion.getConnection();
             String sql="SELECT * FROM cuenta WHERE cue_cuenta = '"+ parametroCuenta +"'";
         try {
             Statement st = cone.createStatement();
@@ -51,7 +51,7 @@ public class QueryUsuario {
     public ArrayList<Account> getCuentas(){
         ArrayList<Account> listado = new ArrayList();
         Account cuen;
-        cone = Conexion.getConexion();
+        cone =  Conexion.getConnection();
         try{
             sentencia = cone.prepareStatement("SELECT * FROM cuenta");
             resul= sentencia.executeQuery();
@@ -73,7 +73,7 @@ public class QueryUsuario {
     
     
     public void setCuenta(Account cue){
-        Connection cone = Conexion.getConexion();
+        Connection cone =  Conexion.getConnection();
         try {
             //SELECCIONO LAS SENTENCIAS DE SQL--------------
             PreparedStatement sentencia = cone.prepareStatement("INSERT INTO cuenta VALUES (?,?,?,?,?)");
@@ -96,7 +96,7 @@ public class QueryUsuario {
     }
     
     public void EliminarRegistro(String cuenta){
-        Connection cone= Conexion.getConexion();
+        Connection cone=  Conexion.getConnection();
         try {
             PreparedStatement sentencia = cone.prepareStatement("DELETE FROM cuenta WHERE cue_cuenta = '"+ cuenta +"'");
             int res = sentencia.executeUpdate();
@@ -115,7 +115,7 @@ public class QueryUsuario {
     }
     
     public void updateCuenta(ArrayList<String> lista){
-        Connection cone = Conexion.getConexion();
+        Connection cone =  Conexion.getConnection();
         int n = Integer.parseInt(lista.get(1));
         try{
             PreparedStatement sentencia = cone.prepareStatement("UPDATE cuenta SET cue_nivel = '"+ n +"' WHERE cue_cuenta = '"+ lista.get(0) +"'");
@@ -133,7 +133,7 @@ public class QueryUsuario {
     }
     
     public void resetCuenta(String cuenta, String pass){
-        Connection cone = Conexion.getConexion();
+        Connection cone =  Conexion.getConnection();
         try{
             PreparedStatement sentencia = cone.prepareStatement("UPDATE cuenta SET cue_pass = '"+ pass +"' WHERE cue_cuenta = '"+ cuenta +"'");
             //si guarda bien o no

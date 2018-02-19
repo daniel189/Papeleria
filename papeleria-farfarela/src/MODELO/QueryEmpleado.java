@@ -76,7 +76,7 @@ public class QueryEmpleado {
             String direccion, String telefono, String observacion,
             Date fNacimiento, Date fIngreso) {
 
-        Connection reg = Conexion.getConexion();
+        Connection reg = Conexion.getConnection();
 
         String sql = "INSERT INTO EMPLEADO ( EMP_ID, EMP_IDENTIFICADOR, EMP_NOMBRES,EMP_APELLIDOS,EMP_DIRECCION,EMP_TELEFONO,EMP_OBSERVACION,EMP_FECHANACIMIENTO,EMP_FECHAINGRESO)VALUES (?,?,?,?,?,?,?,?,?)";
         try {
@@ -109,7 +109,7 @@ public class QueryEmpleado {
 
         try {
             //Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/farfarela", "ECUATORIANO16", "root");
-            Connection conexion = Conexion.getConexion();
+            Connection conexion = Conexion.getConnection();
             Statement comando = conexion.createStatement();
             int cantidad = comando.executeUpdate("delete from empleado where emp_id=" + code);
             if (cantidad == 1) {
@@ -130,7 +130,7 @@ public class QueryEmpleado {
     public boolean buscarRepetido(String identificador) {
 
         try {
-            Connection registro = Conexion.getConexion();
+            Connection registro = Conexion.getConnection();
 
             sentencia = registro.createStatement();
             String consultaSQL = "SELECT emp_identificador FROM EMPLEADO where emp_identificador=" + identificador;
@@ -155,7 +155,7 @@ public class QueryEmpleado {
             conexion = null;
         } finally {
 
-            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(conexion2, sentencia, resultado, ps);
 
         }
         return false;
@@ -169,7 +169,7 @@ public class QueryEmpleado {
         try {
             //Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/farfarela", "ECUATORIANO16", "root");
 
-            Connection conexion = Conexion.getConexion();
+            Connection conexion = Conexion.getConnection();
             Statement comando = conexion.createStatement();
 
             // linea de codigo de mysql que actualiza regristos que va modificar
@@ -223,7 +223,7 @@ public class QueryEmpleado {
     public void ejecutarConsultaTodaTabla() {
 
         try {
-            conexion2 = Conexion.getConexion();
+            conexion2 = Conexion.getConnection();
 
             sentencia = conexion2.createStatement();
             String consultaSQL = "SELECT * FROM EMPLEADO ORDER BY EMP_ID ASC";
@@ -259,7 +259,7 @@ public class QueryEmpleado {
             conexion = null;
         } finally {
 
-            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(conexion2, sentencia, resultado, ps);
 
         }
 
@@ -270,7 +270,7 @@ public class QueryEmpleado {
     public void reporteEmpleados() {
 
         try {
-            conexion2 = Conexion.getConexion();
+            conexion2 = Conexion.getConnection();
 
             sentencia = conexion2.createStatement();
             String consultaSQL = "SELECT * FROM EMPLEADO ORDER BY EMP_ID ASC";
@@ -359,7 +359,7 @@ public class QueryEmpleado {
             JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n");
             conexion = null;
         } finally {
-            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(conexion2, sentencia, resultado, ps);
 
 
         }
@@ -633,7 +633,7 @@ public class QueryEmpleado {
         
         String Ruta="/Users/Daniel/Desktop/ReporteEmpleados.xls";
          try {
-            conexion2 = Conexion.getConexion();
+            conexion2 = Conexion.getConnection();
             sentencia = conexion2.createStatement();
              String consultaSQL = "SELECT * FROM EMPLEADO ORDER BY EMP_ID ASC";
              resultado = sentencia.executeQuery(consultaSQL);
@@ -661,7 +661,7 @@ public class QueryEmpleado {
             JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n");
             conexion = null;
         } finally {
-            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(conexion2, sentencia, resultado, ps);
 
         }
         

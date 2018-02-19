@@ -5,7 +5,7 @@
  */
 package VistasUsuarios;
 
-import MODELO.CerrarConexion;
+import MODELO.CloseConnection;
 import MODELO.QueryUsuario;
 import MODELO.Conexion;
 import java.sql.Connection;
@@ -62,7 +62,7 @@ public class UsuariosNew extends javax.swing.JInternalFrame {
      * 
      */
     private void llenarEmpleados(){
-        conexion = Conexion.getConexion();
+        conexion = Connection.getConexion();
         try {
             sentencia = conexion.prepareStatement("SELECT emp_id, emp_nombres, emp_apellidos FROM empleado");
             resul= sentencia.executeQuery();

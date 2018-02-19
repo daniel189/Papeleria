@@ -590,7 +590,7 @@ public class DatosProveedor extends javax.swing.JDialog {
 
         }
     }//GEN-LAST:event_txtContactoKeyTyped
-    Conexion conectar = new Conexion();
+    Connection conectar = new Connection();
 
     /**
      * @param args the command line arguments

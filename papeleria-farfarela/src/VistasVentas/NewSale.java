@@ -5,7 +5,7 @@
  */
 package VistasVentas;
 
-//import Modelo.Conexion;
+//import Modelo.Connection;
 import MODELO.*;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
@@ -41,7 +41,7 @@ public class NewSale extends javax.swing.JInternalFrame{
     int n = 0, item = -1;
     double totals = 0;
     DefaultTableModel salesTebleModel;
-    Conexion conection = new Conexion();
+    Connection conection = new Connection();
     String clientExist = "no";
     boolean searchById = false, searchByName = false, searchByLastName = false;
     int flag = 1;
@@ -98,7 +98,7 @@ public class NewSale extends javax.swing.JInternalFrame{
      * datos
      */
     public void GuardarArticulos() {
-        Connection cone = Conexion.getConexion();
+        Connection cone = Connection.getConexion();
         for (int w = 0; w < n; w = w + 1) {
             //obteniendo valor fila por columna a la vez y w es fila y n es total de articulos comprados
             String col1 = (String) JTableArticulos.getValueAt(w, 1); // codigo articulo

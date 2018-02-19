@@ -65,7 +65,7 @@ public class QueryFactura {
     public void ejecutarConsultaTodaTabladeFacturas() {
 
         try {
-            conexion = Conexion.getConexion();
+            conexion = Conexion.getConnection();
 
             sentencia = conexion.createStatement();
             String consultaSQL = "SELECT * FROM facturas ORDER BY FAC_FECHA ASC";
@@ -100,7 +100,7 @@ public class QueryFactura {
             conexion = null;
         } finally {
 
-            CerrarConexion.CerrarConexion(conexion, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(conexion, sentencia, resultado, ps);
 
         }
 
@@ -140,7 +140,7 @@ public class QueryFactura {
         try {
 
             
-            conexion = Conexion.getConexion();
+            conexion = Conexion.getConnection();
             String selectSQL;
             resultado = null;
             if (buscarPorFacturas == true) {     
@@ -184,7 +184,7 @@ public class QueryFactura {
             JOptionPane.showMessageDialog(null,"Error\n Por la Causa" + e);
         } finally {
 
-            CerrarConexion.CerrarConexion(conexion, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(conexion, sentencia, resultado, ps);
 
         }
 
@@ -230,7 +230,7 @@ public class QueryFactura {
       public void buscarFacturasDetall(String number) {
 
         try {
-            conexion = Conexion.getConexion();
+            conexion = Conexion.getConnection();
             String selectSQL;
             resultado = null;
            
@@ -265,7 +265,7 @@ public class QueryFactura {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error\n " + e);
         } finally {
-           // CerrarConexiones.CerrarConexion(conexion, sentencia, resultado, ps);
+           // CerrarConexiones.CloseConnection(conexion, sentencia, resultado, ps);
         }
 
 

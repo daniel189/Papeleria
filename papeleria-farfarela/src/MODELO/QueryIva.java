@@ -24,14 +24,14 @@ public class QueryIva {
       PreparedStatement busqueda;
     ResultSet resul;
            JComboBox cboxivas=new JComboBox();
-    Conexion conexion;
+    Connection conexion;
     public boolean setIVas(ArrayList<String> lista){
 
 
 
         boolean comprovador=true;
 
-        Connection cone = Conexion.getConexion();
+        Connection cone = Conexion.getConnection();
         try {
             //SELECCIONO LAS SENTENCIAS DE SQL--------------
             PreparedStatement sentencia = cone.prepareStatement("INSERT INTO IVA VALUES (?,?,?)");
@@ -57,7 +57,7 @@ public class QueryIva {
     }
        public JComboBox cargarIvas()
    {
-       Connection cone= Conexion.getConexion();
+       Connection cone= Conexion.getConnection();
           try {
               Statement buscarnombre= cone.createStatement();
               String consulta="select iva_id from iva";
@@ -75,7 +75,7 @@ public class QueryIva {
    
    }  
      public void updateIvas(ArrayList<String> lista){
-        Connection cone = Conexion.getConexion();
+        Connection cone = Conexion.getConnection();
         try{
             PreparedStatement sentencia = cone.prepareStatement("UPDATE IVA SET iva_valor = '"+ lista.get(1) +"',iva_fechaInicio= '"+
                     lista.get(2)+"' WHERE iva_id = '"+ lista.get(0) +"'");
@@ -94,11 +94,11 @@ public class QueryIva {
     }
       public   DefaultTableModel leerIvas(){
           
-              Connection cone = Conexion.getConexion();
+              Connection cone = Conexion.getConnection();
         String titulos[]={"Iva Id","  Valor %","Fecha  Inicio"};
         DefaultTableModel modelo=new DefaultTableModel(null,titulos);// si no usan el null y no le ponen titulos noo les  imprime 
         String[] fila=new String[7];
-        cone = Conexion.getConexion();
+        cone = Conexion.getConnection();
         String      instruccionsql=    "  SELECT * FROM iva";
         try {
       

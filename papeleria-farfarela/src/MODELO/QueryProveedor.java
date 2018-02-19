@@ -5,7 +5,7 @@ package MODELO;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import MODELO.CerrarConexion;
+import MODELO.CloseConnection;
 import MODELO.Conexion;
 import VistaEmpleado.EmpleadoPrincipal;
 import VistaProveedor.ProveedorPrincipal1;
@@ -60,7 +60,7 @@ public class QueryProveedor {
             String direccion, String telefono, String observacion,
             Date fNacimiento, Date fIngreso) {
 
-        Connection reg = Conexion.getConexion();
+        Connection reg = Conexion.getConnection();
 
         String sql = "INSERT INTO EMPLEADO ( EMP_ID, EMP_IDENTIFICADOR, EMP_NOMBRES,EMP_APELLIDOS,EMP_DIRECCION,EMP_TELEFONO,EMP_OBSERVACION,EMP_FECHANACIMIENTO,EMP_FECHAINGRESO)VALUES (?,?,?,?,?,?,?,?,?)";
         try {
@@ -87,7 +87,7 @@ public class QueryProveedor {
     public void eliminarProveedor(int code) {
 
         try {
-            Connection conexion = Conexion.getConexion();
+            Connection conexion =  Conexion.getConnection();
             Statement comando = conexion.createStatement();
             int cantidad = comando.executeUpdate("delete from PROVEEDOR where PRO_ID=" + code);
             if (cantidad == 1) {
@@ -110,7 +110,7 @@ public class QueryProveedor {
             String telfContacto, String direccion) {
 
         try {
-            Connection conexion = Conexion.getConexion();
+            Connection conexion =  Conexion.getConnection();
             Statement comando = conexion.createStatement();
 
             // linea de codigo de mysql que actualiza regristos que va modificar
@@ -158,7 +158,7 @@ public class QueryProveedor {
     public boolean buscarRepetido(String identificador) {
 
         try {
-            Connection reg = Conexion.getConexion();
+            Connection reg =  Conexion.getConnection();
 
             sentencia = reg.createStatement();
             String consultaSQL = "SELECT pro_identificador FROM PROVEEDOR where pro_identificador=" + identificador;
@@ -181,7 +181,7 @@ public class QueryProveedor {
             JOptionPane.showMessageDialog(null, e);
             conexion = null;
         } finally {
-            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(conexion2, sentencia, resultado, ps);
 
         }
         return false;
@@ -201,7 +201,7 @@ public class QueryProveedor {
     public void ejecutarConsultaTodaTabla() {
 
         try {
-            conexion2 = Conexion.getConexion();
+            conexion2 =  Conexion.getConnection();
 
             sentencia = conexion2.createStatement();
             String consultaSQL = "SELECT * FROM PROVEEDOR ORDER BY PRO_ID ASC";
@@ -234,7 +234,7 @@ public class QueryProveedor {
             conexion = null;
         } finally {
 
-            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(conexion2, sentencia, resultado, ps);
 
         }
 
@@ -272,7 +272,7 @@ public class QueryProveedor {
 
         try {
 
-            conexion2 = Conexion.getConexion();
+            conexion2 =  Conexion.getConnection();
             String selectSQL;
             resultado = null;
             if (buscarPorCodigo == true) {
@@ -313,7 +313,7 @@ public class QueryProveedor {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error\n Por la Causa" + e);
         } finally {
-            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(conexion2, sentencia, resultado, ps);
 
         }
 
@@ -517,7 +517,7 @@ public class QueryProveedor {
     public void reporteProveedores() {
 
         try {
-            conexion2 = Conexion.getConexion();
+            conexion2 =  Conexion.getConnection();
 
             sentencia = conexion2.createStatement();
             String consultaSQL = "SELECT * FROM PROVEEDOR ORDER BY PRO_ID ASC";
@@ -593,7 +593,7 @@ public class QueryProveedor {
             conexion = null;
         } finally {
 
-            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(conexion2, sentencia, resultado, ps);
 
         }
         
@@ -613,7 +613,7 @@ public class QueryProveedor {
         
         String Ruta="/Users/Daniel/Desktop/ReporteProvedores.xls";
          try {
-            conexion2 = Conexion.getConexion();
+            conexion2 =  Conexion.getConnection();
             sentencia = conexion2.createStatement();
             String consultaSQL = "SELECT * FROM PROVEEDOR ORDER BY PRO_ID ASC";
             resultado = sentencia.executeQuery(consultaSQL);
@@ -642,7 +642,7 @@ public class QueryProveedor {
             JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n");
             conexion = null;
         } finally {
-            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(conexion2, sentencia, resultado, ps);
 
         }
         

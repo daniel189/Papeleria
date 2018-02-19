@@ -22,13 +22,13 @@ PreparedStatement sentencia;
       PreparedStatement busqueda;
     ResultSet resul;
     Connection cone;
-    Conexion conexion;
+    Connection conexion;
        JComboBox cboxfamilia=new JComboBox();
            public void modificarFamilia(int fami_id,int iva_ide,String fam_nom, String fam_descripcion) {
 
     
         try {
-            cone = Conexion.getConexion();
+            cone = Conexion.getConnection();
          
             Statement comando = cone.createStatement();
 
@@ -48,7 +48,7 @@ PreparedStatement sentencia;
           
         
             cone.close();
-            //System.out.println("Conexion cerrada");
+            //System.out.println("Connection cerrada");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null," Error -->"+ex);
         }
@@ -56,7 +56,7 @@ PreparedStatement sentencia;
     public JComboBox cargariva()
    {
        // este metodo permite cargar todos los id de los ivas cargados y ponerles en un cbox q sera retornado al frm new familia
-       Connection cone= Conexion.getConexion();
+       Connection cone= Conexion.getConnection();
           try {
               Statement buscarnombre= cone.createStatement();
               String consulta="select IVA_id from IVA";
@@ -76,7 +76,7 @@ PreparedStatement sentencia;
      public int asignariva(int iva)
    {
        int idasignar=0;
-      Connection cone= Conexion.getConexion();
+      Connection cone= Conexion.getConnection();
     
           try { 
               String sql = "SELECT * FROM IVA WHERE IVA_ID =? ";
@@ -99,10 +99,10 @@ PreparedStatement sentencia;
         DefaultTableModel modelo=new DefaultTableModel(null,titulos);// si no usan el null y no le ponen titulos noo les  imprime 
         String Filtro=""+texto+"_%";
         String[] fila=new String[4];
-        cone = Conexion.getConexion();
+        cone = Conexion.getConnection();
         
         String      instruccionsql=    "  SELECT * FROM FAMILIASARTICULOS WHERE FAM_nombre like " +'"' + Filtro  +'"';
-            if(item==0)// si se selecciona x id cambia la sentencia sql
+            if(item==0)// si se selecciona x id cambia la sentence sql
       {
           float id=Integer.parseInt(texto);
          instruccionsql=  ("SELECT * FROM FAMILIASARTICULOS WHERE FAM_ID = '"+ id +"'");
@@ -134,7 +134,7 @@ PreparedStatement sentencia;
         }
     }
     public boolean setFamilia(int id,int iva,String nombre,String detalle){
-      Connection cone= Conexion.getConexion();
+      Connection cone= Conexion.getConnection();
        boolean comprovador=true; 
       float pro_id_encontrado=0;
         PreparedStatement sentencia;

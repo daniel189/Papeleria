@@ -59,7 +59,7 @@ public class NewArticleMethods {
         }
      }
       public final void claveMax(JTextField txtCodigo) {  
-        Conexion conectar = new Conexion();
+        Connection conectar = new Connection();
         try {
             Connection conexion = conectar.getConexion();
             Statement comando = conexion.createStatement();

@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CustomerManagemetMethods {
     public void llenarClientes(String condicion, int aux, JTable tbClientes){
-        Connection cone = Conexion.getConexion();
+        Connection cone = Connection.getConexion();
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Identificador");
         modelo.addColumn("Nombres");

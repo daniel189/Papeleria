@@ -48,7 +48,7 @@ public class QueryProducto {
     public void reportePrductosMasV() {
 
         try {
-            conexion2 = Conexion.getConexion();
+            conexion2 = Conexion.getConnection();
 String datos[]=new String[3];
             sentencia = conexion2.createStatement();
             String consultaSQL = "select articulos.ART_ID,articulos.ART_NOMBRE,detalle.DET_CANTIDAD from papeleriafarfarela.detalle, papeleriafarfarela.articulos where detalle.ART_ID=articulos.ART_ID order by detalle.DET_CANTIDAD desc limit 4;";
@@ -122,12 +122,12 @@ String datos[]=new String[3];
             conexion = null;
         } finally {
 
-            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(conexion2, sentencia, resultado, ps);
         }
     }
     public void reportePrductosMenosV() {
         try {
-            conexion2 = Conexion.getConexion();
+            conexion2 = Conexion.getConnection();
             String datos[]=new String[3];
             sentencia = conexion2.createStatement();
             String consultaSQL = "select articulos.ART_ID,articulos.ART_NOMBRE,detalle.DET_CANTIDAD from papeleriafarfarela.detalle, papeleriafarfarela.articulos where detalle.ART_ID=articulos.ART_ID order by detalle.DET_CANTIDAD asc limit 4;";
@@ -182,7 +182,7 @@ String datos[]=new String[3];
             conexion = null;
         } finally {
 
-            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(conexion2, sentencia, resultado, ps);
         }
     }
     public void excelMasvendidos()
@@ -193,7 +193,7 @@ String datos[]=new String[3];
         entrada[0][2]="Cantidad";
         String Ruta="/Users/Daniel/Desktop/ReporteMasVendidos.xls";
          try {
-            conexion2 = Conexion.getConexion();
+            conexion2 = Conexion.getConnection();
             sentencia = conexion2.createStatement();
             String consultaSQL = "select articulos.ART_ID,articulos.ART_NOMBRE,detalle.DET_CANTIDAD from papeleriafarfarela.detalle, papeleriafarfarela.articulos where detalle.ART_ID=articulos.ART_ID order 	by detalle.DET_CANTIDAD desc limit 4;";
             resultado = sentencia.executeQuery(consultaSQL);
@@ -216,7 +216,7 @@ String datos[]=new String[3];
             conexion = null;
         } finally {
 
-            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(conexion2, sentencia, resultado, ps);
 
 
         }
@@ -255,7 +255,7 @@ String datos[]=new String[3];
         entrada[0][2]="Cantidad";
         String Ruta="/Users/Daniel/Desktop/ReporteMenosVendidos.xls";
          try {
-            conexion2 = Conexion.getConexion();
+            conexion2 = Conexion.getConnection();
             sentencia = conexion2.createStatement();
              String consultaSQL = "select articulos.ART_ID,articulos.ART_NOMBRE,detalle.DET_CANTIDAD from papeleriafarfarela.detalle, papeleriafarfarela.articulos where detalle.ART_ID=articulos.ART_ID order by detalle.DET_CANTIDAD asc limit 4;";
             resultado = sentencia.executeQuery(consultaSQL);
@@ -277,7 +277,7 @@ String datos[]=new String[3];
             conexion = null;
         }finally {
 
-            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(conexion2, sentencia, resultado, ps);
         }      
         
         WorkbookSettings conf=new WorkbookSettings ();

@@ -513,7 +513,7 @@ public class SalesView extends javax.swing.JInternalFrame {
         PreparedStatement busqueda;
         ResultSet resul;
         String dato = "", dato1 = "", cadena = "";
-        Connection cone = Conexion.getConexion();
+        Connection cone = Connection.getConexion();
         System.out.println("Cuenta:" + cuenta);
         try {
             String sql = "SELECT * FROM cuenta WHERE cue_cuenta LIKE ?";
@@ -529,7 +529,7 @@ public class SalesView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Error\n Por la Causa" + ex);
         }
         System.out.println("empId:" + idEmpleado);
-        cone = Conexion.getConexion();
+        cone = Connection.getConexion();
         try {
             String sql = "SELECT EMP_NOMBRES, EMP_APELLIDOS FROM empleado WHERE EMP_ID = ?";
             busqueda = cone.prepareStatement(sql);
@@ -574,7 +574,7 @@ public class SalesView extends javax.swing.JInternalFrame {
             Connection cone;
             
             try {
-                cone = Conexion.getConexion();
+                cone = Connection.getConexion();
                 String sql = "SELECT EMP_ID, EMP_NOMBRES, EMP_APELLIDOS FROM empleado WHERE EMP_ID = ?";
                 busqueda = cone.prepareStatement(sql);
                 busqueda.setString(1, codVendedor);
@@ -594,7 +594,7 @@ public class SalesView extends javax.swing.JInternalFrame {
 
 //            try {
 //
-//                cone = Conexion.getConexion();
+//                cone = Connection.getConexion();
 //                Statement comando = cone.createStatement();
 //                ResultSet registro = comando.executeQuery("select CLI_IDENTIFICADOR,CLI_NOMBRES,CLI_APELLIDOS, from cliente where CLI_IDENTIFICADOR LIKE " + codClient);
 //
@@ -610,7 +610,7 @@ public class SalesView extends javax.swing.JInternalFrame {
 //            }
 
             try {
-                cone = Conexion.getConexion();
+                cone = Connection.getConexion();
                 String sql = "SELECT CLI_IDENTIFICADOR, CLI_NOMBRES, CLI_APELIDOS FROM CLIENTE WHERE CLI_IDENTIFICADOR LIKE ?";
                 busqueda = cone.prepareStatement(sql);
                 busqueda.setString(1,"%" + codClient + "%");
@@ -633,7 +633,7 @@ public class SalesView extends javax.swing.JInternalFrame {
             
 //        jTextFieldCodVendedor.setText(title);
 //            try {
-//                cone = Conexion.getConexion();
+//                cone = Connection.getConexion();
 //                Statement comando = cone.createStatement();
 //                ResultSet registroVendedor = comando.executeQuery("select EMP_ID,EMP_NOMBRES,EMP_APELLIDOS from empleado where EMP_ID LIKE" + codVendedor);
 //

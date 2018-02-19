@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Vista;
-import MODELO.CerrarConexion;
+import MODELO.CloseConnection;
 import MODELO.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -68,7 +68,7 @@ public class HomeAplicativo extends javax.swing.JFrame {
      */
     private static String cuenta;
     private static String nivel;
-    Conexion conexion = new Conexion();
+    Connection conexion = new Connection();
     Connection conexion2 = null;
     Statement sentencia = null;
     ResultSet resultado = null;
@@ -920,7 +920,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
         entrada[0][1]="Nombre";
         entrada[0][2]="Cantidad";
          try {
-            conexion2 = Conexion.getConexion();
+            conexion2 = Connection.getConexion();
             sentencia = conexion2.createStatement();
              String consultaSQL = "SELECT *FROM articulos WHERE ART_STOCK<=20;";
             resultado = sentencia.executeQuery(consultaSQL);
@@ -946,7 +946,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
             JOptionPane.showMessageDialog(null, "Error con la base de Datos:\n" );
         }finally {
 
-            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(conexion2, sentencia, resultado, ps);
         }
     }//GEN-LAST:event_AlertaActionPerformed
 

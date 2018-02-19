@@ -44,7 +44,7 @@ public class DatosProveedor1 extends javax.swing.JInternalFrame {
     private String contacto;
     private String tcontc;
     private String direcc;
-    Conexion conectar = new Conexion();
+    Connection conectar = new Connection();
     public DatosProveedor1() {
         initComponents();
 
@@ -60,7 +60,7 @@ public class DatosProveedor1 extends javax.swing.JInternalFrame {
     public void claveMax() {
         try {
             //Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/farfarela", "ECUATORIANO16", "root");
-            Connection conexion = Conexion.getConexion();
+            Connection conexion = Connection.getConexion();
             Statement comando = conexion.createStatement();
             ResultSet registro = comando.executeQuery("select max(pro_id)+1 from proveedor");
             //ResultSet registro = comando.executeQuery("select count(*) from proveedor");
