@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 package ViewClients;
-import MODELO.QueryCliente;
-import Vista.HomeAplicativo;
-import static Vista.HomeAplicativo.escritorio;
+import MODEL.QueryClient;
+import View.HomeAplicativo;
+import static View.HomeAplicativo.escritorio;
 import java.awt.Dimension;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -397,7 +397,7 @@ public class CustomerManagement extends javax.swing.JInternalFrame {
             int n = JOptionPane.showConfirmDialog(null, "Esta seguro de borrar el "
                     + "cliente : " + txtIdentificador.getText() , "Confirmar.", JOptionPane.YES_NO_OPTION);
             if(n == JOptionPane.YES_OPTION){
-                QueryCliente obj = new QueryCliente();
+                QueryClient obj = new QueryClient();
                 obj.EliminarRegistro(txtIdentificador.getText());
                 methods.llenarClientes("", 1, tbClientes);
             }
@@ -416,7 +416,7 @@ public class CustomerManagement extends javax.swing.JInternalFrame {
         if(txtIdentificador.getText().length() > 0 && txtNombres.getText().length() > 0 && txtApellidos.getText().length() > 0
                 && txtDireccion.getText().length() > 0 && txtTelefono.getText().length() > 0){
             //editamos el registro
-            QueryCliente obj = new QueryCliente();
+            QueryClient obj = new QueryClient();
             ArrayList<String> lista = new ArrayList<String>();
             lista.add(txtIdentificador.getText());
             lista.add(txtNombres.getText());

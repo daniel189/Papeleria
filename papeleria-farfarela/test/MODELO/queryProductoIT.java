@@ -5,6 +5,7 @@
  */
 package MODELO;
 
+import MODEL.QueryProduct;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -43,7 +44,7 @@ public class queryProductoIT {
     @Test
     public void testReportePrductosMasV() {
         System.out.println("reportePrductosMasV");
-        QueryProducto instance = new QueryProducto();
+        QueryProduct instance = new QueryProduct();
         instance.reportePrductosMasV();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -55,7 +56,7 @@ public class queryProductoIT {
     @Test
     public void testReportePrductosMenosV() {
         System.out.println("reportePrductosMenosV");
-        QueryProducto instance = new QueryProducto();
+        QueryProduct instance = new QueryProduct();
         instance.reportePrductosMenosV();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

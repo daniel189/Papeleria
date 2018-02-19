@@ -5,8 +5,8 @@
  */
 package VistasUsuarios;
 
-import MODELO.QueryUsuario;
-import MODELO.Conexion;
+import MODEL.QueryUser;
+import MODEL.Conexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -39,7 +39,7 @@ public class UsuariosEdit extends javax.swing.JInternalFrame {
      * Parametro que establece la coneccion con la base de datos
      */
     
-    Connection cone = Conexion.getConexion();
+    Connection cone = Conexion.getConnection();;
     
     /**
      * Funcion que carga la informacion de usuarios desde la tabla cuenta y la
@@ -296,7 +296,7 @@ public class UsuariosEdit extends javax.swing.JInternalFrame {
             lista.add(lbCuenta.getText());
             //lista.add(txtContraseña1.getText());
             lista.add(Integer.toString(cbNivel.getSelectedIndex()+1));
-            QueryUsuario obj = new QueryUsuario();
+            QueryUser obj = new QueryUser();
             obj.updateCuenta(lista);
             mostrarCuentas();
             lbCuenta.setText("");
@@ -344,7 +344,7 @@ public class UsuariosEdit extends javax.swing.JInternalFrame {
         if(lbCuenta.getText().length() > 0){
             String cuenta = lbCuenta.getText();
             //lista.add(txtContraseña1.getText());
-            QueryUsuario obj = new QueryUsuario();
+            QueryUser obj = new QueryUser();
             obj.resetCuenta(cuenta,"12345");
             mostrarCuentas();
             lbCuenta.setText("");

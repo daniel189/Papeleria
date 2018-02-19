@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MODELO;
+package MODEL;
 
 import VistasVentas.SalesView;
 import static VistasVentas.SalesView.listadecompras;
@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Crispin
  */
-public class QueryFactura {
+public class QueryBill {
  
          //modelo para la tabla
     DefaultTableModel modelo;
@@ -47,7 +47,7 @@ public class QueryFactura {
         SalesView.jTableListarFacturas.setModel(modelo);
 
         //ejecuta una consulta a la BD
-        ejecutarConsultaTodaTabladeFacturas();
+        searchall();
 
     }//cierra metodo listarTodosFacturas
     
@@ -62,14 +62,14 @@ public class QueryFactura {
     ResultSet resultado = null;
     PreparedStatement ps = null;
 
-    public void ejecutarConsultaTodaTabladeFacturas() {
+    public void searchall() {
 
         try {
-            conexion = Conexion.getConexion();
+            conexion = Conexion.getConnection();
 
             sentencia = conexion.createStatement();
-            String consultaSQL = "SELECT * FROM facturas ORDER BY FAC_FECHA ASC";
-            resultado = sentencia.executeQuery(consultaSQL);
+            String consultSQL = "SELECT * FROM facturas ORDER BY FAC_FECHA ASC";
+            resultado = sentencia.executeQuery(consultSQL);
 
 
             
@@ -100,7 +100,7 @@ public class QueryFactura {
             conexion = null;
         } finally {
 
-            CerrarConexion.CerrarConexion(conexion, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(conexion, sentencia, resultado, ps);
 
         }
 
@@ -140,7 +140,7 @@ public class QueryFactura {
         try {
 
             
-            conexion = Conexion.getConexion();
+            conexion = Conexion.getConnection();
             String selectSQL;
             resultado = null;
             if (buscarPorFacturas == true) {     
@@ -184,7 +184,7 @@ public class QueryFactura {
             JOptionPane.showMessageDialog(null,"Error\n Por la Causa" + e);
         } finally {
 
-            CerrarConexion.CerrarConexion(conexion, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(conexion, sentencia, resultado, ps);
 
         }
 
@@ -230,7 +230,7 @@ public class QueryFactura {
       public void buscarFacturasDetall(String number) {
 
         try {
-            conexion = Conexion.getConexion();
+            conexion = Conexion.getConnection();
             String selectSQL;
             resultado = null;
            
@@ -265,7 +265,7 @@ public class QueryFactura {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error\n " + e);
         } finally {
-           // CerrarConexiones.CerrarConexion(conexion, sentencia, resultado, ps);
+           // CerrarConexiones.CloseConnection(conexion, sentencia, resultado, ps);
         }
 
 

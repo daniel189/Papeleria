@@ -5,7 +5,7 @@
  */
 package Vista.Empleado;
 
-import VistaEmpleado.EmpleadoPrincipal;
+import ViewEmployee.EmpleadoPrincipal;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

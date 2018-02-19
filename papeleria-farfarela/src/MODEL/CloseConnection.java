@@ -1,5 +1,5 @@
 
-package MODELO;
+package MODEL;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,8 +17,8 @@ import javax.swing.JOptionPane;
  * @author Sergio
  */
 
-public class CerrarConexion {
-    public static void CerrarConexion(Connection conexion, Statement sentencia, ResultSet resultado, PreparedStatement preparedStatement ){
+public class CloseConnection {
+    public static void CloseConnection(Connection connection, Statement sentence, ResultSet result, PreparedStatement preparedStatement ){
 
         
         if(preparedStatement != null){
@@ -29,39 +29,39 @@ public class CerrarConexion {
                 JOptionPane.showMessageDialog(null,"No se pudo cerrar el PreparedStatement\n Error: "+exception1);
                 
             }
-            resultado = null;
+            result = null;
         }
         //- - - - - - - - - - - - - - - - - - - - - -
-        if(resultado != null){
+        if(result != null){
             try{
-                resultado.close();
+                result.close();
             }
             catch(SQLException exception){
                 JOptionPane.showMessageDialog(null,"No se pudo cerrar el ResultSet (resultado)\n Error: "+exception);
             }
-            resultado = null;
+            result = null;
         }
         
         //- - - - - - - - - - - - - - - - - - - - - -
         
-        if(sentencia != null){
+        if(sentence != null){
             try{
-                sentencia.close();
+                sentence.close();
             }
             catch(SQLException exception){
                 JOptionPane.showMessageDialog(null,"No se pudo cerrar el Statement (sentencia)\n Error "+exception);
             }
-            sentencia = null;
+            sentence = null;
         }
         //- - - - - - - - - - - - - - - - - - - - - -
-        if(conexion != null){
+        if(connection != null){
             try{
-                conexion.close();
+                connection.close();
             }
             catch(SQLException exception){
                 JOptionPane.showMessageDialog(null,"No se pudo cerrar Connection (conexion)\n Error "+exception);
             }
-            conexion = null;
+            connection = null;
         }
         
     }//cierra metodo

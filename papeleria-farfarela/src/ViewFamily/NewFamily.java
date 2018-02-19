@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package ViewFamily;
-import MODELO.Conexion;
-import MODELO.QueryFamilia;
+import MODEL.Conexion;
+import MODEL.QueryFamiliy;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import PapeleriaFarfarela.Family;
@@ -17,7 +17,7 @@ import PapeleriaFarfarela.Family;
 public class NewFamily extends javax.swing.JInternalFrame {
    ArrayList<Family> lista;
    Family familiaIngreso=new Family();
-   QueryFamilia articuloQuery=new QueryFamilia();
+   QueryFamiliy articuloQuery=new QueryFamiliy();
    int proId;
    int ivaId;
    public int idfamilia;

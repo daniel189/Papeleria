@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package ViewFamily;
-import MODELO.QueryFamilia;
+import MODEL.QueryFamiliy;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -197,7 +197,7 @@ public class SearchFamily extends javax.swing.JInternalFrame {
      * este evento es para seleccionar datos de una tabla
      */
     private void txtingresoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtingresoKeyReleased
-        QueryFamilia articuloQuery=new QueryFamilia();
+        QueryFamiliy articuloQuery=new QueryFamiliy();
         DefaultTableModel modelo=new DefaultTableModel();
         if(txtingreso.getText().isEmpty())
         {

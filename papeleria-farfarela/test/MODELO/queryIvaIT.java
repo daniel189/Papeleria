@@ -5,6 +5,7 @@
  */
 package MODELO;
 
+import MODEL.QueryIva;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;

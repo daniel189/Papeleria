@@ -3,25 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
-import MODELO.CerrarConexion;
-import MODELO.Conexion;
+package View;
+import MODEL.CloseConnection;
+import MODEL.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import MODELO.QueryEmpleado;
-import MODELO.QueryProducto;
-import MODELO.QueryProveedor;
-import VistaEmpleado.DatosEmpleados;
-import VistaEmpleado.EmpleadoPrincipal;
-import VistaEmpleado.EmpleadoPrincipal1;
-import VistaProveedor.ProveedorPrincipal;
-import VistaProveedor.ProveedorPrincipal1;
+import MODEL.QueryEmployee;
+import MODEL.QueryProduct;
+import MODEL.QueryProvider;
+import ViewEmployee.EmpleadoPrincipal1;
+import ViewProvider.ProveedorPrincipal1;
 import ViewArticles.FoundArticles;
-import ViewArticles.RemoveArticles;
 import ViewArticles.NewArticle;
 import ViewArticles.EditArticles;
 import ViewClients.CustomerManagement;
@@ -38,23 +33,12 @@ import VistasUsuarios.UsuariosNew;
 import VistasUsuarios.UsuariosSearch;
 import VistasVentas.NewSale;
 import VistasVentas.SalesView;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Image;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfContentByte;
-import com.itextpdf.text.pdf.PdfTemplate;
-import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.io.FileOutputStream;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 
 /**
@@ -76,7 +60,7 @@ public class HomeAplicativo extends javax.swing.JFrame {
     public HomeAplicativo() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
-        Habilitar();
+        enable();
         lblCuenta.setVisible(true);
         lblNivel.setVisible(false);
     }
@@ -95,21 +79,21 @@ public class HomeAplicativo extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         lblNivel.setText(aux);
-        Habilitar();
+        enable();
         lblCuenta.setVisible(true);
         lblNivel.setVisible(false);
     }
     public static boolean Cerrado(Object obj) {
         JInternalFrame[] activos =  escritorio.getAllFrames();
-        boolean cerrado = true;
+        boolean close = true;
         int i = 0;
-        while (i < activos.length && cerrado) {
+        while (i < activos.length && close) {
             if (activos[i] == obj) {
-                cerrado = false;
+                close = false;
             }
             i++;
         }
-        return cerrado;
+        return close;
     }
 
     /**
@@ -575,7 +559,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
             empleadoPrincipal.show();
         }
     }//GEN-LAST:event_jEmpleadosActionPerformed
-    public void Habilitar() {
+    public void enable() {
         String aux = lblNivel.getText();
         System.out.println("nivel "+aux );
         switch (aux) {
@@ -869,47 +853,47 @@ EmpleadoPrincipal1 empleadoPrincipal;
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        QueryProducto queryProduct = new QueryProducto();
+        QueryProduct queryProduct = new QueryProduct();
         queryProduct.reportePrductosMasV();
         
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        QueryProducto queryProduct = new QueryProducto();
+        QueryProduct queryProduct = new QueryProduct();
         queryProduct.reportePrductosMenosV();
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void nasVendidoExceloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nasVendidoExceloActionPerformed
         //LLAMA AL METODO MAS VENDIDO QUE GENERA EL DOCUMENTO EXCEL Y SE GUARDA EN EL ESCRITORIO
-        QueryProducto queryProduct = new QueryProducto();
+        QueryProduct queryProduct = new QueryProduct();
         queryProduct.excelMasvendidos();
     }//GEN-LAST:event_nasVendidoExceloActionPerformed
 
     private void menosVendidoExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menosVendidoExcelActionPerformed
        //LLAMA AL METODO MENOS VENDIDO QUE GENERA EL DOCUMENTO EXCEL Y SE GUARDA EN EL ESCRITORIO
-        QueryProducto queryProduct = new QueryProducto();
+        QueryProduct queryProduct = new QueryProduct();
         queryProduct.excelMenosvendidos();
     }//GEN-LAST:event_menosVendidoExcelActionPerformed
 
     private void reporteProvedorXlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteProvedorXlsActionPerformed
-       QueryProveedor proveedor=new QueryProveedor();
+       QueryProvider proveedor=new QueryProvider();
        proveedor.reporteProvedoresExcel();
     }//GEN-LAST:event_reporteProvedorXlsActionPerformed
 
     private void reporteProvedorPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteProvedorPdfActionPerformed
-         QueryProveedor proveedor=new QueryProveedor();
+         QueryProvider proveedor=new QueryProvider();
        proveedor.reporteProveedores();
     }//GEN-LAST:event_reporteProvedorPdfActionPerformed
 
     private void reporteEmpleadoXlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteEmpleadoXlsActionPerformed
-        QueryEmpleado empleado=new QueryEmpleado();
+        QueryEmployee empleado=new QueryEmployee();
         empleado.reporteEmpleadosExcel();
     }//GEN-LAST:event_reporteEmpleadoXlsActionPerformed
 
     private void reporteEmpleadoPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteEmpleadoPdfActionPerformed
-        QueryEmpleado empleado=new QueryEmpleado();
+        QueryEmployee empleado=new QueryEmployee();
         empleado.reporteEmpleados();
     }//GEN-LAST:event_reporteEmpleadoPdfActionPerformed
 
@@ -920,7 +904,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
         entrada[0][1]="Nombre";
         entrada[0][2]="Cantidad";
          try {
-            conexion2 = Conexion.getConexion();
+            conexion2 = Conexion.getConnection();
             sentencia = conexion2.createStatement();
              String consultaSQL = "SELECT *FROM articulos WHERE ART_STOCK<=20;";
             resultado = sentencia.executeQuery(consultaSQL);
@@ -946,7 +930,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
             JOptionPane.showMessageDialog(null, "Error con la base de Datos:\n" );
         }finally {
 
-            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(conexion2, sentencia, resultado, ps);
         }
     }//GEN-LAST:event_AlertaActionPerformed
 
@@ -1064,7 +1048,6 @@ EmpleadoPrincipal1 empleadoPrincipal;
     public static void setNivel(String aNivel) {
         nivel = aNivel;
     }
-    
     
     public static String getCuenta1() {
         return lblCuenta.getText();

@@ -5,6 +5,7 @@
  */
 package MODELO;
 
+import MODEL.QueryFamiliy;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 import org.junit.After;
@@ -49,7 +50,7 @@ public class queryFamiliaIT {
         int iva_ide = 0;
         String fam_nom = "";
         String fam_descripcion = "";
-        QueryFamilia instance = new QueryFamilia();
+        QueryFamiliy instance = new QueryFamiliy();
         instance.modificarFamilia(fami_id, iva_ide, fam_nom, fam_descripcion);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -61,7 +62,7 @@ public class queryFamiliaIT {
     @Test
     public void testCargariva() {
         System.out.println("cargariva");
-        QueryFamilia instance = new QueryFamilia();
+        QueryFamiliy instance = new QueryFamiliy();
         JComboBox expResult = null;
         JComboBox result = instance.cargariva();
         assertEquals(expResult, result);
@@ -76,7 +77,7 @@ public class queryFamiliaIT {
     public void testAsignariva() {
         System.out.println("asignariva");
         int iva = 0;
-        QueryFamilia instance = new QueryFamilia();
+        QueryFamiliy instance = new QueryFamiliy();
         int expResult = 0;
         int result = instance.asignariva(iva);
         assertEquals(expResult, result);
@@ -92,7 +93,7 @@ public class queryFamiliaIT {
         System.out.println("UpdateFamilia");
         String texto = "";
         int item = 0;
-        QueryFamilia instance = new QueryFamilia();
+        QueryFamiliy instance = new QueryFamiliy();
         DefaultTableModel expResult = null;
         DefaultTableModel result = instance.UpdateFamilia(texto, item);
         assertEquals(expResult, result);
@@ -110,7 +111,7 @@ public class queryFamiliaIT {
         int iva = 0;
         String nombre = "";
         String detalle = "";
-        QueryFamilia instance = new QueryFamilia();
+        QueryFamiliy instance = new QueryFamiliy();
         boolean expResult = false;
         boolean result = instance.setFamilia(id, iva, nombre, detalle);
         assertEquals(expResult, result);

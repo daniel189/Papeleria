@@ -5,7 +5,7 @@
  */
 package PapeleriaFarfarela;
 
-import Vista.AppStart;
+import View.AppStart;
 
 /**
  *

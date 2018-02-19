@@ -3,32 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package VistaEmpleado;
+package ViewProvider;
 
-import MODELO.QueryEmpleado;
+import MODEL.QueryProvider;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
 
 /**
  *
- * @author Crispin
+ * @author Roger
  */
-public class EmpleadoPrincipal extends javax.swing.JFrame {
+public class ProveedorPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form UsuariosNew
      */
-    QueryEmpleado queryE = new QueryEmpleado();
-    private TableRowSorter trsFiltro;
-    public EmpleadoPrincipal() {
-    
+          QueryProvider queryE = new QueryProvider();
+
+    public ProveedorPrincipal() {
         initComponents();
-        queryE.listarTodosEmpleados();
+        queryE.listarTodosProveedores();
+        //HabilitarBotones(true, false, false, false);
         
     }
 
@@ -43,11 +40,10 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnVolver = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabelBuscado = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableListarEmpleado = new javax.swing.JTable();
+        jTableListarProveedor = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
         jCmbTipoBusqueda = new javax.swing.JComboBox<>();
         jTextFieldParametroBusqueda = new javax.swing.JTextField();
@@ -57,27 +53,18 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         btnVer = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/equipo.png"))); // NOI18N
-        jLabel1.setText("Empleados");
-
-        btnVolver.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cancelar.png"))); // NOI18N
-        btnVolver.setText("VOLVER");
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
-            }
-        });
+        jLabel1.setText("Proveedores");
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/lista-de-usuario.png"))); // NOI18N
 
         jLabelBuscado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelBuscado.setText("Código:");
 
-        jTableListarEmpleado.setModel(new javax.swing.table.DefaultTableModel(
+        jTableListarProveedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -88,12 +75,22 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTableListarEmpleado);
+        jTableListarProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableListarProveedorMouseClicked(evt);
+            }
+        });
+        jTableListarProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTableListarProveedorKeyReleased(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTableListarProveedor);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel12.setText("Buscar por:");
+        jLabel12.setText("FIltrar :");
 
-        jCmbTipoBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Identificador", "Nombre", "Apellido" }));
+        jCmbTipoBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Identificador", "Razon Social" }));
         jCmbTipoBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCmbTipoBusquedaActionPerformed(evt);
@@ -177,47 +174,43 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(219, 219, 219)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel6))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabelBuscado))
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabelBuscado, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jCmbTipoBusqueda, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldParametroBusqueda))))
-                        .addGap(0, 9, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(216, 216, 216)
-                        .addComponent(jLabel6)))
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(277, 277, 277)
-                .addComponent(btnVolver)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jTextFieldParametroBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(19, 19, 19)))))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel6))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(16, Short.MAX_VALUE)
                         .addComponent(jLabel1)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
                             .addComponent(jCmbTipoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -225,9 +218,7 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelBuscado)
                             .addComponent(jTextFieldParametroBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnVolver)
-                .addGap(29, 29, 29))
+                .addGap(14, 14, 14))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -237,7 +228,7 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,13 +240,8 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-     
-    /**
-     * Funcion la cual escoge el parametro para 
-     * realizar la busqueda dentro de la base de datos
-     * @param evt 
-     */
+private TableRowSorter trsFiltro;
+     //queryProveedores qe = new queryProveedores();
     private void jCmbTipoBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCmbTipoBusquedaActionPerformed
         if (jCmbTipoBusqueda.getSelectedIndex() == 0){
             jLabelBuscado.setText("Codigo");
@@ -264,78 +250,110 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
             jLabelBuscado.setText("Identificador");
         }
         if (jCmbTipoBusqueda.getSelectedIndex() == 2){
-            jLabelBuscado.setText("Nombre");
-        }
-        if (jCmbTipoBusqueda.getSelectedIndex() == 3){
-            jLabelBuscado.setText("Apellido");
+            jLabelBuscado.setText("Razon Social");
         }
     }//GEN-LAST:event_jCmbTipoBusquedaActionPerformed
-
-    
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-         System.gc();//limpiar basura
-        dispose();
-    }//GEN-LAST:event_btnVolverActionPerformed
 
     private void jTextFieldParametroBusquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldParametroBusquedaKeyPressed
 
     }//GEN-LAST:event_jTextFieldParametroBusquedaKeyPressed
 
     /**
-     * Funcion encragada de mostrar los resultados 
-     * que se asocioan al ingreso que realiza el usuario
+     * Funcion inicial la cual activa los botonoes
+     * @param Crear ingresar registro
+     * @param Ver visualizar todos los registros
+     * @param Editar editar un registro 
+     * @param Eliminar  eliminar un registro
+     */
+    public void HabilitarBotones(boolean Crear,boolean Ver,boolean Editar,boolean Eliminar){
+    this.btnCrear.setEnabled(Crear);
+    this.btnVer.setEnabled(Ver);
+    this.btnEditar.setEnabled(Editar);
+    this.btnEliminar.setEnabled(Eliminar);
+    
+}
+    
+    /**
+     * Funcion la cual filtra segun el parametro para 
+     * realizar la busqueda dentro de la base de datos
      * @param evt 
      */
+        public void Filtrar() {
+        int columnaABuscar = 0;
+
+        if (jCmbTipoBusqueda.getSelectedItem() == "Código") {
+            columnaABuscar = 0;
+        }
+        if (jCmbTipoBusqueda.getSelectedItem().toString() == "Identificador") {
+            columnaABuscar = 1;
+        }
+        if (jCmbTipoBusqueda.getSelectedItem() == "Razon Social") {
+            columnaABuscar = 2;
+        }
+        trsFiltro.setRowFilter(RowFilter.regexFilter("(?i)"+jTextFieldParametroBusqueda.getText(), columnaABuscar));
+        //jTableListarProveedor.getColumnModel().getColumn(columnaABuscar).setCellEditor(ta);
+    }
     private void jTextFieldParametroBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldParametroBusquedaKeyTyped
-         jTextFieldParametroBusqueda.addKeyListener(new KeyAdapter() {
+       /*char c=evt.getKeyChar();
+        if(Character.isLowerCase(c)){
+            String cadena=(""+c).toUpperCase();
+            c=cadena.charAt(0);
+            evt.setKeyChar(c);
+        }*/
+                
+        jTextFieldParametroBusqueda.addKeyListener(new KeyAdapter() {
+            @Override
             public void keyReleased(final KeyEvent e) {
-                String cadena = (jTextFieldParametroBusqueda.getText().toUpperCase());
+                String cadena = (jTextFieldParametroBusqueda.getText());
                 jTextFieldParametroBusqueda.setText(cadena);
                 repaint();
                 Filtrar();
             }
         });
-        trsFiltro = new TableRowSorter(jTableListarEmpleado.getModel());
-        jTableListarEmpleado.setRowSorter(trsFiltro);
+        trsFiltro = new TableRowSorter(jTableListarProveedor.getModel());
+        jTableListarProveedor.setRowSorter(trsFiltro);
+        
     }//GEN-LAST:event_jTextFieldParametroBusquedaKeyTyped
 
+    
+    /**
+     * Esta funcion permite la agregacion de un reggistro  
+     * manera rapida
+     * 
+     * @param evt 
+     */
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        Datos2 datos=new Datos2(this,true);
+        DatosProveedor datos=new DatosProveedor(this,true);
         datos.setOpcion(1);
         datos.setVisible(true);
-
+  
     }//GEN-LAST:event_btnCrearActionPerformed
 
-    /**
+   /**
      * Esta funcion permite la edicion de un dato guardado 
      * pulsando sobre el mismo para poder editarlos de 
      * manera rapida
      * 
      * @param evt 
      */
+  
+
+    
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        if(jTableListarEmpleado.getSelectedRows().length>0){
-            Datos2 datos=new Datos2(this,true);
-            datos.setOpcion(2);
-            String cod=jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 0).toString();
-            String ident=jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 1).toString();
-            String nombres=jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 2).toString();
-            String apellidos=jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 3).toString();
-            String direccion=jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 4).toString();
-            String telefono=jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 5).toString();
-            String cargo=jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 6).toString();
-            String observacion=jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 7).toString();
-            String fnacimiento=jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 8).toString();
-            String fingreso=jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 9).toString();
-
-            try {
-                datos.Llenar(cod, ident, nombres,apellidos, direccion, telefono, cargo,observacion,fnacimiento,fingreso);
-            } catch (ParseException ex) {
-                Logger.getLogger(EmpleadoPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            datos.setVisible(true);
+        if(jTableListarProveedor.getSelectedRows().length>0){
+        DatosProveedor datos=new DatosProveedor(this,true);
+        datos.setOpcion(2);
+        String cod=jTableListarProveedor.getValueAt(jTableListarProveedor.getSelectedRow(), 0).toString();
+        String ident=jTableListarProveedor.getValueAt(jTableListarProveedor.getSelectedRow(), 1).toString();
+        String razon=jTableListarProveedor.getValueAt(jTableListarProveedor.getSelectedRow(), 2).toString();
+        String telf=jTableListarProveedor.getValueAt(jTableListarProveedor.getSelectedRow(), 3).toString();
+        String cont=jTableListarProveedor.getValueAt(jTableListarProveedor.getSelectedRow(), 4).toString();
+        String tcont=jTableListarProveedor.getValueAt(jTableListarProveedor.getSelectedRow(), 5).toString();
+        String direc=jTableListarProveedor.getValueAt(jTableListarProveedor.getSelectedRow(), 6).toString();
+        datos.Llenar(cod, ident, razon,telf, cont, tcont, direc);
+        datos.setVisible(true);
         }
-
+        
     }//GEN-LAST:event_btnEditarActionPerformed
 
     /**
@@ -343,15 +361,18 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
      * o registro seleccionado.
      * @param evt 
      */
+    
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if(jTableListarEmpleado.getSelectedRows().length>0){
-            QueryEmpleado bash = new QueryEmpleado();
-            int code = Integer.parseInt(jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 0).toString());
-            bash.eliminarEmpleado(code);
-            bash.actualizarTabla();
+        if(jTableListarProveedor.getSelectedRows().length>0){
+        QueryProvider bash = new QueryProvider();  
+        int code = Integer.parseInt(jTableListarProveedor.getValueAt(jTableListarProveedor.getSelectedRow(), 0).toString());
+        bash.eliminarProveedor(code);
+        bash.actualizarTabla();
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    
+    
     
     
     /**
@@ -359,60 +380,44 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
      * extrayendolos de la tabla que contiene la vista.
      * @param evt 
      */
+    
     private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
-        if(jTableListarEmpleado.getSelectedRows().length>0){
-            Datos2 datos=new Datos2(this,true);
-            datos.setOpcion(3);
-            String cod=jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 0).toString();
-            String ident=jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 1).toString();
-            String nombres=jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 2).toString();
-            String apellidos=jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 3).toString();
-            String direccion=jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 4).toString();
-            String telefono=jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 5).toString();
-            String cargo=jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 6).toString();
-            String observacion=jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 7).toString();
-            String fnacimiento=jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 8).toString();
-            String fingreso=jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 9).toString();
-
-            try {
-                datos.Llenar(cod, ident, nombres,apellidos, direccion, telefono, cargo,observacion,fnacimiento,fingreso);
-                datos.Desabilitar();
-            } catch (ParseException ex) {
-                Logger.getLogger(EmpleadoPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            datos.setVisible(true);
+        if(jTableListarProveedor.getSelectedRows().length>0){ 
+        DatosProveedor datos=new DatosProveedor(this,true);
+        datos.setOpcion(3);
+        String cod=jTableListarProveedor.getValueAt(jTableListarProveedor.getSelectedRow(), 0).toString();
+        String ident=jTableListarProveedor.getValueAt(jTableListarProveedor.getSelectedRow(), 1).toString();
+        String razon=jTableListarProveedor.getValueAt(jTableListarProveedor.getSelectedRow(), 2).toString();
+        String telf=jTableListarProveedor.getValueAt(jTableListarProveedor.getSelectedRow(), 3).toString();
+        String cont=jTableListarProveedor.getValueAt(jTableListarProveedor.getSelectedRow(), 4).toString();
+        String tcont=jTableListarProveedor.getValueAt(jTableListarProveedor.getSelectedRow(), 5).toString();
+        String direc=jTableListarProveedor.getValueAt(jTableListarProveedor.getSelectedRow(), 6).toString();
+        datos.Llenar(cod, ident, razon,telf, cont, tcont, direc);
+        datos.Deshabilitar();
+        datos.setVisible(true);
         }
     }//GEN-LAST:event_btnVerActionPerformed
 
-    /**
-     * Funcion la cual filtra segun el parametro para 
-     * realizar la busqueda dentro de la base de datos
-     * @param evt 
-     */
-    
-    public void Filtrar() {
+    private void jTableListarProveedorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableListarProveedorKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTableListarProveedorKeyReleased
 
-        int columnaABuscar = 0;
-
-        if (jCmbTipoBusqueda.getSelectedItem() == "Código") {
-            columnaABuscar = 0;
-        }
-        if (jCmbTipoBusqueda.getSelectedItem() == "Identificador") {
-            columnaABuscar = 1;
-        }
-        if (jCmbTipoBusqueda.getSelectedItem() == "Nombre") {
-            columnaABuscar = 2;
-        }
-        if (jCmbTipoBusqueda.getSelectedItem() == "Apellido") {
-            columnaABuscar = 3;
-        }
-        trsFiltro.setRowFilter(RowFilter.regexFilter("(?i)"+jTextFieldParametroBusqueda.getText(), columnaABuscar));
-    }
+    private void jTableListarProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListarProveedorMouseClicked
+        /*if (evt.getClickCount() >= 1) {
+        Point point = evt.getPoint();
+        int row = jTableListarProveedor.rowAtPoint(point);
+        int column = jTableListarProveedor.columnAtPoint(point);
+        TableModel model = jTableListarProveedor.getModel();
+        JOptionPane.showMessageDialog(this, model.getValueAt(row, column));
+            HabilitarBotones(false, true, true, true);
+    }*/
+    }//GEN-LAST:event_jTableListarProveedorMouseClicked
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -426,50 +431,31 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EmpleadoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProveedorPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EmpleadoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProveedorPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EmpleadoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProveedorPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EmpleadoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProveedorPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new EmpleadoPrincipal().setVisible(true);
+       java.awt.EventQueue.invokeLater(() -> {
+           /*  jTableListarProveedor.addKeyListener(new KeyAdapter() {
+           @Override
+           public void keyReleased(final KeyEvent e) {
+           if( jTableListarProveedor.getSelectedRows().length>0){
+           new ProveedorPrincipal().HabilitarBotones(false, true, true, true);
+           }else{
+           new ProveedorPrincipal().HabilitarBotones(true, false, false, false);
+           }
+           }
+           });*/
+           new ProveedorPrincipal().setVisible(true);
         });
     }
 
@@ -478,7 +464,6 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnVer;
-    private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox<String> jCmbTipoBusqueda;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
@@ -487,7 +472,7 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    public static javax.swing.JTable jTableListarEmpleado;
+    public static javax.swing.JTable jTableListarProveedor;
     private javax.swing.JTextField jTextFieldParametroBusqueda;
     // End of variables declaration//GEN-END:variables
 }

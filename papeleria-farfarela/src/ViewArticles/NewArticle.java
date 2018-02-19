@@ -4,7 +4,7 @@
  * and open the tartlate in the editor.
  */
 package ViewArticles;
-import MODELO.QueryArticulo;
+import MODEL.QueryArticle;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -28,7 +28,7 @@ public class NewArticle extends javax.swing.JInternalFrame {
      * idarticulos: variable que define al identificador de los articulos 
      */
    
-    QueryArticulo artQuery=new QueryArticulo();
+    QueryArticle artQuery=new QueryArticle();
     int pro_id;
     int fam_id;
     String titulos[]={"Art Id","Fam Id","Pro Id","Nombre","Descripcion","Precio","Stoc"};

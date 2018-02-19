@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package VistaProveedor;
+package ViewProvider;
 
-import MODELO.Conexion;
-import MODELO.QueryProveedor;
-import Vista.HomeAplicativo;
-import static Vista.HomeAplicativo.escritorio;
+import MODEL.Conexion;
+import MODEL.QueryProvider;
+import View.HomeAplicativo;
+import static View.HomeAplicativo.escritorio;
 import VistasUsuarios.*;
 import com.placeholder.PlaceHolder;
 import java.awt.Color;
@@ -60,7 +60,7 @@ public class DatosProveedor1 extends javax.swing.JInternalFrame {
     public void claveMax() {
         try {
             //Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/farfarela", "ECUATORIANO16", "root");
-            Connection conexion = Conexion.getConexion();
+            Connection conexion = Conexion.getConnection();
             Statement comando = conexion.createStatement();
             ResultSet registro = comando.executeQuery("select max(pro_id)+1 from proveedor");
             //ResultSet registro = comando.executeQuery("select count(*) from proveedor");
@@ -436,10 +436,10 @@ public class DatosProveedor1 extends javax.swing.JInternalFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         cont = 0;
-        QueryProveedor queryE = new QueryProveedor();
+        QueryProvider queryE = new QueryProvider();
         validarCamposVacios();
         if (cont == 0) {
-            Connection reg = conectar.getConexion();
+            Connection reg = Conexion.getConnection();
             if (this.opcion == 1) {
                 lblEstado.setText("Proveedor - Nuevo");
                 String sql = "INSERT INTO PROVEEDOR (PRO_ID,PRO_IDENTIFICADOR,PRO_RAZONSOCIAL,PRO_TELEFONO ,PRO_CONTACTO ,PRO_TELEFONOCONTACTO,PRO_DIRECCION)VALUES (?,?,?,?,?,?,?)";
@@ -470,7 +470,7 @@ public class DatosProveedor1 extends javax.swing.JInternalFrame {
                 }
             } else if (this.opcion == 2) {
                 lblEstado.setText("Proveedor - Modificar");
-                QueryProveedor change = new QueryProveedor();
+                QueryProvider change = new QueryProvider();
                 int code = Integer.parseInt(txtCodigo.getText());
                 String identificador = txtIdentificador.getText();
                 String razonSocial = txtRazonSocial.getText();
@@ -546,7 +546,7 @@ public class DatosProveedor1 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtContactoKeyTyped
 
     private void txtIdentificadorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdentificadorFocusLost
-         QueryProveedor queryE = new QueryProveedor();
+         QueryProvider queryE = new QueryProvider();
         if (txtIdentificador.getText().length() > 0) {
             queryE.validarDocumento(txtIdentificador);
         }

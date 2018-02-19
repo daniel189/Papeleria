@@ -5,7 +5,7 @@
  */
 package ViewClients;
 
-import MODELO.Conexion;
+import MODEL.Conexion;
 import VistasUsuarios.UsuariosEdit;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CustomerManagemetMethods {
     public void llenarClientes(String condicion, int aux, JTable tbClientes){
-        Connection cone = Conexion.getConexion();
+        Connection cone = Conexion.getConnection();
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Identificador");
         modelo.addColumn("Nombres");

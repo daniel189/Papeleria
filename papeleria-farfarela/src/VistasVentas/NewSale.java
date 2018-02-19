@@ -5,8 +5,10 @@
  */
 package VistasVentas;
 
-//import Modelo.Conexion;
-import MODELO.*;
+//import Modelo.Connection;
+import MODEL.QueryArticle;
+import MODEL.QueryClient;
+import MODEL.Conexion;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Image;
@@ -37,21 +39,19 @@ import javax.swing.table.DefaultTableModel;
  */
 public class NewSale extends javax.swing.JInternalFrame{
 
-    
+    NewSaleWindowHelper newSaleHelper = new NewSaleWindowHelper(); 
     int n = 0, item = -1;
     double totals = 0;
     DefaultTableModel salesTebleModel;
-    // llamada clase de conexion
     Conexion conection = new Conexion();
     String clientExist = "no";
     boolean searchById = false, searchByName = false, searchByLastName = false;
-    int bandera = 1;
+    int flag = 1;
 
     /**
      * Crea nuevo formulario para el ingreso de un registro de ventas
      */
     public NewSale() {
-        //super(parent, modal);
         initComponents();
         salesTebleModel = new DefaultTableModel();
         // Agrega fila
@@ -61,58 +61,29 @@ public class NewSale extends javax.swing.JInternalFrame{
         salesTebleModel.addColumn("Cantidad");
         salesTebleModel.addColumn("Valor Unitario");
         salesTebleModel.addColumn("Valor Subtotal");
-        
-        NewSale.JTableArticulos.setModel(salesTebleModel);
-        //setLocationRelativeTo(null);
-
-        String cuenta = Vista.HomeAplicativo.getCuenta1();
-        jTextFieldCodVendedor.setText(cuenta);
-        
+        JTableArticulos.setModel(salesTebleModel);
+        String account = View.HomeAplicativo.getCuenta1();
+        jTextFieldCodSeller.setText(account);
         // CONFIGURAR el taño de ancho de la tabla
-        int[] anchos = {35, 65, 220, 60, 85, 80};
+        int[] wide = {35, 65, 220, 60, 85, 80};
         for (int i = 0; i < JTableArticulos.getColumnCount(); i++) {
-            JTableArticulos.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+            JTableArticulos.getColumnModel().getColumn(i).setPreferredWidth(wide[i]);
         }
-
-     
-        
-        
-        // Leer la fecha de computador y colocarlo el cuadro de fecha
+        // Leer la date de computador y colocarlo el cuadro de date
         //-------------------------------------
-        Date fechaActual = new Date();
-        SimpleDateFormat formateador = new SimpleDateFormat("yyyy/MM/dd");
-        String fecha = formateador.format(fechaActual);
-        jTextFieldFecha.setText(fecha);
+        Date actualDate = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+        String date = format.format(actualDate);
+        jTextFieldFecha.setText(date);
         jTextFieldFecha.setEditable(false);
-
-        Connection conexion = null;
-        Statement sentencia = null;
-        ResultSet resultado = null;
-        PreparedStatement ps = null;
-
-        try {
-            conexion = Conexion.getConexion();
-
-            sentencia = conexion.createStatement();
-            String consultaSQL = "SELECT max(fac_id) FROM facturas";
-
-            resultado = sentencia.executeQuery(consultaSQL);
-            int val = 0;
-            if (resultado.next()) {
-                val = resultado.getInt(1);
-            }
-            val++;
-            jTextFieldCodFacturas.setText(String.valueOf(val));
-
-        } catch (SQLException e) {
-
-        }
+        jTextFieldCodFacturas.setText(String.valueOf(newSaleHelper.billsAmount()));
         //-------------------------------------------
     }
 
+    
+    
     /**
-     * 
-     * @param cuenta para metro de cuenta de usuario
+     * @param cuenta para metro de account de usuario
      * @return nulo
      */
     public String verEmpleado(String cuenta){return null;}
@@ -121,8 +92,7 @@ public class NewSale extends javax.swing.JInternalFrame{
      * Funcion encargada de cargar los articuos en un JDialog
      */
     private void showArticles(){
-        NewSaleWindowHelper windowOfArticles = NewSaleHelper();
-        windowOfArticles.showArticles();
+        newSaleHelper.showArticles();
     }
 
 /**
@@ -130,12 +100,12 @@ public class NewSale extends javax.swing.JInternalFrame{
      * datos
      */
     public void GuardarArticulos() {
-        Connection cone = Conexion.getConexion();
+        Connection cone = Conexion.getConnection();
         for (int w = 0; w < n; w = w + 1) {
             //obteniendo valor fila por columna a la vez y w es fila y n es total de articulos comprados
-            String col1 = (String) NewSale.JTableArticulos.getValueAt(w, 1); // codigo articulo
-            String col2 = (String) NewSale.JTableArticulos.getValueAt(w, 3); // cantidad articulos
-            String col3 = (String) NewSale.JTableArticulos.getValueAt(w, 5); // costo
+            String col1 = (String) JTableArticulos.getValueAt(w, 1); // codigo articulo
+            String col2 = (String) JTableArticulos.getValueAt(w, 3); // cantidad articulos
+            String col3 = (String) JTableArticulos.getValueAt(w, 5); // costo
             String sql_Ventas = "INSERT INTO detalle (FAC_ID,ART_ID,DET_CANTIDAD,DET_VALOR)VALUES (?,?,?,?)";
             try {
                 PreparedStatement pst = cone.prepareStatement(sql_Ventas);
@@ -155,17 +125,6 @@ public class NewSale extends javax.swing.JInternalFrame{
         }
     }
 
-    /**
-     * Funcion para hacer un parser de dos decimales a cualquier valor
-     * @param valor es el valor a ser redondeado.
-     * @return un valor redondeado
-     */
-    public double DosDecimales(double valor) {
-        valor *= 100;
-        valor = Math.round(valor);
-        valor /= 100;
-        return valor;
-    }
 
     /**
      * Funcion para generar un documento PDF con el uso de la libreria itextpdf
@@ -186,7 +145,7 @@ public class NewSale extends javax.swing.JInternalFrame{
             document.add(new Paragraph("---------------------------------------------------------"));
             document.add(new Paragraph("Numero Fact. : " + jTextFieldCodFacturas.getText()));
             document.add(new Paragraph("Cliente : " + jTextFieldNombreCliente.getText() + " " + jTextFieldApellido.getText() + " - ID : " + jTextFieldCodigoCliente.getText()));
-            document.add(new Paragraph("Atendido por : " + verEmpleado(jTextFieldCodVendedor.getText())));
+            document.add(new Paragraph("Atendido por : " + verEmpleado(jTextFieldCodSeller.getText())));
             document.add(new Paragraph("Fecha   : [ " + jTextFieldFecha.getText()));
             document.add(new Paragraph(" TOTAL A PAGAR : $ " + totales + "  d\u00f3lares"));
             document.add(new Paragraph("| No. |  CODIGO  | ARTICULOS                                      | CANTIDAD | VAL UNIT | SUBTOTAL"));
@@ -197,7 +156,7 @@ public class NewSale extends javax.swing.JInternalFrame{
             Graphics2D g2;
             g2 = tp.createGraphicsShapes(900, 500);
             // g2 = tp.createGraphics(500, 500);
-            NewSale.JTableArticulos.print(g2);
+            JTableArticulos.print(g2);
             ///////IMPRIME
             g2.dispose();
             //posicion de la tabla de lista de compras
@@ -223,12 +182,7 @@ public class NewSale extends javax.swing.JInternalFrame{
      * @param s_caracteres caracteres a remplazar
      * @return la nueva cadena
      */
-    public String EliminaCaracteres(String s_cadena, String s_caracteres) {
-        String nueva_cadena = "";
-        nueva_cadena = s_cadena.replace(s_caracteres, "");
-        System.out.println(nueva_cadena);
-        return nueva_cadena;
-    }
+    
 
     /**
      * funcion que carga la lista de clientes en un JDialog con el usod e una
@@ -236,7 +190,7 @@ public class NewSale extends javax.swing.JInternalFrame{
      */
     void llamarCliente() {
         // llamada de datos
-        QueryCliente loadss = new QueryCliente();
+        QueryClient loadss = new QueryClient();
         loadss.CargarClientes();
         //Centramos nuestro jDialog
         JdialogClient.setLocation(250, 150);
@@ -258,7 +212,7 @@ public class NewSale extends javax.swing.JInternalFrame{
         // TODO add your handling code here:
         // conection
         boolean ident = true;
-        Connection reg = conection.getConexion();
+        Connection reg = Conexion.getConnection();
         // registro de BD a la tabla de Facturas
         if (Double.parseDouble(jTextFieldSubTotal.getText()) == 0 || Double.parseDouble(jTextFieldIVA.getText()) == 0 || Double.parseDouble(jTextFieldGranTotal.getText()) == 0) {
             JOptionPane.showMessageDialog(null, "Datos Incompletos. Factura no generada");
@@ -269,7 +223,7 @@ public class NewSale extends javax.swing.JInternalFrame{
                 PreparedStatement pst = reg.prepareStatement(sql_Facturas);
                 pst.setString(1, jTextFieldCodFacturas.getText());
                 pst.setString(2, jTextFieldCodigoCliente.getText());
-                pst.setString(3, jTextFieldCodVendedor.getText());
+                pst.setString(3, jTextFieldCodSeller.getText());
                 pst.setString(4, jTextFieldFecha.getText());
                 pst.setString(5, jTextFieldDescuento.getText());
                 pst.setString(6, "0");
@@ -282,7 +236,6 @@ public class NewSale extends javax.swing.JInternalFrame{
                 GenerarPDF();
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Datos de vendedor incorrectos");
-                //            Logger.getLogger(NewSale.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return ident;
@@ -333,7 +286,7 @@ public class NewSale extends javax.swing.JInternalFrame{
         jPanel3 = new javax.swing.JPanel();
         jTextFieldCodFacturas = new javax.swing.JTextField();
         jTextFieldFecha = new javax.swing.JTextField();
-        jTextFieldCodVendedor = new javax.swing.JTextField();
+        jTextFieldCodSeller = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -728,10 +681,10 @@ public class NewSale extends javax.swing.JInternalFrame{
         jTextFieldFecha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jPanel3.add(jTextFieldFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 94, -1));
 
-        jTextFieldCodVendedor.setEditable(false);
-        jTextFieldCodVendedor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextFieldCodVendedor.setEnabled(false);
-        jPanel3.add(jTextFieldCodVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, 110, -1));
+        jTextFieldCodSeller.setEditable(false);
+        jTextFieldCodSeller.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldCodSeller.setEnabled(false);
+        jPanel3.add(jTextFieldCodSeller, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, 110, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Atendido por");
@@ -954,104 +907,10 @@ public class NewSale extends javax.swing.JInternalFrame{
     private void btnNuevoArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoArticuloActionPerformed
         showArticles();
     }//GEN-LAST:event_btnNuevoArticuloActionPerformed
-
-    /**
-     * 
-     * @param idArticulo id del articulo a ser buscado dentro de la db para 
-     * conocer la familia del articulo
-     * @return 
-     */
-    public int verFamilia(int idArticulo)
-   {
-       PreparedStatement busqueda;
-       ResultSet resul;
-       int idasignar=0;
-      Connection cone= Conexion.getConexion();
     
-          try { 
-              String sql = "SELECT FAM_ID FROM ARTICULOS WHERE ART_ID = ?";
-              busqueda = cone.prepareStatement(sql);
-              busqueda.setInt(1, idArticulo);
-              resul=busqueda.executeQuery();
-              while(resul.next())
-              {
-                idasignar = resul.getInt("FAM_ID");
-              }
-              resul.close();
-              cone.close();
-              } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error\n Por la Causa" + ex);
-          } 
-//          System.out.println(stock);
-          cone= Conexion.getConexion();
+   
     
-          try { 
-              String sql = "SELECT IVA_ID FROM FAMILIASARTICULOS WHERE FAM_ID = ?";
-              busqueda = cone.prepareStatement(sql);
-              busqueda.setInt(1, idasignar);
-              resul=busqueda.executeQuery();
-              while(resul.next())
-              {
-                idasignar = resul.getInt("IVA_ID");
-              }
-              resul.close();
-              cone.close();
-              } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error\n Por la Causa" + ex);
-          } 
-//          System.out.println(stock);
-          cone= Conexion.getConexion();
     
-          try { 
-              String sql = "SELECT IVA_VALOR FROM IVA WHERE IVA_ID = ?";
-              busqueda = cone.prepareStatement(sql);
-              busqueda.setInt(1, idasignar);
-              resul=busqueda.executeQuery();
-              while(resul.next())
-              {
-                idasignar = resul.getInt("IVA_VALOR");
-              }
-              resul.close();
-              cone.close();
-              } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error\n Por la Causa" + ex);
-          } 
-          
-         System.out.println("idasignar " + idasignar);
-       return idasignar;
-   }  
-      
-    /**
-     * 
-     * @param idArticulo mediante el cual se conocera el stock del mismo
-     * @return la cantidad de articulos disponibles en bodega
-     */
-      public int verStock(int idArticulo)
-   {
-       PreparedStatement busqueda;
-       ResultSet resul;
-       int stock=0;
-      Connection cone= Conexion.getConexion();
-    
-          try { 
-              String sql = "SELECT ART_STOCK FROM ARTICULOS WHERE ART_ID = ?";
-              busqueda = cone.prepareStatement(sql);
-              busqueda.setInt(1, idArticulo);
-              resul=busqueda.executeQuery();
-              while(resul.next())
-              {
-                stock = resul.getInt("ART_STOCK");
-              }
-              resul.close();
-              cone.close();
-              } catch (SQLException ex) {
-            //JOptionPane.showMessageDialog(null,"Error\n Por la Causa" + ex);
-            JOptionPane.showMessageDialog(null, "No ha sido posible obtener el stock del articulo");
-          } 
-        
-         System.out.println("stock " + stock);
-       return stock;
-   }  
     
       /**
        * funcion encargada de cargar el articulo en la tabla de la interfaz
@@ -1062,23 +921,14 @@ public class NewSale extends javax.swing.JInternalFrame{
             if ((int) xcant.getValue() == 0) {
                 JOptionPane.showMessageDialog(null, "Debe agregar por lo menos un artículo");
             } else {
-                
-                int stock = verStock(Integer.parseInt(txtCodArticulo.getText()));
-                
                 n = 1 + n;
                 jTextFieldNo.setText(String.valueOf(n));
                 // leer la cantidad pedidas
                 int cant = (Integer) xcant.getValue();
                 //problema de obtener valor de spinner toca dar vuelta
                 jTextFieldCant.setText(String.valueOf(cant));
-
-                double a = Double.parseDouble(jTextFieldValor.getText());
-                int b = Integer.parseInt(jTextFieldCant.getText());
                 // Calcular la cantidad por valor
-                double valTotal = a * b;
-
-                valTotal = DosDecimales(valTotal);
-
+                double valTotal = newSaleHelper.totalValueFormater(Double.parseDouble(jTextFieldValor.getText()), Integer.parseInt(jTextFieldCant.getText()));
                 //Agregar datos a la tabla
                 String datos[] = new String[6];
                 datos[0] = jTextFieldNo.getText();
@@ -1088,25 +938,11 @@ public class NewSale extends javax.swing.JInternalFrame{
                 datos[4] = jTextFieldValor.getText();
                 datos[5] = String.valueOf(valTotal);
                 salesTebleModel.addRow(datos);
-
-                totals = Double.parseDouble(jTextFieldSubTotal.getText());
-                totals += valTotal;
-
-                totals = DosDecimales(totals);
-
+                totals=newSaleHelper.calculateTotalBill(Double.parseDouble(jTextFieldSubTotal.getText()),valTotal);
                 jTextFieldSubTotal.setText(String.valueOf(totals));
-                int aux = 0, subIVA = 0;
-                double valor = 0, iva = 0;
-                aux = Integer.parseInt(txtCodArticulo.getText());
-                System.out.println("aux " + aux);
-                subIVA = verFamilia(aux);
-                System.out.println("iva" + subIVA);
-                valor = valTotal * (subIVA*0.01);
-                iva = Double.parseDouble(jTextFieldIVA.getText()) + valor;
-                iva = DosDecimales(iva);
-                
-                jTextFieldIVA.setText(String.valueOf(iva));
-                
+                double iva = Double.parseDouble(jTextFieldIVA.getText());
+                int subIVA = newSaleHelper.chargeFamily(Integer.parseInt(txtCodArticulo.getText()));
+                jTextFieldIVA.setText(String.valueOf(newSaleHelper.vatValue(subIVA,valTotal,iva)));            
             }
             xcant.setValue(1);
         } catch (Exception e) {
@@ -1119,6 +955,9 @@ public class NewSale extends javax.swing.JInternalFrame{
 
     }//GEN-LAST:event_jLabel15MouseClicked
 
+    
+    
+    
     /**
      * Funcion encargada de sacar un articulod e la tabla del formulario
      * @param evt 
@@ -1131,24 +970,14 @@ public class NewSale extends javax.swing.JInternalFrame{
         } else//de lo contrario si se selecciono la fila
         {
             // coje variable de valTotal que elimino
-            String nums = (String) JTableArticulos.getValueAt(i, 5);
-            double restar = Double.parseDouble(nums);
-             int aux = 0, subIVA = 0;
-                double valor = 0, iva = 0;
-                aux = Integer.parseInt(txtCodArticulo.getText());
-                System.out.println("aux " + aux);
-                subIVA = verFamilia(aux);
-                System.out.println("iva" + subIVA);
-                valor = Double.parseDouble(nums) * (subIVA*0.01);
-                iva = Double.parseDouble(jTextFieldIVA.getText()) - valor;
-                iva = DosDecimales(iva);
-                
-                jTextFieldIVA.setText(String.valueOf(iva));
+            double restar = Double.parseDouble(JTableArticulos.getValueAt(i, 5).toString());
+            int subIVA = newSaleHelper.chargeFamily(Integer.parseInt(txtCodArticulo.getText()));
+            jTextFieldIVA.setText(String.valueOf(newSaleHelper.disccountIva(subIVA,restar,Double.parseDouble(jTextFieldIVA.getText()))));
             // cambiarlo de subtotalas que va eliminar
             // sumar total
             totals = Double.parseDouble(jTextFieldSubTotal.getText());
             totals -= restar;
-            totals = DosDecimales(totals);
+            totals = newSaleHelper.DosDecimales(totals);
             jTextFieldSubTotal.setText(String.valueOf(totals));
             // eliminar fila
             this.salesTebleModel.removeRow(i);
@@ -1200,7 +1029,7 @@ public class NewSale extends javax.swing.JInternalFrame{
                         String uula = jTextFieldCodigoCliente.getText();
                         String nombre = jTextFieldNombreCliente.getText();
                         String apellido = jTextFieldApellido.getText();
-                        QueryCliente add = new QueryCliente();
+                        QueryClient add = new QueryClient();
                         // enviar datos a regristar en el querycliente
                         add.agregarCliente(uula, nombre, apellido);
 
@@ -1245,44 +1074,18 @@ public class NewSale extends javax.swing.JInternalFrame{
      * @param evt 
      */
     private void btnGenerarTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarTotalActionPerformed
-//        int aux=0, subIVA =0;
-//        aux = Integer.parseInt(txtCodArticulo.getText());
-//        System.out.println("aux " +aux);
-//        subIVA = verFamilia(aux);
-//        System.out.println("subIVA" + subIVA);
-        String desc = jTextFieldDescuento.getText();
-        double descuento = 0, granTotal = 0, subtotal = Double.parseDouble(jTextFieldSubTotal.getText());
-        double porcentaje = 0;
-        if (desc.contains("%")) {
-            desc = EliminaCaracteres(desc, "%");
-            porcentaje = Double.parseDouble(desc);
-            System.out.println("Desc: " + porcentaje);
-            descuento = (subtotal * porcentaje) / 100;
-            System.out.println("Descuento: " + descuento);
-        } else {
-            descuento = Double.parseDouble(desc);
-            //    System.out.println("Descuento: " + descuento);
-        }
-
-        descuento = DosDecimales(descuento);
-
-        jTextFieldDescuento.setText(String.valueOf(descuento));
-        if (descuento > subtotal) {
-        JOptionPane.showMessageDialog(null, "El descuento es mayor que el costo");
-        } else {
-            subtotal = Double.parseDouble(jTextFieldSubTotal.getText()) - descuento;
-
-            //double subIVA = subtotal ;
-            //subIVA = DosDecimales(subIVA);
-            //jTextFieldIVA.setText(String.valueOf(subIVA));
-            double subIVA = Double.parseDouble(jTextFieldIVA.getText());
-            granTotal = subtotal + subIVA;
-            granTotal = DosDecimales(granTotal);
-            jTextFieldGranTotal.setText(String.valueOf(granTotal));
+        String discountString = jTextFieldDescuento.getText();
+        double discountValue = 0, grandTotal = 0, subTotal = Double.parseDouble(jTextFieldSubTotal.getText());
+        double porcentage = 0;
+        double subIVA = Double.parseDouble(jTextFieldIVA.getText());
+        discountValue = newSaleHelper.DosDecimales(newSaleHelper.calculateDiscountValue(discountString, porcentage, discountValue, subTotal));
+        jTextFieldDescuento.setText(String.valueOf(discountValue));
+        grandTotal = newSaleHelper.discountValidator(discountValue, subTotal, grandTotal,subIVA);
+        if(grandTotal!=0){
+            jTextFieldGranTotal.setText(String.valueOf(grandTotal));
         }
     }//GEN-LAST:event_btnGenerarTotalActionPerformed
-
-
+   
     /**
      * funcion para seleccionar cliente de la lista presentada y setear los 
      * valores en la interfaz principal
@@ -1387,7 +1190,7 @@ public class NewSale extends javax.swing.JInternalFrame{
      */
     private void txtParametroBusqueda3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtParametroBusqueda3KeyReleased
 
-        QueryCliente qc = new QueryCliente();
+        QueryClient qc = new QueryClient();
         String parametroBusqueda = txtParametroBusqueda3.getText();
         qc.buscarCliente(parametroBusqueda, searchById, searchByName, searchByLastName);
 
@@ -1426,27 +1229,25 @@ public class NewSale extends javax.swing.JInternalFrame{
      */
     private void txtParametroBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtParametroBusquedaKeyReleased
 
-        QueryArticulo cc = new QueryArticulo();
+        QueryArticle cc = new QueryArticle();
         String parametroBusqueda = txtParametroBusqueda.getText();
         cc.buscarArticulosparaVentas(parametroBusqueda);
 
 
     }//GEN-LAST:event_txtParametroBusquedaKeyReleased
 
+    
+    
     /**
-     * funcion para el calculo y seteeo del subtotal de la factura
+     * funcion para el calculo y seteeo del subTotal de la factura
      * @param evt 
      */
     private void jTextFieldSubTotalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSubTotalKeyTyped
-
-        double val = Double.parseDouble(jTextFieldSubTotal.getText());
-
-        val = (double) (val * 100) / 100;
-        jTextFieldSubTotal.setText(String.valueOf(val));
+        jTextFieldSubTotal.setText(String.valueOf(newSaleHelper.keyPressTotalslRefactor(Double.parseDouble(jTextFieldSubTotal.getText()))));
     }//GEN-LAST:event_jTextFieldSubTotalKeyTyped
 
     /**
-     * Funcion para el calculo del descuento
+     * Funcion para el calculo del discountValue
      * @param evt 
      */
     private void jTextFieldDescuentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDescuentoKeyTyped
@@ -1463,11 +1264,7 @@ public class NewSale extends javax.swing.JInternalFrame{
      * @param evt 
      */
     private void jTextFieldGranTotalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldGranTotalKeyTyped
-
-        double val1 = Double.parseDouble(jTextFieldGranTotal.getText());
-
-        val1 = (double) (val1 * 100) / 100;
-        jTextFieldGranTotal.setText(String.valueOf(val1));
+        jTextFieldGranTotal.setText(String.valueOf(newSaleHelper.keyPressTotalslRefactor(Double.parseDouble(jTextFieldGranTotal.getText()))));
 
     }//GEN-LAST:event_jTextFieldGranTotalKeyTyped
 
@@ -1491,40 +1288,6 @@ public class NewSale extends javax.swing.JInternalFrame{
 
     }//GEN-LAST:event_jTextFieldApellidoKeyReleased
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduu in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(NewSale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(NewSale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(NewSale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(NewSale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new NewSale().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTable JTableArticulos;
@@ -1579,7 +1342,7 @@ public class NewSale extends javax.swing.JInternalFrame{
     private javax.swing.JTextField jTextFieldApellido;
     private javax.swing.JTextField jTextFieldCant;
     private javax.swing.JTextField jTextFieldCodFacturas;
-    private javax.swing.JTextField jTextFieldCodVendedor;
+    private javax.swing.JTextField jTextFieldCodSeller;
     private javax.swing.JTextField jTextFieldCodigoCliente;
     private javax.swing.JTextField jTextFieldDescuento;
     private javax.swing.JTextField jTextFieldFecha;
@@ -1598,7 +1361,7 @@ public class NewSale extends javax.swing.JInternalFrame{
     private javax.swing.JSpinner xcant;
     // End of variables declaration//GEN-END:variables
 
-    private NewSaleWindowHelper NewSaleHelper() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
+
+    
 }

@@ -5,6 +5,7 @@
  */
 package MODELO;
 
+import MODEL.QueryEmployee;
 import java.util.Date;
 import javax.swing.JTextField;
 import org.junit.After;
@@ -54,7 +55,7 @@ public class queryEmpleadoIT {
         String observacion = "";
         Date fNacimiento = null;
         Date fIngreso = null;
-        QueryEmpleado instance = new QueryEmpleado();
+        QueryEmployee instance = new QueryEmployee();
         instance.agregarEmpleado(cod, id, nombres, apellidos, direccion, telefono, observacion, fNacimiento, fIngreso);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -67,7 +68,7 @@ public class queryEmpleadoIT {
     public void testEliminarEmpleado() {
         System.out.println("eliminarEmpleado");
         int code = 0;
-        QueryEmpleado instance = new QueryEmpleado();
+        QueryEmployee instance = new QueryEmployee();
         instance.eliminarEmpleado(code);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -80,7 +81,7 @@ public class queryEmpleadoIT {
     public void testBuscarRepetido() {
         System.out.println("buscarRepetido");
         String identificador = "";
-        QueryEmpleado instance = new QueryEmpleado();
+        QueryEmployee instance = new QueryEmployee();
         boolean expResult = false;
         boolean result = instance.buscarRepetido(identificador);
         assertEquals(expResult, result);
@@ -104,7 +105,7 @@ public class queryEmpleadoIT {
         String observacion = "";
         String fNacimiento = "";
         String fIngreso = "";
-        QueryEmpleado instance = new QueryEmpleado();
+        QueryEmployee instance = new QueryEmployee();
         instance.modificarEmpleado(cod, id, nombres, apellidos, direccion, telefono, cargo, observacion, fNacimiento, fIngreso);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -116,20 +117,20 @@ public class queryEmpleadoIT {
     @Test
     public void testListarTodosEmpleados() {
         System.out.println("listarTodosEmpleados");
-        QueryEmpleado instance = new QueryEmpleado();
+        QueryEmployee instance = new QueryEmployee();
         instance.listarTodosEmpleados();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of ejecutarConsultaTodaTabla method, of class queryEmpleados.
+     * Test of searchall method, of class queryEmpleados.
      */
     @Test
     public void testEjecutarConsultaTodaTabla() {
         System.out.println("ejecutarConsultaTodaTabla");
-        QueryEmpleado instance = new QueryEmpleado();
-        instance.ejecutarConsultaTodaTabla();
+        QueryEmployee instance = new QueryEmployee();
+        instance.searchall();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -140,7 +141,7 @@ public class queryEmpleadoIT {
     @Test
     public void testReporteEmpleados() {
         System.out.println("reporteEmpleados");
-        QueryEmpleado instance = new QueryEmpleado();
+        QueryEmployee instance = new QueryEmployee();
         instance.reporteEmpleados();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -152,7 +153,7 @@ public class queryEmpleadoIT {
     @Test
     public void testUpdateTable() {
         System.out.println("UpdateTable");
-        QueryEmpleado instance = new QueryEmpleado();
+        QueryEmployee instance = new QueryEmployee();
         instance.UpdateTable();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -164,7 +165,7 @@ public class queryEmpleadoIT {
     @Test
     public void testActualizarTabla() {
         System.out.println("actualizarTabla");
-        QueryEmpleado instance = new QueryEmpleado();
+        QueryEmployee instance = new QueryEmployee();
         instance.actualizarTabla();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -178,7 +179,7 @@ public class queryEmpleadoIT {
         System.out.println("validadorDeCedula");
         String cedula = "";
         int opcion = 0;
-        QueryEmpleado instance = new QueryEmpleado();
+        QueryEmployee instance = new QueryEmployee();
         boolean expResult = false;
         boolean result = instance.validadorDeCedula(cedula, opcion);
         assertEquals(expResult, result);
@@ -193,7 +194,7 @@ public class queryEmpleadoIT {
     public void testValidarDocumento() {
         System.out.println("validarDocumento");
         JTextField numero = null;
-        QueryEmpleado instance = new QueryEmpleado();
+        QueryEmployee instance = new QueryEmployee();
         boolean expResult = false;
         boolean result = instance.validarDocumento(numero);
         assertEquals(expResult, result);

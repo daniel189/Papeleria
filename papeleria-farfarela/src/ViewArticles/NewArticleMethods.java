@@ -5,8 +5,8 @@
  */
 package ViewArticles;
 
-import MODELO.Conexion;
-import MODELO.QueryArticulo;
+import MODEL.Conexion;
+import MODEL.QueryArticle;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,7 +26,7 @@ public class NewArticleMethods {
      public int idarticulo;
      int fam_id;
      int pro_id;
-     QueryArticulo artQuery=new QueryArticulo();
+     QueryArticle artQuery=new QueryArticle();
      String titulos[]={"Art Id","Fam Id","Pro Id","Nombre","Descripcion","Precio","Stoc"};
      DefaultTableModel modelo=new DefaultTableModel(null,titulos);
      public void mostrar(JTextField txt_descripcion, JTextField txt_nombre, JTextField txt_precio, JTextField txt_stock,
@@ -59,9 +59,9 @@ public class NewArticleMethods {
         }
      }
       public final void claveMax(JTextField txtCodigo) {  
-        Conexion conectar = new Conexion();
+        //Conexion conectar = new Conexion();
         try {
-            Connection conexion = conectar.getConexion();
+            Connection conexion = Conexion.getConnection();
             Statement comando = conexion.createStatement();
             ResultSet registro = comando.executeQuery("select max(art_id)+1 FROM ARTICULOS");
             if (registro.next() == true) {

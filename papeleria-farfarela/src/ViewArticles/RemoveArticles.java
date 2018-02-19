@@ -5,7 +5,7 @@
  */
 package ViewArticles;
 
-import MODELO.QueryArticulo;
+import MODEL.QueryArticle;
 
 /**
  *
@@ -187,7 +187,7 @@ public class RemoveArticles extends javax.swing.JInternalFrame {
  * @param evt 
  */
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        QueryArticulo articleQuery=new QueryArticulo();
+        QueryArticle articleQuery=new QueryArticle();
         articleQuery.eliminarProveedor(Integer.parseInt(txtArticulo.getText()));
         art.setVisible(true);
     }//GEN-LAST:event_btnEliminarActionPerformed

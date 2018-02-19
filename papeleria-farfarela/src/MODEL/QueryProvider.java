@@ -1,14 +1,13 @@
-package MODELO;
+package MODEL;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import MODELO.CerrarConexion;
-import MODELO.Conexion;
-import VistaEmpleado.EmpleadoPrincipal;
-import VistaProveedor.ProveedorPrincipal1;
+import MODEL.CloseConnection;
+import MODEL.Conexion;
+import ViewProvider.ProveedorPrincipal1;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Image;
@@ -23,12 +22,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,12 +44,12 @@ import jxl.write.WriteException;
  *
  * @author Crispin
  */
-public class QueryProveedor {
+public class QueryProvider {
     //Definiciones
 
-    Conexion conexion = new Conexion();
-    DefaultTableModel modelo;
-    String[] titulosColumnas = {"CÓDIGO", "IDENTIFICADOR", "RAZÓN SOCIAL", "TELEFONO", "CONTACTO", "TELEFONO-CONTACTO", "DIRECCION"};
+    Conexion connection = new Conexion();
+    DefaultTableModel model;
+    String[] titlesColumns = {"CÓDIGO", "IDENTIFICADOR", "RAZÓN SOCIAL", "TELEFONO", "CONTACTO", "TELEFONO-CONTACTO", "DIRECCION"};
     String info[][] = {};
     //-----------------------------------------------------------------------------------
 
@@ -60,26 +57,26 @@ public class QueryProveedor {
             String direccion, String telefono, String observacion,
             Date fNacimiento, Date fIngreso) {
 
-        Connection reg = Conexion.getConexion();
+        Connection reg = Conexion.getConnection();
 
-        String sql = "INSERT INTO EMPLEADO ( EMP_ID, EMP_IDENTIFICADOR, EMP_NOMBRES,EMP_APELLIDOS,EMP_DIRECCION,EMP_TELEFONO,EMP_OBSERVACION,EMP_FECHANACIMIENTO,EMP_FECHAINGRESO)VALUES (?,?,?,?,?,?,?,?,?)";
+        String insertSql = "INSERT INTO EMPLEADO ( EMP_ID, EMP_IDENTIFICADOR, EMP_NOMBRES,EMP_APELLIDOS,EMP_DIRECCION,EMP_TELEFONO,EMP_OBSERVACION,EMP_FECHANACIMIENTO,EMP_FECHAINGRESO)VALUES (?,?,?,?,?,?,?,?,?)";
         try {
-            PreparedStatement pst = reg.prepareStatement(sql);
-            pst.setInt(1, cod);
-            pst.setString(2, id);
-            pst.setString(3, nombres);
-            pst.setString(4, apellidos);
-            pst.setString(5, direccion);
-            pst.setString(6, telefono);
-            pst.setString(7, observacion);
-            int n = pst.executeUpdate();
+            PreparedStatement pStatement = reg.prepareStatement(insertSql);
+            pStatement.setInt(1, cod);
+            pStatement.setString(2, id);
+            pStatement.setString(3, nombres);
+            pStatement.setString(4, apellidos);
+            pStatement.setString(5, direccion);
+            pStatement.setString(6, telefono);
+            pStatement.setString(7, observacion);
+            int n = pStatement.executeUpdate();
             if (n > 0) {
                 JOptionPane.showMessageDialog(null, "Empleado Regristado Exitosamente");
             }
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error - " + ex);
-            Logger.getLogger(QueryProveedor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QueryProvider.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//cierra metodo agregarVendedor
 
@@ -87,16 +84,16 @@ public class QueryProveedor {
     public void eliminarProveedor(int code) {
 
         try {
-            Connection conexion = Conexion.getConexion();
-            Statement comando = conexion.createStatement();
-            int cantidad = comando.executeUpdate("delete from PROVEEDOR where PRO_ID=" + code);
+            Connection connection =  Conexion.getConnection();
+            Statement comand = connection.createStatement();
+            int cantidad = comand.executeUpdate("delete from PROVEEDOR where PRO_ID=" + code);
             if (cantidad == 1) {
 
                 JOptionPane.showMessageDialog(null, "Eliminado");
             } else {
                 JOptionPane.showMessageDialog(null, "No existe Proveedor de Codigo " + code);
             }
-            conexion.close();
+            connection.close();
             //System.out.println("Conexion cerrada");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "error, no se puede eliminar, tiene datos asociados ");
@@ -110,11 +107,11 @@ public class QueryProveedor {
             String telfContacto, String direccion) {
 
         try {
-            Connection conexion = Conexion.getConexion();
-            Statement comando = conexion.createStatement();
+            Connection connection =  Conexion.getConnection();
+            Statement comand = connection.createStatement();
 
             // linea de codigo de mysql que actualiza regristos que va modificar
-            int cantidad = comando.executeUpdate("update PROVEEDOR set PRO_IDENTIFICADOR ='" + id + "', "
+            int cantidad = comand.executeUpdate("update PROVEEDOR set PRO_IDENTIFICADOR ='" + id + "', "
                     + " PRO_RAZONSOCIAL ='" + razonSocial
                     + "',PRO_TELEFONO ='" + telefono
                     + "',PRO_CONTACTO ='" + contacto
@@ -126,7 +123,7 @@ public class QueryProveedor {
             } else {
                 JOptionPane.showMessageDialog(null, "No existe Proveedor con codigo : " + cod);
             }
-            conexion.close();
+            connection.close();
             //System.out.println("Conexion cerrada");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " Error -->" + ex);
@@ -140,13 +137,13 @@ public class QueryProveedor {
 
     public void listarTodosProveedores() {
 
-        modelo = new DefaultTableModel(info, titulosColumnas) {
+        model = new DefaultTableModel(info, titlesColumns) {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
-        //le asigna el modelo al jtable
-        ProveedorPrincipal1.jTableListarProveedor.setModel(modelo);
+        //le asigna el model al jtable
+        ProveedorPrincipal1.jTableListarProveedor.setModel(model);
 
         //ejecuta una consulta a la BD
         ejecutarConsultaTodaTabla();
@@ -158,16 +155,16 @@ public class QueryProveedor {
     public boolean buscarRepetido(String identificador) {
 
         try {
-            Connection reg = Conexion.getConexion();
+            Connection reg =  Conexion.getConnection();
 
-            sentencia = reg.createStatement();
-            String consultaSQL = "SELECT pro_identificador FROM PROVEEDOR where pro_identificador=" + identificador;
-            resultado = sentencia.executeQuery(consultaSQL);
+            sentence = reg.createStatement();
+            String querySQL = "SELECT pro_identificador FROM PROVEEDOR where pro_identificador=" + identificador;
+            result = sentence.executeQuery(querySQL);
 
             //mientras haya datos en la BD ejecutar eso...
-            while (resultado.next()) {
+            while (result.next()) {
 
-                String ident = resultado.getString("PRO_IDENTIFICADOR");
+                String ident = result.getString("PRO_IDENTIFICADOR");
 
                 if (ident.equals(identificador)) {
                     return true;
@@ -179,9 +176,9 @@ public class QueryProveedor {
             JOptionPane.showMessageDialog(null, "Error SQL:\n" + e);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-            conexion = null;
+            connection = null;
         } finally {
-            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(connection2, sentence, result, pStatement);
 
         }
         return false;
@@ -193,37 +190,37 @@ public class QueryProveedor {
      * Metodo para consultar todos los regsitros de la base de datos de clientes
      * y luego ser mostrados en una tabla.
      */
-    Connection conexion2 = null;
-    Statement sentencia = null;
-    ResultSet resultado = null;
-    PreparedStatement ps = null;
+    Connection connection2 = null;
+    Statement sentence = null;
+    ResultSet result = null;
+    PreparedStatement pStatement = null;
 
     public void ejecutarConsultaTodaTabla() {
 
         try {
-            conexion2 = Conexion.getConexion();
+            connection2 =  Conexion.getConnection();
 
-            sentencia = conexion2.createStatement();
+            sentence = connection2.createStatement();
             String consultaSQL = "SELECT * FROM PROVEEDOR ORDER BY PRO_ID ASC";
-            resultado = sentencia.executeQuery(consultaSQL);
+            result = sentence.executeQuery(consultaSQL);
 
             //mientras haya datos en la BD ejecutar eso...
-            while (resultado.next()) {
+            while (result.next()) {
 
-                int codigo = resultado.getInt("PRO_ID");
-                String identificador = resultado.getString("PRO_IDENTIFICADOR");
-                String razonSocial = resultado.getString("PRO_RAZONSOCIAL");
-                String telefono = resultado.getString("PRO_TELEFONO");
-                String contacto = resultado.getString("PRO_CONTACTO");
-                String telefonoContacto = resultado.getString("PRO_TELEFONOCONTACTO");
-                String direccion = resultado.getString("PRO_DIRECCION");
+                int codigo = result.getInt("PRO_ID");
+                String identificador = result.getString("PRO_IDENTIFICADOR");
+                String razonSocial = result.getString("PRO_RAZONSOCIAL");
+                String telefono = result.getString("PRO_TELEFONO");
+                String contacto = result.getString("PRO_CONTACTO");
+                String telefonoContacto = result.getString("PRO_TELEFONOCONTACTO");
+                String direccion = result.getString("PRO_DIRECCION");
 
                 //crea un vector donde los está la informacion (se crea una fila)
                 Object[] info = {codigo, identificador, razonSocial, telefono, contacto, telefonoContacto, direccion};
 
-                //al modelo de la tabla le agrega una fila
+                //al model de la tabla le agrega una fila
                 //con los datos que están en info
-                modelo.addRow(info);
+                model.addRow(info);
 
             }//cierra while (porque no hay mas datos en la BD)
 
@@ -231,10 +228,10 @@ public class QueryProveedor {
             JOptionPane.showMessageDialog(null, "Error SQL:\n" + e);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-            conexion = null;
+            connection = null;
         } finally {
 
-            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(connection2, sentence, result, pStatement);
 
         }
 
@@ -243,16 +240,16 @@ public class QueryProveedor {
 //-----------------------------------------------------------------------------------
     public void buscarProveedor(String parametroBusqueda, boolean buscarPorCodigo, boolean buscarPorIdentificador, boolean buscarPorRazonSocial) {
 
-        modelo = new DefaultTableModel(info, titulosColumnas) {
+        model = new DefaultTableModel(info, titlesColumns) {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
         ;
 
-        //le asigna el modelo al jtable
-        /*ProveedorSearch.jTableListarProveedor.setModel(modelo);*/
-        ProveedorPrincipal1.jTableListarProveedor.setModel(modelo);
+        //le asigna el model al jtable
+        /*ProveedorSearch.jTableListarProveedor.setModel(model);*/
+        ProveedorPrincipal1.jTableListarProveedor.setModel(model);
         //ejecuta una consulta a la BD
         buscarRegistroCodigoOIdentificadorONombreOapellido(parametroBusqueda, buscarPorCodigo, buscarPorIdentificador, buscarPorRazonSocial);
 
@@ -272,48 +269,48 @@ public class QueryProveedor {
 
         try {
 
-            conexion2 = Conexion.getConexion();
+            connection2 =  Conexion.getConnection();
             String selectSQL;
-            resultado = null;
+            result = null;
             if (buscarPorCodigo == true) {
                 selectSQL = "SELECT * FROM PROVEEDOR WHERE PRO_ID LIKE ? ORDER BY PRO_ID ASC";
-                ps = conexion2.prepareStatement(selectSQL);
-                ps.setString(1, "%" + parametroBusqueda + "%");
+                pStatement = connection2.prepareStatement(selectSQL);
+                pStatement.setString(1, "%" + parametroBusqueda + "%");
                 System.out.println(parametroBusqueda);
             } else if (buscarPorIdentificador == true) {
                 selectSQL = "SELECT * FROM PROVEEDOR WHERE PRO_IDENTIFICADOR LIKE ? ORDER BY PRO_IDENTIFICADOR ASC";
-                ps = conexion2.prepareStatement(selectSQL);
-                ps.setString(1, "%" + parametroBusqueda + "%");
+                pStatement = connection2.prepareStatement(selectSQL);
+                pStatement.setString(1, "%" + parametroBusqueda + "%");
             } else if (buscarPorRazonSocial == true) {
                 selectSQL = "SELECT * FROM PROVEEDOR WHERE PRO_RAZONSOCIAL LIKE ? ORDER BY PRO_RAZONSOCIAL ASC";
-                ps = conexion2.prepareStatement(selectSQL);
-                ps.setString(1, "%" + parametroBusqueda + "%");
+                pStatement = connection2.prepareStatement(selectSQL);
+                pStatement.setString(1, "%" + parametroBusqueda + "%");
             }
-            resultado = ps.executeQuery();
+            result = pStatement.executeQuery();
 
-            while (resultado.next()) {
+            while (result.next()) {
 
-                int codigo = resultado.getInt("PRO_ID");
-                String identificador = resultado.getString("PRO_IDENTIFICADOR");
-                String razonSocial = resultado.getString("PRO_RAZONSOCIAL");
-                String telefono = resultado.getString("PRO_TELEFONO");
-                String contacto = resultado.getString("PRO_CONTACTO");
-                String telefonoContacto = resultado.getString("PRO_TELEFONOCONTACTO");
-                String direccion = resultado.getString("PRO_DIRECCION");
+                int codigo = result.getInt("PRO_ID");
+                String identificador = result.getString("PRO_IDENTIFICADOR");
+                String razonSocial = result.getString("PRO_RAZONSOCIAL");
+                String telefono = result.getString("PRO_TELEFONO");
+                String contacto = result.getString("PRO_CONTACTO");
+                String telefonoContacto = result.getString("PRO_TELEFONOCONTACTO");
+                String direccion = result.getString("PRO_DIRECCION");
 
                 //crea un vector donde los está la informacion (se crea una fila)
                 Object[] info = {codigo, identificador, razonSocial, telefono, contacto, telefonoContacto, direccion};
 
-                //al modelo de la tabla le agrega una fila
+                //al model de la tabla le agrega una fila
                 //con los datos que están en info
-                modelo.addRow(info);
+                model.addRow(info);
 
             }//cierra while (porque no hay mas datos en la BD)
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error\n Por la Causa" + e);
         } finally {
-            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(connection2, sentence, result, pStatement);
 
         }
 
@@ -322,7 +319,7 @@ public class QueryProveedor {
 
     
         public boolean validarDocumento(JTextField numero) {
-        boolean valor = true;
+        boolean value = true;
         try {
             int suma = 0;
             int residuo = 0;
@@ -342,7 +339,7 @@ public class QueryProveedor {
             if (numero.getText().length() < 10) {
                 JOptionPane.showMessageDialog(null, "El número ingresado no es válido");
                 numero.setText("");
-                valor = false;
+                value = false;
             }
 
             // Los primeros dos digitos corresponden al codigo de la provincia
@@ -351,7 +348,7 @@ public class QueryProveedor {
             if (provincia <= 0 || provincia > numeroProvincias) {
                 JOptionPane.showMessageDialog(null, "El código de la provincia (dos primeros dígitos) es inválido");
                 numero.setText("");
-                valor = false;
+                value = false;
             }
 
             // Aqui almacenamos los digitos de la cedula en variables.
@@ -373,7 +370,7 @@ public class QueryProveedor {
             if (d3 == 7 || d3 == 8) {
                 JOptionPane.showMessageDialog(null, "El tercer dígito ingresado es inválido");
                 numero.setText("");
-                valor = false;
+                value = false;
             }
 
             // Solo para personas naturales (modulo 10)
@@ -453,7 +450,7 @@ public class QueryProveedor {
 
             // Si residuo=0, dig.ver.=0, caso contrario 10 - residuo
             digitoVerificador = residuo == 0 ? 0 : modulo - residuo;
-            int longitud = numero.getText().length(); // Longitud del string
+            int lengthChain = numero.getText().length(); // Longitud del string
 
             // ahora comparamos el elemento de la posicion 10 con el dig. ver.
             if (publica == true) {
@@ -461,14 +458,14 @@ public class QueryProveedor {
                     JOptionPane.showMessageDialog(null,
                             "El ruc de la empresa del sector público es incorrecto.");
                     numero.setText("");
-                    valor = false;
+                    value = false;
                 }
                 /* El ruc de las empresas del sector publico terminan con 0001 */
-                if (!numero.getText().substring(9, longitud).equals("0001")) {
+                if (!numero.getText().substring(9, lengthChain).equals("0001")) {
                     JOptionPane.showMessageDialog(null,
                             "El ruc de la empresa del sector público debe terminar con 0001");
                     numero.setText("");
-                    valor = false;
+                    value = false;
                 }
             }
 
@@ -478,14 +475,14 @@ public class QueryProveedor {
                             .showMessageDialog(null,
                                     "El ruc de la empresa del sector privado es incorrecto.");
                     numero.setText("");
-                    valor = false;
+                    value = false;
                 }
-                if (!numero.getText().substring(10, longitud).equals("001")) {
+                if (!numero.getText().substring(10, lengthChain).equals("001")) {
                     JOptionPane
                             .showMessageDialog(null,
                                     "El ruc de la empresa del sector privado debe terminar con 001");
                     numero.setText("");
-                    valor = false;
+                    value = false;
                 }
             }
 
@@ -493,21 +490,21 @@ public class QueryProveedor {
                 if (digitoVerificador != d10) {
                     JOptionPane.showMessageDialog(null, "El número de cédula de la persona natural es incorrecto.");
                     numero.setText("");
-                    valor = false;
+                    value = false;
                 }
                 if (numero.getText().length() > 10
-                        && !numero.getText().substring(10, longitud).equals(
+                        && !numero.getText().substring(10, lengthChain).equals(
                                 "001")) {
                     JOptionPane.showMessageDialog(null, "El ruc de la persona natural debe terminar con 001");
                     numero.setText("");
-                    valor = false;
+                    value = false;
                 }
             }
         } catch (Exception e) {
             numero.setText("");
-            valor = false;
+            value = false;
         }
-        return valor;
+        return value;
     }
 
     
@@ -517,11 +514,11 @@ public class QueryProveedor {
     public void reporteProveedores() {
 
         try {
-            conexion2 = Conexion.getConexion();
+            connection2 =  Conexion.getConnection();
 
-            sentencia = conexion2.createStatement();
+            sentence = connection2.createStatement();
             String consultaSQL = "SELECT * FROM PROVEEDOR ORDER BY PRO_ID ASC";
-            resultado = sentencia.executeQuery(consultaSQL);
+            result = sentence.executeQuery(consultaSQL);
             Image portada;
             Document my_pdf_report = new Document(new Rectangle(PageSize.A4.rotate()), 1, 1, 1, 1);
             PdfWriter writer = PdfWriter.getInstance(my_pdf_report, new FileOutputStream("Proveedores.pdf"));
@@ -549,25 +546,25 @@ public class QueryProveedor {
             table_cell = new PdfPCell(new Phrase("TELEFONO CONTACTO"));
             my_report_table.addCell(table_cell);
 
-            while (resultado.next()) {
+            while (result.next()) {
 
-                String codigo = resultado.getString("PRO_ID");
+                String codigo = result.getString("PRO_ID");
                 table_cell = new PdfPCell(new Phrase(codigo));
                 my_report_table.addCell(table_cell);
-                String identificador = resultado.getString("PRO_IDENTIFICADOR");
+                String identificador = result.getString("PRO_IDENTIFICADOR");
                 table_cell = new PdfPCell(new Phrase(identificador));
                 my_report_table.addCell(table_cell);
-                String nombres = resultado.getString("PRO_RAZONSOCIAL");
+                String nombres = result.getString("PRO_RAZONSOCIAL");
                 table_cell = new PdfPCell(new Phrase(nombres));
                 my_report_table.addCell(table_cell);
-                String apellidos = resultado.getString("PRO_TELEFONO");
+                String apellidos = result.getString("PRO_TELEFONO");
                 table_cell = new PdfPCell(new Phrase(apellidos));
                 my_report_table.addCell(table_cell);
-                String cargo = resultado.getString("PRO_CONTACTO");
+                String cargo = result.getString("PRO_CONTACTO");
                 table_cell = new PdfPCell(new Phrase(cargo));
                 my_report_table.addCell(table_cell);
 
-                String tContacto = resultado.getString("PRO_TELEFONOCONTACTO");
+                String tContacto = result.getString("PRO_TELEFONOCONTACTO");
                 table_cell = new PdfPCell(new Phrase(tContacto));
                 my_report_table.addCell(table_cell);
 
@@ -590,10 +587,10 @@ public class QueryProveedor {
             JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n" );
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n");
-            conexion = null;
+            connection = null;
         } finally {
 
-            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(connection2, sentence, result, pStatement);
 
         }
         
@@ -613,25 +610,25 @@ public class QueryProveedor {
         
         String Ruta="/Users/Daniel/Desktop/ReporteProvedores.xls";
          try {
-            conexion2 = Conexion.getConexion();
-            sentencia = conexion2.createStatement();
+            connection2 =  Conexion.getConnection();
+            sentence = connection2.createStatement();
             String consultaSQL = "SELECT * FROM PROVEEDOR ORDER BY PRO_ID ASC";
-            resultado = sentencia.executeQuery(consultaSQL);
+            result = sentence.executeQuery(consultaSQL);
              int cont=1;   
-            while (resultado.next()) 
+            while (result.next()) 
             {
                
-                String codigo = resultado.getString("PRO_ID");
+                String codigo = result.getString("PRO_ID");
                 entrada[cont][0]=codigo;
-                String identificador = resultado.getString("PRO_IDENTIFICADOR");
+                String identificador = result.getString("PRO_IDENTIFICADOR");
                 entrada[cont][1]=identificador;
-                String razonSocial = resultado.getString("PRO_RAZONSOCIAL");
+                String razonSocial = result.getString("PRO_RAZONSOCIAL");
                 entrada[cont][2]=razonSocial;
-                String telefono = resultado.getString("PRO_TELEFONO");
+                String telefono = result.getString("PRO_TELEFONO");
                 entrada[cont][3]=telefono;
-                String contacto = resultado.getString("PRO_CONTACTO");
+                String contacto = result.getString("PRO_CONTACTO");
                 entrada[cont][4]=contacto;
-                String direccion = resultado.getString("PRO_DIRECCION");
+                String direccion = result.getString("PRO_DIRECCION");
                 entrada[cont][5]=direccion;              
                 cont++;
 
@@ -640,9 +637,9 @@ public class QueryProveedor {
             JOptionPane.showMessageDialog(null, "Error con la base de Datos:\n" );
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n");
-            conexion = null;
+            connection = null;
         } finally {
-            CerrarConexion.CerrarConexion(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(connection2, sentence, result, pStatement);
 
         }
         
@@ -665,11 +662,11 @@ public class QueryProveedor {
             workbook.close();       
             
         } catch (IOException ex) {
-            Logger.getLogger(QueryProveedor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QueryProvider.class.getName()).log(Level.SEVERE, null, ex);
         }
         catch (WriteException ex) 
         {
-          Logger.getLogger(QueryProveedor.class.getName()).log(Level.SEVERE, null, ex);           
+          Logger.getLogger(QueryProvider.class.getName()).log(Level.SEVERE, null, ex);           
         }
        
     }

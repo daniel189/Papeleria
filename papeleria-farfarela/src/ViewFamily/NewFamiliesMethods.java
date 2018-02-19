@@ -5,7 +5,7 @@
  */
 package ViewFamily;
 
-import MODELO.Conexion;
+import MODEL.Conexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -48,7 +48,7 @@ public class NewFamiliesMethods {
       Conexion conectar = new Conexion();
         try {
             //Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/farfarela", "ECUATORIANO16", "root");
-            Connection conexion = conectar.getConexion();
+            Connection conexion = Conexion.getConnection();
             Statement comando = conexion.createStatement();
             ResultSet registro = comando.executeQuery("select max(FAM_id)+1 from familiasarticulos");
             if (registro.next() == true) {

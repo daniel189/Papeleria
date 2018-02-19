@@ -39,13 +39,13 @@ public class ConexionIT {
     }
 
     /**
-     * Test of getConexion method, of class Conexion.
+     * Test of getConexion method, of class Connection.
      */
     @Test
     public void testGetConexion() {
         System.out.println("getConexion");
         Connection expResult = null;
-        Connection result = Conexion.getConexion();
+        Connection result = Connection.getConexion();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package VistaProveedor;
+package ViewProvider;
 
 
-import MODELO.QueryProveedor;
-import Vista.HomeAplicativo;
-import static Vista.HomeAplicativo.escritorio;
+import MODEL.QueryProvider;
+import View.HomeAplicativo;
+import static View.HomeAplicativo.escritorio;
 import java.awt.Dimension;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -24,7 +24,7 @@ public class ProveedorPrincipal1 extends javax.swing.JInternalFrame {
     /**
      * Creates new form UsuariosNew
      */
-          QueryProveedor queryE = new QueryProveedor();
+          QueryProvider queryE = new QueryProvider();
 
     public ProveedorPrincipal1() {
         initComponents();
@@ -354,7 +354,7 @@ public void HabilitarBotones(boolean Crear,boolean Ver,boolean Editar,boolean El
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if(jTableListarProveedor.getSelectedRows().length>0){
-        QueryProveedor bash = new QueryProveedor();  
+        QueryProvider bash = new QueryProvider();  
         int code = Integer.parseInt(jTableListarProveedor.getValueAt(jTableListarProveedor.getSelectedRow(), 0).toString());
         bash.eliminarProveedor(code);
         bash.actualizarTabla();

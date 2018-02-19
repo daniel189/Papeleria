@@ -5,6 +5,7 @@
  */
 package MODELO;
 
+import MODEL.QueryProvider;
 import java.util.Date;
 import javax.swing.JTextField;
 import org.junit.After;
@@ -54,7 +55,7 @@ public class queryProveedorIT {
         String observacion = "";
         Date fNacimiento = null;
         Date fIngreso = null;
-        QueryProveedor instance = new QueryProveedor();
+        QueryProvider instance = new QueryProvider();
         instance.agregarProveedor(cod, id, nombres, apellidos, direccion, telefono, observacion, fNacimiento, fIngreso);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -67,7 +68,7 @@ public class queryProveedorIT {
     public void testEliminarProveedor() {
         System.out.println("eliminarProveedor");
         int code = 0;
-        QueryProveedor instance = new QueryProveedor();
+        QueryProvider instance = new QueryProvider();
         instance.eliminarProveedor(code);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -86,7 +87,7 @@ public class queryProveedorIT {
         String contacto = "";
         String telfContacto = "";
         String direccion = "";
-        QueryProveedor instance = new QueryProveedor();
+        QueryProvider instance = new QueryProvider();
         instance.modificarProveedor(cod, id, razonSocial, telefono, contacto, telfContacto, direccion);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -98,7 +99,7 @@ public class queryProveedorIT {
     @Test
     public void testActualizarTabla() {
         System.out.println("actualizarTabla");
-        QueryProveedor instance = new QueryProveedor();
+        QueryProvider instance = new QueryProvider();
         instance.actualizarTabla();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -110,7 +111,7 @@ public class queryProveedorIT {
     @Test
     public void testListarTodosProveedores() {
         System.out.println("listarTodosProveedores");
-        QueryProveedor instance = new QueryProveedor();
+        QueryProvider instance = new QueryProvider();
         instance.listarTodosProveedores();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -123,7 +124,7 @@ public class queryProveedorIT {
     public void testBuscarRepetido() {
         System.out.println("buscarRepetido");
         String identificador = "";
-        QueryProveedor instance = new QueryProveedor();
+        QueryProvider instance = new QueryProvider();
         boolean expResult = false;
         boolean result = instance.buscarRepetido(identificador);
         assertEquals(expResult, result);
@@ -137,7 +138,7 @@ public class queryProveedorIT {
     @Test
     public void testEjecutarConsultaTodaTabla() {
         System.out.println("ejecutarConsultaTodaTabla");
-        QueryProveedor instance = new QueryProveedor();
+        QueryProvider instance = new QueryProvider();
         instance.ejecutarConsultaTodaTabla();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -153,7 +154,7 @@ public class queryProveedorIT {
         boolean buscarPorCodigo = false;
         boolean buscarPorIdentificador = false;
         boolean buscarPorRazonSocial = false;
-        QueryProveedor instance = new QueryProveedor();
+        QueryProvider instance = new QueryProvider();
         instance.buscarProveedor(parametroBusqueda, buscarPorCodigo, buscarPorIdentificador, buscarPorRazonSocial);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -169,7 +170,7 @@ public class queryProveedorIT {
         boolean buscarPorCodigo = false;
         boolean buscarPorIdentificador = false;
         boolean buscarPorRazonSocial = false;
-        QueryProveedor instance = new QueryProveedor();
+        QueryProvider instance = new QueryProvider();
         instance.buscarRegistroCodigoOIdentificadorONombreOapellido(parametroBusqueda, buscarPorCodigo, buscarPorIdentificador, buscarPorRazonSocial);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -182,7 +183,7 @@ public class queryProveedorIT {
     public void testValidarDocumento() {
         System.out.println("validarDocumento");
         JTextField numero = null;
-        QueryProveedor instance = new QueryProveedor();
+        QueryProvider instance = new QueryProvider();
         boolean expResult = false;
         boolean result = instance.validarDocumento(numero);
         assertEquals(expResult, result);
@@ -196,7 +197,7 @@ public class queryProveedorIT {
     @Test
     public void testReporteProveedores() {
         System.out.println("reporteProveedores");
-        QueryProveedor instance = new QueryProveedor();
+        QueryProvider instance = new QueryProvider();
         instance.reporteProveedores();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

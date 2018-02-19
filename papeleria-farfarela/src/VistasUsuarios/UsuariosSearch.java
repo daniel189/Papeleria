@@ -5,7 +5,7 @@
  */
 package VistasUsuarios;
 
-import MODELO.Conexion;
+import MODEL.Conexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,7 +33,7 @@ public class UsuariosSearch extends javax.swing.JInternalFrame {
     /**
      * variable encargada de la conexion con la base de datos
      */
-    Connection cone = Conexion.getConexion();
+    Connection cone = Conexion.getConnection();
     
     /**
      * Funcion encargada de llear la tabla de contenidos con el uso de la 

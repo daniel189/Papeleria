@@ -1,6 +1,6 @@
-package MODELO;
+package MODEL;
 
-import Vista.HomeAplicativo;
+import View.HomeAplicativo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -10,18 +10,18 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- *En esta clase se maneja el metodo Connection 
- * el cual nos permite comunicacion con nuestra base de datos
+ *En esta clase se maneja el metodo Conexion 
+ el cual nos permite comunicacion con nuestra base de datos
  */
 
 public class Conexion {
     //CON SINGLETON
-    public static Connection getConexion(){
+    public static Connection getConnection(){
         Connection conection=null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            conection=DriverManager.getConnection("jdbc:mysql://localhost/papeleriafarfarela","root","");
-           // conection=DriverManager.getConnection("jdbc:mysql://localhost/farfarela","root","SQLdosis622"); //Conexion 2IS 
+            //conection=DriverManager.getConnection("jdbc:mysql://localhost/papeleriafarfarela","root","");
+            conection=DriverManager.getConnection("jdbc:mysql://localhost/farfarela","root","SQLdosis622"); //Conexion 2IS 
             //con=DriverManager.getConnection("jdbc:mysql://localhost/papeleriafarfarela","root","++++++"); //Conexion Danny
         } catch (ClassNotFoundException ex) {
             System.out.println("1");
@@ -32,10 +32,8 @@ public class Conexion {
         } catch (IllegalAccessException ex) {
             System.out.println("3");
         } catch (SQLException ex) {
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
         
         return conection;
     }

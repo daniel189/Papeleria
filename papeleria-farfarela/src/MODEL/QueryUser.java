@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MODELO;
+package MODEL;
 
 import PapeleriaFarfarela.Account;
 import java.sql.*;
@@ -15,22 +15,21 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import MODELO.Conexion;
+import MODEL.Conexion;
 import VistasUsuarios.UsuariosDelete;
-import VistasUsuarios.UsuariosNew;
 
 /**
  *
  * @author Crispin
  */
-public class QueryUsuario {
-    PreparedStatement sentencia;
-    ResultSet resul;
-    Connection cone;
+public class QueryUser {
+    PreparedStatement sentence;
+    ResultSet result;
+    Connection connection;
     
     public ArrayList<String> getcuenta(String parametroCuenta){
             ArrayList<String> cuenta = new ArrayList<>();
-            Connection cone = Conexion.getConexion();
+            Connection cone = Conexion.getConnection();
             String sql="SELECT * FROM cuenta WHERE cue_cuenta = '"+ parametroCuenta +"'";
         try {
             Statement st = cone.createStatement();
@@ -43,7 +42,7 @@ public class QueryUsuario {
                 cuenta.add(rs.getString(5));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(QueryUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QueryUser.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Error al traer las Cuentas", "Error DB", JOptionPane.ERROR_MESSAGE);
         }
         return cuenta;
@@ -51,29 +50,28 @@ public class QueryUsuario {
     public ArrayList<Account> getCuentas(){
         ArrayList<Account> listado = new ArrayList();
         Account cuen;
-        cone = Conexion.getConexion();
+        connection =  Conexion.getConnection();
         try{
-            sentencia = cone.prepareStatement("SELECT * FROM cuenta");
-            resul= sentencia.executeQuery();
-            while(resul.next()){
+            sentence = connection.prepareStatement("SELECT * FROM cuenta");
+            result= sentence.executeQuery();
+            while(result.next()){
                 cuen = new Account("","",0,0,"");
-                cuen.setAccountName(resul.getString(1));
-                cuen.setEmployeeId(resul.getInt(2));
-                cuen.setAccountPassword(resul.getString(3));
-                cuen.setAccountAccessLevel(resul.getInt(4));
-                cuen.setAccountStatus(resul.getString(5));
+                cuen.setAccountName(result.getString(1));
+                cuen.setEmployeeId(result.getInt(2));
+                cuen.setAccountPassword(result.getString(3));
+                cuen.setAccountAccessLevel(result.getInt(4));
+                cuen.setAccountStatus(result.getString(5));
                 //agregamos a la ARRAYLIST
                 listado.add(cuen);
             }
         }catch(SQLException ex){
-            Logger.getLogger(QueryUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QueryUser.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listado;
     }
     
-    
     public void setCuenta(Account cue){
-        Connection cone = Conexion.getConexion();
+        Connection cone =  Conexion.getConnection();
         try {
             //SELECCIONO LAS SENTENCIAS DE SQL--------------
             PreparedStatement sentencia = cone.prepareStatement("INSERT INTO cuenta VALUES (?,?,?,?,?)");
@@ -91,12 +89,12 @@ public class QueryUsuario {
                 JOptionPane.showMessageDialog(null,"ERROR, DATOS FALLIDOS");
             }
         } catch (SQLException ex) {
-            Logger.getLogger(QueryUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QueryUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     public void EliminarRegistro(String cuenta){
-        Connection cone= Conexion.getConexion();
+        Connection cone=  Conexion.getConnection();
         try {
             PreparedStatement sentencia = cone.prepareStatement("DELETE FROM cuenta WHERE cue_cuenta = '"+ cuenta +"'");
             int res = sentencia.executeUpdate();
@@ -110,12 +108,12 @@ public class QueryUsuario {
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Fallo, Los datos no han podido ser eliminados puesto a que este usuario tiene registros asociados");
-            Logger.getLogger(QueryUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QueryUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     public void updateCuenta(ArrayList<String> lista){
-        Connection cone = Conexion.getConexion();
+        Connection cone =  Conexion.getConnection();
         int n = Integer.parseInt(lista.get(1));
         try{
             PreparedStatement sentencia = cone.prepareStatement("UPDATE cuenta SET cue_nivel = '"+ n +"' WHERE cue_cuenta = '"+ lista.get(0) +"'");
@@ -133,7 +131,7 @@ public class QueryUsuario {
     }
     
     public void resetCuenta(String cuenta, String pass){
-        Connection cone = Conexion.getConexion();
+        Connection cone =  Conexion.getConnection();
         try{
             PreparedStatement sentencia = cone.prepareStatement("UPDATE cuenta SET cue_pass = '"+ pass +"' WHERE cue_cuenta = '"+ cuenta +"'");
             //si guarda bien o no

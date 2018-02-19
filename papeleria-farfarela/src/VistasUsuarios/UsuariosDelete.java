@@ -5,7 +5,7 @@
  */
 package VistasUsuarios;
 
-import MODELO.QueryUsuario;
+import MODEL.QueryUser;
 import javax.swing.JOptionPane;
 
 /**
@@ -151,7 +151,7 @@ public class UsuariosDelete extends javax.swing.JInternalFrame {
         cuenta = txtUsuario.getText();
         int eliminar = JOptionPane.showConfirmDialog(null, "Esta seguro de borrar la cuenta : " + cuenta , "Confirmar.", JOptionPane.YES_NO_OPTION);
         if(eliminar == JOptionPane.YES_OPTION){
-            QueryUsuario obj = new QueryUsuario();
+            QueryUser obj = new QueryUser();
             obj.EliminarRegistro(cuenta);
             initComponents();
         }
