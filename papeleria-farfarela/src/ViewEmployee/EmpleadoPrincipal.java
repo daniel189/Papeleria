@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package VistaEmpleado;
+package ViewEmployee;
 
 import MODEL.QueryEmployee;
 import java.awt.event.KeyAdapter;
@@ -253,7 +253,7 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
      
     /**
      * Funcion la cual escoge el parametro para 
-     * realizar la busqueda dentro de la base de datos
+ realizar la busqueda dentro de la base de data
      * @param evt 
      */
     private void jCmbTipoBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCmbTipoBusquedaActionPerformed
@@ -289,8 +289,8 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
     private void jTextFieldParametroBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldParametroBusquedaKeyTyped
          jTextFieldParametroBusqueda.addKeyListener(new KeyAdapter() {
             public void keyReleased(final KeyEvent e) {
-                String cadena = (jTextFieldParametroBusqueda.getText().toUpperCase());
-                jTextFieldParametroBusqueda.setText(cadena);
+                String chain = (jTextFieldParametroBusqueda.getText().toUpperCase());
+                jTextFieldParametroBusqueda.setText(chain);
                 repaint();
                 Filtrar();
             }
@@ -300,9 +300,9 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldParametroBusquedaKeyTyped
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        Datos2 datos=new Datos2(this,true);
-        datos.setOpcion(1);
-        datos.setVisible(true);
+        Datos2 data=new Datos2(this,true);
+        data.setOpcion(1);
+        data.setVisible(true);
 
     }//GEN-LAST:event_btnCrearActionPerformed
 
@@ -351,12 +351,10 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
             bash.actualizarTabla();
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
-
-    
-    
+      
     /**
-     * Funcio qu epemrite la visualizacion de los datos
-     * extrayendolos de la tabla que contiene la vista.
+     * Funcio qu epemrite la visualizacion de los data
+ extrayendolos de la tabla que contiene la vista.
      * @param evt 
      */
     private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
@@ -386,7 +384,7 @@ public class EmpleadoPrincipal extends javax.swing.JFrame {
 
     /**
      * Funcion la cual filtra segun el parametro para 
-     * realizar la busqueda dentro de la base de datos
+ realizar la busqueda dentro de la base de data
      * @param evt 
      */
     

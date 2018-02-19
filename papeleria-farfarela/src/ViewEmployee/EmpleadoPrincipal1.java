@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package VistaEmpleado;
+package ViewEmployee;
 
 import MODEL.QueryEmployee;
-import VistaEmpleado.DatosEmpleados;
+import ViewEmployee.DatosEmpleados;
 import Vista.HomeAplicativo;
 import static Vista.HomeAplicativo.escritorio;
 import java.awt.Dimension;
