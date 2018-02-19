@@ -2,7 +2,8 @@
 package VistasVentas;
 
 
-import MODELO.*;
+import MODEL.Conexion;
+import MODEL.QueryBill;
 import java.awt.Dimension;
 import java.awt.print.PrinterException;
 import java.sql.Connection;
@@ -24,7 +25,7 @@ import javax.swing.JTable;
 public class SalesView extends javax.swing.JInternalFrame {
 
     
-    QueryFactura queryFactura = new QueryFactura();
+    QueryBill queryFactura = new QueryBill();
     /**
      * Creacion de un nuevo formularo de visualizacion de ventas
      */

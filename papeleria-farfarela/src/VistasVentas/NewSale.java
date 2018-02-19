@@ -6,7 +6,9 @@
 package VistasVentas;
 
 //import Modelo.Connection;
-import MODELO.*;
+import MODEL.QueryArticle;
+import MODEL.QueryClient;
+import MODEL.Conexion;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Image;
@@ -188,7 +190,7 @@ public class NewSale extends javax.swing.JInternalFrame{
      */
     void llamarCliente() {
         // llamada de datos
-        QueryCliente loadss = new QueryCliente();
+        QueryClient loadss = new QueryClient();
         loadss.CargarClientes();
         //Centramos nuestro jDialog
         JdialogClient.setLocation(250, 150);
@@ -1027,7 +1029,7 @@ public class NewSale extends javax.swing.JInternalFrame{
                         String uula = jTextFieldCodigoCliente.getText();
                         String nombre = jTextFieldNombreCliente.getText();
                         String apellido = jTextFieldApellido.getText();
-                        QueryCliente add = new QueryCliente();
+                        QueryClient add = new QueryClient();
                         // enviar datos a regristar en el querycliente
                         add.agregarCliente(uula, nombre, apellido);
 
@@ -1188,7 +1190,7 @@ public class NewSale extends javax.swing.JInternalFrame{
      */
     private void txtParametroBusqueda3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtParametroBusqueda3KeyReleased
 
-        QueryCliente qc = new QueryCliente();
+        QueryClient qc = new QueryClient();
         String parametroBusqueda = txtParametroBusqueda3.getText();
         qc.buscarCliente(parametroBusqueda, searchById, searchByName, searchByLastName);
 
@@ -1227,7 +1229,7 @@ public class NewSale extends javax.swing.JInternalFrame{
      */
     private void txtParametroBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtParametroBusquedaKeyReleased
 
-        QueryArticulo cc = new QueryArticulo();
+        QueryArticle cc = new QueryArticle();
         String parametroBusqueda = txtParametroBusqueda.getText();
         cc.buscarArticulosparaVentas(parametroBusqueda);
 

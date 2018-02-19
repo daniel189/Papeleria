@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MODELO;
+package MODEL;
 import VistasVentas.NewSale;
 import PapeleriaFarfarela.Article;
 import java.sql.Connection;
@@ -11,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
@@ -25,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Crispin
  */
-public class QueryArticulo {
+public class QueryArticle {
     PreparedStatement sentence;
     PreparedStatement search;
     ResultSet result;
@@ -38,7 +37,7 @@ public class QueryArticulo {
     //vector con los titulos de cada columna
     String[] titulosColumnas = {"CÓDIGO", "NOMBRE", "DESCRIPCIÓN", "PRECIO"};
     //matriz donde se almacena los datos de cada celda de la tabla
-    String informacion[][] = {};
+    String[][] information = {};
     
     /** @pdOid 368c9303-adc2-4bfa-a4fd-3acfae6fa040 */
    public double articuloId;
@@ -58,9 +57,9 @@ public class QueryArticulo {
    {
        Connection conection= Conexion.getConnection();
           try {
-              Statement buscarnombre= conection.createStatement();
-              String consulta="select pro_identificador from proveedor";
-              result=buscarnombre.executeQuery(consulta);
+              Statement searchname= conection.createStatement();
+              String consult="select pro_identificador from proveedor";
+              result=searchname.executeQuery(consult);
               while(result.next()){
                
               cboxprovedor.addItem(result.getString(1));
@@ -68,7 +67,7 @@ public class QueryArticulo {
              result.close();
              conection.close();
           } catch (SQLException ex) {
-              Logger.getLogger(QueryArticulo.class.getName()).log(Level.SEVERE, null, ex);
+              Logger.getLogger(QueryArticle.class.getName()).log(Level.SEVERE, null, ex);
           }
           return cboxprovedor;
    
@@ -77,9 +76,9 @@ public class QueryArticulo {
    {
        Connection conection= Conexion.getConnection();
           try {
-              Statement buscarnombre= conection.createStatement();
-              String consulta="select fam_nombre from familiasarticulos";
-              result=buscarnombre.executeQuery(consulta);
+              Statement searchname= conection.createStatement();
+              String consult="select fam_nombre from familiasarticulos";
+              result=searchname.executeQuery(consult);
               while(result.next()){
                
               cboxfamilia.addItem(result.getString(1));
@@ -87,7 +86,7 @@ public class QueryArticulo {
               result.close();
               conection.close();
           } catch (SQLException ex) {
-              Logger.getLogger(QueryArticulo.class.getName()).log(Level.SEVERE, null, ex);
+              Logger.getLogger(QueryArticle.class.getName()).log(Level.SEVERE, null, ex);
           }
           return cboxfamilia;
    
@@ -98,8 +97,8 @@ public class QueryArticulo {
       Connection conection= Conexion.getConnection();
     
           try { 
-              String sql = "SELECT * FROM PROVEEDOR WHERE PRO_IDENTIFICADOR LIKE ? ORDER BY PRO_IDENTIFICADOR ASC";
-              search = conection.prepareStatement(sql);
+              String querysql = "SELECT * FROM PROVEEDOR WHERE PRO_IDENTIFICADOR LIKE ? ORDER BY PRO_IDENTIFICADOR ASC";
+              search = conection.prepareStatement(querysql);
               search.setString(1, "%" + nombre + "%");
               result=search.executeQuery();
               while(result.next())
@@ -115,41 +114,40 @@ public class QueryArticulo {
    } 
  public int asignarfamilia(String nombre)
    {
-       int idasignar=0;
+       int assignid=0;
       Connection cone= Conexion.getConnection();
     
           try { 
-              String sql = "SELECT * FROM FAMILIASARTICULOS WHERE FAM_NOMBRE LIKE ?";
-              search = cone.prepareStatement(sql);
+              String querysql = "SELECT * FROM FAMILIASARTICULOS WHERE FAM_NOMBRE LIKE ?";
+              search = cone.prepareStatement(querysql);
               search.setString(1, "%" + nombre + "%");
               result=search.executeQuery();
               while(result.next())
               {
-                idasignar = result.getInt("FAM_ID");
+                assignid = result.getInt("FAM_ID");
               }
               result.close();
               cone.close();
               } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error\n Por la Causa" + ex);
           } 
-       return idasignar;
+       return assignid;
    }     
 public boolean setArticulo(Article art,int id_familia,int id_provedor){
-    boolean identificador=true;  
+    boolean identifier=true;  
     Connection cone= Conexion.getConnection();
-      float pro_id_encontrado=0;
-        PreparedStatement sentencia;
+        PreparedStatement sentence;
           try {
-              sentencia = cone.prepareStatement("INSERT INTO articulos(ART_ID,PRO_ID,FAM_ID,ART_NOMBRE,ART_DESCRIPCION,ART_PRECIO,ART_STOCK) VALUES (?,?,?,?,?,?,?)");
-               sentencia.setInt(1, art.getArticleId());
-              sentencia.setInt(2, id_provedor);
-              sentencia.setInt(3, id_familia);
-              sentencia.setString(4, art.getArticleName());
-              sentencia.setString(5, art.getArticleDescription());
-              sentencia.setFloat(6, art.getArticlePrice());
-               sentencia.setDouble(7,art.getArticleStock());
+              sentence = cone.prepareStatement("INSERT INTO articulos(ART_ID,PRO_ID,FAM_ID,ART_NOMBRE,ART_DESCRIPCION,ART_PRECIO,ART_STOCK) VALUES (?,?,?,?,?,?,?)");
+               sentence.setInt(1, art.getArticleId());
+              sentence.setInt(2, id_provedor);
+              sentence.setInt(3, id_familia);
+              sentence.setString(4, art.getArticleName());
+              sentence.setString(5, art.getArticleDescription());
+              sentence.setFloat(6, art.getArticlePrice());
+               sentence.setDouble(7,art.getArticleStock());
 
-                    int res=sentencia.executeUpdate();
+                    int res=sentence.executeUpdate();
                     if(res>0){
                         JOptionPane.showMessageDialog(null,"OK, PRODUCTOS GUARDADOS");
                     }
@@ -158,9 +156,9 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
                     }
           } catch (SQLException ex) {
           JOptionPane.showMessageDialog(null,"SELECCIONE FAMILIA Y PROVEDOR ");
-          identificador=false;
+          identifier=false;
           }
-      return identificador;
+      return identifier;
     }
     public   DefaultTableModel UpdateArticulo(String texto,int item){
         String titulos[]={"Art Id","Fam Id","Pro Id","Nombre","Descripcion","Precio","Stoc"};
@@ -170,7 +168,7 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
         connection = Conexion.getConnection();
         String      instruccionsql=    "  SELECT * FROM articulos WHERE art_nombre like " +'"' + Filtro  +'"';
         try {
-      if(item==0)// si se selecciona x id cambia la sentence sql
+      if(item==0)// si se selecciona x id cambia la sentence querysql
       {
           float id=Integer.parseInt(texto);
          instruccionsql=  ("SELECT * FROM articulos WHERE art_id = '"+ id +"'");
@@ -198,7 +196,7 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
           return modelo;  
         }
         catch(SQLException ex){
-            Logger.getLogger(QueryUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QueryUser.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
@@ -210,11 +208,11 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
         try {
             connection = Conexion.getConnection();
          
-            Statement comando = connection.createStatement();
+            Statement comand = connection.createStatement();
 
             // linea de codigo de mysql que actualiza regristos que va modificar
          
-            int cantidad = comando.executeUpdate("update ARTICULOS set PRO_ID ='" + pro_id + "', "+
+            int cantidad = comand.executeUpdate("update ARTICULOS set PRO_ID ='" + pro_id + "', "+
                                                                     " FAM_ID ='" + fam_id +                  
                                                                     "',ART_NOMBRE ='" + art_nombre + 
                                                                     "',ART_DESCRIPCION ='" + art_descripcion + 
@@ -239,8 +237,8 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
 
         try {            
             connection = Conexion.getConnection();
-            Statement comando = connection.createStatement();
-            int cantidad = comando.executeUpdate("delete from ARTICULOS where ART_ID=" + code);
+            Statement comand = connection.createStatement();
+            int cantidad = comand.executeUpdate("delete from ARTICULOS where ART_ID=" + code);
             if (cantidad == 1) {
    
                 JOptionPane.showMessageDialog(null,"Eliminado");
@@ -262,7 +260,7 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
     
      public void CargarArticulos(){
          
-         model = new DefaultTableModel(informacion, titulosColumnas) {
+         model = new DefaultTableModel(information, titulosColumnas) {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -271,7 +269,7 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
         //modelo = UpdateArticulo("1", 0);
         NewSale.SeleccionarArticulos.setModel(model);
         
-        //ejecuta una consulta a la BD
+        //ejecuta una consult a la BD
         ejecutarConsultaTodaTabla();
          
      }
@@ -289,9 +287,9 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
             conexion = Conexion.getConnection();
 
             sentencia = conexion.createStatement();
-            String consultaSQL = "SELECT * FROM articulos ORDER BY art_nombre ASC";
-            resultado = sentencia.executeQuery(consultaSQL);
-            System.out.println(consultaSQL);
+            String querysql = "SELECT * FROM articulos ORDER BY art_nombre ASC";
+            resultado = sentencia.executeQuery(querysql);
+            System.out.println(querysql);
 
             //mientras haya datos en la BD ejecutar eso...
             while (resultado.next()) {
@@ -304,7 +302,7 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
 
 
 
-                //crea un vector donde los está la informacion (se crea una fila)
+                //crea un vector donde los está la information (se crea una fila)
                 Object[] info = {codigo, nombre, descripcion, precio};
 
                 //al salesTebleModel de la tabla le agrega una fila
@@ -331,7 +329,7 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
 
         
 
-            model = new DefaultTableModel(informacion, titulosColumnas) {
+            model = new DefaultTableModel(information, titulosColumnas) {
                 public boolean isCellEditable(int row, int column) {
                     return false;
                 }
@@ -341,7 +339,7 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
             //le asigna el salesTebleModel al jtable
             //modelo = UpdateArticulo(parametroBusqueda, 1,1);
             NewSale.SeleccionarArticulos.setModel(model);
-            //ejecuta una consulta a la BD
+            //ejecuta una consult a la BD
             buscarRegistroArticulos(parametroBusqueda);
 
     }
@@ -375,7 +373,7 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
 
                 
 
-                //crea un vector donde los está la informacion (se crea una fila)
+                //crea un vector donde los está la information (se crea una fila)
                 Object[] info = {codigo,nombre,descripcion,precio};
                 //al salesTebleModel de la tabla le agrega una fila
                 //con los datos que están en info
@@ -386,7 +384,5 @@ public boolean setArticulo(Article art,int id_familia,int id_provedor){
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error\n Por la Causa" + e);
         } 
-
-
     }
 }

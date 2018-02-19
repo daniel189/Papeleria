@@ -5,7 +5,7 @@
  */
 package VistaProveedor;
 
-import MODELO.QueryProveedor;
+import MODEL.QueryProvider;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.RowFilter;
@@ -20,7 +20,7 @@ public class ProveedorPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form UsuariosNew
      */
-          QueryProveedor queryE = new QueryProveedor();
+          QueryProvider queryE = new QueryProvider();
 
     public ProveedorPrincipal() {
         initComponents();
@@ -364,7 +364,7 @@ private TableRowSorter trsFiltro;
     
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if(jTableListarProveedor.getSelectedRows().length>0){
-        QueryProveedor bash = new QueryProveedor();  
+        QueryProvider bash = new QueryProvider();  
         int code = Integer.parseInt(jTableListarProveedor.getValueAt(jTableListarProveedor.getSelectedRow(), 0).toString());
         bash.eliminarProveedor(code);
         bash.actualizarTabla();

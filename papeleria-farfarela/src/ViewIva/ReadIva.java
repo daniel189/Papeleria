@@ -5,7 +5,7 @@
  */
 package ViewIva;
 
-import MODELO.QueryIva;
+import MODEL.QueryIva;
 import javax.swing.table.DefaultTableModel;
 
 /**

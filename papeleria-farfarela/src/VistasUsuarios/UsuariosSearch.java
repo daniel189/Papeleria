@@ -5,7 +5,7 @@
  */
 package VistasUsuarios;
 
-import MODELO.Conexion;
+import MODEL.Conexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

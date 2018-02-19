@@ -5,6 +5,7 @@
  */
 package MODELO;
 
+import MODEL.QueryClient;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -45,7 +46,7 @@ public class queryClienteIT {
     public void testSetCliente() {
         System.out.println("setCliente");
         ArrayList<String> lista = null;
-        QueryCliente instance = new QueryCliente();
+        QueryClient instance = new QueryClient();
         instance.setCliente(lista);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -58,7 +59,7 @@ public class queryClienteIT {
     public void testEliminarRegistro() {
         System.out.println("EliminarRegistro");
         String iden = "";
-        QueryCliente instance = new QueryCliente();
+        QueryClient instance = new QueryClient();
         instance.EliminarRegistro(iden);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -71,7 +72,7 @@ public class queryClienteIT {
     public void testUpdateCliente() {
         System.out.println("updateCliente");
         ArrayList<String> lista = null;
-        QueryCliente instance = new QueryCliente();
+        QueryClient instance = new QueryClient();
         instance.updateCliente(lista);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -86,7 +87,7 @@ public class queryClienteIT {
         String cedula = "";
         String nombre = "";
         String apellido = "";
-        QueryCliente instance = new QueryCliente();
+        QueryClient instance = new QueryClient();
         instance.agregarCliente(cedula, nombre, apellido);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -98,7 +99,7 @@ public class queryClienteIT {
     @Test
     public void testListarTodosClientes() {
         System.out.println("listarTodosClientes");
-        QueryCliente instance = new QueryCliente();
+        QueryClient instance = new QueryClient();
         instance.listarTodosClientes();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -110,20 +111,20 @@ public class queryClienteIT {
     @Test
     public void testCargarClientes() {
         System.out.println("CargarClientes");
-        QueryCliente instance = new QueryCliente();
+        QueryClient instance = new QueryClient();
         instance.CargarClientes();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of ejecutarConsultaTodaTabla method, of class queryClientes.
+     * Test of fetchAll method, of class queryClientes.
      */
     @Test
     public void testEjecutarConsultaTodaTabla() {
         System.out.println("ejecutarConsultaTodaTabla");
-        QueryCliente instance = new QueryCliente();
-        instance.ejecutarConsultaTodaTabla();
+        QueryClient instance = new QueryClient();
+        instance.fetchAll();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -138,7 +139,7 @@ public class queryClienteIT {
         boolean buscarPorCedula = false;
         boolean buscarPorNombre = false;
         boolean buscarPorApellido = false;
-        QueryCliente instance = new QueryCliente();
+        QueryClient instance = new QueryClient();
         instance.buscarCliente(parametroBusqueda, buscarPorCedula, buscarPorNombre, buscarPorApellido);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -154,7 +155,7 @@ public class queryClienteIT {
         boolean buscarPorCedula = false;
         boolean buscarPorNombre = false;
         boolean buscarPorApellido = false;
-        QueryCliente instance = new QueryCliente();
+        QueryClient instance = new QueryClient();
         instance.buscarRegistroCedulaONombreOapellido(parametroBusqueda, buscarPorCedula, buscarPorNombre, buscarPorApellido);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

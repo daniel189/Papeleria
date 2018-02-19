@@ -5,7 +5,7 @@
  */
 package ViewArticles;
 
-import MODELO.QueryArticulo;
+import MODEL.QueryArticle;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -225,7 +225,7 @@ public class FoundArticles extends javax.swing.JInternalFrame {
  * @param evt evento de la tabla
  */
     private void txtingresoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtingresoKeyReleased
-       QueryArticulo artQuery=new QueryArticulo();
+       QueryArticle artQuery=new QueryArticle();
         if(txtingreso.getText().isEmpty())
         {
             for (int i = 0; i < tab_articulos.getRowCount(); i++) {

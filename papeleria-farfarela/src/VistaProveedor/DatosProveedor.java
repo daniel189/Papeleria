@@ -5,8 +5,8 @@
  */
 package VistaProveedor;
 
-import MODELO.Conexion;
-import MODELO.QueryProveedor;
+import MODEL.Conexion;
+import MODEL.QueryProvider;
 import VistasUsuarios.*;
 import com.placeholder.PlaceHolder;
 import java.awt.Color;
@@ -477,7 +477,7 @@ public class DatosProveedor extends javax.swing.JDialog {
          */
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         cont = 0;
-        QueryProveedor queryE = new QueryProveedor();
+        QueryProvider queryE = new QueryProvider();
         validarCamposVacios();
         if (cont == 0) {
             Connection reg = Conexion.getConnection();
@@ -511,7 +511,7 @@ public class DatosProveedor extends javax.swing.JDialog {
                 }
             } else if (this.opcion == 2) {
                 lblEstado.setText("Proveedor - Modificar");
-                QueryProveedor change = new QueryProveedor();
+                QueryProvider change = new QueryProvider();
                 int code = Integer.parseInt(txtCodigo.getText());
                 String identificador = txtIdentificador.getText();
                 String razonSocial = txtRazonSocial.getText();

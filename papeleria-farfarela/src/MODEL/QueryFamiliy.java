@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MODELO;
+package MODEL;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,38 +16,38 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class QueryFamilia {
+public class QueryFamiliy {
     
-PreparedStatement sentencia;
-      PreparedStatement busqueda;
-    ResultSet resul;
-    Connection cone;
+PreparedStatement sentence;
+      PreparedStatement search;
+    ResultSet result;
+    Connection connectionSql;
     Connection conexion;
        JComboBox cboxfamilia=new JComboBox();
            public void modificarFamilia(int fami_id,int iva_ide,String fam_nom, String fam_descripcion) {
 
     
         try {
-            cone = Conexion.getConnection();
+            connectionSql = Conexion.getConnection();
          
-            Statement comando = cone.createStatement();
+            Statement comand = connectionSql.createStatement();
 
             // linea de codigo de mysql que actualiza regristos que va modificar
-               int cantidad = comando.executeUpdate("update FAMILIASARTICULOS set IVA_ID ='" + iva_ide + "', "+
+               int amount = comand.executeUpdate("update FAMILIASARTICULOS set IVA_ID ='" + iva_ide + "', "+
                                                                     " FAM_NOMBRE ='" + fam_nom +                  
                                                                     "',FAM_DETALLE ='" + fam_descripcion + 
                                                                     
                                                                     "' where FAM_ID=" + fami_id);
          
           
-                    if (cantidad == 1) {
+                    if (amount == 1) {
                         JOptionPane.showMessageDialog(null," Modifico con Exito");
                     } else {
                         JOptionPane.showMessageDialog(null,"No existe Proveedor con codigo : "+fami_id);
                     }
           
         
-            cone.close();
+            connectionSql.close();
             //System.out.println("Connection cerrada");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null," Error -->"+ex);
@@ -56,19 +56,19 @@ PreparedStatement sentencia;
     public JComboBox cargariva()
    {
        // este metodo permite cargar todos los id de los ivas cargados y ponerles en un cbox q sera retornado al frm new familia
-       Connection cone= Conexion.getConnection();
+       Connection connectionSql= Conexion.getConnection();
           try {
-              Statement buscarnombre= cone.createStatement();
-              String consulta="select IVA_id from IVA";
-              resul=buscarnombre.executeQuery(consulta);
-              while(resul.next()){
+              Statement buscarnombre= connectionSql.createStatement();
+              String query="select IVA_id from IVA";
+              result=buscarnombre.executeQuery(query);
+              while(result.next()){
                
-              cboxfamilia.addItem(resul.getString(1));
+              cboxfamilia.addItem(result.getString(1));
               }
-             resul.close();
-             cone.close();
+             result.close();
+             connectionSql.close();
           } catch (SQLException ex) {
-              Logger.getLogger(QueryArticulo.class.getName()).log(Level.SEVERE, null, ex);
+              Logger.getLogger(QueryArticle.class.getName()).log(Level.SEVERE, null, ex);
           }
           return cboxfamilia;
    
@@ -76,76 +76,73 @@ PreparedStatement sentencia;
      public int asignariva(int iva)
    {
        int idasignar=0;
-      Connection cone= Conexion.getConnection();
+      Connection connectionSql= Conexion.getConnection();
     
           try { 
               String sql = "SELECT * FROM IVA WHERE IVA_ID =? ";
-              busqueda = cone.prepareStatement(sql);
-              busqueda.setInt(1, iva);
-              resul=busqueda.executeQuery();
-              while(resul.next())
+              search = connectionSql.prepareStatement(sql);
+              search.setInt(1, iva);
+              result=search.executeQuery();
+              while(result.next())
               {
-                idasignar = resul.getInt("IVA_VALOR");
+                idasignar = result.getInt("IVA_VALOR");
               }
-              resul.close();
-              cone.close();
+              result.close();
+              connectionSql.close();
               } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error\n Por la Causa" + ex);
           } 
        return idasignar;
    } 
      public   DefaultTableModel UpdateFamilia(String texto,int item){
-        String titulos[]={"FAM_ID","IVA","NOMBRE","DETALLE"};
-        DefaultTableModel modelo=new DefaultTableModel(null,titulos);// si no usan el null y no le ponen titulos noo les  imprime 
-        String Filtro=""+texto+"_%";
+        String[] titles={"FAM_ID","IVA","NOMBRE","DETALLE"};
+        DefaultTableModel modelo=new DefaultTableModel(null,titles);// si no usan el null y no le ponen titles noo les  imprime 
+        String Filter=""+texto+"_%";
         String[] fila=new String[4];
-        cone = Conexion.getConnection();
+        connectionSql = Conexion.getConnection();
         
-        String      instruccionsql=    "  SELECT * FROM FAMILIASARTICULOS WHERE FAM_nombre like " +'"' + Filtro  +'"';
+        String      instruccionsql=    "  SELECT * FROM FAMILIASARTICULOS WHERE FAM_nombre like " +'"' + Filter  +'"';
             if(item==0)// si se selecciona x id cambia la sentence sql
       {
           float id=Integer.parseInt(texto);
          instruccionsql=  ("SELECT * FROM FAMILIASARTICULOS WHERE FAM_ID = '"+ id +"'");
       }
         try {
-   
-    
-         sentencia=cone.prepareStatement( instruccionsql);
-            resul=sentencia.executeQuery( instruccionsql);
+         sentence=connectionSql.prepareStatement( instruccionsql);
+            result=sentence.executeQuery( instruccionsql);
            
-            while(resul.next())
+            while(result.next())
             {
-                fila[0]=resul.getString(1);
-                fila[1]=resul.getString(2);
-                fila[2]=resul.getString(3);
-                fila[3]=resul.getString(4);
+                fila[0]=result.getString(1);
+                fila[1]=result.getString(2);
+                fila[2]=result.getString(3);
+                fila[3]=result.getString(4);
               modelo.addRow(fila);
                       
             }        
             
-        resul.close();
+        result.close();
      
-        cone.close();
+        connectionSql.close();
           return modelo;  
         }
         catch(SQLException ex){
-            Logger.getLogger(QueryUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QueryUser.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
     public boolean setFamilia(int id,int iva,String nombre,String detalle){
       Connection cone= Conexion.getConnection();
-       boolean comprovador=true; 
-      float pro_id_encontrado=0;
-        PreparedStatement sentencia;
+       boolean checker=true; 
+        PreparedStatement sentence;
           try {
-              sentencia = cone.prepareStatement("INSERT INTO FAMILIASARTICULOS(FAM_ID,IVA_ID,FAM_NOMBRE,FAM_DETALLE) VALUES (?,?,?,?)");
-               sentencia.setInt(1, id);
-              sentencia.setInt(2,iva );
-              sentencia.setString(3, nombre);
-              sentencia.setString(4, detalle);
+              sentence = cone.prepareStatement("INSERT INTO FAMILIASARTICULOS(FAM_ID,IVA_ID,FAM_NOMBRE,FAM_DETALLE) VALUES (?,?,?,?)");
+               sentence.setInt(1, id);
+              sentence.setInt(2,iva );
+              sentence.setString(3, nombre);
+              sentence.setString(4, detalle);
 
-                    int res=sentencia.executeUpdate();
+                    int res=sentence.executeUpdate();
                     if(res>0){
                         JOptionPane.showMessageDialog(null,"OK, Familia guardada");
                     }
@@ -154,8 +151,8 @@ PreparedStatement sentencia;
                     }
           } catch (SQLException ex) {
      JOptionPane.showMessageDialog(null,"SELECCIONE IVA ");
-          comprovador=false;
+          checker=false;
           }
-      return comprovador;
+      return checker;
     }
 }

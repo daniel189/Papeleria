@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MODELO;
+package MODEL;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
@@ -38,26 +38,26 @@ import jxl.write.WriteException;
  *
  * @author Crispin
  */
-public class QueryProducto {
-    Conexion conexion = new Conexion();
-    Connection conexion2 = null;
-    Statement sentencia = null;
-    ResultSet resultado = null;
-    PreparedStatement ps = null;
+public class QueryProduct {
+    Conexion connection = new Conexion();
+    Connection connection2 = null;
+    Statement sentence = null;
+    ResultSet result = null;
+    PreparedStatement pStatements = null;
     
     public void reportePrductosMasV() {
 
         try {
-            conexion2 = Conexion.getConnection();
+            connection2 = Conexion.getConnection();
 String datos[]=new String[3];
-            sentencia = conexion2.createStatement();
+            sentence = connection2.createStatement();
             String consultaSQL = "select articulos.ART_ID,articulos.ART_NOMBRE,detalle.DET_CANTIDAD from papeleriafarfarela.detalle, papeleriafarfarela.articulos where detalle.ART_ID=articulos.ART_ID order by detalle.DET_CANTIDAD desc limit 4;";
-            resultado = sentencia.executeQuery(consultaSQL);
-//          while(resultado.next())
+            result = sentence.executeQuery(consultaSQL);
+//          while(result.next())
 //            {
-//                System.out.println("Id "+String.valueOf(resultado.getInt(2)));
-//                System.out.println("Nombre "+resultado.getString(1));
-//                System.out.println("Cant: "+String.valueOf(resultado.getInt(3)));
+//                System.out.println("Id "+String.valueOf(result.getInt(2)));
+//                System.out.println("Nombre "+result.getString(1));
+//                System.out.println("Cant: "+String.valueOf(result.getInt(3)));
 //            }
 //            
             
@@ -89,15 +89,15 @@ String datos[]=new String[3];
 //            table_cell = new PdfPCell(new Phrase("TELEFONO CONTACTO"));
 //            my_report_table.addCell(table_cell);
 
-            while (resultado.next()) {
+            while (result.next()) {
 
-                String codigo = String.valueOf(resultado.getInt(1));
+                String codigo = String.valueOf(result.getInt(1));
                 table_cell = new PdfPCell(new Phrase(codigo));
                 my_report_table.addCell(table_cell);
-                String nombre = resultado.getString(2);
+                String nombre = result.getString(2);
                 table_cell = new PdfPCell(new Phrase(nombre));
                 my_report_table.addCell(table_cell);
-                String cantidad = String.valueOf(resultado.getString(3));
+                String cantidad = String.valueOf(result.getString(3));
                 table_cell = new PdfPCell(new Phrase(cantidad));
                 my_report_table.addCell(table_cell);
             }//cierra while (porque no hay mas datos en la BD)
@@ -119,19 +119,18 @@ String datos[]=new String[3];
             JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n" );
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n");
-            conexion = null;
+            connection = null;
         } finally {
 
-            CloseConnection.CloseConnection(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(connection2, sentence, result, pStatements);
         }
     }
     public void reportePrductosMenosV() {
         try {
-            conexion2 = Conexion.getConnection();
-            String datos[]=new String[3];
-            sentencia = conexion2.createStatement();
+            connection2 = Conexion.getConnection();
+            sentence = connection2.createStatement();
             String consultaSQL = "select articulos.ART_ID,articulos.ART_NOMBRE,detalle.DET_CANTIDAD from papeleriafarfarela.detalle, papeleriafarfarela.articulos where detalle.ART_ID=articulos.ART_ID order by detalle.DET_CANTIDAD asc limit 4;";
-            resultado = sentencia.executeQuery(consultaSQL);    
+            result = sentence.executeQuery(consultaSQL);    
             Image portada;
             Document my_pdf_report = new Document(new Rectangle(PageSize.A4.rotate()), 1, 1, 1, 1);
             PdfWriter writer = PdfWriter.getInstance(my_pdf_report, new FileOutputStream("ProductosMenosV.pdf"));
@@ -152,15 +151,15 @@ String datos[]=new String[3];
             my_report_table.addCell(table_cell);
             table_cell = new PdfPCell(new Phrase("Cantidad"));
             my_report_table.addCell(table_cell);
-            while (resultado.next()) {
+            while (result.next()) {
 
-                String codigo = String.valueOf(resultado.getInt(1));
+                String codigo = String.valueOf(result.getInt(1));
                 table_cell = new PdfPCell(new Phrase(codigo));
                 my_report_table.addCell(table_cell);
-                String nombre = resultado.getString(2);
+                String nombre = result.getString(2);
                 table_cell = new PdfPCell(new Phrase(nombre));
                 my_report_table.addCell(table_cell);
-                String cantidad = String.valueOf(resultado.getString(3));
+                String cantidad = String.valueOf(result.getString(3));
                 table_cell = new PdfPCell(new Phrase(cantidad));
                 my_report_table.addCell(table_cell);
             }//cierra while (porque no hay mas datos en la BD)
@@ -179,10 +178,10 @@ String datos[]=new String[3];
             JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n" );
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n");
-            conexion = null;
+            connection = null;
         } finally {
 
-            CloseConnection.CloseConnection(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(connection2, sentence, result, pStatements);
         }
     }
     public void excelMasvendidos()
@@ -193,18 +192,18 @@ String datos[]=new String[3];
         entrada[0][2]="Cantidad";
         String Ruta="/Users/Daniel/Desktop/ReporteMasVendidos.xls";
          try {
-            conexion2 = Conexion.getConnection();
-            sentencia = conexion2.createStatement();
+            connection2 = Conexion.getConnection();
+            sentence = connection2.createStatement();
             String consultaSQL = "select articulos.ART_ID,articulos.ART_NOMBRE,detalle.DET_CANTIDAD from papeleriafarfarela.detalle, papeleriafarfarela.articulos where detalle.ART_ID=articulos.ART_ID order 	by detalle.DET_CANTIDAD desc limit 4;";
-            resultado = sentencia.executeQuery(consultaSQL);
+            result = sentence.executeQuery(consultaSQL);
 
              int cont=1;   
-            while (resultado.next()) {
-               String codigo = String.valueOf(resultado.getInt(1));
+            while (result.next()) {
+               String codigo = String.valueOf(result.getInt(1));
                entrada[cont][0]=codigo;
-               String nombre = resultado.getString(2);
+               String nombre = result.getString(2);
                entrada[cont][1]=nombre;
-               String cantidad = String.valueOf(resultado.getString(3));
+               String cantidad = String.valueOf(result.getString(3));
                entrada[cont][2]=cantidad;
                cont++;
 
@@ -213,10 +212,10 @@ String datos[]=new String[3];
             JOptionPane.showMessageDialog(null, "Error con la base de Datos:\n" );
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n");
-            conexion = null;
+            connection = null;
         } finally {
 
-            CloseConnection.CloseConnection(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(connection2, sentence, result, pStatements);
 
 
         }
@@ -239,11 +238,11 @@ String datos[]=new String[3];
             workbook.close();       
             
         } catch (IOException ex) {
-            Logger.getLogger(QueryProducto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QueryProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
         catch (WriteException ex) 
         {
-          Logger.getLogger(QueryProducto.class.getName()).log(Level.SEVERE, null, ex);           
+          Logger.getLogger(QueryProduct.class.getName()).log(Level.SEVERE, null, ex);           
         }
     }
     
@@ -255,17 +254,17 @@ String datos[]=new String[3];
         entrada[0][2]="Cantidad";
         String Ruta="/Users/Daniel/Desktop/ReporteMenosVendidos.xls";
          try {
-            conexion2 = Conexion.getConnection();
-            sentencia = conexion2.createStatement();
+            connection2 = Conexion.getConnection();
+            sentence = connection2.createStatement();
              String consultaSQL = "select articulos.ART_ID,articulos.ART_NOMBRE,detalle.DET_CANTIDAD from papeleriafarfarela.detalle, papeleriafarfarela.articulos where detalle.ART_ID=articulos.ART_ID order by detalle.DET_CANTIDAD asc limit 4;";
-            resultado = sentencia.executeQuery(consultaSQL);
+            result = sentence.executeQuery(consultaSQL);
              int cont=1;   
-            while (resultado.next()) {
-               String codigo = String.valueOf(resultado.getInt(1));
+            while (result.next()) {
+               String codigo = String.valueOf(result.getInt(1));
                entrada[cont][0]=codigo;
-               String nombre = resultado.getString(2);
+               String nombre = result.getString(2);
                entrada[cont][1]=nombre;
-               String cantidad = String.valueOf(resultado.getString(3));
+               String cantidad = String.valueOf(result.getString(3));
                entrada[cont][2]=cantidad;
                cont++;
 
@@ -274,10 +273,10 @@ String datos[]=new String[3];
             JOptionPane.showMessageDialog(null, "Error con la base de Datos:\n" );
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n");
-            conexion = null;
+            connection = null;
         }finally {
 
-            CloseConnection.CloseConnection(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(connection2, sentence, result, pStatements);
         }      
         
         WorkbookSettings conf=new WorkbookSettings ();
@@ -299,11 +298,11 @@ String datos[]=new String[3];
             workbook.close();       
             
         } catch (IOException ex) {
-            Logger.getLogger(QueryProducto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QueryProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
         catch (WriteException ex) 
         {
-          Logger.getLogger(QueryProducto.class.getName()).log(Level.SEVERE, null, ex);           
+          Logger.getLogger(QueryProduct.class.getName()).log(Level.SEVERE, null, ex);           
         }
     }
     

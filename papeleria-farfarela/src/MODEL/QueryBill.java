@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MODELO;
+package MODEL;
 
 import VistasVentas.SalesView;
 import static VistasVentas.SalesView.listadecompras;
@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Crispin
  */
-public class QueryFactura {
+public class QueryBill {
  
          //modelo para la tabla
     DefaultTableModel modelo;
@@ -47,7 +47,7 @@ public class QueryFactura {
         SalesView.jTableListarFacturas.setModel(modelo);
 
         //ejecuta una consulta a la BD
-        ejecutarConsultaTodaTabladeFacturas();
+        searchall();
 
     }//cierra metodo listarTodosFacturas
     
@@ -62,14 +62,14 @@ public class QueryFactura {
     ResultSet resultado = null;
     PreparedStatement ps = null;
 
-    public void ejecutarConsultaTodaTabladeFacturas() {
+    public void searchall() {
 
         try {
             conexion = Conexion.getConnection();
 
             sentencia = conexion.createStatement();
-            String consultaSQL = "SELECT * FROM facturas ORDER BY FAC_FECHA ASC";
-            resultado = sentencia.executeQuery(consultaSQL);
+            String consultSQL = "SELECT * FROM facturas ORDER BY FAC_FECHA ASC";
+            resultado = sentencia.executeQuery(consultSQL);
 
 
             

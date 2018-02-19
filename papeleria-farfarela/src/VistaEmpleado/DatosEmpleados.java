@@ -5,9 +5,9 @@
  */
 package VistaEmpleado;
 
-import MODELO.Conexion;
-import MODELO.QueryEmpleado;
-import MODELO.QueryProveedor;
+import MODEL.Conexion;
+import MODEL.QueryEmployee;
+import MODEL.QueryProvider;
 import Vista.HomeAplicativo;
 import static Vista.HomeAplicativo.escritorio;
 import VistasUsuarios.*;
@@ -639,7 +639,7 @@ public class DatosEmpleados extends javax.swing.JInternalFrame {
          */
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         cont = 0;
-        QueryEmpleado queryE = new QueryEmpleado();
+        QueryEmployee queryE = new QueryEmployee();
         Connection conection = Conexion.getConnection();
         validarCamposVacios();
         if (cont == 0) {
@@ -699,7 +699,7 @@ public class DatosEmpleados extends javax.swing.JInternalFrame {
                 }
 
             } else if (opcion == 2) {
-                QueryEmpleado change = new QueryEmpleado();
+                QueryEmployee change = new QueryEmployee();
                 String formato = jDateChooser.getDateFormatString();
                 java.util.Date date = jDateChooser.getDate();
                 SimpleDateFormat sdf = new SimpleDateFormat(formato);
@@ -832,7 +832,7 @@ public class DatosEmpleados extends javax.swing.JInternalFrame {
      */
     private void txtIdentificadorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdentificadorFocusLost
         String aux=txtIdentificador.getText();
-        QueryEmpleado queryE = new QueryEmpleado();
+        QueryEmployee queryE = new QueryEmployee();
         if (txtIdentificador.getText().length() > 0) {
             queryE.validarDocumento(txtIdentificador);
         }

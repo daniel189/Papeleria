@@ -5,7 +5,7 @@
  */
 package VistaEmpleado;
 
-import MODELO.QueryEmpleado;
+import MODEL.QueryEmployee;
 import VistaEmpleado.DatosEmpleados;
 import Vista.HomeAplicativo;
 import static Vista.HomeAplicativo.escritorio;
@@ -28,7 +28,7 @@ public class EmpleadoPrincipal1 extends javax.swing.JInternalFrame {
     /**
      * Creates new form UsuariosNew
      */
-    QueryEmpleado queryE = new QueryEmpleado();
+    QueryEmployee queryE = new QueryEmployee();
     private TableRowSorter trsFiltro;
 
     public EmpleadoPrincipal1() {
@@ -341,7 +341,7 @@ public class EmpleadoPrincipal1 extends javax.swing.JInternalFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if (jTableListarEmpleado.getSelectedRows().length > 0) {
-            QueryEmpleado queryE = new QueryEmpleado();
+            QueryEmployee queryE = new QueryEmployee();
             int code = Integer.parseInt(jTableListarEmpleado.getValueAt(jTableListarEmpleado.getSelectedRow(), 0).toString());
             queryE.eliminarEmpleado(code);
             queryE.actualizarTabla();

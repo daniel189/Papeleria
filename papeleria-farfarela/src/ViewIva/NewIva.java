@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package ViewIva;
-import MODELO.QueryIva;
+import MODEL.QueryIva;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;

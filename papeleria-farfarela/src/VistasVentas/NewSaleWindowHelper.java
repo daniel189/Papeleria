@@ -5,8 +5,8 @@
  */
 package VistasVentas;
 
-import MODELO.Conexion;
-import MODELO.QueryArticulo;
+import MODEL.Conexion;
+import MODEL.QueryArticle;
 import static VistasVentas.NewSale.jDialogArticles;
 import java.awt.Dimension;
 import java.sql.Connection;
@@ -24,7 +24,7 @@ public class NewSaleWindowHelper {
     
     public void showArticles() {
         // llamada de datos
-        QueryArticulo load = new QueryArticulo();
+        QueryArticle load = new QueryArticle();
         load.CargarArticulos();
         //Centramos nuestro jDialog
         jDialogArticles.setLocation(200, 100);

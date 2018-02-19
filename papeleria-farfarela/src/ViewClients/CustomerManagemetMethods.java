@@ -5,7 +5,7 @@
  */
 package ViewClients;
 
-import MODELO.Conexion;
+import MODEL.Conexion;
 import VistasUsuarios.UsuariosEdit;
 import java.sql.Connection;
 import java.sql.ResultSet;

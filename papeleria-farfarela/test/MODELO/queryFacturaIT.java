@@ -5,6 +5,7 @@
  */
 package MODELO;
 
+import MODEL.QueryBill;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -43,20 +44,20 @@ public class queryFacturaIT {
     @Test
     public void testListarTodosFacturas() {
         System.out.println("listarTodosFacturas");
-        QueryFactura instance = new QueryFactura();
+        QueryBill instance = new QueryBill();
         instance.listarTodosFacturas();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of ejecutarConsultaTodaTabladeFacturas method, of class queryFacturas.
+     * Test of searchall method, of class queryFacturas.
      */
     @Test
     public void testEjecutarConsultaTodaTabladeFacturas() {
         System.out.println("ejecutarConsultaTodaTabladeFacturas");
-        QueryFactura instance = new QueryFactura();
-        instance.ejecutarConsultaTodaTabladeFacturas();
+        QueryBill instance = new QueryBill();
+        instance.searchall();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -71,7 +72,7 @@ public class queryFacturaIT {
         boolean buscarPorFacturas = false;
         boolean buscarPorCliente = false;
         boolean buscarPorFecha = false;
-        QueryFactura instance = new QueryFactura();
+        QueryBill instance = new QueryBill();
         instance.buscarFacturas(parametroBusqueda, buscarPorFacturas, buscarPorCliente, buscarPorFecha);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -87,7 +88,7 @@ public class queryFacturaIT {
         boolean buscarPorFacturas = false;
         boolean buscarPorCliente = false;
         boolean buscarPorFecha = false;
-        QueryFactura instance = new QueryFactura();
+        QueryBill instance = new QueryBill();
         instance.buscarFacturasporBusqueda(parametroBusqueda, buscarPorFacturas, buscarPorCliente, buscarPorFecha);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -100,7 +101,7 @@ public class queryFacturaIT {
     public void testBuscarFacturas_String() {
         System.out.println("buscarFacturas");
         String number = "";
-        QueryFactura instance = new QueryFactura();
+        QueryBill instance = new QueryBill();
         instance.buscarFacturas(number);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -113,7 +114,7 @@ public class queryFacturaIT {
     public void testBuscarFacturasDetall() {
         System.out.println("buscarFacturasDetall");
         String number = "";
-        QueryFactura instance = new QueryFactura();
+        QueryBill instance = new QueryBill();
         instance.buscarFacturasDetall(number);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

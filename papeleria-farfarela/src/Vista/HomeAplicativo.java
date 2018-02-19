@@ -4,17 +4,17 @@
  * and open the template in the editor.
  */
 package Vista;
-import MODELO.CloseConnection;
-import MODELO.Conexion;
+import MODEL.CloseConnection;
+import MODEL.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import MODELO.QueryEmpleado;
-import MODELO.QueryProducto;
-import MODELO.QueryProveedor;
+import MODEL.QueryEmployee;
+import MODEL.QueryProduct;
+import MODEL.QueryProvider;
 import VistaEmpleado.DatosEmpleados;
 import VistaEmpleado.EmpleadoPrincipal;
 import VistaEmpleado.EmpleadoPrincipal1;
@@ -869,47 +869,47 @@ EmpleadoPrincipal1 empleadoPrincipal;
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        QueryProducto queryProduct = new QueryProducto();
+        QueryProduct queryProduct = new QueryProduct();
         queryProduct.reportePrductosMasV();
         
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        QueryProducto queryProduct = new QueryProducto();
+        QueryProduct queryProduct = new QueryProduct();
         queryProduct.reportePrductosMenosV();
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void nasVendidoExceloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nasVendidoExceloActionPerformed
         //LLAMA AL METODO MAS VENDIDO QUE GENERA EL DOCUMENTO EXCEL Y SE GUARDA EN EL ESCRITORIO
-        QueryProducto queryProduct = new QueryProducto();
+        QueryProduct queryProduct = new QueryProduct();
         queryProduct.excelMasvendidos();
     }//GEN-LAST:event_nasVendidoExceloActionPerformed
 
     private void menosVendidoExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menosVendidoExcelActionPerformed
        //LLAMA AL METODO MENOS VENDIDO QUE GENERA EL DOCUMENTO EXCEL Y SE GUARDA EN EL ESCRITORIO
-        QueryProducto queryProduct = new QueryProducto();
+        QueryProduct queryProduct = new QueryProduct();
         queryProduct.excelMenosvendidos();
     }//GEN-LAST:event_menosVendidoExcelActionPerformed
 
     private void reporteProvedorXlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteProvedorXlsActionPerformed
-       QueryProveedor proveedor=new QueryProveedor();
+       QueryProvider proveedor=new QueryProvider();
        proveedor.reporteProvedoresExcel();
     }//GEN-LAST:event_reporteProvedorXlsActionPerformed
 
     private void reporteProvedorPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteProvedorPdfActionPerformed
-         QueryProveedor proveedor=new QueryProveedor();
+         QueryProvider proveedor=new QueryProvider();
        proveedor.reporteProveedores();
     }//GEN-LAST:event_reporteProvedorPdfActionPerformed
 
     private void reporteEmpleadoXlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteEmpleadoXlsActionPerformed
-        QueryEmpleado empleado=new QueryEmpleado();
+        QueryEmployee empleado=new QueryEmployee();
         empleado.reporteEmpleadosExcel();
     }//GEN-LAST:event_reporteEmpleadoXlsActionPerformed
 
     private void reporteEmpleadoPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteEmpleadoPdfActionPerformed
-        QueryEmpleado empleado=new QueryEmpleado();
+        QueryEmployee empleado=new QueryEmployee();
         empleado.reporteEmpleados();
     }//GEN-LAST:event_reporteEmpleadoPdfActionPerformed
 

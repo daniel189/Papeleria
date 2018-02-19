@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MODELO;
+package MODEL;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,26 +14,19 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 import VistaEmpleado.EmpleadoPrincipal1;
-import static VistaEmpleado.EmpleadoPrincipal1.jTableListarEmpleado;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
-import static com.itextpdf.text.Element.ALIGN_CENTER;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Desktop;
-import java.awt.Graphics2D;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
@@ -46,7 +39,6 @@ import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
-//import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -54,20 +46,20 @@ import jxl.write.WriteException;
  */
 
 
-public class QueryEmpleado {
+public class QueryEmployee {
 
-    public QueryEmpleado() {
+    public QueryEmployee() {
     }
 
     /**
      * Declaraciones de variables.
      * conexion: realiza la conexion de la base de datos cuando se realiza la peticion
-     * modelo: instancia a la tabla, donde se depegara los datos
-     * titulosColumnas: variable que posee los nombres de cadaa columna de las tablas
-     * informacion: variable para el arreglo de datos de la informacion solicitada cuando se ejecuta la consulta
+ model: instancia a la tabla, donde se depegara los datos
+ titulosColumnas: variable que posee los nombres de cadaa columna de las tablas
+ informacion: variable para el arreglo de datos de la informacion solicitada cuando se ejecuta la consulta
      */
     Conexion conexion = new Conexion();
-    DefaultTableModel modelo;
+    DefaultTableModel model;
     String[] titulosColumnas = {"CÓDIGO", "IDENTIFICADOR", "NOMBRES", "APELLIDOS", "DIRECCION", "TELEFONO", "CARGO", "F.NACIMIENTO", "F.INGRESO"};
     String information[][] = {};
     //-----------------------------------------------------------------------------------
@@ -76,31 +68,29 @@ public class QueryEmpleado {
             String direccion, String telefono, String observacion,
             Date fNacimiento, Date fIngreso) {
 
-        Connection reg = Conexion.getConnection();
+        Connection registerSql = Conexion.getConnection();
 
         String sql = "INSERT INTO EMPLEADO ( EMP_ID, EMP_IDENTIFICADOR, EMP_NOMBRES,EMP_APELLIDOS,EMP_DIRECCION,EMP_TELEFONO,EMP_OBSERVACION,EMP_FECHANACIMIENTO,EMP_FECHAINGRESO)VALUES (?,?,?,?,?,?,?,?,?)";
         try {
-            SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-mm-dd");
-            Date fecha = null;
-            PreparedStatement pst = reg.prepareStatement(sql);
-            pst.setInt(1, cod);
-            pst.setString(2, id);
-            pst.setString(3, nombres);
-            pst.setString(4, apellidos);
-            pst.setString(5, direccion);
-            pst.setString(6, telefono);
-            pst.setString(7, observacion);
+            PreparedStatement postsql = registerSql.prepareStatement(sql);
+            postsql.setInt(1, cod);
+            postsql.setString(2, id);
+            postsql.setString(3, nombres);
+            postsql.setString(4, apellidos);
+            postsql.setString(5, direccion);
+            postsql.setString(6, telefono);
+            postsql.setString(7, observacion);
 
-            pst.setDate(7, (java.sql.Date) fNacimiento);
-            pst.setDate(8, (java.sql.Date) fIngreso);
-            int n = pst.executeUpdate();
+            postsql.setDate(7, (java.sql.Date) fNacimiento);
+            postsql.setDate(8, (java.sql.Date) fIngreso);
+            int n = postsql.executeUpdate();
             if (n > 0) {
                 JOptionPane.showMessageDialog(null, "Empleado Regristado Exitosamente");
             }
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error - " + ex);
-            Logger.getLogger(QueryEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QueryEmployee.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//cierra metodo agregarVendedor
 
@@ -110,9 +100,9 @@ public class QueryEmpleado {
         try {
             //Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/farfarela", "ECUATORIANO16", "root");
             Connection conexion = Conexion.getConnection();
-            Statement comando = conexion.createStatement();
-            int cantidad = comando.executeUpdate("delete from empleado where emp_id=" + code);
-            if (cantidad == 1) {
+            Statement comand = conexion.createStatement();
+            int amount = comand.executeUpdate("delete from empleado where emp_id=" + code);
+            if (amount == 1) {
 
                 JOptionPane.showMessageDialog(null, "Eliminado");
             } else {
@@ -130,16 +120,16 @@ public class QueryEmpleado {
     public boolean buscarRepetido(String identificador) {
 
         try {
-            Connection registro = Conexion.getConnection();
+            Connection register = Conexion.getConnection();
 
-            sentencia = registro.createStatement();
-            String consultaSQL = "SELECT emp_identificador FROM EMPLEADO where emp_identificador=" + identificador;
-            resultado = sentencia.executeQuery(consultaSQL);
+            sentence = register.createStatement();
+            String consultSQL = "SELECT emp_identificador FROM EMPLEADO where emp_identificador=" + identificador;
+            result = sentence.executeQuery(consultSQL);
 
             //mientras haya datos en la BD ejecutar eso...
-            while (resultado.next()) {
+            while (result.next()) {
 
-                String ident = resultado.getString("EMP_IDENTIFICADOR");
+                String ident = result.getString("EMP_IDENTIFICADOR");
 
                 if (ident.equals(identificador)) {
                     return true;
@@ -155,7 +145,7 @@ public class QueryEmpleado {
             conexion = null;
         } finally {
 
-            CloseConnection.CloseConnection(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(connection2, sentence, result, ps);
 
         }
         return false;
@@ -170,10 +160,10 @@ public class QueryEmpleado {
             //Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/farfarela", "ECUATORIANO16", "root");
 
             Connection conexion = Conexion.getConnection();
-            Statement comando = conexion.createStatement();
+            Statement comand = conexion.createStatement();
 
             // linea de codigo de mysql que actualiza regristos que va modificar
-            int cantidad = comando.executeUpdate("update EMPLEADO set EMP_IDENTIFICADOR ='" + id + "', "
+            int amount = comand.executeUpdate("update EMPLEADO set EMP_IDENTIFICADOR ='" + id + "', "
                     + " EMP_NOMBRES ='" + nombres
                     + "', EMP_APELLIDOS ='" + apellidos
                     + "', EMP_DIRECCION ='" + direccion
@@ -183,7 +173,7 @@ public class QueryEmpleado {
                     + "', EMP_FECHANACIMIENTO ='" + fNacimiento
                     + "', EMP_FECHAINGRESO ='" + fIngreso
                     + "' where EMP_ID=" + cod);
-            if (cantidad == 1) {
+            if (amount == 1) {
                 JOptionPane.showMessageDialog(null, " Modifico con Exito" + "nuevo:" + nombres);
             } else {
                 JOptionPane.showMessageDialog(null, "No existe Vendedor de un codigo " + cod);
@@ -197,16 +187,16 @@ public class QueryEmpleado {
 //-----------------------------------------------------------------------------------
     public void listarTodosEmpleados() {
 
-        modelo = new DefaultTableModel(information, titulosColumnas) {
+        model = new DefaultTableModel(information, titulosColumnas) {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
-        //le asigna el modelo al jtable
-        EmpleadoPrincipal1.jTableListarEmpleado.setModel(modelo);
+        //le asigna el model al jtable
+        EmpleadoPrincipal1.jTableListarEmpleado.setModel(model);
 
         //ejecuta una consulta a la BD
-        ejecutarConsultaTodaTabla();
+        searchall();
 
     }//cierra metodo listarTodosClientes
 
@@ -215,40 +205,40 @@ public class QueryEmpleado {
      * Metodo para consultar todos los regsitros de la base de datos de clientes
      * y luego ser mostrados en una tabla.
      */
-    Connection conexion2 = null;
-    Statement sentencia = null;
-    ResultSet resultado = null;
+    Connection connection2 = null;
+    Statement sentence = null;
+    ResultSet result = null;
     PreparedStatement ps = null;
 
-    public void ejecutarConsultaTodaTabla() {
+    public void searchall() {
 
         try {
-            conexion2 = Conexion.getConnection();
+            connection2 = Conexion.getConnection();
 
-            sentencia = conexion2.createStatement();
+            sentence = connection2.createStatement();
             String consultaSQL = "SELECT * FROM EMPLEADO ORDER BY EMP_ID ASC";
-            resultado = sentencia.executeQuery(consultaSQL);
+            result = sentence.executeQuery(consultaSQL);
 
             //mientras haya datos en la BD ejecutar eso...
-            while (resultado.next()) {
+            while (result.next()) {
 
-                int codigo = resultado.getInt("EMP_ID");
-                String identificador = resultado.getString("EMP_IDENTIFICADOR");
-                String nombres = resultado.getString("EMP_NOMBRES");
-                String apellidos = resultado.getString("EMP_APELLIDOS");
-                String direccion = resultado.getString("EMP_DIRECCION");
-                String telefono = resultado.getString("EMP_TELEFONO");
-                String cargo = resultado.getString("EMP_CARGO");
-                //String observacion = resultado.getString("EMP_OBSERVACION");
-                String fNacimiento = resultado.getString("EMP_FECHANACIMIENTO");
-                String fIngreso = resultado.getString("EMP_FECHAINGRESO");
+                int codigo = result.getInt("EMP_ID");
+                String identificador = result.getString("EMP_IDENTIFICADOR");
+                String nombres = result.getString("EMP_NOMBRES");
+                String apellidos = result.getString("EMP_APELLIDOS");
+                String direccion = result.getString("EMP_DIRECCION");
+                String telefono = result.getString("EMP_TELEFONO");
+                String cargo = result.getString("EMP_CARGO");
+                //String observacion = result.getString("EMP_OBSERVACION");
+                String fNacimiento = result.getString("EMP_FECHANACIMIENTO");
+                String fIngreso = result.getString("EMP_FECHAINGRESO");
 
                 //crea un vector donde los está la informacion (se crea una fila)
                 Object[] info = {codigo, identificador, nombres, apellidos, direccion, telefono, cargo, fNacimiento, fIngreso};
 
-                //al modelo de la tabla le agrega una fila
+                //al model de la tabla le agrega una fila
                 //con los datos que están en info
-                modelo.addRow(info);
+                model.addRow(info);
 
             }//cierra while (porque no hay mas datos en la BD)
 
@@ -259,7 +249,7 @@ public class QueryEmpleado {
             conexion = null;
         } finally {
 
-            CloseConnection.CloseConnection(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(connection2, sentence, result, ps);
 
         }
 
@@ -270,11 +260,11 @@ public class QueryEmpleado {
     public void reporteEmpleados() {
 
         try {
-            conexion2 = Conexion.getConnection();
+            connection2 = Conexion.getConnection();
 
-            sentencia = conexion2.createStatement();
+            sentence = connection2.createStatement();
             String consultaSQL = "SELECT * FROM EMPLEADO ORDER BY EMP_ID ASC";
-            resultado = sentencia.executeQuery(consultaSQL);
+            result = sentence.executeQuery(consultaSQL);
             Image portada;
             Document my_pdf_report = new Document(new Rectangle(PageSize.A4.rotate()),1,1,1,1);
             PdfWriter writer=PdfWriter.getInstance(my_pdf_report, new FileOutputStream("Empleados.pdf"));
@@ -301,46 +291,42 @@ public class QueryEmpleado {
              my_report_table.addCell(table_cell);
             table_cell = new PdfPCell(new Phrase("Fecha Ingreso"));
              my_report_table.addCell(table_cell);
-            while (resultado.next()) {
+            while (result.next()) {
 
-                String codigo = resultado.getString("EMP_ID");
+                String codigo = result.getString("EMP_ID");
                 table_cell = new PdfPCell(new Phrase(codigo));
                 my_report_table.addCell(table_cell);
-                String identificador = resultado.getString("EMP_IDENTIFICADOR");
+                String identificador = result.getString("EMP_IDENTIFICADOR");
                 table_cell = new PdfPCell(new Phrase(identificador));
                 my_report_table.addCell(table_cell);
-                String nombres = resultado.getString("EMP_NOMBRES");
+                String nombres = result.getString("EMP_NOMBRES");
                 table_cell = new PdfPCell(new Phrase(nombres));
                 my_report_table.addCell(table_cell);
-                String apellidos = resultado.getString("EMP_APELLIDOS");
+                String apellidos = result.getString("EMP_APELLIDOS");
                 table_cell = new PdfPCell(new Phrase(apellidos));
                 my_report_table.addCell(table_cell);
-//                String direccion = resultado.getString("EMP_DIRECCION");
+//                String direccion = result.getString("EMP_DIRECCION");
 //                table_cell=new PdfPCell(new Phrase(direccion));
 //                my_report_table.addCell(table_cell);
-//                String telefono = resultado.getString("EMP_TELEFONO");
+//                String telefono = result.getString("EMP_TELEFONO");
 //                table_cell=new PdfPCell(new Phrase(telefono));
 //                my_report_table.addCell(table_cell);
-                String cargo = resultado.getString("EMP_CARGO");
+                String cargo = result.getString("EMP_CARGO");
                 table_cell = new PdfPCell(new Phrase(cargo));
                 my_report_table.addCell(table_cell);
-//                String observacion = resultado.getString("EMP_OBSERVACION");
+//                String observacion = result.getString("EMP_OBSERVACION");
 //                table_cell=new PdfPCell(new Phrase(observacion));
 //                my_report_table.addCell(table_cell);
-//                String fNacimiento = resultado.getString("EMP_FECHANACIMIENTO");
+//                String fNacimiento = result.getString("EMP_FECHANACIMIENTO");
 //                table_cell=new PdfPCell(new Phrase(fNacimiento));
 //                my_report_table.addCell(table_cell);
-                String fIngreso = resultado.getString("EMP_FECHAINGRESO");
+                String fIngreso = result.getString("EMP_FECHAINGRESO");
                 table_cell = new PdfPCell(new Phrase(fIngreso));
                 my_report_table.addCell(table_cell);
 
             }//cierra while (porque no hay mas datos en la BD)
             /* Attach report table to PDF */
             my_pdf_report.add(my_report_table);
-            
-            
-          
-            
             my_pdf_report.close();
             
             JOptionPane.showMessageDialog(null, "PDF Generado Exitosamente.");
@@ -359,7 +345,7 @@ public class QueryEmpleado {
             JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n");
             conexion = null;
         } finally {
-            CloseConnection.CloseConnection(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(connection2, sentence, result, ps);
 
 
         }
@@ -369,9 +355,9 @@ public class QueryEmpleado {
     public void UpdateTable() {
         try {
             String sql = "SELECT * FROM EMPLEADO WHERE EMP_ID LIKE ? ORDER BY EMP_ID ASC";
-            ps = conexion2.prepareStatement(sql);
-            resultado = ps.executeQuery(sql);
-            //EmpleadoPrincipal.jTableListarEmpleado.setModel(DbUtils.resultSetToTableModel(resultado));
+            ps = connection2.prepareStatement(sql);
+            result = ps.executeQuery(sql);
+            //EmpleadoPrincipal.jTableListarEmpleado.setModel(DbUtils.resultSetToTableModel(result));
         } catch (Exception e) {
         }
     }
@@ -633,23 +619,23 @@ public class QueryEmpleado {
         
         String Ruta="/Users/Daniel/Desktop/ReporteEmpleados.xls";
          try {
-            conexion2 = Conexion.getConnection();
-            sentencia = conexion2.createStatement();
+            connection2 = Conexion.getConnection();
+            sentence = connection2.createStatement();
              String consultaSQL = "SELECT * FROM EMPLEADO ORDER BY EMP_ID ASC";
-             resultado = sentencia.executeQuery(consultaSQL);
+             result = sentence.executeQuery(consultaSQL);
              int cont=1;   
-            while (resultado.next()) {
-                String codigo = resultado.getString("EMP_ID");
+            while (result.next()) {
+                String codigo = result.getString("EMP_ID");
                 entrada[cont][0]=codigo;
-                String identificador = resultado.getString("EMP_IDENTIFICADOR");
+                String identificador = result.getString("EMP_IDENTIFICADOR");
                 entrada[cont][1]=identificador;
-                String nombres = resultado.getString("EMP_NOMBRES");
+                String nombres = result.getString("EMP_NOMBRES");
                 entrada[cont][2]=nombres;
-                String apellidos = resultado.getString("EMP_APELLIDOS");
+                String apellidos = result.getString("EMP_APELLIDOS");
                 entrada[cont][3]=apellidos;
-                String cargo = resultado.getString("EMP_CARGO");
+                String cargo = result.getString("EMP_CARGO");
                 entrada[cont][4]=cargo;
-                String fIngreso = resultado.getString("EMP_FECHAINGRESO");
+                String fIngreso = result.getString("EMP_FECHAINGRESO");
                 entrada[cont][5]=fIngreso;
           
                cont++;
@@ -661,7 +647,7 @@ public class QueryEmpleado {
             JOptionPane.showMessageDialog(null, "Error al generar el pdf:\n");
             conexion = null;
         } finally {
-            CloseConnection.CloseConnection(conexion2, sentencia, resultado, ps);
+            CloseConnection.CloseConnection(connection2, sentence, result, ps);
 
         }
         
@@ -684,11 +670,11 @@ public class QueryEmpleado {
             workbook.close();       
             
         } catch (IOException ex) {
-            Logger.getLogger(QueryEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QueryEmployee.class.getName()).log(Level.SEVERE, null, ex);
         }
         catch (WriteException ex) 
         {
-          Logger.getLogger(QueryEmpleado.class.getName()).log(Level.SEVERE, null, ex);           
+          Logger.getLogger(QueryEmployee.class.getName()).log(Level.SEVERE, null, ex);           
         }
     
                 

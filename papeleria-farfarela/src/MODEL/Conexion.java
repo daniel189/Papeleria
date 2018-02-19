@@ -1,4 +1,4 @@
-package MODELO;
+package MODEL;
 
 import Vista.HomeAplicativo;
 import java.sql.Connection;

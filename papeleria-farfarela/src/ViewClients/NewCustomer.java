@@ -5,7 +5,7 @@
  */
 package ViewClients;
 
-import MODELO.QueryCliente;
+import MODEL.QueryClient;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -238,7 +238,7 @@ public class NewCustomer extends javax.swing.JInternalFrame {
                     
                     lista.add(String.valueOf(sdf.format(date)));
                     //objeto para llamar el queryClientes
-                    QueryCliente obj = new QueryCliente();
+                    QueryClient obj = new QueryClient();
                     obj.setCliente(lista);
                     methods.limparDatos(txtIdentificador, txtApellidos, txtNombres, txtDireccion, txtTelefono);
                 }

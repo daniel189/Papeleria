@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package ViewFamily;
-import MODELO.QueryFamilia;
+import MODEL.QueryFamiliy;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
  * @author martha
  */
 public class EditFamily extends javax.swing.JInternalFrame {
-   QueryFamilia art_query=new QueryFamilia();
+   QueryFamiliy art_query=new QueryFamiliy();
 
     public EditFamily() {
         initComponents();

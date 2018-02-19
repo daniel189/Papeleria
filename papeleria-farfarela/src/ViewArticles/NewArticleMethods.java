@@ -5,8 +5,8 @@
  */
 package ViewArticles;
 
-import MODELO.Conexion;
-import MODELO.QueryArticulo;
+import MODEL.Conexion;
+import MODEL.QueryArticle;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,7 +26,7 @@ public class NewArticleMethods {
      public int idarticulo;
      int fam_id;
      int pro_id;
-     QueryArticulo artQuery=new QueryArticulo();
+     QueryArticle artQuery=new QueryArticle();
      String titulos[]={"Art Id","Fam Id","Pro Id","Nombre","Descripcion","Precio","Stoc"};
      DefaultTableModel modelo=new DefaultTableModel(null,titulos);
      public void mostrar(JTextField txt_descripcion, JTextField txt_nombre, JTextField txt_precio, JTextField txt_stock,

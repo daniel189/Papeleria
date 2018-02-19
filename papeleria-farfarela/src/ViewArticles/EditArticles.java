@@ -5,7 +5,7 @@
  */
 package ViewArticles;
 
-import MODELO.QueryArticulo;
+import MODEL.QueryArticle;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,7 +23,7 @@ public class EditArticles extends javax.swing.JInternalFrame {
      * artQuery: nos permite realizar la busqueda de los datos
      * valor_encontrado: nos devuelve el valor que buscamos en la base datos.
      */    
-    QueryArticulo articleQuery=new QueryArticulo();    
+    QueryArticle articleQuery=new QueryArticle();    
     int valueFound;
   /**
    * funcion que edita los articulos que se hayan obtenido de la tablaa
