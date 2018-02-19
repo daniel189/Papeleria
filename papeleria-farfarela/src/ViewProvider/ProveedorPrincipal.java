@@ -372,9 +372,7 @@ private TableRowSorter trsFiltro;
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     
-    
-    
-    
+        
     /**
      * Funcio qu epemrite la visualizacion de los datos
      * extrayendolos de la tabla que contiene la vista.
