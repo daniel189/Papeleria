@@ -62,7 +62,7 @@ public class NewSale extends javax.swing.JInternalFrame{
         salesTebleModel.addColumn("Valor Unitario");
         salesTebleModel.addColumn("Valor Subtotal");
         JTableArticulos.setModel(salesTebleModel);
-        String account = Vista.HomeAplicativo.getCuenta1();
+        String account = View.HomeAplicativo.getCuenta1();
         jTextFieldCodSeller.setText(account);
         // CONFIGURAR el taño de ancho de la tabla
         int[] wide = {35, 65, 220, 60, 85, 80};

@@ -5,7 +5,7 @@
  */
 package Vista.Proveedor;
 
-import VistaProveedor.ProveedorPrincipal;
+import ViewProvider.ProveedorPrincipal;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

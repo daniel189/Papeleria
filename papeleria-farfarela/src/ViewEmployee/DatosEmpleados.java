@@ -7,8 +7,8 @@ package ViewEmployee;
 
 import MODEL.Conexion;
 import MODEL.QueryEmployee;
-import Vista.HomeAplicativo;
-import static Vista.HomeAplicativo.escritorio;
+import View.HomeAplicativo;
+import static View.HomeAplicativo.escritorio;
 import com.placeholder.PlaceHolder;
 import java.awt.Color;
 import java.awt.Dimension;

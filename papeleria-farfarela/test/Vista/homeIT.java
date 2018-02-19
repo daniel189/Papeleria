@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import View.HomeAplicativo;
 import javax.swing.JLabel;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -84,7 +85,7 @@ public class homeIT {
     public void testHabilitar() {
         System.out.println("habilitar");
         HomeAplicativo instance = new HomeAplicativo();
-        instance.Habilitar();
+        instance.enable();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

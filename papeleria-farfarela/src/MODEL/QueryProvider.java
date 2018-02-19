@@ -7,7 +7,7 @@ package MODEL;
  */
 import MODEL.CloseConnection;
 import MODEL.Conexion;
-import VistaProveedor.ProveedorPrincipal1;
+import ViewProvider.ProveedorPrincipal1;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Image;

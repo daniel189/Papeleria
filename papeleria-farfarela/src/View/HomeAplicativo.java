@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
+package View;
 import MODEL.CloseConnection;
 import MODEL.Conexion;
 import java.sql.Connection;
@@ -11,17 +11,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import MODEL.QueryEmployee;
 import MODEL.QueryProduct;
 import MODEL.QueryProvider;
-import ViewEmployee.DatosEmpleados;
-import ViewEmployee.EmpleadoPrincipal;
 import ViewEmployee.EmpleadoPrincipal1;
-import VistaProveedor.ProveedorPrincipal;
-import VistaProveedor.ProveedorPrincipal1;
+import ViewProvider.ProveedorPrincipal1;
 import ViewArticles.FoundArticles;
-import ViewArticles.RemoveArticles;
 import ViewArticles.NewArticle;
 import ViewArticles.EditArticles;
 import ViewClients.CustomerManagement;
@@ -38,23 +33,12 @@ import VistasUsuarios.UsuariosNew;
 import VistasUsuarios.UsuariosSearch;
 import VistasVentas.NewSale;
 import VistasVentas.SalesView;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Image;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfContentByte;
-import com.itextpdf.text.pdf.PdfTemplate;
-import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.io.FileOutputStream;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 
 /**
@@ -76,7 +60,7 @@ public class HomeAplicativo extends javax.swing.JFrame {
     public HomeAplicativo() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
-        Habilitar();
+        enable();
         lblCuenta.setVisible(true);
         lblNivel.setVisible(false);
     }
@@ -95,21 +79,21 @@ public class HomeAplicativo extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         lblNivel.setText(aux);
-        Habilitar();
+        enable();
         lblCuenta.setVisible(true);
         lblNivel.setVisible(false);
     }
     public static boolean Cerrado(Object obj) {
         JInternalFrame[] activos =  escritorio.getAllFrames();
-        boolean cerrado = true;
+        boolean close = true;
         int i = 0;
-        while (i < activos.length && cerrado) {
+        while (i < activos.length && close) {
             if (activos[i] == obj) {
-                cerrado = false;
+                close = false;
             }
             i++;
         }
-        return cerrado;
+        return close;
     }
 
     /**
@@ -575,7 +559,7 @@ EmpleadoPrincipal1 empleadoPrincipal;
             empleadoPrincipal.show();
         }
     }//GEN-LAST:event_jEmpleadosActionPerformed
-    public void Habilitar() {
+    public void enable() {
         String aux = lblNivel.getText();
         System.out.println("nivel "+aux );
         switch (aux) {
@@ -1064,7 +1048,6 @@ EmpleadoPrincipal1 empleadoPrincipal;
     public static void setNivel(String aNivel) {
         nivel = aNivel;
     }
-    
     
     public static String getCuenta1() {
         return lblCuenta.getText();

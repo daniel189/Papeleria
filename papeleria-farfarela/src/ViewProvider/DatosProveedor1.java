@@ -3,13 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package VistaProveedor;
+package ViewProvider;
 
 import MODEL.Conexion;
 import MODEL.QueryProvider;
+import View.HomeAplicativo;
+import static View.HomeAplicativo.escritorio;
 import VistasUsuarios.*;
 import com.placeholder.PlaceHolder;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -27,12 +30,12 @@ import javax.swing.JOptionPane;
  *
  * @author Roger
  */
-public class DatosProveedor extends javax.swing.JDialog {
+public class DatosProveedor1 extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form UsuariosNew
      */
-   // queryProveedores queryP= new queryProveedores();
+    //queryProveedores qp = new queryProveedores();
     private int opcion;
     private String cod;
     private String idt;
@@ -41,11 +44,9 @@ public class DatosProveedor extends javax.swing.JDialog {
     private String contacto;
     private String tcontc;
     private String direcc;
-
-    public DatosProveedor(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    Conexion conectar = new Conexion();
+    public DatosProveedor1() {
         initComponents();
-        setLocationRelativeTo(null);
 
         claveMax();
         //Hint();
@@ -56,14 +57,10 @@ public class DatosProveedor extends javax.swing.JDialog {
 
     }
 
-    
-    /**
-     * Esta funcion verifica que por lo menos 
-     * se tenga un empleado en los registros.
-     */
     public void claveMax() {
         try {
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/farfarela", "ECUATORIANO16", "root");
+            //Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/farfarela", "ECUATORIANO16", "root");
+            Connection conexion = Conexion.getConnection();
             Statement comando = conexion.createStatement();
             ResultSet registro = comando.executeQuery("select max(pro_id)+1 from proveedor");
             //ResultSet registro = comando.executeQuery("select count(*) from proveedor");
@@ -83,10 +80,6 @@ public class DatosProveedor extends javax.swing.JDialog {
         }
     }
 
-     /**
-     * Funcion la cual ubica los placeholder 
-     * correspondientes a cada txt de la vista
-     */
     public final void Hint() {
         PlaceHolder holder;
         holder = new PlaceHolder(txtIdentificador, "Ruc");
@@ -97,20 +90,9 @@ public class DatosProveedor extends javax.swing.JDialog {
         holder = new PlaceHolder(txtTelefonoContacto, "Telefono del representante");
     }
 
-    public DatosProveedor() {
-    }
+ 
 
-    /**
-     * 
-     * @param cod codido del proveedor 
-     * @param idt identificacion del provedor RUC
-     * @param rsocial rason social tipo de proveedor
-     * @param telf telefono de contacto
-     * @param contacto nombre del contacto 
-     * @param tcontc telefono del contacto 
-     * @param direcc direccion del proveedor
-     */
-    public DatosProveedor(String cod, String idt, String rsocial, String telf, String contacto, String tcontc, String direcc) {
+    public DatosProveedor1(String cod, String idt, String rsocial, String telf, String contacto, String tcontc, String direcc) {
         /*this.cod=cod;
         this.idt=idt;
         this.rsocial=rsocial;
@@ -124,10 +106,6 @@ public class DatosProveedor extends javax.swing.JDialog {
     }
     int cont = 0;
 
-    /**
-     * Esta funcion marca los campos obligatorios
-     * para poder contar siempre con los datos relevantes
-     */
     public void validarCamposVacios() {
         if (txtIdentificador.getText().equals("")) {
             validacion1.setVisible(true);
@@ -159,17 +137,6 @@ public class DatosProveedor extends javax.swing.JDialog {
         }
     }
 
-    
-    /**
-     * 
-     * @param cod codido del proveedor 
-     * @param idt identificacion del provedor RUC
-     * @param rsocial rason social tipo de proveedor
-     * @param telf telefono de contacto
-     * @param contacto nombre del contacto 
-     * @param tcontc telefono del contacto 
-     * @param direcc direccion del proveedor
-     */
     public final void Llenar(String cod, String idt, String rsocial, String telf, String contacto, String tcontc, String direcc) {
         txtCodigo.setText(cod);
         txtIdentificador.setText(idt);
@@ -180,11 +147,6 @@ public class DatosProveedor extends javax.swing.JDialog {
         txtDireccion.setText(direcc);
     }
 
-    /**
-     * Funcion desarrollada con el fin de bloquear
-     * o evitar la manipulacion de los componentes 
-     * de la vista una vez que se ingressaron o se ingresan
-     */
     public final void Deshabilitar() {
         lblEstado.setText("Proveedor - Nuevo");
         txtCodigo.setEnabled(false);
@@ -194,14 +156,10 @@ public class DatosProveedor extends javax.swing.JDialog {
         txtContacto.setEnabled(false);
         txtTelefonoContacto.setEnabled(false);
         txtDireccion.setEnabled(false);
-        btnCancelar.setVisible(false);
+        btnCancelar.setVisible(true);
         btnGuardar.setVisible(false);
     }
 
-    /**
-     * Esta funcion limpia los componetes de la vista
-     * @throws ParseException manejo de excepciones
-     */
     public void Limpiar() {
         txtCodigo.setText("");
         txtIdentificador.setText("");
@@ -245,7 +203,10 @@ public class DatosProveedor extends javax.swing.JDialog {
         validacion3 = new javax.swing.JLabel();
         validacion4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
 
         lblEstado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/equipo.png"))); // NOI18N
@@ -294,6 +255,11 @@ public class DatosProveedor extends javax.swing.JDialog {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/agregar-usuario.png"))); // NOI18N
 
         txtIdentificador.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtIdentificador.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtIdentificadorFocusLost(evt);
+            }
+        });
         txtIdentificador.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtIdentificadorKeyTyped(evt);
@@ -468,13 +434,6 @@ public class DatosProveedor extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-        /**
-         * Funcion la cual reacciona al evento del boton
-         * mediante la cual se realiza la insercion de los datos
-         * a la base de datos, controlando los mismos y verificando 
-         * podibles duplicaciones o redundancias.
-         */
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         cont = 0;
         QueryProvider queryE = new QueryProvider();
@@ -507,7 +466,7 @@ public class DatosProveedor extends javax.swing.JDialog {
 
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Error - " + ex);
-                    Logger.getLogger(DatosProveedor.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(DatosProveedor1.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else if (this.opcion == 2) {
                 lblEstado.setText("Proveedor - Modificar");
@@ -533,18 +492,19 @@ public class DatosProveedor extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    /**
-     * Funcion que cierra la vista actual
-     * @param evt 
-     */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        dispose();
+        this.dispose();
+        ProveedorPrincipal1 proveedor=new ProveedorPrincipal1();
+        HomeAplicativo.escritorio.add(proveedor);
+            proveedor.toFront();
+             //Para centrar la ventana abierta
+            Dimension dimension = escritorio.getSize();
+            Dimension FrameSize = proveedor.getSize();
+            proveedor.setLocation((dimension.width - FrameSize.width) / 2, (dimension.height - FrameSize.height) / 2);
+            //
+            proveedor.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    /**
-     * funcion la cual evita el ingreso de letras
-     * @param evt 
-     */
     private void txtIdentificadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdentificadorKeyTyped
         char caracter = evt.getKeyChar();
         if (Character.isLetter(caracter)) {
@@ -575,12 +535,6 @@ public class DatosProveedor extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_txtTelefonoContactoKeyTyped
 
-    //-----------------------------------------------------
-    
-    /**
-     * funcion la cual evita el ingreso de letras
-     * @param evt 
-     */
     private void txtContactoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContactoKeyTyped
          char caracter = evt.getKeyChar();
         if (Character.isDigit(caracter)) {
@@ -590,107 +544,18 @@ public class DatosProveedor extends javax.swing.JDialog {
 
         }
     }//GEN-LAST:event_txtContactoKeyTyped
-    Conexion conectar = new Conexion();
+
+    private void txtIdentificadorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdentificadorFocusLost
+         QueryProvider queryE = new QueryProvider();
+        if (txtIdentificador.getText().length() > 0) {
+            queryE.validarDocumento(txtIdentificador);
+        }
+    }//GEN-LAST:event_txtIdentificadorFocusLost
+    
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DatosProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DatosProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DatosProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DatosProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        /* Create and display the form */
-
-        java.awt.EventQueue.invokeLater(() -> {
-
-            DatosProveedor dialog = new DatosProveedor(new javax.swing.JFrame(), true);
-            dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-            });
-            dialog.setVisible(true);
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

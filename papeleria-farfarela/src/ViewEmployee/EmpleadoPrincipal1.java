@@ -7,8 +7,8 @@ package ViewEmployee;
 
 import MODEL.QueryEmployee;
 import ViewEmployee.DatosEmpleados;
-import Vista.HomeAplicativo;
-import static Vista.HomeAplicativo.escritorio;
+import View.HomeAplicativo;
+import static View.HomeAplicativo.escritorio;
 import java.awt.Dimension;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

@@ -5,8 +5,8 @@
  */
 package ViewClients;
 import MODEL.QueryClient;
-import Vista.HomeAplicativo;
-import static Vista.HomeAplicativo.escritorio;
+import View.HomeAplicativo;
+import static View.HomeAplicativo.escritorio;
 import java.awt.Dimension;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
