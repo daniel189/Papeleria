@@ -7,18 +7,14 @@ package ViewProvider;
 
 import MODEL.Conexion;
 import MODEL.QueryProvider;
-import VistasUsuarios.*;
 import com.placeholder.PlaceHolder;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -63,21 +59,20 @@ public class DatosProveedor extends javax.swing.JDialog {
      */
     public void claveMax() {
         try {
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/farfarela", "ECUATORIANO16", "root");
-            Statement comando = conexion.createStatement();
-            ResultSet registro = comando.executeQuery("select max(pro_id)+1 from proveedor");
-            //ResultSet registro = comando.executeQuery("select count(*) from proveedor");
-            if (registro.next() == true) {
-                if (registro.getString("max(pro_id)+1") == null) {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/farfarela", "ECUATORIANO16", "root");
+            Statement comand = connection.createStatement();
+            ResultSet register = comand.executeQuery("select max(pro_id)+1 from proveedor");
+            if (register.next() == true) {
+                if (register.getString("max(pro_id)+1") == null) {
                     txtCodigo.setText("1");
                 } else {
-                    txtCodigo.setText(registro.getString("max(pro_id)+1"));
+                    txtCodigo.setText(register.getString("max(pro_id)+1"));
                 }
 
             } else {
                 JOptionPane.showMessageDialog(null, "Error");
             }
-            conexion.close();
+            connection.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error " + ex);
         }
@@ -122,7 +117,7 @@ public class DatosProveedor extends javax.swing.JDialog {
         //Llenar(cod, idt, rsocial, telf, contacto, tcontc, direcc);
 
     }
-    int cont = 0;
+    int cheker = 0;
 
     /**
      * Esta funcion marca los campos obligatorios
@@ -132,28 +127,28 @@ public class DatosProveedor extends javax.swing.JDialog {
         if (txtIdentificador.getText().equals("")) {
             validacion1.setVisible(true);
             validacion1.setForeground(Color.red);
-            cont++;
+            cheker++;
         } else {
             validacion1.setVisible(false);
         }
         if (txtRazonSocial.getText().equals("")) {
             validacion2.setVisible(true);
             validacion2.setForeground(Color.red);
-            cont++;
+            cheker++;
         } else {
             validacion2.setVisible(false);
         }
         if (txtTelefono.getText().equals("")) {
             validacion3.setVisible(true);
             validacion3.setForeground(Color.red);
-            cont++;
+            cheker++;
         } else {
             validacion3.setVisible(false);
         }
         if (txtDireccion.getText().equals("")) {
             validacion4.setVisible(true);
             validacion4.setForeground(Color.red);
-            cont++;
+            cheker++;
         } else {
             validacion4.setVisible(false);
         }
@@ -476,10 +471,10 @@ public class DatosProveedor extends javax.swing.JDialog {
          * podibles duplicaciones o redundancias.
          */
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        cont = 0;
+        cheker = 0;
         QueryProvider queryE = new QueryProvider();
         validarCamposVacios();
-        if (cont == 0) {
+        if (cheker == 0) {
             Connection reg = Conexion.getConnection();
             if (this.opcion == 1) {
                 lblEstado.setText("Proveedor - Nuevo");
@@ -590,7 +585,7 @@ public class DatosProveedor extends javax.swing.JDialog {
 
         }
     }//GEN-LAST:event_txtContactoKeyTyped
-    Conexion conectar = new Conexion();
+    Conexion connection = new Conexion();
 
     /**
      * @param args the command line arguments
